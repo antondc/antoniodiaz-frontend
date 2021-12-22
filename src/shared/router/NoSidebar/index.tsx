@@ -4,7 +4,6 @@ import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import Footer from 'Components/Footer';
 import Header from 'Components/Header';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
@@ -51,7 +50,6 @@ const NoSidebar: React.FC<Props> = ({ loggedIn, location, defaultCurrentSlug, pa
         </Switch>
       </FadeInOut>
     </div>
-    <Footer />
   </div>
 );
 

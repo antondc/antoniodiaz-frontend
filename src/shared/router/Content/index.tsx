@@ -4,7 +4,6 @@ import { Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import CookiesBanner from 'Components/CookiesBanner';
-import Footer from 'Components/Footer';
 import Header from 'Components/Header';
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
@@ -39,7 +38,6 @@ const Content: React.FC<Props> = ({ location, pathWithoutLanguageParam }) => {
         </div>
         {/* INTENDED => </FadeInOut> */}
       </div>
-      <Footer />
     </div>
   );
 };
