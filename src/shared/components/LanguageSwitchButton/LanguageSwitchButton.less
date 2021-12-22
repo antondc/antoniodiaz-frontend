@@ -16,19 +16,19 @@
     transition: all @td-fast ease, background @td-normal ease;
     will-change: transform;
 
-    .App--Who & {
+    .Layout--Who & {
       background: @c-gold--pastel;
     }
 
-    .App--How & {
-      background: @c-tomato;
-    }
-
-    .App--What & {
+    .Layout--What & {
       background: @c-turquoise;
     }
 
-    .App--Contact & {
+    .Layout--When & {
+      background: @c-tomato;
+    }
+
+    .Layout--Contact & {
       .isDesktop & {
         background: @c-transparent;
       }
@@ -38,8 +38,7 @@
   &:hover {
     cursor: pointer;
 
-    &:not(.isControl &),
-    &not(& .isActive) {
+    &:not(.isActive) {
       span {
         &:first-child {
           transform: translate(0, -2px);

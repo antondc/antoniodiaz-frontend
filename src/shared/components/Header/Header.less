@@ -29,63 +29,6 @@
     padding: 20px 10px 20px 20px;
     background: @c-white--pastel--transparent--hard;
     transition: background @td-fast ease, border @td-normal ease;
-
-    &:before {
-      content: '';
-      position: absolute;
-      height: 1px;
-      bottom: 0;
-      left: 20px;
-      right: 20px;
-      background: @c-blue--pastel;
-    }
-  }
-
-  .Layout--What & {
-    .isMobile &,
-    .isTablet & {
-      &:before {
-        background: @c-turquoise;
-      }
-    }
-  }
-
-  .Layout--Who & {
-    .isMobile &,
-    .isTablet & {
-      &:before {
-        background: @c-gold--pastel;
-      }
-    }
-  }
-
-  .Layout--How & {
-    .isMobile &,
-    .isTablet & {
-      &:before {
-        background: @c-tomato;
-      }
-    }
-  }
-
-  &.isControl {
-    align-items: center;
-    height: unset;
-    padding: 10px 20px;
-    background: @c-white--pastel;
-
-    &:after {
-      content: ' ';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-bottom: 1px solid @c-gray-transparent--light;
-    }
-  }
-
-  &.isActive {
-    top: 0;
   }
 
   &-logo {
@@ -96,26 +39,12 @@
     transition: opacity @td-normal ease, transform @td-normal ease;
     cursor: default;
 
-    .Layout--Contact & {
-      .isDesktop & {
-        opacity: 0;
-      }
-    }
-
     .isMobile &,
     .isTablet & {
       position: relative;
       top: unset;
       left: unset;
       margin: 0;
-    }
-
-    .isControl & {
-      position: relative;
-      top: unset;
-      left: unset;
-      right: unset;
-      margin: unset;
     }
   }
 
@@ -152,7 +81,7 @@
       }
     }
 
-    .Layout--How & {
+    .Layout--When & {
       fill: @c-tomato;
 
       &:hover {
@@ -167,25 +96,6 @@
         opacity: 0.8;
       }
     }
-  }
-
-  &-navigation {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    color: @c-blue--pastel;
-  }
-
-  &-item {
-    display: inline-block;
-    padding: 0 30px;
-    font-size: 20px;
-    font-weight: @fw-semibold;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: pre;
   }
 
   &-logOut {
