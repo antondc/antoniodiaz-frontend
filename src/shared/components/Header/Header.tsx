@@ -27,16 +27,14 @@ export const Header: React.FC<Props> = ({
   onLogout,
 }) => (
   <header className="Header">
-    <div className="Header-content">
-      <A href="/" className="Header-logo">
-        <Triangle className="Header-logoIcon" />
-      </A>
-      <div className="Header-languages">
-        <Fade mounted={uiLanguagesModalMounted}>
-          <LanguagesSwitch />
-        </Fade>
-        <LanguageItem lang={currentLanguageSlug} onClick={onLanguageItemClick} href={currentPathName} />
-      </div>
+    <A href="/" className="Header-logo">
+      <Triangle className="Header-logoIcon" />
+    </A>
+    <div className="Header-languages">
+      <Fade mounted={uiLanguagesModalMounted}>
+        <LanguagesSwitch />
+      </Fade>
+      <LanguageItem lang={currentLanguageSlug} onClick={onLanguageItemClick} href={currentPathName} />
     </div>
   </header>
 );

@@ -7,14 +7,13 @@
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  height: 0;
+  height: 100px;
   width: 100%;
   min-width: 960px;
   left: 0;
+  padding: 0 40px;
   overflow: visible;
-  border: 10px solid @c-blue--pastel;
-  border-bottom: none;
-  // transition: border @td-normal ease;
+  transition: border @td-normal ease;
   z-index: @z-index-5;
 
   .isMobile &,
@@ -108,7 +107,6 @@
 
   &-logo {
     display: flex;
-    position: absolute;
     justify-content: flex-start;
     height: 40px;
     width: 40px;
@@ -227,30 +225,7 @@
     }
   }
 
-  &-langSwitch {
-    position: absolute;
-    width: 54px;
-    top: 88px;
-    bottom: 0;
-    right: 72px;
-    color: @c-blue--pastel;
-
-    .isMobile &,
-    .isTablet & {
-      position: relative;
-      height: 50px;
-      top: unset;
-      right: unset;
-    }
-
-    .isControl & {
-      position: relative;
-      flex-shrink: 0;
-      height: 45px;
-      width: 47px;
-      top: unset;
-      left: unset;
-      right: unset;
-    }
+  &-languages {
+    //
   }
 }

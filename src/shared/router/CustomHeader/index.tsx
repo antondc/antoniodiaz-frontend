@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import HeaderSmall from 'Components/HeaderSmall';
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
 import NotFound from 'Pages/NotFound';
 import ServerError from 'Pages/ServerError';
@@ -21,7 +20,6 @@ interface Props {
 const CustomHeader: React.FC<Props> = ({ location, pathWithoutLanguageParam }) => (
   <div className="CustomHeader">
     <div className="CustomHeader-customHeaderBackground" />
-    <HeaderSmall />
     <FadeInOut valueToUpdate={pathWithoutLanguageParam} speed="fastest" appear>
       <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
         {/* Redirects */}
