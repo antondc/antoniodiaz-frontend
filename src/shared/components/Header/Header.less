@@ -3,49 +3,254 @@
 @c: .Header;
 
 @{c} {
-  position: sticky;
-  height: 120px;
-  top: 0;
-  padding: 20px 0;
-  background: @gradientColors[blue-6];
-  z-index: @z-index-2;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  height: 0;
+  width: 100%;
+  min-width: 960px;
+  left: 0;
+  overflow: visible;
+  border: 10px solid @c-blue--pastel;
+  border-bottom: none;
+  // transition: border @td-normal ease;
+  z-index: @z-index-5;
 
-  @media @br-mobile {
-    height: 70px;
-    padding: 10px 0;
+  .isMobile &,
+  .isTablet & {
+    position: sticky;
+    align-items: unset;
+    height: 90px;
+    min-width: unset;
+    top: 0;
+    padding: 20px 10px 20px 20px;
+    background: @c-white--pastel--transparent--hard;
+    transition: background @td-fast ease, border @td-normal ease;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 1px;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      background: @c-blue--pastel;
+    }
   }
 
-  &-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding-left: 20px;
-    padding-right: 40px;
-    background: @c-background;
-    z-index: @z-index-1;
-    border-radius: 4px;
-
-    .boxShadow;
-
-    @media @br-mobile {
-      height: 50px;
-      padding: 6px 14px 6px 12px;
-      box-shadow: none;
-      border: 2px solid @gradientColors[blue-1];
-      border-radius: 8px;
+  .App--What & {
+    .isMobile &,
+    .isTablet & {
+      &:before {
+        background: @c-turquoise;
+      }
     }
+  }
+
+  .App--Who & {
+    .isMobile &,
+    .isTablet & {
+      &:before {
+        background: @c-gold--pastel;
+      }
+    }
+  }
+
+  .App--How & {
+    .isMobile &,
+    .isTablet & {
+      &:before {
+        background: @c-tomato;
+      }
+    }
+  }
+
+  .App--What &,
+  .App--Who &,
+  .App--How &,
+  .App--Contact & {
+    .isDesktop & {
+      border: 10px solid @c-transparent;
+      border-bottom: none;
+    }
+  }
+
+  .App--What &,
+  .App--Who &,
+  .App--How & {
+    .isMobile &,
+    .isTablet & {
+      border: 10px solid @c-transparent;
+      border-bottom: none;
+    }
+  }
+
+  &.isControl {
+    align-items: center;
+    height: unset;
+    padding: 10px 20px;
+    background: @c-white--pastel;
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid @c-gray-transparent--light;
+    }
+  }
+
+  &.isActive {
+    top: 0;
   }
 
   &-logo {
     display: flex;
+    position: absolute;
     justify-content: flex-start;
-    align-items: center;
-    width: 250px;
-    margin-right: 34px;
+    height: 40px;
+    width: 40px;
+    top: 82px;
+    left: 72px;
+    margin-right: 100px;
+    margin-right: 12px;
+    overflow: visible;
+    transition: opacity @td-normal ease, transform @td-normal ease;
+    cursor: default;
+    vertical-align: bottom;
+
+    .App--Contact & {
+      .isDesktop & {
+        opacity: 0;
+      }
+    }
+
+    .isMobile &,
+    .isTablet & {
+      position: relative;
+      top: unset;
+      left: unset;
+      margin: 0;
+    }
+
+    .isControl & {
+      position: relative;
+      top: unset;
+      left: unset;
+      right: unset;
+      margin: unset;
+    }
   }
 
-  &-languages {
-    position: relative;
+  &-logoIcon {
+    fill: @c-blue--pastel;
+    transform: rotate(0deg);
+    transition: fill @td-normal ease, opacity @td-fast ease, transform @td-normal @ease-outQuint;
+    will-change: transform;
+    cursor: default;
+    backface-visibility: hidden;
+
+    &.isActive {
+      transform: rotate(-90deg);
+    }
+
+    .isDesktop & {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .App--Home & {
+      .isDesktop & {
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+
+    .App--What & {
+      fill: @c-turquoise;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .App--How & {
+      fill: @c-tomato;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .App--Who & {
+      fill: @c-gold--pastel;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &-navigation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    color: @c-blue--pastel;
+  }
+
+  &-item {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: 20px;
+    font-weight: @fw-semibold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: pre;
+  }
+
+  &-logOut {
+    height: 29px;
+    width: 29px;
+
+    .SvgSprite {
+      fill: @c-blue--pastel;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-langSwitch {
+    position: absolute;
+    width: 54px;
+    top: 88px;
+    bottom: 0;
+    right: 72px;
+    color: @c-blue--pastel;
+
+    .isMobile &,
+    .isTablet & {
+      position: relative;
+      height: 50px;
+      top: unset;
+      right: unset;
+    }
+
+    .isControl & {
+      position: relative;
+      flex-shrink: 0;
+      height: 45px;
+      width: 47px;
+      top: unset;
+      left: unset;
+      right: unset;
+    }
   }
 }
