@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "AntonioDiaz: Attach Node by Process ID",
+      "processId": "${command:PickProcess}",
+      "port": 9228,
+      "skipFiles": ["${workspaceRoot}/node_modules/**/*.js"],
+      "restart": true,
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/dist/*.js"]
+    }
+  ]
+}

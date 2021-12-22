@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES6",
+    "lib": ["ES6", "dom", "esnext"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "Root/*": ["./*"],
+      "Redux/*": ["./src/shared/redux/*"],
+      "Modules/*": ["./src/shared/redux/modules/*"],
+      "Common/*": ["./src/shared/common/*"],
+      "Components/*": ["./src/shared/components/*"],
+      "Assets/*": ["./src/shared/assets/*"],
+      "Router/*": ["./src/shared/router/*"],
+      "Tools/*": ["./src/shared/tools/*"],
+      "Services/*": ["./src/shared/services/*"],
+      "Ui/*": ["./src/shared/ui/*"],
+      "Pages/*": ["./src/shared/pages/*"],
+    }
+  },
+  "include": ["./src/**/*", "./*"]
+}

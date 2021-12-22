@@ -1,0 +1,71 @@
+@import '../../css/imports.less';
+
+@c: .CookiesBanner;
+
+@{c} {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 4px;
+
+  .u-blackBars;
+
+  @media @br-mobile {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    padding: 20px;
+
+    @media @br-mobile {
+      padding: 0;
+      border-radius: 4px;
+    }
+  }
+
+  &-textSpan {
+    font-size: @fs-small;
+    background: @c-background;
+  }
+
+  &-textSpanTitle {
+    padding: 4px 20px 0 10px;
+    font-size: @fs-medium;
+    font-weight: @fw-semibold;
+
+    @media @br-mobile {
+      margin-right: 10px;
+    }
+  }
+
+  &-textSpanBody {
+    padding: 4px 10px;
+
+    @media @br-mobile {
+      margin-right: 10px;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+
+    @media @br-mobile {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-top: 10px;
+      padding: 0;
+    }
+  }
+}

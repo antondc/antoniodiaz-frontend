@@ -1,0 +1,33 @@
+@import './typography.less';
+@import './constants.less';
+
+body {
+  .hideScrollbar();
+
+  font-weight: @fw-medium;
+  color: @c-base;
+  opacity: 0;
+  transition: opacity @td-fast ease;
+  // No transitions on load
+  &.preload * {
+    transition: none !important;
+  }
+
+  &.isLoaded {
+    opacity: 1 !important;
+  }
+
+  &.scrollLocked {
+    overflow: hidden !important;
+  }
+
+  &.scrollMobileLocked {
+    @media @br-mobile {
+      overflow: hidden !important;
+    }
+  }
+}
+
+html {
+  scrollbar-width: none !important;
+}

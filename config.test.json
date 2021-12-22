@@ -1,0 +1,28 @@
+{
+  "development": {
+    "PORT_HTTP": 80,
+    "PORT_HTTPS": 443,
+    "API_URL": "https://dev.antoniodiaz.me:3000/api/v1/",
+    "DOMAIN": "dev.antoniodiaz.me"
+  },
+  "staging": {
+    "PORT_HTTP": 4001,
+    "PORT_HTTPS": 4002,
+    "API_URL": "https://api-staging.antoniodiaz.me/api/v1/",
+    "DOMAIN": "staging.antoniodiaz.me"
+  },
+  "production": {
+    "PORT_HTTP": 4003,
+    "PORT_HTTPS": 4004,
+    "API_URL": "https://api.antoniodiaz.me/api/v1/",
+    "DOMAIN": "antoniodiaz.me"
+  },
+  "ENABLE_ISOMORPHISM": false,
+  "MEDIA": "media",
+  "MEDIA_FOLDER": "media",
+  "MEDIA_IMAGES": "media/images",
+  "TEMP_FILES": "media/temp_files",
+  "DEFAULT_IMAGE": "/img/default-image.png",
+  "CONTACT_EMAIL": "hello@antoniodiaz.me",
+  "APP_NAME": "Antonio Díaz"
+}

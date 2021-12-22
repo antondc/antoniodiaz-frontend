@@ -1,0 +1,81 @@
+@import '../../css/imports.less';
+
+@c: .BaseModal;
+
+@{c} {
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &-background {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: @c-traslucid--hardest;
+    transform: scale(2);
+  }
+
+  &-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+
+    @media @br-mobile {
+      display: block;
+      padding: 10px;
+    }
+  }
+
+  &-content {
+    position: relative;
+    grid-column: 7 / span 12;
+    grid-row: 8;
+    padding: 60px 100px;
+    background: @c-background;
+    border-radius: 4px;
+
+    .boxShadow;
+
+    @media @br-tabletHorizontal {
+      grid-column: 5 / span 16;
+      grid-row: 8;
+    }
+
+    @media @br-mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &-cross {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 20px;
+    right: 20px;
+    padding: 0 0 10px 10px;
+    fill: @gradientColors[black-3];
+    transition: fill @td-fast @ease;
+
+    &:hover {
+      fill: @gradientColors[black-1];
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import '../../css/imports.less';
+
+@c: .NotFound;
+
+@{c} {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background: @gradientColors[yellow-6];
+
+  &-title {
+    margin-bottom: 40px;
+    font-size: @fs-huge;
+    font-weight: @fw-extraBold;
+  }
+
+  &-text {
+    margin-bottom: 5px;
+    font-weight: @fw-semibold;
+    line-height: @fh-medium;
+  }
+
+  @media @br-mobile {
+    margin-bottom: 10px;
+    padding: 40px;
+    background: @c-background;
+    border-radius: 4px;
+
+    .boxShadow;
+  }
+
+  &-link {
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    color: @gradientColors[blue-1];
+
+    &:hover:not(.noClass) {
+      text-decoration-color: @gradientColors[blue-1];
+      color: @gradientColors[blue-1];
+      cursor: pointer;
+    }
+
+    @media @br-mobile {
+      text-decoration-color: @gradientColors[blue-1];
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import '../../css/imports.less';
+
+@c: .LanguagesSwitch;
+
+@{c} {
+  position: absolute;
+  top: 45px;
+  left: -10px;
+  padding: 15px 10px;
+  background: @c-background;
+  border-radius: 8px;
+  box-shadow: 5px 5px 50px 0 @gradientColors[black-4];
+
+  &-language {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &-languageActive {
+    font-weight: @fw-bold;
+  }
+}

@@ -1,0 +1,20 @@
+.DS*Store
+.DS_Store?
+.*_
+.Spotlight-V100
+.Trashes
+yarn.lock
+node_modules
+ehthumbs.db
+Thumbs.db
+media.zip
+media/*
+dist/*
+# Dont track the built view
+src/server/views/index.ejs
+.htaccess
+tmp
+.htpasswd
+src/server/ssl/private.crt
+src/server/ssl/private.csr
+src/server/ssl/private.key

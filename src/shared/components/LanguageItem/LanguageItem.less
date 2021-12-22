@@ -1,0 +1,47 @@
+@import '../../css/imports.less';
+
+@c: .LanguageItem;
+
+@{c} {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  margin-bottom: 10px;
+  padding-bottom: 3px;
+  color: @gradientColors[black-3];
+  background: @c-background;
+  border: 2px solid;
+  border-color: @gradientColors[black-3];
+  transition: border-color @td-fast @ease;
+  user-select: none;
+  border-radius: 50%;
+  font-variant: small-caps;
+
+  &-text {
+    font-weight: @fw-extraBold;
+    transition: color @td-fast @ease;
+  }
+
+  &:hover:not(@{c}--active) {
+    border-color: @gradientColors[blue-2];
+    cursor: pointer;
+
+    @{c}-text {
+      color: @gradientColors[blue-2];
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--active {
+    border-color: @gradientColors[blue-1];
+
+    @{c}-text {
+      color: @gradientColors[blue-1];
+    }
+  }
+}

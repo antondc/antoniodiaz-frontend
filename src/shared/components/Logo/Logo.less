@@ -1,0 +1,238 @@
+@import '../../css/imports.less';
+
+@c: .Logo;
+
+@{c} {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: @fs-big;
+  text-decoration: none;
+  color: @c-brand;
+  fill: @c-brand;
+  transition: opacity @td-fast @ease;
+
+  &:hover:not(.noClass) {
+    text-decoration: none;
+    color: @c-brand;
+    opacity: 0.8;
+    fill: @c-brand;
+  }
+
+  &-icon {
+    height: 50px;
+    margin-right: 15px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @media @br-mobile {
+      height: 30px;
+    }
+
+    svg {
+      height: 100%;
+      transition: fill @td-fast @ease;
+
+      path[data-id='background'] {
+        fill: @gradientColors[black-5];
+      }
+
+      path[data-id='shadow'] {
+        opacity: 0.7;
+        fill: @gradientColors[black-4];
+      }
+
+      path[data-id='logo'] {
+        fill: @gradientColors[blue-1];
+      }
+    }
+  }
+
+  &-text {
+    transform: translateY(-1px);
+
+    @media @br-mobile {
+      display: none;
+    }
+  }
+
+  // path[data-id='red'] {
+  //   fill: @gradientColors[red-2];
+  // }
+
+  // path[data-id='green'] {
+  //   fill: @gradientColors[green-2];
+  // }
+
+  // path[data-id='blue'] {
+  //   fill: @gradientColors[blue-2];
+  // }
+
+  // path[data-id='yellow'] {
+  //   fill: @gradientColors[yellow-2];
+  // }
+
+  &--loadingBeat {
+    @{c}-icon {
+      svg {
+        transform-origin: 50% 50%;
+        animation: hearthBeat 2s ease infinite;
+
+        @media @br-mobile {
+          animation: none;
+        }
+      }
+    }
+  }
+
+  &--loadingColors {
+    @{c}-icon {
+      path[data-id-logo='red'] {
+        animation: colorsBeatRed 2s linear infinite;
+      }
+
+      path[data-id-logo='green'] {
+        animation: colorsBeatGreen 1.7s linear infinite;
+      }
+
+      path[data-id-logo='blue'] {
+        animation: colorsBeatBlue 2.1s linear infinite;
+      }
+
+      path[data-id-logo='yellow'] {
+        animation: colorsBeatYellow 1.8s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes hearthBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  5% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Keyframes ----
+@keyframes colorsBeatRed {
+  0% {
+    fill: @gradientColors[red-2];
+  }
+
+  20% {
+    fill: @gradientColors[green-2];
+  }
+
+  40% {
+    fill: @gradientColors[red-2];
+  }
+
+  60% {
+    fill: @gradientColors[blue-2];
+  }
+
+  80% {
+    fill: @gradientColors[yellow-2];
+  }
+
+  100% {
+    fill: @gradientColors[red-2];
+  }
+}
+
+@keyframes colorsBeatGreen {
+  0% {
+    fill: @gradientColors[green-2];
+  }
+
+  20% {
+    fill: @gradientColors[blue-2];
+  }
+
+  40% {
+    fill: @gradientColors[green-2];
+  }
+
+  60% {
+    fill: @gradientColors[green-2];
+  }
+
+  80% {
+    fill: @gradientColors[red-2];
+  }
+
+  100% {
+    fill: @gradientColors[red-2];
+  }
+}
+
+@keyframes colorsBeatBlue {
+  0% {
+    fill: @gradientColors[blue-2];
+  }
+
+  20% {
+    fill: @gradientColors[yellow-2];
+  }
+
+  40% {
+    fill: @gradientColors[yellow-2];
+  }
+
+  60% {
+    fill: @gradientColors[red-2];
+  }
+
+  80% {
+    fill: @gradientColors[green-2];
+  }
+
+  100% {
+    fill: @gradientColors[blue-2];
+  }
+}
+
+@keyframes colorsBeatYellow {
+  0% {
+    fill: @gradientColors[yellow-2];
+  }
+
+  20% {
+    fill: @gradientColors[red-2];
+  }
+
+  40% {
+    fill: @gradientColors[blue-2];
+  }
+
+  60% {
+    fill: @gradientColors[yellow-2];
+  }
+
+  80% {
+    fill: @gradientColors[blue-2];
+  }
+
+  100% {
+    fill: @gradientColors[yellow-2];
+  }
+}

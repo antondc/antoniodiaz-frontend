@@ -1,0 +1,25 @@
+@import '../../css/imports.less';
+
+@c: .CustomHeader;
+
+@{c} {
+  max-width: 2000px;
+  margin: 0 auto;
+
+  @media @br-mobile {
+    max-width: unset;
+    margin: unset;
+  }
+
+  &-customHeaderBackground {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: @c-background;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+  }
+}

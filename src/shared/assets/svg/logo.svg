@@ -1,0 +1,31 @@
+<svg
+  version="1.1"
+  id="Слой_1"
+  xmlns="http://www.w3.org/2000/svg"
+  x="0"
+  y="0"
+  viewBox="0 0 48.1 38.2"
+  xml:space="preserve"
+>
+  <path transform="rotate(-45.001 4.243 14.172)" data-id="blue" d="M1.2 11.2h6v6h-6z" />
+  <path transform="rotate(-45.001 9.192 19.122)" data-id="yellow" d="M6.2 16.1h6v6h-6z" />
+  <path transform="rotate(-45.001 14.142 24.072)" data-id="red" d="M11.1 21.1h6v6h-6z" />
+  <path transform="rotate(-45.001 19.092 29.022)" data-id="blue" d="M16.1 26h6v6h-6z" />
+  <path transform="rotate(-45.001 24.034 33.964)" data-id="red" d="M21 31h6v6h-6z" />
+  <path transform="rotate(-45.001 9.192 9.223)" data-id="green" d="M6.2 6.2h6v6h-6z" />
+  <path transform="rotate(-45.001 14.142 14.172)" data-id="red" d="M11.1 11.2h6v6h-6z" />
+  <path transform="rotate(-45.001 19.092 19.122)" data-id="yellow" d="M16.1 16.1h6v6h-6z" />
+  <path transform="rotate(-45.001 24.041 24.072)" data-id="green" d="M21 21.1h6v6h-6z" />
+  <path transform="rotate(-45.001 28.983 29.014)" data-id="yellow" d="M26 26h6v6h-6z" />
+  <path transform="rotate(-45.001 14.142 4.273)" data-id="red" d="M11.1 1.3h6v6h-6z" />
+  <path transform="rotate(-45.001 19.092 9.223)" data-id="green" d="M16.1 6.2h6v6h-6z" />
+  <path transform="rotate(-45.001 24.042 14.172)" data-id="blue" d="M21 11.2h6v6h-6z" />
+  <path transform="rotate(-45.001 28.991 19.122)" data-id="red" d="M26 16.1h6v6h-6z" />
+  <path transform="rotate(-45.001 33.933 24.064)" data-id="green" d="M30.9 21.1h6v6h-6z" />
+  <path transform="rotate(-45.001 28.995 9.227)" data-id="red" d="M26 6.2h6v6h-6z" />
+  <path transform="rotate(-45.001 33.945 14.176)" data-id="green" d="M30.9 11.2h6v6h-6z" />
+  <path transform="rotate(-45.001 38.887 19.119)" data-id="blue" d="M35.9 16.1h6v6h-6z" />
+  <path transform="rotate(-45.001 33.949 4.28)" data-id="blue" d="M30.9 1.3h6v6h-6z" />
+  <path transform="rotate(-45.001 38.899 9.23)" data-id="yellow" d="M35.9 6.2h6v6h-6z" />
+  <path transform="rotate(-45.001 43.84 14.173)" data-id="red" d="M40.8 11.2h6v6h-6z" />
+</svg>
