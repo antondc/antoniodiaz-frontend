@@ -14,7 +14,7 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 0 40px;
+  padding: 0 60px;
   overflow: visible;
   transition: border @td-normal ease;
   z-index: @z-index-5;
@@ -41,7 +41,7 @@
     }
   }
 
-  .App--What & {
+  .Layout--What & {
     .isMobile &,
     .isTablet & {
       &:before {
@@ -50,7 +50,7 @@
     }
   }
 
-  .App--Who & {
+  .Layout--Who & {
     .isMobile &,
     .isTablet & {
       &:before {
@@ -59,32 +59,12 @@
     }
   }
 
-  .App--How & {
+  .Layout--How & {
     .isMobile &,
     .isTablet & {
       &:before {
         background: @c-tomato;
       }
-    }
-  }
-
-  .App--What &,
-  .App--Who &,
-  .App--How &,
-  .App--Contact & {
-    .isDesktop & {
-      border: 10px solid @c-transparent;
-      border-bottom: none;
-    }
-  }
-
-  .App--What &,
-  .App--Who &,
-  .App--How & {
-    .isMobile &,
-    .isTablet & {
-      border: 10px solid @c-transparent;
-      border-bottom: none;
     }
   }
 
@@ -109,20 +89,14 @@
   }
 
   &-logo {
-    display: flex;
-    justify-content: flex-start;
+    position: relative;
     height: 40px;
     width: 40px;
-    top: 82px;
-    left: 72px;
-    margin-right: 100px;
-    margin-right: 12px;
     overflow: visible;
     transition: opacity @td-normal ease, transform @td-normal ease;
     cursor: default;
-    vertical-align: bottom;
 
-    .App--Contact & {
+    .Layout--Contact & {
       .isDesktop & {
         opacity: 0;
       }
@@ -146,9 +120,12 @@
   }
 
   &-logoIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
     fill: @c-blue--pastel;
     transform: rotate(0deg);
-    transition: fill @td-normal ease, opacity @td-fast ease, transform @td-normal @ease-outQuint;
+    transition: fill @td-normal ease, opacity @td-fast ease, transform @td-normal @ease;
     will-change: transform;
     cursor: default;
     backface-visibility: hidden;
@@ -157,21 +134,17 @@
       transform: rotate(-90deg);
     }
 
-    .isDesktop & {
+    &:hover {
+      cursor: pointer;
+    }
+
+    .Layout--Home & {
       &:hover {
-        cursor: pointer;
+        cursor: default;
       }
     }
 
-    .App--Home & {
-      .isDesktop & {
-        &:hover {
-          cursor: default;
-        }
-      }
-    }
-
-    .App--What & {
+    .Layout--What & {
       fill: @c-turquoise;
 
       &:hover {
@@ -179,7 +152,7 @@
       }
     }
 
-    .App--How & {
+    .Layout--How & {
       fill: @c-tomato;
 
       &:hover {
@@ -187,7 +160,7 @@
       }
     }
 
-    .App--Who & {
+    .Layout--Who & {
       fill: @c-gold--pastel;
 
       &:hover {
@@ -226,9 +199,5 @@
     &:hover {
       cursor: pointer;
     }
-  }
-
-  &-languages {
-    //
   }
 }

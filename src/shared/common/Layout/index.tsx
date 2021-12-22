@@ -10,10 +10,11 @@ import { uiResetModalsState } from 'Modules/Ui/actions/uiResetModalsState';
 import { selectUiScreenLocked } from 'Modules/Ui/selectors/selectUiScreenLocked';
 import { selectUiScreenMobileLocked } from 'Modules/Ui/selectors/selectUiScreenMobileLocked';
 import { userLoad } from 'Modules/Users/actions/userLoad';
-import { routesList, routesWithoutOmmitedValues } from 'Router/routes';
+import { Routes, routesList, routesWithoutOmmitedValues } from 'Router/routes';
 import { Location } from 'Services/History';
 import enhanceRouteWithParams from 'Tools/utils/url/enhanceRouteWithParams';
 import findActiveRouteKey from 'Tools/utils/url/findActiveRouteKey';
+import { selectCurrentRouteName } from '../../redux/modules/Routes/selectors/selectCurrentRouteName';
 import { ESCAPE_KEY_CODE } from './constants';
 import { Layout as LayoutUi } from './Layout';
 
@@ -32,6 +33,7 @@ const Layout: React.FC<Props> = ({ location }) => {
   const uiScreenLocked = useSelector(selectUiScreenLocked);
   const uiScreenMobileLocked = useSelector(selectUiScreenMobileLocked);
   const renderLoader = !!languageLoading; /* || otherVariables */
+  const routeName = useSelector(selectCurrentRouteName);
 
   const addBodyClasses = () => {
     document.body.classList.remove('preload'); // Preventing animations on load
@@ -94,7 +96,7 @@ const Layout: React.FC<Props> = ({ location }) => {
     dispatch(userLoad(session?.id));
   }, [session?.id]);
 
-  return <LayoutUi renderLoader={renderLoader} location={location} />;
+  return <LayoutUi renderLoader={renderLoader} location={location} routeName={routeName} />;
 };
 
 export default Layout;

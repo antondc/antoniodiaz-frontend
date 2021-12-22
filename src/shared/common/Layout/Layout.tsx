@@ -1,6 +1,5 @@
 import React from 'react';
 
-import LayoutHelperGrid from 'Common/LayoutHelperGrid';
 import ScreenSizePixel from 'Components/ScreenSizePixel';
 import Router from 'Router/.';
 import { Location } from 'Services/History';
@@ -11,10 +10,11 @@ import './Layout.less';
 interface Props {
   location: Location;
   renderLoader: boolean;
+  routeName: string;
 }
 
-export const Layout: React.FC<Props> = ({ location, renderLoader }) => (
-  <div className="Layout">
+export const Layout: React.FC<Props> = ({ location, renderLoader, routeName }) => (
+  <div className={'Layout Layout--' + routeName}>
     <ScreenSizePixel />
     <div className="Layout-generalBackground" />
     <Router location={location} />

@@ -3,9 +3,28 @@
 @c: .Layout;
 
 @{c} {
+  position: relative;
   .default();
 
-  position: relative;
+  &:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: inset 0 0 0 10px @c-transparent;
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: box-shadow @td-normal @ease, transform @td-normal @ease;
+  }
+
+  &--Home {
+    &:before {
+      box-shadow: inset 0 0 0 10px @c-blue--pastel;
+      transform: scale(1);
+    }
+  }
 
   &-generalBackground {
     position: fixed;

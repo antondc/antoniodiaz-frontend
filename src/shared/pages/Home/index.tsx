@@ -1,22 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { uiResetModalsState } from 'Modules/Ui/actions/uiResetModalsState';
+import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
+import { selectRouterHistory } from 'Modules/Routes/selectors/selectRouterHistory';
+import history from 'Services/History';
+import { Routes } from '../../router/routes';
 import { Home as HomeUi } from './Home';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
   const [stateFirst, setStateFirst] = useState<string>(undefined);
   const [stateSecond, setStateSecond] = useState<string>(undefined);
   const [stateThird, setStateThird] = useState<string>(undefined);
   const [stateFourth, setStateFourth] = useState<string>(undefined);
-  useEffect(() => () => dispatch(uiResetModalsState()), []);
+  const langParam = useSelector(selectCurrentRouteParamLanguage);
+  const routeHistory = useSelector(selectRouterHistory);
+
+  useEffect(() => {
+    const lastRouteName = routeHistory[routeHistory.length - 2]?.name;
+    const comingFromWho = lastRouteName === Routes.Who.name;
+    const comingFromWhat = lastRouteName === Routes.What.name;
+    const comingFromWhen = lastRouteName === Routes.When.name;
+
+    if (comingFromWho) {
+      setStateFirst('Home-all');
+      setStateSecond('Home-vertical');
+      setStateThird('Home-horizontal');
+      setStateFourth('Home-dot');
+    } else if (comingFromWhat) {
+      setStateFirst('Home-vertical');
+      setStateSecond('Home-all');
+      setStateThird('Home-dot');
+      setStateFourth('Home-horizontal');
+    } else if (comingFromWhen) {
+      setStateFirst('Home-horizontal');
+      setStateSecond('Home-dot');
+      setStateThird('Home-all');
+      setStateFourth('Home-vertical');
+    }
+
+    setTimeout(() => {
+      setStateFirst('');
+      setStateSecond('');
+      setStateThird('');
+      setStateFourth('');
+    }, 20);
+  }, []);
 
   const onFirstHover = () => {
     setStateFirst('Home-bigSquare');
     setStateSecond('Home-highRectangle');
     setStateThird('Home-wideRectangle');
     setStateFourth('Home-smallSquare');
+  };
+
+  const onFirstClick = () => {
+    setStateFirst('Home-all');
+    setStateSecond('Home-vertical');
+    setStateThird('Home-horizontal');
+    setStateFourth('Home-dot');
+
+    setTimeout(() => history.push(`/${langParam}${Routes.Who.route}`), 300);
   };
 
   const onSecondHover = () => {
@@ -26,11 +69,29 @@ const Home: React.FC = () => {
     setStateFourth('Home-wideRectangle');
   };
 
+  const onSecondClick = () => {
+    setStateFirst('Home-vertical');
+    setStateSecond('Home-all');
+    setStateThird('Home-dot');
+    setStateFourth('Home-horizontal');
+
+    setTimeout(() => history.push(`/${langParam}${Routes.What.route}`), 300);
+  };
+
   const onThirdHover = () => {
     setStateFirst('Home-wideRectangle');
     setStateSecond('Home-smallSquare');
     setStateThird('Home-bigSquare');
     setStateFourth('Home-highRectangle');
+  };
+
+  const onThirdClick = () => {
+    setStateFirst('Home-horizontal');
+    setStateSecond('Home-dot');
+    setStateThird('Home-all');
+    setStateFourth('Home-vertical');
+
+    setTimeout(() => history.push(`/${langParam}${Routes.When.route}`), 300);
   };
 
   const onFourthHover = () => {
@@ -61,8 +122,11 @@ const Home: React.FC = () => {
       stateThird={stateThird}
       stateFourth={stateFourth}
       onFirstHover={onFirstHover}
+      onFirstClick={onFirstClick}
       onSecondHover={onSecondHover}
+      onSecondClick={onSecondClick}
       onThirdHover={onThirdHover}
+      onThirdClick={onThirdClick}
       onFourthHover={onFourthHover}
       onFourthClick={onFourthClick}
       onGridLeave={onGridLeave}

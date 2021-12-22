@@ -10,14 +10,15 @@ import './Header.less';
 
 interface Props {
   uiLanguagesModalMounted: boolean;
+  logoActive: boolean;
 }
 
-export const Header: React.FC<Props> = ({ uiLanguagesModalMounted }) => (
+export const Header: React.FC<Props> = ({ uiLanguagesModalMounted, logoActive }) => (
   <header className="Header">
     <A href="/" className="Header-logo">
-      <Triangle className="Header-logoIcon" />
+      <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />
     </A>
-    <div className="Header-languages">
+    <div>
       <Fade mounted={uiLanguagesModalMounted}>
         <LanguagesSwitch />
       </Fade>

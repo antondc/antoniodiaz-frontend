@@ -24,6 +24,10 @@ interface RoutesInterface {
   Home: Route;
   Login: Route;
   Control: Route;
+  Who: Route;
+  What: Route;
+  When: Route;
+  Where: Route;
   ServerError: Route;
   NotFound: Route;
 }
@@ -43,6 +47,46 @@ export const Routes: RoutesInterface = {
     name: 'Home',
     path: '/:lang([a-z]{2})?',
     route: '/',
+    exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  Who: {
+    name: 'Who',
+    path: '/:lang([a-z]{2})?/who',
+    route: '/who',
+    exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  What: {
+    name: 'What',
+    path: '/:lang([a-z]{2})?/what',
+    route: '/what',
+    exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  When: {
+    name: 'When',
+    path: '/:lang([a-z]{2})?/when',
+    route: '/when',
+    exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  Where: {
+    name: 'Where',
+    path: '/:lang([a-z]{2})?/where',
+    route: '/where',
     exact: true,
     auth: false,
     initialDataLoadersVisitor: [],
