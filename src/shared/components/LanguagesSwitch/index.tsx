@@ -1,37 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch, useSelector } from 'react-redux';
 
-import LanguageItem from 'Components/LanguageItem';
 import { switchCurrentLanguage } from 'Modules/Languages/actions/switchCurrentLanguage';
-import { LanguageState } from 'Modules/Languages/languages.types';
 import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguagesList';
 import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
+import { selectUiLanguagesModalMounted } from 'Modules/Ui/selectors/selectUiLanguagesModalMounted';
+import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
 import './LanguagesSwitch.less';
 
-interface Props {
-  isLogged: boolean;
-  languagesList: LanguageState[];
-  currentLanguage: LanguageState;
-  currentRouteParamLanguage: string;
-  currentPathname: string;
-  switchLanguagesModal: () => void;
-  switchCurrentLanguage: (slug: string) => void;
-}
+const LanguagesSwitch: React.FC = ({}) => {
+  const dispatch = useDispatch();
+  const languagesList = useSelector(selectLanguagesList);
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const currentRouteParamLanguage = useSelector(selectCurrentRouteParamLanguage);
+  const currentPathname = useSelector(selectCurrentPathname);
 
-const LanguagesSwitch: React.FC<Props> = ({
-  languagesList,
-  currentLanguage,
-  switchCurrentLanguage,
-  switchLanguagesModal,
-  currentRouteParamLanguage,
-  currentPathname,
-}) => {
   const addLinkToLanguage = (language) => {
     const link = !!currentRouteParamLanguage
       ? currentPathname?.replace('/' + currentRouteParamLanguage, '/' + language.slug)
@@ -43,30 +31,25 @@ const LanguagesSwitch: React.FC<Props> = ({
   const languagesWithLink = languagesList.map((language) => addLinkToLanguage(language));
   const languagesSorted = languagesWithLink.sort((first, second) => second.id - first.id);
 
+  const onLanguageSwitch = (slug: string) => {
+    if (currentLanguage.slug === slug) return;
+
+    dispatch(switchCurrentLanguage(slug));
+    dispatch(switchLanguagesModal(false));
+  };
+
+  const onLanguagesSwitchLeave = () => {
+    dispatch(switchLanguagesModal(false));
+  };
+
   return (
-    <div className="LanguagesSwitch" onClick={switchLanguagesModal}>
-      {languagesSorted.map((item) => (
-        <LanguageItem
-          isCurrent={currentLanguage.id === item.id}
-          key={item.id}
-          lang={item.slug}
-          href={item.link}
-          onClick={() => switchCurrentLanguage(item.slug)}
-        />
-      ))}
-    </div>
+    <LanguagesSwitchUi
+      currentLanguage={currentLanguage}
+      languagesSorted={languagesSorted}
+      onLanguageSwitch={onLanguageSwitch}
+      onLanguagesSwitchLeave={onLanguagesSwitchLeave}
+    />
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  isLogged: selectSessionLoggedIn,
-  languagesList: selectLanguagesList,
-  currentLanguage: selectCurrentLanguage,
-  currentRouteParamLanguage: selectCurrentRouteParamLanguage,
-  currentPathname: selectCurrentPathname,
-});
-
-export default connect(mapStateToProps, {
-  switchCurrentLanguage,
-  switchLanguagesModal,
-})(LanguagesSwitch);
+export default LanguagesSwitch;

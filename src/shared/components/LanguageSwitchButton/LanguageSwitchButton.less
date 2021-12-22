@@ -1,0 +1,77 @@
+@import '../../css/imports.less';
+
+@c: .LanguageSwitchButton;
+
+@{c} {
+  display: flex;
+  align-content: space-between;
+  flex-flow: row wrap;
+  height: 25px;
+  width: 35px;
+
+  span {
+    height: 5px;
+    width: 100%;
+    background: @c-blue--pastel;
+    transition: all @td-fast ease, background @td-normal ease;
+    will-change: transform;
+
+    .App--Who & {
+      background: @c-gold--pastel;
+    }
+
+    .App--How & {
+      background: @c-tomato;
+    }
+
+    .App--What & {
+      background: @c-turquoise;
+    }
+
+    .App--Contact & {
+      .isDesktop & {
+        background: @c-transparent;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &:not(.isControl &),
+    &not(& .isActive) {
+      span {
+        &:first-child {
+          transform: translate(0, -2px);
+        }
+
+        &:last-child {
+          transform: translate(0, 2px);
+        }
+      }
+    }
+  }
+
+  &.isActive {
+    span {
+      height: 3px;
+
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 8px);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+    }
+  }
+
+  .isMobile &,
+  .isTablet & {
+    margin: 5px 10px 10px;
+  }
+}
