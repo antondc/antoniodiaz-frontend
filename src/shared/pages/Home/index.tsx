@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectRouterHistory } from 'Modules/Routes/selectors/selectRouterHistory';
 import history from 'Services/History';
+import { toAbsolute } from 'Tools/utils/url/toAbsolute';
 import { Routes } from '../../router/routes';
 import { Home as HomeUi } from './Home';
 
@@ -59,7 +60,8 @@ const Home: React.FC = () => {
     setStateThird('Home-horizontal');
     setStateFourth('Home-dot');
 
-    setTimeout(() => history.push(`/${langParam}${Routes.Who.route}`), 300);
+    const whoRoute = toAbsolute(langParam + Routes.Who.route);
+    setTimeout(() => history.push(whoRoute), 300);
   };
 
   const onSecondHover = () => {
@@ -75,7 +77,8 @@ const Home: React.FC = () => {
     setStateThird('Home-dot');
     setStateFourth('Home-horizontal');
 
-    setTimeout(() => history.push(`/${langParam}${Routes.What.route}`), 300);
+    const whatRoute = toAbsolute(langParam + Routes.What.route);
+    setTimeout(() => history.push(whatRoute), 300);
   };
 
   const onThirdHover = () => {
@@ -91,7 +94,8 @@ const Home: React.FC = () => {
     setStateThird('Home-all');
     setStateFourth('Home-vertical');
 
-    setTimeout(() => history.push(`/${langParam}${Routes.When.route}`), 300);
+    const whenRoute = toAbsolute(langParam + Routes.When.route);
+    setTimeout(() => history.push(whenRoute), 300);
   };
 
   const onFourthHover = () => {
