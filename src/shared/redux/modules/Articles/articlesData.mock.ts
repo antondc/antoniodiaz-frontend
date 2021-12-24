@@ -8,6 +8,7 @@ export const articlesMockData: ArticlesLoadApiResponse = {
       attributes: {
         id: 1,
         order: 0,
+        date: '1621092353',
         translations: {
           en: {
             title: '¡Fronteras!',
@@ -28,6 +29,7 @@ export const articlesMockData: ArticlesLoadApiResponse = {
       attributes: {
         id: 1,
         order: 0,
+        date: '1621092353',
         translations: {
           en: {
             title: 'Article 1',
@@ -53,6 +55,7 @@ export const articlesMockData: ArticlesLoadApiResponse = {
       attributes: {
         id: 2,
         order: 0,
+        date: '1621092353',
         translations: {
           en: {
             title: 'Article 2',
@@ -78,6 +81,7 @@ export const articlesMockData: ArticlesLoadApiResponse = {
       attributes: {
         id: 3,
         order: 0,
+        date: '1621092353',
         translations: {
           en: {
             title: 'Article 3',

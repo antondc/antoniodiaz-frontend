@@ -10,6 +10,7 @@ export interface ArticleTranslationState {
 export interface ArticleState {
   id: number;
   order: number;
+  date: string;
   translations: {
     [key: string]: ArticleTranslationState;
   };
