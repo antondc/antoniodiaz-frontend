@@ -17,7 +17,7 @@
     "API_URL": "https://api.antoniodiaz.me/api/v1/",
     "DOMAIN": "antoniodiaz.me"
   },
-  "ENABLE_ISOMORPHISM": false,
+  "ENABLE_ISOMORPHISM": true,
   "MEDIA": "media",
   "MEDIA_FOLDER": "media",
   "MEDIA_IMAGES": "media/images",

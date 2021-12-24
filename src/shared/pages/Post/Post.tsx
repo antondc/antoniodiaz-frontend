@@ -1,18 +1,17 @@
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 
-import { GlossaryState } from 'Modules/Languages/languages.types';
+import { ArticleTranslationState } from 'Modules/Articles/articles.types';
 
 import './Post.less';
 
 interface Props {
-  glossary: GlossaryState;
-  id: number;
+  articleTranslation: ArticleTranslationState;
 }
 
-export const Post: React.FC<Props> = ({ glossary, id }) => (
+export const Post: React.FC<Props> = ({ articleTranslation }) => (
   <div className="Post">
-    <h1 className="Post-title">
-      {glossary.post}: {id}
-    </h1>
+    <h1 className="Post-title">{articleTranslation.title}</h1>
+    <div className="Who-text">{ReactHtmlParser(articleTranslation.htmlContent)}</div>
   </div>
 );

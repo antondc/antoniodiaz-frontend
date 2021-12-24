@@ -11,6 +11,8 @@ export interface RoutesState {
 
 export interface ParamsState {
   [key: string]: string | number;
+  lang?: string;
+  articleId?: string;
 }
 
 export interface RouteState extends Route, Location {

@@ -2,6 +2,7 @@ import omit from 'lodash/omit';
 
 import { initialProjectsLoader } from 'Modules/Projects/projects.loader';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
+import { initialArticlesLoader } from '../redux/modules/Articles/articles.loader';
 
 export enum RouteLayout {
   withLeftSidebar,
@@ -81,18 +82,18 @@ export const Routes: RoutesInterface = {
     route: '/when',
     exact: true,
     auth: false,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
+    initialDataLoadersVisitor: [initialArticlesLoader],
+    initialDataLoadersSession: [initialArticlesLoader],
     layout: RouteLayout.fullPage,
   },
   Post: {
     name: 'Post',
-    path: '/:lang([a-z]{2})?/when/:id',
+    path: '/:lang([a-z]{2})?/when/:articleId',
     route: '/when',
-    exact: true,
+    exact: false,
     auth: false,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
+    initialDataLoadersVisitor: [initialArticlesLoader],
+    initialDataLoadersSession: [initialArticlesLoader],
     layout: RouteLayout.fullPage,
   },
   Where: {
