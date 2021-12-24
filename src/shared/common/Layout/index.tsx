@@ -5,16 +5,16 @@ import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguag
 import { pushNewRoute } from 'Modules/Routes/actions/pushNewRoute';
 import { RouteState } from 'Modules/Routes/routes.types';
 import { selectCurrentPathAndQuery } from 'Modules/Routes/selectors/selectCurrentPathAndQuery';
+import { selectCurrentRouteName } from 'Modules/Routes/selectors/selectCurrentRouteName';
 import { selectSession } from 'Modules/Session/selectors/selectSession';
 import { uiResetModalsState } from 'Modules/Ui/actions/uiResetModalsState';
 import { selectUiScreenLocked } from 'Modules/Ui/selectors/selectUiScreenLocked';
 import { selectUiScreenMobileLocked } from 'Modules/Ui/selectors/selectUiScreenMobileLocked';
 import { userLoad } from 'Modules/Users/actions/userLoad';
-import { Routes, routesList, routesWithoutOmmitedValues } from 'Router/routes';
+import { routesList, routesWithoutOmmitedValues } from 'Router/routes';
 import { Location } from 'Services/History';
 import enhanceRouteWithParams from 'Tools/utils/url/enhanceRouteWithParams';
 import findActiveRouteKey from 'Tools/utils/url/findActiveRouteKey';
-import { selectCurrentRouteName } from '../../redux/modules/Routes/selectors/selectCurrentRouteName';
 import { ESCAPE_KEY_CODE } from './constants';
 import { Layout as LayoutUi } from './Layout';
 

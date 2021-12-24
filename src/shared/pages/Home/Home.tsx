@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { GlossaryState } from 'Modules/Languages/languages.types';
+
 import './Home.less';
 
 interface Props {
   stateFirst: string;
+  glossary: GlossaryState;
   stateSecond: string;
   stateThird: string;
   stateFourth: string;
@@ -19,6 +22,7 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = ({
+  glossary,
   stateFirst,
   stateSecond,
   stateThird,
@@ -36,16 +40,16 @@ export const Home: React.FC<Props> = ({
   <div className="Home">
     <div className="Home-grid" onMouseLeave={onGridLeave}>
       <div className={'Home-item ' + stateFirst} onMouseEnter={onFirstHover} onClick={onFirstClick}>
-        Who
+        {glossary.who}
       </div>
       <div className={'Home-item ' + stateSecond} onMouseEnter={onSecondHover} onClick={onSecondClick}>
-        What
+        {glossary.what}
       </div>
       <div className={'Home-item ' + stateThird} onMouseEnter={onThirdHover} onClick={onThirdClick}>
-        When
+        {glossary.when}
       </div>
       <div className={'Home-item ' + stateFourth} onMouseEnter={onFourthHover} onClick={onFourthClick}>
-        Where
+        {glossary.where}
       </div>
     </div>
   </div>

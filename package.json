@@ -147,6 +147,7 @@
     "react-dom": "^16.8.0",
     "react-dropzone": "^11.3.2",
     "react-helmet": "^5.2.0",
+    "react-html-parser": "^2.0.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scroll": "^1.8.1",

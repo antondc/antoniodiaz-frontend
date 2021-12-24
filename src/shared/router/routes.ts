@@ -1,5 +1,6 @@
 import omit from 'lodash/omit';
 
+import { initialProjectsLoader } from 'Modules/Projects/projects.loader';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 
 export enum RouteLayout {
@@ -69,8 +70,8 @@ export const Routes: RoutesInterface = {
     route: '/what',
     exact: true,
     auth: false,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
+    initialDataLoadersVisitor: [initialProjectsLoader],
+    initialDataLoadersSession: [initialProjectsLoader],
     layout: RouteLayout.fullPage,
   },
   When: {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectRouterHistory } from 'Modules/Routes/selectors/selectRouterHistory';
 import history from 'Services/History';
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
   const [stateSecond, setStateSecond] = useState<string>(undefined);
   const [stateThird, setStateThird] = useState<string>(undefined);
   const [stateFourth, setStateFourth] = useState<string>(undefined);
+  const glossary = useSelector(selectCurrentGlossary);
   const langParam = useSelector(selectCurrentRouteParamLanguage);
   const routeHistory = useSelector(selectRouterHistory);
 
@@ -121,6 +123,7 @@ const Home: React.FC = () => {
 
   return (
     <HomeUi
+      glossary={glossary}
       stateFirst={stateFirst}
       stateSecond={stateSecond}
       stateThird={stateThird}

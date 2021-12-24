@@ -22,7 +22,9 @@ export const LanguagesSwitch: React.FC<Props> = ({
     {!!languagesSorted.length &&
       languagesSorted.map((item) => (
         <A
-          className={'LanguagesSwitch-item' + (currentLanguage.id === item.id ? ' LanguagesSwitch-item--active' : '')}
+          className={
+            'LanguagesSwitch-item' + (currentLanguage.slug === item.slug ? ' LanguagesSwitch-item--active' : '')
+          }
           key={item.id}
           lang={item.slug}
           href={item.link}

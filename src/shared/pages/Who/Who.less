@@ -5,15 +5,54 @@
 @{c} {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  border-radius: 8px;
-  background: @gradientColors[yellow-6];
+  max-width: 720px;
+  min-height: calc(100vh ~'-' @header-height ~'-' 10px);
+  margin: 0 auto;
+  padding: 170px 70px 50px;
+
+  .isMobile &,
+  .isTablet & {
+    padding: 50px 20px 20px;
+  }
+
+  .isDesktop & {
+    @media @desktop-short {
+      min-height: 480px;
+    }
+  }
+
+  &-icon {
+    margin-left: 20px;
+    vertical-align: baseline;
+  }
 
   &-title {
-    margin-bottom: 40px;
-    font-size: @fs-huge;
-    font-weight: @fw-extraBold;
+    margin-bottom: 50px;
+    font-size: 38px;
+    font-weight: @fw-bold;
+    text-align: center;
+
+    .isMobile &,
+    .isTablet & {
+      margin-bottom: 40px;
+    }
+  }
+
+  &-text {
+    font-family: @ff-sans;
+    font-size: 16px;
+    font-weight: @fw-regular;
+    line-height: 24px;
+    text-align: left;
+
+    .isMobile &,
+    .isTablet & {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
   }
 }

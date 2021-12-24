@@ -1,9 +1,14 @@
 import React from 'react';
 
+import { GlossaryState } from 'Modules/Languages/languages.types';
+
 import './Where.less';
 
-export const Where: React.FC = () => (
+interface Props {
+  glossary: GlossaryState;
+}
+export const Where: React.FC<Props> = ({ glossary }) => (
   <div className="Where">
-    <h1 className="Where-title">Where</h1>
+    <h1 className="Where-title">{glossary.where}</h1>
   </div>
 );

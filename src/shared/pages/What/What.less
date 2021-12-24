@@ -5,14 +5,156 @@
 @{c} {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  border-radius: 8px;
+  flex-shrink: 0;
+  min-height: calc(100vh ~'-' @header-height ~'-' 10px);
+  padding: 170px 70px 50px;
+
+  .isMobile &,
+  .isTablet & {
+    padding: 50px 20px 20px;
+  }
+
+  .isDesktop & {
+    @media @desktop-short {
+      min-height: 480px;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 100px 20px;
+
+    .isTablet & {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .isMobile &,
+    .isTablet & {
+      padding: 0;
+    }
+  }
 
   &-title {
-    margin-bottom: 40px;
-    font-size: @fs-huge;
-    font-weight: @fw-extraBold;
+    margin-bottom: 50px;
+    margin-bottom: 30px;
+    font-size: 38px;
+    font-weight: @fw-bold;
+    text-align: center;
+
+    .isMobile &,
+    .isTablet & {
+      margin-bottom: 40px;
+    }
+  }
+
+  &-text {
+    margin-bottom: 50px;
+    font-family: @ff-sans;
+    font-size: 16px;
+    font-weight: @fw-regular;
+    line-height: 24px;
+    text-align: left;
+    text-align: center;
+
+    .isMobile &,
+    .isTablet & {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-icon {
+    margin-left: 20px;
+    vertical-align: baseline;
+  }
+
+  &-gridWrapper {
+    .isDesktop & {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: auto auto;
+    }
+  }
+
+  &-gridItem {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+    background: @c-gray-transparent--ultralight;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.1;
+      background: @c-white;
+      transition: opacity @td-normal ease, transform @td-normal ease, background @td-normal ease;
+      z-index: @z-index-1;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &:before {
+        opacity: 0;
+      }
+    }
+
+    &.isLoading {
+      animation: frameAnimation 1s infinite;
+      border-radius: 6px;
+
+      @keyframes frameAnimation {
+        0% {
+          transform: scale(1);
+        }
+
+        33% {
+          transform: scale(0.9);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
+
+    .isTablet & {
+      margin-bottom: 40px;
+    }
+
+    .isMobile & {
+      margin-bottom: 25px;
+    }
+  }
+
+  &-gridImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity @td-normal ease;
+
+    &.isLoaded {
+      opacity: 1;
+    }
   }
 }

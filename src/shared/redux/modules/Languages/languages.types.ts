@@ -4,24 +4,15 @@ export const LANGUAGES_SWITCH_CURRENT_SUCCESS = 'LANGUAGES_SWITCH_CURRENT_SUCCES
 export const LANGUAGES_SWITCH_CURRENT_REQUEST = 'LANGUAGES_SWITCH_CURRENT_REQUEST';
 
 export interface GlossaryState {
-  home: string;
-  login: string;
-  logout: string;
+  who: string;
+  whoHtmlText: string;
+  what: string;
+  whatSubtitle: string;
+  when: string;
+  where: string;
+  serverError: string;
   control: string;
   notFound: string;
-  tags: string;
-  trending: string;
-  lists: string;
-  allBookmarks: string;
-  myBookmarks: string;
-  bookmarks: string;
-  links: string;
-  myUser: string;
-  users: string;
-  following: string;
-  followers: string;
-  since: string;
-  serverError: string;
 }
 
 export interface LanguageState {
@@ -32,7 +23,9 @@ export interface LanguageState {
   isDefault: boolean;
   loading?: boolean;
   glossary: GlossaryState;
-  link?: string;
+  links: {
+    [key: string]: string;
+  };
   isCurrent?: boolean;
 }
 
@@ -50,7 +43,7 @@ export interface LanguagesApiResponseItem {
 
 export interface LanguagesApiResponse {
   links: {
-    self: string;
+    [key: string]: string;
   };
   data: LanguagesApiResponseItem[];
 }

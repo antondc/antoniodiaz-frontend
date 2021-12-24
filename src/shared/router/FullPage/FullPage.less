@@ -1,6 +1,6 @@
 @import '../../css/imports.less';
 
-@c: .NoSidebar;
+@c: .FullPage;
 
 @{c} {
   display: flex;
@@ -16,7 +16,7 @@
     padding: 0 10px 10px;
   }
 
-  &-noSidebarBackground {
+  &-background {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -28,14 +28,6 @@
   }
 
   &-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  &-content-content {
-    .calcgrid(@property: width; @columns: 12; @parentColumns: 12; @addGutter: 0; @hasParentPaddings: 0);
-
     display: flex;
     flex-direction: column;
     flex: 1;
