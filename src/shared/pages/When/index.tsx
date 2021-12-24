@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticlesAll } from 'Modules/Articles/selectors/selectArticlesAll';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
@@ -8,6 +9,7 @@ import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
 import { When as WhenUi } from './When';
 
 const When: React.FC = () => {
+  const dispatch = useDispatch();
   const glossary = useSelector(selectCurrentGlossary);
   const params = useSelector(selectCurrentRouteParams);
   const articles = useSelector(selectArticlesAll);
@@ -21,6 +23,10 @@ const When: React.FC = () => {
       date: formattedDate,
     };
   });
+
+  useEffect(() => {
+    dispatch(articlesLoad());
+  }, []);
 
   return <WhenUi glossary={glossary} articlesWithDates={articlesWithDates} lang={params.lang} />;
 };
