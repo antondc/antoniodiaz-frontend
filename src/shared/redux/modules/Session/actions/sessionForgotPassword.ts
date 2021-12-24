@@ -1,6 +1,5 @@
 import HttpClient from 'Services/HttpClient';
 import { AppThunk } from '../../..';
-import { switchForgotPasswordModal } from '../../Ui/actions/switchForgotPasswordModal';
 import { SessionActions, SessionForgotPasswordApiRequest } from '../session.types';
 import { sessionForgotPasswordFailure } from './sessionForgotPasswordFailure';
 import { sessionForgotPasswordRequest } from './sessionForgotPasswordRequest';
@@ -21,7 +20,6 @@ export const sessionForgotPassword =
       await HttpClient.put('/login', { nameOrEmail });
       const { Session: sessionAfterResponse } = getState();
 
-      await dispatch(switchForgotPasswordModal(true));
       await dispatch(
         sessionForgotPasswordSuccess({
           ...sessionAfterResponse,

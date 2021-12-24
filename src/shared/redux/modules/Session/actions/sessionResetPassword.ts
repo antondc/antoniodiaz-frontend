@@ -1,4 +1,3 @@
-import { switchResetPasswordModal } from 'Modules/Ui/actions/switchResetPasswordModal';
 import HttpClient from 'Services/HttpClient';
 import { AppThunk } from '../../..';
 import {
@@ -33,7 +32,6 @@ export const sessionResetPassword =
         passwordRepeated,
       });
 
-      await dispatch(switchResetPasswordModal(true));
       const { Session: sessionAfterResponse } = getState();
 
       await dispatch({
