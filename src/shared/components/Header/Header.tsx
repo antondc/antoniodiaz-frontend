@@ -11,11 +11,12 @@ import './Header.less';
 interface Props {
   uiLanguagesModalMounted: boolean;
   logoActive: boolean;
+  currentRoutePost: boolean;
 }
 
-export const Header: React.FC<Props> = ({ uiLanguagesModalMounted, logoActive }) => (
+export const Header: React.FC<Props> = ({ uiLanguagesModalMounted, logoActive, currentRoutePost }) => (
   <header className="Header">
-    <A href="/" className="Header-logo">
+    <A href={currentRoutePost ? '/when' : '/'} className="Header-logo">
       <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />
     </A>
     <div>

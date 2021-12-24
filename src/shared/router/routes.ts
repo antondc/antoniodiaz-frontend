@@ -28,6 +28,7 @@ interface RoutesInterface {
   Who: Route;
   What: Route;
   When: Route;
+  Post: Route;
   Where: Route;
   ServerError: Route;
   NotFound: Route;
@@ -77,6 +78,16 @@ export const Routes: RoutesInterface = {
   When: {
     name: 'When',
     path: '/:lang([a-z]{2})?/when',
+    route: '/when',
+    exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  Post: {
+    name: 'Post',
+    path: '/:lang([a-z]{2})?/when/:id',
     route: '/when',
     exact: true,
     auth: false,

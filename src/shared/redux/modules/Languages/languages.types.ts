@@ -10,6 +10,7 @@ export interface GlossaryState {
   whatSubtitle: string;
   when: string;
   where: string;
+  post: string;
   serverError: string;
   control: string;
   notFound: string;

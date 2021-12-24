@@ -22,6 +22,7 @@ const initialState: LanguagesState = {
       whatSubtitle: '',
       when: '',
       where: '',
+      post: '',
       serverError: '',
       control: '',
       notFound: '',
