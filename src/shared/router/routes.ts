@@ -5,9 +5,7 @@ import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import { initialArticlesLoader } from '../redux/modules/Articles/articles.loader';
 
 export enum RouteLayout {
-  withLeftSidebar,
   fullPage,
-  noHeader,
 }
 
 export interface Route {

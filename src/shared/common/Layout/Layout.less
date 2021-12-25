@@ -4,6 +4,7 @@
 
 @{c} {
   position: relative;
+
   .default();
 
   &:before {
@@ -32,7 +33,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: @gradientColors[blue-6];
+    background: @c-background;
     fill: @c-accent;
     z-index: -1;
     pointer-events: none;
@@ -62,20 +63,6 @@
   }
 
   &-loaderIcon {
-    &:after {
-      border-color: @gradientColors[blue-1];
-    }
-
-    span {
-      background: @gradientColors[blue-1];
-    }
-  }
-
-  &-spanner {
-    flex: 1;
-    background: @c-background;
-    border: 2px solid @c-base;
-    border-top: none;
-    border-bottom: none;
+    display: none;
   }
 }

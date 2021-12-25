@@ -7,8 +7,6 @@ import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectP
 import { pathsByLayout, RouteLayout } from 'Router/routes';
 import { Location } from 'Services/History';
 import { FadeInOut } from '@antoniodcorrea/components';
-import Content from './Content';
-import CustomHeader from './CustomHeader';
 import FullPage from './FullPage';
 
 interface Props {
@@ -16,9 +14,7 @@ interface Props {
 }
 
 const Router: React.FC<Props> = ({ location }) => {
-  const pathsByLayoutWithLeftSidebar = pathsByLayout(RouteLayout.withLeftSidebar);
   const pathsByLayoutFullPage = pathsByLayout(RouteLayout.fullPage);
-  const pathsByNoHeader = pathsByLayout(RouteLayout.noHeader);
   const currentRoute = useSelector(selectCurrentRoute);
   const currentLayout = currentRoute?.layout;
   const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
@@ -26,8 +22,6 @@ const Router: React.FC<Props> = ({ location }) => {
   return (
     <FadeInOut valueToUpdate={currentLayout} speed="fastest" appear>
       <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
-        <Route path={pathsByNoHeader} component={CustomHeader} />
-        <Route path={pathsByLayoutWithLeftSidebar} component={Content} exact />
         <Route path={pathsByLayoutFullPage} component={FullPage} />
       </Switch>
     </FadeInOut>
