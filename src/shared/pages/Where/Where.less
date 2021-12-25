@@ -6,23 +6,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: calc(100vh - 10px);
+  flex: 1;
   width: 100%;
   max-width: 1200px;
-  min-height: calc(100vh - 10px);
   padding: 80px;
 
   .isMobile &,
   .isTablet & {
     flex-wrap: wrap;
-    padding: 70px 40px;
+    padding: 10vh 10vw 30vh;
   }
-
-  // .isMobile &,
-  // .isTablet & {
-  //   height: auto;
-  //   padding: 0 20px 20px;
-  // }
 
   &-item {
     display: flex;
