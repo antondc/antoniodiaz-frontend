@@ -5,6 +5,7 @@ import Linkedin from 'Assets/svg/iconLinkedin.svg';
 import Mail from 'Assets/svg/iconMail.svg';
 import Twitter from 'Assets/svg/logoTwitter.svg';
 import { GlossaryState } from 'Modules/Languages/languages.types';
+import { A } from '@antoniodcorrea/components';
 
 import './Where.less';
 
@@ -13,35 +14,49 @@ interface Props {
 }
 export const Where: React.FC<Props> = () => (
   <div className="Where">
-    <a className="Where-item" href="https://github.com/antoniodcorrea/" target="_blank" rel="noreferrer" title="Github">
-      <Github className="Where-icon Where-icon--gitHub" />
-    </a>
-    <a
-      className="Where-item"
+    <A
+      className="Where-item Where-item--gitHub"
+      href="https://github.com/antoniodcorrea/"
+      target="_blank"
+      rel="noreferrer"
+      styled={false}
+      title="Github"
+    >
+      <Github className="Where-itemIcon" />
+      <div className="Where-itemText">Github</div>
+    </A>
+    <A
+      className="Where-item Where-item--mail"
       href="mailto:hello@antoniodiaz.me?subject=Hello!"
       target="_blank"
       rel="noreferrer"
+      styled={false}
       title="Email"
     >
-      <Mail className="Where-logoIcon Where-icon--mail" />
-    </a>
-    <a
-      className="Where-item"
+      <Mail className="Where-itemIcon" />
+      <div className="Where-itemText">Mail</div>
+    </A>
+    <A
+      className="Where-item Where-item--twitter"
       href="https://twitter.com/AntonioDCorrea"
       target="_blank"
       rel="noreferrer"
+      styled={false}
       title="Twitter"
     >
-      <Twitter className="Where-icon Where-icon--twitter" />
-    </a>
-    <a
-      className="Where-item"
+      <Twitter className="Where-itemIcon" />
+      <div className="Where-itemText">Twitter</div>
+    </A>
+    <A
+      className="Where-item Where-item--linkedin"
       href="https://www.linkedin.com/in/antonio-d%C3%ADaz-correa-b9487828/"
       target="_blank"
       rel="noreferrer"
+      styled={false}
       title="LinkedIn"
     >
-      <Linkedin className="Where-icon Where-icon--linkedin" />
-    </a>
+      <Linkedin className="Where-itemIcon" />
+      <div className="Where-itemText">LinkedIn</div>
+    </A>
   </div>
 );

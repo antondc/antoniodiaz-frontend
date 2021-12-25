@@ -25,6 +25,17 @@
   // }
 
   &-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity @td-fast @ease;
+
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
     .isMobile &,
     .isTablet & {
       width: 50%;
@@ -35,33 +46,56 @@
     }
   }
 
-  &-icon {
+  &-itemIcon {
     position: relative;
     height: 40px;
     width: 40px;
-    transition: opacity @td-fast @ease;
+  }
 
-    &:hover {
-      opacity: 0.8;
+  &-item--linkedin {
+    @{c}-itemIcon {
+      fill: @c-tomato;
+    }
+
+    @{c}-itemText {
+      color: @c-tomato;
     }
   }
 
-  &-icon--linkedin {
-    fill: @c-tomato;
+  &-item--gitHub {
+    @{c}-itemIcon {
+      fill: @c-blue--pastel;
+    }
+
+    @{c}-itemText {
+      color: @c-blue--pastel;
+    }
   }
 
-  &-icon--gitHub {
-    fill: @c-blue--pastel;
+  &-item--twitter {
+    @{c}-itemIcon {
+      fill: transparent;
+      stroke: @c-turquoise;
+    }
+
+    @{c}-itemText {
+      color: @c-turquoise;
+    }
   }
 
-  &-icon--twitter {
-    fill: transparent;
-    stroke: @c-turquoise;
+  &-item--mail {
+    @{c}-itemIcon {
+      height: 45px;
+      width: 45px;
+      fill: @c-alert;
+    }
+
+    @{c}-itemText {
+      color: @c-alert;
+    }
   }
 
-  &-icon--mail {
-    height: 45px;
-    width: 45px;
-    fill: @c-alert;
+  &-itemText {
+    margin-top: 10px;
   }
 }
