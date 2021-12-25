@@ -23,6 +23,7 @@ const Home: React.FC = () => {
     const comingFromWho = lastRouteName === Routes.Who.name;
     const comingFromWhat = lastRouteName === Routes.What.name;
     const comingFromWhen = lastRouteName === Routes.When.name;
+    const comingFromWhere = lastRouteName === Routes.Where.name;
 
     if (comingFromWho) {
       setStateFirst('Home-all');
@@ -39,6 +40,11 @@ const Home: React.FC = () => {
       setStateSecond('Home-dot');
       setStateThird('Home-all');
       setStateFourth('Home-vertical');
+    } else if (comingFromWhere) {
+      setStateFirst('Home-dot');
+      setStateSecond('Home-horizontal');
+      setStateThird('Home-vertical');
+      setStateFourth('Home-all');
     }
 
     setTimeout(() => {
@@ -112,6 +118,9 @@ const Home: React.FC = () => {
     setStateSecond('Home-horizontal');
     setStateThird('Home-vertical');
     setStateFourth('Home-all');
+
+    const whoRoute = toAbsolute(langParam + Routes.Where.route);
+    setTimeout(() => history.push(whoRoute), 300);
   };
 
   const onGridLeave = () => {

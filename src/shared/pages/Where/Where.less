@@ -4,15 +4,64 @@
 
 @{c} {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  flex: 1;
-  border-radius: 8px;
+  height: calc(100vh - 10px);
+  width: 100%;
+  max-width: 1200px;
+  min-height: calc(100vh - 10px);
+  padding: 80px;
 
-  &-title {
-    margin-bottom: 40px;
-    font-size: @fs-huge;
-    font-weight: @fw-extraBold;
+  .isMobile &,
+  .isTablet & {
+    flex-wrap: wrap;
+    padding: 70px 40px;
+  }
+
+  // .isMobile &,
+  // .isTablet & {
+  //   height: auto;
+  //   padding: 0 20px 20px;
+  // }
+
+  &-item {
+    .isMobile &,
+    .isTablet & {
+      width: 50%;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &-icon {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    transition: opacity @td-fast @ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &-icon--linkedin {
+    fill: @c-tomato;
+  }
+
+  &-icon--gitHub {
+    fill: @c-blue--pastel;
+  }
+
+  &-icon--twitter {
+    fill: transparent;
+    stroke: @c-turquoise;
+  }
+
+  &-icon--mail {
+    height: 45px;
+    width: 45px;
+    fill: @c-alert;
   }
 }
