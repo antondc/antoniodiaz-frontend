@@ -18,11 +18,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           en: {
             title: '¡Fronteras!',
-            description: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: '¡Fronteras!',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            description: '',
           },
           es: {
             title: '¡Fronteras!',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2016; cubierta por Luis Vassallo',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2016; cubierta por Luis Vassallo',
+            description: '',
           },
         },
       },
@@ -43,11 +50,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'El derecho al desempleo útil',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'The right to useful unemployment',
-            description: 'Editor and designer, published by Díaz & Pons, 2015.',
+            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            description: '',
+          },
+          ru: {
+            title: 'The right to useful unemployment',
+            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            description: '',
           },
         },
       },
@@ -68,11 +82,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           en: {
             title: 'Critik: prototype for reviews website',
-            description: 'Web development with PHP, Javascript, MySQL and SPARQL.',
+            subtitle: 'Web development with PHP, Javascript, MySQL and SPARQL.',
+            description: '',
+          },
+          ru: {
+            title: 'Critik: prototype for reviews website',
+            subtitle: 'Web development with PHP, Javascript, MySQL and SPARQL.',
+            description: '',
           },
           es: {
             title: 'Critik: prototipo para sitio web de crítica literaria',
-            description: 'Desarrollo web en PHP, Javascript y SPARQL.',
+            subtitle: 'Desarrollo web en PHP, Javascript y SPARQL.',
+            description: '',
           },
         },
       },
@@ -93,11 +114,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'La excepción permanente',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'La excepción permanente',
-            description: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'La excepción permanente',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -118,11 +146,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'El festín de la vivienda',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2013, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2013, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'El festín de la vivienda',
-            description: 'Edition and layout, published by Díaz & Pons, 2013, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2013, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'El festín de la vivienda',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2013, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -143,11 +178,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Linii: website para Astroshock',
-            description: 'Desarrollo web en Javascript (Backbone) y Python (Django).',
+            subtitle: 'Desarrollo web en Javascript (Backbone) y Python (Django).',
+            description: '',
           },
           en: {
             title: 'Linii: website for Astroshock',
-            description: 'Web development with Javascript (Backbone) and Python (Django).',
+            subtitle: 'Web development with Javascript (Backbone) and Python (Django).',
+            description: '',
+          },
+          ru: {
+            title: 'Linii: website for Astroshock',
+            subtitle: 'Web development with Javascript (Backbone) and Python (Django).',
+            description: '',
           },
         },
       },
@@ -168,11 +210,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Futurópolis',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2016, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2016, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'Futurópolis',
-            description: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'Futurópolis',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -193,11 +242,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Moderar Extremistán',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'Moderar Extremistán',
-            description: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'Moderar Extremistán',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -218,11 +274,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'La sociedad del desperdicio',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'La sociedad del desperdicio',
-            description: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'La sociedad del desperdicio',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -243,11 +306,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Energía y equidad',
-            description: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
+            subtitle: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
+            description: '',
           },
           en: {
             title: 'Energía y equidad',
-            description: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            description: '',
+          },
+          ru: {
+            title: 'Energía y equidad',
+            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            description: '',
           },
         },
       },
@@ -268,11 +338,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'El nuevo Leviatán',
-            description: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
+            subtitle: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
+            description: '',
           },
           en: {
             title: 'El nuevo Leviatán',
-            description: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            description: '',
+          },
+          ru: {
+            title: 'El nuevo Leviatán',
+            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            description: '',
           },
         },
       },
@@ -293,11 +370,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Microvoyages',
-            description: 'Projecto para Zona C, Santiago de Compostela, España, 2009.',
+            subtitle: 'Projecto para Zona C, Santiago de Compostela, España, 2009.',
+            description: '',
           },
           en: {
             title: 'Microvoyages',
-            description: 'Project for Zona C, Santiago de Compostela, Spain, 2009.',
+            subtitle: 'Project for Zona C, Santiago de Compostela, Spain, 2009.',
+            description: '',
+          },
+          ru: {
+            title: 'Microvoyages',
+            subtitle: 'Project for Zona C, Santiago de Compostela, Spain, 2009.',
+            description: '',
           },
         },
       },
@@ -318,11 +402,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Postfascismos',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'Postfascismos',
-            description: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'Postfascismos',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -343,11 +434,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Economía y pseudociencia',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'Economía y pseudociencia',
-            description: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'Economía y pseudociencia',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -368,11 +466,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'Economía, poder y política',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'Economía, poder y política',
-            description: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'Economía, poder y política',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },
@@ -393,11 +498,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'El derecho al desempleo útil',
-            description: 'Editor y cubierta, publicado por Díaz & Pons, 2015',
+            subtitle: 'Editor y cubierta, publicado por Díaz & Pons, 2015',
+            description: '',
           },
           en: {
             title: 'The right to useful unemployment',
-            description: 'Editor and designer, published by Díaz & Pons, 2015.',
+            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            description: '',
+          },
+          ru: {
+            title: 'The right to useful unemployment',
+            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            description: '',
           },
         },
       },
@@ -418,11 +530,18 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           es: {
             title: 'La vida frente al espejo',
-            description: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            description: '',
           },
           en: {
             title: 'La vida frente al espejo',
-            description: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
+          },
+          ru: {
+            title: 'La vida frente al espejo',
+            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
           },
         },
       },

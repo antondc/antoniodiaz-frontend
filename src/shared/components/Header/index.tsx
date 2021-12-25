@@ -13,15 +13,11 @@ const Header: React.FC = () => {
 
   const logoActive = currentRoute !== Routes.Home.name;
   const currentRoutePost = currentRoute === Routes.Post.name;
+  const currentRouteProject = currentRoute === Routes.Project.name;
   const uiLanguagesModalMounted = useSelector(selectUiLanguagesModalMounted);
+  const backRoute = currentRoutePost ? '/when' : currentRouteProject ? '/what' : '/';
 
-  return (
-    <HeaderUi
-      uiLanguagesModalMounted={uiLanguagesModalMounted}
-      logoActive={logoActive}
-      currentRoutePost={currentRoutePost}
-    />
-  );
+  return <HeaderUi uiLanguagesModalMounted={uiLanguagesModalMounted} logoActive={logoActive} backRoute={backRoute} />;
 };
 
 export default Header;

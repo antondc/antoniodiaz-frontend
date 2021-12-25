@@ -28,6 +28,7 @@ interface RoutesInterface {
   Control: Route;
   Who: Route;
   What: Route;
+  Project: Route;
   When: Route;
   Post: Route;
   Where: Route;
@@ -71,6 +72,16 @@ export const Routes: RoutesInterface = {
     path: '/:lang([a-z]{2})?/what',
     route: '/what',
     exact: true,
+    auth: false,
+    initialDataLoadersVisitor: [initialProjectsLoader],
+    initialDataLoadersSession: [initialProjectsLoader],
+    layout: RouteLayout.fullPage,
+  },
+  Project: {
+    name: 'Project',
+    path: '/:lang([a-z]{2})?/what/:projectId',
+    route: '/what',
+    exact: false,
     auth: false,
     initialDataLoadersVisitor: [initialProjectsLoader],
     initialDataLoadersSession: [initialProjectsLoader],

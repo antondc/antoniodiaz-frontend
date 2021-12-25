@@ -19,8 +19,8 @@ export const When: React.FC<Props> = ({ lang, glossary, articlesWithDates }) => 
       {articlesWithDates.map((item) => (
         <li className="When-article" key={item.id}>
           <A className="When-articleTitle" href="/when/1">
-            {item.translations[lang].title}
-            <span className="When-articleDate">: {item.date}</span>
+            {item.translations[lang]?.title}
+            <span className="When-articleDate">: {item?.date}</span>
           </A>
         </li>
       ))}

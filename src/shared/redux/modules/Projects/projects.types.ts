@@ -2,6 +2,12 @@ export const PROJECTS_LOAD_REQUEST = 'PROJECTS_LOAD_REQUEST';
 export const PROJECTS_LOAD_SUCCEED = 'PROJECTS_LOAD_SUCCEED';
 export const PROJECTS_LOAD_FAILURE = 'PROJECT_LOAD_FAILURE';
 
+export interface ProjectTranslation {
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
 export interface ProjectState {
   id: number;
   order: number;
@@ -10,10 +16,7 @@ export interface ProjectState {
     [key: string]: string;
   };
   translations: {
-    [key: string]: {
-      title: string;
-      description: string;
-    };
+    [key: string]: ProjectTranslation;
   };
 }
 

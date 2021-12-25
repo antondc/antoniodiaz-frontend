@@ -21,7 +21,7 @@ const Post: React.FC = () => {
     dispatch(articlesLoad());
   }, []);
 
-  if (!Number(article?.id)) return null;
+  if (!Number(article?.id)) return <div />;
 
   return <PostUi articleTranslation={articleTranslation} date={createdAtFormatted} />;
 };
