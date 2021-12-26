@@ -118,6 +118,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@ant-design/react-slick": "^0.28.4",
     "@antoniodcorrea/components": "^1.0.3",
     "@popperjs/core": "^2.9.2",
     "@types/qs": "^6.9.5",
