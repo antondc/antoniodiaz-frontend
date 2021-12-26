@@ -17,19 +17,17 @@ export const Where: React.FC<Props> = () => (
     <A
       className="Where-item Where-item--gitHub"
       href="https://github.com/antoniodcorrea/"
-      target="_blank"
-      rel="noreferrer"
+      targetBlank
       styled={false}
-      title="Github"
+      title="GitHub"
     >
       <Github className="Where-itemIcon" />
-      <div className="Where-itemText">Github</div>
+      <div className="Where-itemText">GitHub</div>
     </A>
     <A
       className="Where-item Where-item--mail"
       href="mailto:hello@antoniodiaz.me?subject=Hello!"
-      target="_blank"
-      rel="noreferrer"
+      targetBlank
       styled={false}
       title="Email"
     >
@@ -39,8 +37,7 @@ export const Where: React.FC<Props> = () => (
     <A
       className="Where-item Where-item--twitter"
       href="https://twitter.com/AntonioDCorrea"
-      target="_blank"
-      rel="noreferrer"
+      targetBlank
       styled={false}
       title="Twitter"
     >
@@ -50,8 +47,7 @@ export const Where: React.FC<Props> = () => (
     <A
       className="Where-item Where-item--linkedin"
       href="https://www.linkedin.com/in/antonio-d%C3%ADaz-correa-b9487828/"
-      target="_blank"
-      rel="noreferrer"
+      targetBlank
       styled={false}
       title="LinkedIn"
     >
