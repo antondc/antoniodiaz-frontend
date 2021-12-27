@@ -14,7 +14,7 @@ interface Props {
   children: React.ReactChild | React.ReactChild[];
 }
 
-export const BaseCarousel: React.FC<Props> = React.memo(({ children }) => (
+export const BaseCarousel: React.FC<Props> = ({ children }) => (
   <Slider
     fade={true}
     infinite={true}
@@ -25,9 +25,17 @@ export const BaseCarousel: React.FC<Props> = React.memo(({ children }) => (
     dots={true}
     autoplay
     pauseOnHover
-    nextArrow={<ArrowRight className="BaseCarousel-navigator BaseCarousel-navigatorRight" />}
-    prevArrow={<ArrowLeft className="BaseCarousel-navigator BaseCarousel-navigatorLeft" />}
+    nextArrow={
+      <div className="BaseCarousel-navigator BaseCarousel-navigatorRight">
+        <ArrowRight className="BaseCarousel-navigatorIcon" />
+      </div>
+    }
+    prevArrow={
+      <div className="BaseCarousel-navigator BaseCarousel-navigatorLeft">
+        <ArrowLeft className="BaseCarousel-navigatorIcon" />
+      </div>
+    }
   >
     {children}
   </Slider>
-));
+);

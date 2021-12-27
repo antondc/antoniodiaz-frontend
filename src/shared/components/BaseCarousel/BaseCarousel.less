@@ -10,16 +10,32 @@
   }
 
   .slick-arrow {
+    display: flex !important; // Required
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     width: 40px;
-    padding: 0 8px;
+    top: 0;
+    bottom: 0;
     opacity: 0;
     fill: @c-blue--pastel;
+    transform: unset;
     transition: opacity @td-normal @ease @td-normal;
     z-index: @z-index-1;
+
+    &:before {
+      display: none;
+    }
 
     &:hover {
       opacity: 0.8;
       cursor: pointer;
+    }
+
+    svg {
+      height: 20px;
+      width: 20px;
     }
   }
 
