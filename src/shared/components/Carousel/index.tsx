@@ -4,6 +4,7 @@ import { Carousel as CarouselUi } from './Carousel';
 
 interface Props {
   slides: Array<{
+    id: number;
     image: {
       [key: string]: string;
     };
@@ -12,8 +13,8 @@ interface Props {
 }
 
 const Carousel: React.FC<Props> = ({ slides }) => {
-  const slidesWithData = slides.map((item, index) => ({
-    id: index,
+  const slidesWithData = slides.map((item) => ({
+    id: item.id,
     src: item.image[Object.keys(item.image)[0]],
     srcSet: Object.entries(item.image)
       .map(([key, value]) => `${value} ${key}`)

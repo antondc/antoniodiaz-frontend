@@ -2,12 +2,23 @@
 // - On first next click next slide is not loaded
 
 import React from 'react';
+import Slider from 'react-slick';
 
 import ArrowLeft from 'Assets/svg/arrowLeft.svg';
 import ArrowRight from 'Assets/svg/arrowRight.svg';
-import Slider from '@ant-design/react-slick';
 
 import './Carousel.less';
+
+interface Props2 {
+  currentSlide?: any;
+  slideCount?: any;
+  children?: React.ReactElement;
+  className?: string;
+}
+
+const SlickButtonFix: React.FC<Props2> = ({ currentSlide, slideCount, children, ...props }) => (
+  <span {...props}>{children}</span>
+);
 
 type SlideItem = {
   id: number;
@@ -22,18 +33,7 @@ interface Props {
   slidesWithData: Array<SlideItem>;
 }
 
-interface Props2 {
-  currentSlide?: any;
-  slideCount?: any;
-  children?: React.ReactElement;
-  className?: string;
-}
-
-const SlickButtonFix: React.FC<Props2> = ({ currentSlide, slideCount, children, ...props }) => (
-  <span {...props}>{children}</span>
-);
-
-export const Carousel: React.FC<Props> = React.memo(({ slidesWithData }) => (
+export const Carousel: React.FC<Props> = ({ slidesWithData }) => (
   <Slider
     className="Carousel"
     dots={true}
@@ -53,8 +53,8 @@ export const Carousel: React.FC<Props> = React.memo(({ slidesWithData }) => (
       </SlickButtonFix>
     }
   >
-    {slidesWithData?.map((item, index) => (
-      <div className="Carousel-slide" key={index}>
+    {slidesWithData?.map((item) => (
+      <div className="Carousel-slide" key={item.id}>
         <img
           className="Carousel-slideImage"
           src={item.src}
@@ -66,4 +66,4 @@ export const Carousel: React.FC<Props> = React.memo(({ slidesWithData }) => (
       </div>
     ))}
   </Slider>
-));
+);
