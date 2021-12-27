@@ -1,51 +1,44 @@
-// https://github.com/ant-design/react-slick
-// First transition failing
-
 import React from 'react';
 
-import Carousel from 'Components/Carousel';
+import BaseCarousel from 'Components/BaseCarousel';
 import { ProjectState } from 'Modules/Projects/projects.types';
 
 import './Project.less';
 
+type SlideItem = {
+  id: number;
+  src: string;
+  srcSet: string;
+  sizes: string;
+  title: string;
+  alt: string;
+};
+
 interface Props {
   lang: string;
   project: ProjectState;
+  slidesWithData: Array<SlideItem>;
 }
 
-export const Project: React.FC<Props> = ({ lang, project }) => (
+export const Project: React.FC<Props> = ({ lang, project, slidesWithData }) => (
   <div className="Project">
     <div className="Project-content">
       <div className="Project-title">{project.translations[lang]?.title}</div>
       <div className="Project-subtitle">{project.translations[lang]?.subtitle}</div>
-      <Carousel
-        slides={[
-          {
-            id: 1,
-            image: {
-              w1200: 'https://antoniodiaz.me:3000/project_images_img/original/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-              w400: 'https://antoniodiaz.me:3000/project_images_img/w400/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-            },
-            title: 'title 1',
-          },
-          {
-            id: 2,
-            image: {
-              w1200: 'https://antoniodiaz.me:3000/project_images_img/original/343d7954-bb23-4422-a79f-e58611b8b366.png',
-              w400: 'https://antoniodiaz.me:3000/project_images_img/w400/343d7954-bb23-4422-a79f-e58611b8b366.png',
-            },
-            title: 'title 2',
-          },
-          {
-            id: 3,
-            image: {
-              w1200: 'https://antoniodiaz.me:3000/project_images_img/original/2105f946-dac2-458b-ab6a-4dad6b9e0b12.png',
-              w400: 'https://antoniodiaz.me:3000/project_images_img/w400/2105f946-dac2-458b-ab6a-4dad6b9e0b12.png',
-            },
-            title: 'title 3',
-          },
-        ]}
-      />
+      <BaseCarousel>
+        {slidesWithData.map((item) => (
+          <div className="Project-slide" key={item.id}>
+            <img
+              className="Project-slideImage"
+              src={item.src}
+              sizes={item.sizes}
+              srcSet={item.srcSet}
+              title={item.title}
+              alt={item.alt}
+            />
+          </div>
+        ))}
+      </BaseCarousel>
     </div>
   </div>
 );
