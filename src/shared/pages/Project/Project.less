@@ -5,10 +5,11 @@
 @{c} {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 720px;
   min-height: calc(100vh ~'-' @header-height ~'-' 10px);
   margin: 0 auto;
-  padding: 170px 70px 50px;
+  padding: 170px 0 50px;
 
   .isMobile &,
   .isTablet & {
@@ -22,7 +23,7 @@
   }
 
   &-title {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     font-size: 38px;
     font-weight: @fw-bold;
     text-align: center;
@@ -30,19 +31,6 @@
     .isMobile &,
     .isTablet & {
       margin-bottom: 40px;
-    }
-  }
-
-  &-subtitle {
-    margin-bottom: 40px;
-    font-size: 16px;
-    font-weight: @fw-regular;
-    line-height: 24px;
-    text-align: center;
-
-    .isMobile &,
-    .isTablet & {
-      line-height: 20px;
     }
   }
 
@@ -56,15 +44,16 @@
     }
   }
 
-  &-slide {
-    height: 400px;
-    width: 100%;
-  }
+  &-subtitle {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: @fw-regular;
+    line-height: 24px;
+    text-align: center;
 
-  &-slideImage {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
+    .isMobile &,
+    .isTablet & {
+      line-height: 20px;
+    }
   }
 }

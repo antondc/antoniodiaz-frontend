@@ -7,28 +7,28 @@ export const projectsMockData: ProjectsLoadApiResponse = {
       id: 1,
       attributes: {
         id: 1,
-        order: 0,
+        order: 5,
         image: {
-          original: 'https://antoniodiaz.me:3000/project_images_img/original/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
-          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/bddd115f-2142-4eef-a249-84c0a9411ae5.png',
+          original: 'https://antoniodiaz.me:3000/project_images_img/original/feba4583-d416-4db0-aff1-2a03ad888625.png',
+          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/feba4583-d416-4db0-aff1-2a03ad888625.png',
+          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/feba4583-d416-4db0-aff1-2a03ad888625.png',
+          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/feba4583-d416-4db0-aff1-2a03ad888625.png',
+          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/feba4583-d416-4db0-aff1-2a03ad888625.png',
         },
         translations: {
+          es: {
+            title: 'Linii',
+            subtitle: 'Desarrollo de sitio web para el estudio de diseño Linii, con Astroshock',
+            description: '',
+          },
           en: {
-            title: '¡Fronteras!',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
+            title: 'Linii',
+            subtitle: 'Web development for Linii studio, with Astroshock.',
             description: '',
           },
           ru: {
-            title: '¡Fronteras!',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
-            description: '',
-          },
-          es: {
-            title: '¡Fronteras!',
-            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2016; cubierta por Luis Vassallo',
+            title: 'Linii',
+            subtitle: 'Web development for Linii studio, with Astroshock.',
             description: '',
           },
         },
@@ -49,23 +49,24 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         },
         translations: {
           es: {
-            title: 'El derecho al desempleo útil',
+            title: 'La ciudad en movimiento',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
             description: '',
           },
           en: {
-            title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            title: 'La ciudad en movimiento',
+            subtitle: 'Editor and layouts, published with Díaz & Pons, 2015.',
             description: '',
           },
           ru: {
-            title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            title: 'La ciudad en movimiento',
+            subtitle: 'Editor and layouts, published with Díaz & Pons, 2015.',
             description: '',
           },
         },
       },
     },
+
     {
       type: 'project',
       id: 3,
@@ -82,17 +83,17 @@ export const projectsMockData: ProjectsLoadApiResponse = {
         translations: {
           en: {
             title: 'Critik: prototype for reviews website',
-            subtitle: 'Web development with PHP, Javascript, MySQL and SPARQL.',
+            subtitle: 'Book reviews social network, 2015',
             description: '',
           },
           ru: {
             title: 'Critik: prototype for reviews website',
-            subtitle: 'Web development with PHP, Javascript, MySQL and SPARQL.',
+            subtitle: 'Book reviews social network, 2015',
             description: '',
           },
           es: {
             title: 'Critik: prototipo para sitio web de crítica literaria',
-            subtitle: 'Desarrollo web en PHP, Javascript y SPARQL.',
+            subtitle: 'Sitio web de crítica de libros, 2015',
             description: '',
           },
         },
@@ -119,12 +120,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'La excepción permanente',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'La excepción permanente',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -151,86 +152,23 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'El festín de la vivienda',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2013, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2013, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'El festín de la vivienda',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2013, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2013, cover by Luis Vassallo.',
             description: '',
           },
         },
       },
     },
+
     {
       type: 'project',
       id: 6,
       attributes: {
         id: 6,
-        order: 5,
-        image: {
-          original: 'https://antoniodiaz.me:3000/project_images_img/original/feba4583-d416-4db0-aff1-2a03ad888625.png',
-          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/feba4583-d416-4db0-aff1-2a03ad888625.png',
-          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/feba4583-d416-4db0-aff1-2a03ad888625.png',
-          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/feba4583-d416-4db0-aff1-2a03ad888625.png',
-          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/feba4583-d416-4db0-aff1-2a03ad888625.png',
-        },
-        translations: {
-          es: {
-            title: 'Linii: website para Astroshock',
-            subtitle: 'Desarrollo web en Javascript (Backbone) y Python (Django).',
-            description: '',
-          },
-          en: {
-            title: 'Linii: website for Astroshock',
-            subtitle: 'Web development with Javascript (Backbone) and Python (Django).',
-            description: '',
-          },
-          ru: {
-            title: 'Linii: website for Astroshock',
-            subtitle: 'Web development with Javascript (Backbone) and Python (Django).',
-            description: '',
-          },
-        },
-      },
-    },
-    {
-      type: 'project',
-      id: 7,
-      attributes: {
-        id: 7,
-        order: 6,
-        image: {
-          original: 'https://antoniodiaz.me:3000/project_images_img/original/3e7ddf3c-e696-48ba-8af7-180e0c42ec18.png',
-          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/3e7ddf3c-e696-48ba-8af7-180e0c42ec18.png',
-          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/3e7ddf3c-e696-48ba-8af7-180e0c42ec18.png',
-          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/3e7ddf3c-e696-48ba-8af7-180e0c42ec18.png',
-          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/3e7ddf3c-e696-48ba-8af7-180e0c42ec18.png',
-        },
-        translations: {
-          es: {
-            title: 'Futurópolis',
-            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2016, cubierta por Luis Vassallo.',
-            description: '',
-          },
-          en: {
-            title: 'Futurópolis',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'Futurópolis',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2016, cover by Luis Vassallo.',
-            description: '',
-          },
-        },
-      },
-    },
-    {
-      type: 'project',
-      id: 8,
-      attributes: {
-        id: 8,
         order: 7,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/3781ea52-3d16-423c-950f-cc1c628c51c7.png',
@@ -247,12 +185,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'Moderar Extremistán',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'Moderar Extremistán',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -260,9 +198,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 9,
+      id: 7,
       attributes: {
-        id: 9,
+        id: 7,
         order: 8,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/4d23cf36-018c-47a4-ab9b-d157c2812449.png',
@@ -279,12 +217,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'La sociedad del desperdicio',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'La sociedad del desperdicio',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -292,9 +230,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 10,
+      id: 8,
       attributes: {
-        id: 10,
+        id: 8,
         order: 9,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/c29c89c0-f91c-49dd-b0c2-1b2467ca99b7.png',
@@ -311,12 +249,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'Energía y equidad',
-            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
             description: '',
           },
           ru: {
             title: 'Energía y equidad',
-            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
             description: '',
           },
         },
@@ -324,9 +262,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 11,
+      id: 9,
       attributes: {
-        id: 11,
+        id: 9,
         order: 10,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/2d8c6f44-0c20-44c9-9487-10beceabe981.png',
@@ -343,12 +281,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'El nuevo Leviatán',
-            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
             description: '',
           },
           ru: {
             title: 'El nuevo Leviatán',
-            subtitle: 'Edition and design, published by Díaz & Pons, 2015.',
+            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
             description: '',
           },
         },
@@ -356,41 +294,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 12,
+      id: 10,
       attributes: {
-        id: 12,
-        order: 11,
-        image: {
-          original: 'https://antoniodiaz.me:3000/project_images_img/original/2d5f50be-14fc-49d6-8639-b0c1b19dd08a.png',
-          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/2d5f50be-14fc-49d6-8639-b0c1b19dd08a.png',
-          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/2d5f50be-14fc-49d6-8639-b0c1b19dd08a.png',
-          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/2d5f50be-14fc-49d6-8639-b0c1b19dd08a.png',
-          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/2d5f50be-14fc-49d6-8639-b0c1b19dd08a.png',
-        },
-        translations: {
-          es: {
-            title: 'Microvoyages',
-            subtitle: 'Projecto para Zona C, Santiago de Compostela, España, 2009.',
-            description: '',
-          },
-          en: {
-            title: 'Microvoyages',
-            subtitle: 'Project for Zona C, Santiago de Compostela, Spain, 2009.',
-            description: '',
-          },
-          ru: {
-            title: 'Microvoyages',
-            subtitle: 'Project for Zona C, Santiago de Compostela, Spain, 2009.',
-            description: '',
-          },
-        },
-      },
-    },
-    {
-      type: 'project',
-      id: 13,
-      attributes: {
-        id: 13,
+        id: 10,
         order: 12,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/1eb5a27b-3b88-4b3c-8642-f15761f62414.png',
@@ -407,12 +313,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'Postfascismos',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'Postfascismos',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2014, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -420,9 +326,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 14,
+      id: 11,
       attributes: {
-        id: 14,
+        id: 11,
         order: 13,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/3233e674-510d-4bdc-94bc-69d9a2f97b40.png',
@@ -439,12 +345,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'Economía y pseudociencia',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'Economía y pseudociencia',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -452,9 +358,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 15,
+      id: 12,
       attributes: {
-        id: 15,
+        id: 12,
         order: 14,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/84222b2d-87cf-465d-b83d-028500d878eb.png',
@@ -471,12 +377,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'Economía, poder y política',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'Economía, poder y política',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
             description: '',
           },
         },
@@ -484,9 +390,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 16,
+      id: 13,
       attributes: {
-        id: 16,
+        id: 13,
         order: 15,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/83f8bb45-ade1-4b11-8668-06607b9d937c.png',
@@ -503,12 +409,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
             description: '',
           },
           ru: {
             title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published by Díaz & Pons, 2015.',
+            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
             description: '',
           },
         },
@@ -516,9 +422,9 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
     {
       type: 'project',
-      id: 17,
+      id: 14,
       attributes: {
-        id: 17,
+        id: 14,
         order: 16,
         image: {
           original: 'https://antoniodiaz.me:3000/project_images_img/original/76edf103-2cfe-46e2-a4a0-22480694f5d6.png',
@@ -535,12 +441,44 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           },
           en: {
             title: 'La vida frente al espejo',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
             description: '',
           },
           ru: {
             title: 'La vida frente al espejo',
-            subtitle: 'Edition and layout, published by Díaz & Pons, 2015, cover by Luis Vassallo.',
+            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
+            description: '',
+          },
+        },
+      },
+    },
+    {
+      type: 'project',
+      id: 15,
+      attributes: {
+        id: 15,
+        order: 1,
+        image: {
+          original: 'https://antoniodiaz.me:3000/project_images_img/original/d2f819c5-cf00-471c-a7c1-53a4c0f15b5a.png',
+          w200: 'https://antoniodiaz.me:3000/project_images_img/w200/d2f819c5-cf00-471c-a7c1-53a4c0f15b5a.png',
+          w400: 'https://antoniodiaz.me:3000/project_images_img/w400/d2f819c5-cf00-471c-a7c1-53a4c0f15b5a.png',
+          w1200: 'https://antoniodiaz.me:3000/project_images_img/w1200/d2f819c5-cf00-471c-a7c1-53a4c0f15b5a.png',
+          w2400: 'https://antoniodiaz.me:3000/project_images_img/w2400/d2f819c5-cf00-471c-a7c1-53a4c0f15b5a.png',
+        },
+        translations: {
+          es: {
+            title: 'El derecho al desempleo útil',
+            subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
+            description: '',
+          },
+          en: {
+            title: 'The right to useful unemployment',
+            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
+            description: '',
+          },
+          ru: {
+            title: 'The right to useful unemployment',
+            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
             description: '',
           },
         },
@@ -548,7 +486,7 @@ export const projectsMockData: ProjectsLoadApiResponse = {
     },
   ],
   meta: {
-    totalItems: 17,
+    totalItems: 15,
     sort: 'order',
   },
 };
