@@ -3,9 +3,11 @@
 @c: .Carousel;
 
 @{c} {
-  position: relative;
-  margin-bottom: 50px;
-  // overflow: hidden;
+  &:hover {
+    .slick-arrow {
+      opacity: 1;
+    }
+  }
 
   &-slide {
     height: 400px;
@@ -17,5 +19,46 @@
     width: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  .slick-arrow {
+    width: 40px;
+    padding: 0 8px;
+    opacity: 0;
+    fill: @c-blue--pastel;
+    transition: opacity @td-normal @ease @td-normal;
+    z-index: @z-index-1;
+
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+
+  .slick-prev {
+    left: 0;
+  }
+
+  .slick-next {
+    right: 0;
+  }
+
+  .slick-dots {
+    bottom: -40px;
+
+    li button {
+      height: 8px;
+      width: 8px;
+      background: @c-traslucid;
+      border-radius: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    li.slick-active button {
+      background: @c-blue--pastel;
+    }
   }
 }

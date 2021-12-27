@@ -1,5 +1,6 @@
 // https://react-slick.neostack.com/
-// - On first next click next slide is not loaded
+// - For slide, needs image without wrapper first next click next slide is not loaded
+// - For Fade, needs image wrapped in div
 
 import React from 'react';
 import Slider from 'react-slick';
@@ -8,17 +9,6 @@ import ArrowLeft from 'Assets/svg/arrowLeft.svg';
 import ArrowRight from 'Assets/svg/arrowRight.svg';
 
 import './Carousel.less';
-
-interface Props2 {
-  currentSlide?: any;
-  slideCount?: any;
-  children?: React.ReactElement;
-  className?: string;
-}
-
-const SlickButtonFix: React.FC<Props2> = ({ currentSlide, slideCount, children, ...props }) => (
-  <span {...props}>{children}</span>
-);
 
 type SlideItem = {
   id: number;
@@ -33,25 +23,19 @@ interface Props {
   slidesWithData: Array<SlideItem>;
 }
 
-export const Carousel: React.FC<Props> = ({ slidesWithData }) => (
+export const Carousel: React.FC<Props> = React.memo(({ slidesWithData }) => (
   <Slider
-    className="Carousel"
-    dots={true}
+    fade={true}
     infinite={true}
     speed={500}
     slidesToShow={1}
     slidesToScroll={1}
+    className="Carousel"
+    dots={true}
     autoplay
-    nextArrow={
-      <SlickButtonFix>
-        <ArrowRight className="Carousel-navigator Carousel-navigatorLeft" />
-      </SlickButtonFix>
-    }
-    prevArrow={
-      <SlickButtonFix>
-        <ArrowLeft className="Carousel-navigator Carousel-navigatorLeft" />
-      </SlickButtonFix>
-    }
+    pauseOnHover
+    nextArrow={<ArrowRight className="Carousel-navigator Carousel-navigatorRight" />}
+    prevArrow={<ArrowLeft className="Carousel-navigator Carousel-navigatorLeft" />}
   >
     {slidesWithData?.map((item) => (
       <div className="Carousel-slide" key={item.id}>
@@ -66,4 +50,4 @@ export const Carousel: React.FC<Props> = ({ slidesWithData }) => (
       </div>
     ))}
   </Slider>
-);
+));
