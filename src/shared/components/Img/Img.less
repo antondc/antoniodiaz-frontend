@@ -1,0 +1,12 @@
+@import '../../css/imports.less';
+
+@c: .Img;
+
+@{c} {
+  opacity: 0;
+  transition: opacity @td-fast @ease;
+
+  &--isLoaded {
+    opacity: 1;
+  }
+}

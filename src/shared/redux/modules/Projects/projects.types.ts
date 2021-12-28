@@ -11,10 +11,10 @@ export interface ProjectTranslation {
 export interface ProjectState {
   id: number;
   order: number;
-  image: {
+  images: {
     original: string;
     [key: string]: string;
-  };
+  }[];
   translations: {
     [key: string]: ProjectTranslation;
   };

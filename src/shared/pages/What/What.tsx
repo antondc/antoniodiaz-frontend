@@ -21,16 +21,16 @@ export const What: React.FC<Props> = ({ glossary, projects }) => (
           <A href={`/what/${item.id}`} className="What-gridItem isLoading" data-id={index} key={index}>
             <img
               className="What-gridImage"
-              src={item.image.w1200}
+              src={item.images[0].original}
               sizes="600px"
               srcSet={
-                item.image.w200 +
+                item.images[0].w200 +
                 ' 200w, ' +
-                item.image.w400 +
+                item.images[0].w400 +
                 ' 400w, ' +
-                item.image.w1200 +
+                item.images[0].w1200 +
                 ' 1200w, ' +
-                item.image.w2400 +
+                item.images[0].w2400 +
                 ' 2400w, '
               }
               ref={(input) => {
