@@ -4,6 +4,7 @@ export const DEFAULT_PAGE_SIZE = 20;
 export const COOKIE_POLICY_COOKIE = 'cookiePolicyCookie';
 
 // Delays
+export const DELAY_MICRO_MS = 30;
 export const DELAY_FAST_MS = 300;
 export const DELAY_MEDIUM_MS = 500;
 export const DELAY_SLOW_MS = 1000;

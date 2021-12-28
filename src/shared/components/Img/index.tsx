@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { DELAY_MICRO_MS } from 'Root/src/shared/constants';
+
 import './Img.less';
 
 interface Props {
@@ -17,19 +19,19 @@ const Img: React.FC<Props> = ({ className, src, sizes, srcSet, title, alt }) => 
 
     const img = input;
     const updateFunc = () => {
-      img.classList.add('Img--isLoaded');
+      img.classList.remove('Img--preload');
     };
     img.onload = updateFunc;
     if (img.complete) {
       setTimeout(() => {
         updateFunc();
-      }, 0);
+      }, DELAY_MICRO_MS);
     }
   };
 
   return (
     <img
-      className={'Img' + (className ? ` ${className}` : '')}
+      className={'Img Img--preload' + (className ? ` ${className}` : '')}
       src={src}
       sizes={sizes}
       srcSet={srcSet}
