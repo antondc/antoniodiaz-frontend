@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { DELAY_MICRO_MS } from 'Root/src/shared/constants';
-
 import './Img.less';
 
 interface Props {
@@ -23,9 +21,7 @@ const Img: React.FC<Props> = ({ className, src, sizes, srcSet, title, alt }) => 
     };
     img.onload = updateFunc;
     if (img.complete) {
-      setTimeout(() => {
-        updateFunc();
-      }, DELAY_MICRO_MS);
+      updateFunc();
     }
   };
 

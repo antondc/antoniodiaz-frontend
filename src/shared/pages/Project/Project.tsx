@@ -33,7 +33,7 @@ export const Project: React.FC<Props> = ({ lang, project, slidesWithData }) => (
               sizes={item.sizes}
               srcSet={item.srcSet}
               title={item.title}
-              alt={item.alt}
+              alt={item.title}
             />
           </div>
         ))}
