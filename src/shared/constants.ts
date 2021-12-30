@@ -23,3 +23,7 @@ export const LIST_ROLE_READER = 'reader';
 
 // Event types
 export const EVENT_BLUR = 'blur';
+
+// Languages
+
+export const DEFAULT_LANG_SLUG = 'en';

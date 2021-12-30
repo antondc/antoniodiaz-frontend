@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Img.less';
 
 interface Props {
-  className: string;
+  className?: string;
   src: string;
   sizes: string;
   srcSet: string;
@@ -12,28 +12,26 @@ interface Props {
 }
 
 const Img: React.FC<Props> = ({ className, src, sizes, srcSet, title, alt }) => {
-  const onImageLoad = (input) => {
-    if (!input) return;
+  const [loaded, setLoaded] = useState(false);
 
-    const img = input;
-    const updateFunc = () => {
-      img.classList.remove('Img--preload');
-    };
-    img.onload = updateFunc;
-    if (img.complete) {
-      updateFunc();
-    }
+  const onImageDecode = (img) => {
+    if (!img) return;
+
+    img.decode().then(() => {
+      setLoaded(true);
+    });
   };
 
   return (
     <img
-      className={'Img Img--preload' + (className ? ` ${className}` : '')}
+      className={'Img' + (className ? ` ${className}` : '') + (loaded ? ' Img--loaded' : '')}
       src={src}
       sizes={sizes}
       srcSet={srcSet}
       title={title}
       alt={alt}
-      ref={onImageLoad}
+      ref={onImageDecode}
+      loading="lazy"
     />
   );
 };

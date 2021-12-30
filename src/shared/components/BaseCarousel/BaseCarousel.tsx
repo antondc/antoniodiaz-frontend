@@ -25,6 +25,7 @@ export const BaseCarousel: React.FC<Props> = ({ children }) => (
     dots={true}
     autoplay
     pauseOnHover
+    lazyLoad
     nextArrow={
       <div className="BaseCarousel-navigator BaseCarousel-navigatorRight">
         <ArrowRight className="BaseCarousel-navigatorIcon" />
