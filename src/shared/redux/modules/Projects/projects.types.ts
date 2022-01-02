@@ -5,7 +5,7 @@ export const PROJECTS_LOAD_FAILURE = 'PROJECT_LOAD_FAILURE';
 export interface ProjectTranslation {
   title: string;
   subtitle: string;
-  description: string;
+  htmlContent: string;
 }
 
 export interface ProjectState {

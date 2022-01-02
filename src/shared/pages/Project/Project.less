@@ -62,4 +62,43 @@
       line-height: 20px;
     }
   }
+
+  &-content {
+    p {
+      margin-bottom: 10px;
+    }
+
+    img {
+      height: 300px;
+      width: 100%;
+      margin: 20px 0 10px;
+      opacity: 0;
+      box-shadow: 0 0 10px 5px @c-traslucid--light;
+      object-fit: cover;
+      object-position: center;
+      transition: opacity @td-normal @ease;
+      border-radius: 4px;
+
+      &@{c}-image--loaded {
+        opacity: 1;
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 20px;
+      font-size: @fs-small;
+      font-weight: @fw-semibold;
+      text-align: center;
+      user-select: none;
+    }
+
+    pre {
+      margin: 20px 0 10px;
+      border-radius: 4px;
+      padding: 10px 30px 30px;
+      font-family: @ff-code;
+      font-size: @fs-small;
+    }
+  }
 }

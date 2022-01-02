@@ -28,6 +28,18 @@ const Project: React.FC = () => {
     dispatch(projectsLoad());
   }, []);
 
+  // Load embedded html images
+  useEffect(() => {
+    const imageElements = document.getElementsByTagName('img');
+    const imageElementsArray = Array.from(imageElements);
+
+    imageElementsArray.forEach((imageElement) => {
+      imageElement.decode().then(() => {
+        imageElement.classList.add('Project-image--loaded');
+      });
+    });
+  }, []);
+
   if (!project?.id || !project?.translations[lang]) return <div />;
 
   return <ProjectUi project={project} lang={lang} slidesWithData={slidesWithData} />;

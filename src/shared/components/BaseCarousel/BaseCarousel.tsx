@@ -16,16 +16,17 @@ interface Props {
 
 export const BaseCarousel: React.FC<Props> = ({ children }) => (
   <Slider
+    className="BaseCarousel"
     fade={true}
     infinite={true}
     speed={500}
     slidesToShow={1}
     slidesToScroll={1}
-    className="BaseCarousel"
     dots={true}
+    arrows={true}
     autoplay
     pauseOnHover
-    lazyLoad
+    lazyLoad="progressive"
     nextArrow={
       <div className="BaseCarousel-navigator BaseCarousel-navigatorRight">
         <ArrowRight className="BaseCarousel-navigatorIcon" />

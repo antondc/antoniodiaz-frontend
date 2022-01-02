@@ -1,3 +1,4 @@
+import { mockProject } from './mockProject';
 import { ProjectsLoadApiResponse } from './projects.types';
 
 export const projectsMockData: ProjectsLoadApiResponse = {
@@ -30,17 +31,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Linii',
             subtitle: 'Desarrollo de sitio web para el estudio de diseño Linii, con Astroshock',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Linii',
             subtitle: 'Web development for Linii studio, with Astroshock.',
-            description: '',
-          },
-          ru: {
-            title: 'Linii',
-            subtitle: 'Web development for Linii studio, with Astroshock.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -65,17 +61,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'La ciudad en movimiento',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'La ciudad en movimiento',
             subtitle: 'Editor and layouts, published with Díaz & Pons, 2015.',
-            description: '',
-          },
-          ru: {
-            title: 'La ciudad en movimiento',
-            subtitle: 'Editor and layouts, published with Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -101,17 +92,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           en: {
             title: 'Critik: prototype for reviews website',
             subtitle: 'Book reviews social network, 2015',
-            description: '',
-          },
-          ru: {
-            title: 'Critik: prototype for reviews website',
-            subtitle: 'Book reviews social network, 2015',
-            description: '',
+            htmlContent: mockProject,
           },
           es: {
             title: 'Critik: prototipo para sitio web de crítica literaria',
             subtitle: 'Sitio web de crítica de libros, 2015',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -136,17 +122,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'La excepción permanente',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'La excepción permanente',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'La excepción permanente',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -171,17 +152,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'El festín de la vivienda',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2013, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'El festín de la vivienda',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2013, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'El festín de la vivienda',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2013, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -207,17 +183,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Moderar Extremistán',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Moderar Extremistán',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'Moderar Extremistán',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -242,17 +213,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'La sociedad del desperdicio',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'La sociedad del desperdicio',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'La sociedad del desperdicio',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -277,17 +243,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Energía y equidad',
             subtitle: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Energía y equidad',
             subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
-            description: '',
-          },
-          ru: {
-            title: 'Energía y equidad',
-            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -312,17 +273,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'El nuevo Leviatán',
             subtitle: 'Edición y diseño, publicado por Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'El nuevo Leviatán',
             subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
-            description: '',
-          },
-          ru: {
-            title: 'El nuevo Leviatán',
-            subtitle: 'Edition and design, published with Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -347,17 +303,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Postfascismos',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2014, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Postfascismos',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'Postfascismos',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2014, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -382,17 +333,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Economía y pseudociencia',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Economía y pseudociencia',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'Economía y pseudociencia',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -417,17 +363,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'Economía, poder y política',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'Economía, poder y política',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'Economía, poder y política',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -452,17 +393,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'El derecho al desempleo útil',
             subtitle: 'Editor y cubierta, publicado por Díaz & Pons, 2015',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'The right to useful unemployment',
             subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
-            description: '',
-          },
-          ru: {
-            title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -487,17 +423,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'La vida frente al espejo',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'La vida frente al espejo',
             subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
-          },
-          ru: {
-            title: 'La vida frente al espejo',
-            subtitle: 'Edition and layout, published with Díaz & Pons, 2015, cover by Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
@@ -522,17 +453,12 @@ export const projectsMockData: ProjectsLoadApiResponse = {
           es: {
             title: 'El derecho al desempleo útil',
             subtitle: 'Edición y maqueta, publicado por Díaz & Pons, 2015, cubierta por Luis Vassallo.',
-            description: '',
+            htmlContent: mockProject,
           },
           en: {
             title: 'The right to useful unemployment',
             subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
-            description: '',
-          },
-          ru: {
-            title: 'The right to useful unemployment',
-            subtitle: 'Editor and designer, published with Díaz & Pons, 2015.',
-            description: '',
+            htmlContent: mockProject,
           },
         },
       },
