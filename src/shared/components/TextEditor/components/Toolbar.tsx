@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
 
-import { CustomEditor } from '.';
+import { CustomEditor } from '../customEditor';
 
 import './Toolbar.less';
 

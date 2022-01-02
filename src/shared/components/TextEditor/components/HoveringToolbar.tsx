@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Editor, Range } from 'slate';
 import { ReactEditor, useSlate } from 'slate-react';
 
-import { CustomEditor } from '.';
+import { CustomEditor } from '../customEditor';
 
 import './HoveringToolbar.less';
 
