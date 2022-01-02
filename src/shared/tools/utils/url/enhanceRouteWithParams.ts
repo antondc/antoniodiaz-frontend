@@ -22,6 +22,8 @@ const enhanceRouteWithParams: EnhanceRouteWithParams = ({ route, location }) => 
   const queryParams = QueryStringWrapper.parseQueryString(location.search);
 
   const enhancedRoute: RouteState = Object.assign(cloneDeep(route), {
+    href: '',
+    pathAndQuery: '',
     ...location,
     params: finalParams,
     queryParams,

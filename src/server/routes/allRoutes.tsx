@@ -64,8 +64,8 @@ router.get(routesPathsList, async (req: any, res: any, next: any) => {
   const location = { ...history.location, pathname: req.path, search: qs.stringify(req.query) };
 
   Promise.all([initialLanguagesLoader(req.params.lang), ...initialDataLoadersPromises]) // We have to execute the Languages thunk, as well as the async function within it
-    .then((response: any) => {
-      const mergedResponse = merge(...response); // Use Lodash to merge the result objects of the promises; otherwise we will get only the last result
+    .then((response) => {
+      const mergedResponse = Object.assign({}, ...response); // Merge the results array into an object
 
       const initialRoute: RouteState = {
         ...enhanceRouteWithParams({

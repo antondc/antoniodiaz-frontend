@@ -1,5 +1,7 @@
 import React from 'react';
 
+// import Slate from 'slate';
+// import SlateReact from 'slate-react';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 
 import './Control.less';

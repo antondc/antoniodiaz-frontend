@@ -10,7 +10,6 @@ export interface RoutesState {
 }
 
 export interface ParamsState {
-  [key: string]: string | number;
   lang?: string;
   articleId?: string;
 }
