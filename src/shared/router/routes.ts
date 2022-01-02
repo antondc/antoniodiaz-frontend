@@ -28,7 +28,7 @@ interface RoutesInterface {
   What: Route;
   Project: Route;
   When: Route;
-  Post: Route;
+  Article: Route;
   Where: Route;
   ServerError: Route;
   NotFound: Route;
@@ -95,8 +95,8 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [initialArticlesLoader],
     layout: RouteLayout.fullPage,
   },
-  Post: {
-    name: 'Post',
+  Article: {
+    name: 'Article',
     path: '/:lang([a-z]{2})?/when/:articleId',
     route: '/when',
     exact: false,

@@ -7,9 +7,9 @@ import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
-import { Post as PostUi } from './Post';
+import { Article as ArticleUi } from './Article';
 
-const Post: React.FC = () => {
+const Article: React.FC = () => {
   const dispatch = useDispatch();
   const params = useSelector(selectCurrentRouteParams);
   const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
@@ -22,17 +22,19 @@ const Post: React.FC = () => {
     dispatch(articlesLoad());
   }, []);
 
+  // Load embedded html images
   useEffect(() => {
     const imageElements = document.getElementsByTagName('img');
     const imageElementsArray = Array.from(imageElements);
 
     imageElementsArray.forEach((imageElement) => {
       imageElement.decode().then(() => {
-        imageElement.classList.add('Post-image--loaded');
+        imageElement.classList.add('Article-image--loaded');
       });
     });
   }, []);
 
+  // Style embedded html code blocks
   useEffect(() => {
     const codeElements = document.getElementsByTagName('pre');
     const codeElementsArray = Array.from(codeElements);
@@ -44,6 +46,6 @@ const Post: React.FC = () => {
 
   if (!Number(article?.id)) return <div />;
 
-  return <PostUi articleTranslation={articleTranslation} date={createdAtFormatted} />;
+  return <ArticleUi articleTranslation={articleTranslation} date={createdAtFormatted} />;
 };
-export default Post;
+export default Article;

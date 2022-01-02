@@ -12,7 +12,7 @@ import Control from 'Pages/Control';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import NotFound from 'Pages/NotFound';
-import Post from 'Pages/Post';
+import Article from 'Pages/Article';
 import Project from 'Pages/Project';
 import ServerError from 'Pages/ServerError';
 import What from 'Pages/What';
@@ -48,7 +48,7 @@ const FullPage: React.FC<Props> = ({ loggedIn, location, defaultCurrentSlug, pat
         <Route exact={Routes.What.exact} path={Routes.What.path} component={What} />
         <Route exact={Routes.Project.exact} path={Routes.Project.path} component={Project} />
         <Route exact={Routes.When.exact} path={Routes.When.path} component={When} />
-        <Route exact={Routes.Post.exact} path={Routes.Post.path} component={Post} />
+        <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
         <Route exact={Routes.Where.exact} path={Routes.Where.path} component={Where} />
         <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
         <Route exact={Routes.Login.exact} path={Routes.Login.path} component={Login} />
