@@ -9,9 +9,20 @@ interface Props {
   glossary: GlossaryState;
 }
 
+const value: string = JSON.stringify([
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Value from Control page.',
+      },
+    ],
+  },
+]);
+
 export const Control: React.FC<Props> = ({ glossary }) => (
   <div className="Control">
     <h1 className="Control-title">{glossary?.control}</h1>
-    <TextEditor />
+    <TextEditor value={value} />
   </div>
 );
