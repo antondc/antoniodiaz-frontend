@@ -3,5 +3,18 @@
 @c: .TextEditor;
 
 @{c} {
-  //
+  pre {
+    color: @c-background;
+    background: @c-base;
+  }
+
+  &-span {
+    &--bold {
+      font-weight: @fw-bold;
+    }
+
+    &--italic {
+      font-style: italic;
+    }
+  }
 }
