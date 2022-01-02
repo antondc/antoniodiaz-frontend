@@ -1,24 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 
-import { GlossaryState } from 'Modules/Languages/languages.types';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
+import { Control as ControlUi } from './Control';
 
 import './Control.less';
 
-interface Props {
-  currentGlossary: GlossaryState;
-}
+const Control: React.FC = () => {
+  const glossary = useSelector(selectCurrentGlossary);
 
-const Control: React.FC<Props> = ({ currentGlossary }) => (
-  <div className="Control">
-    <h1 className="Control-title">{currentGlossary?.control}</h1>
-  </div>
-);
+  return <ControlUi glossary={glossary} />;
+};
 
-const mapStateToProps = createStructuredSelector({
-  currentGlossary: selectCurrentGlossary,
-});
-
-export default connect(mapStateToProps, {})(Control);
+export default Control;
