@@ -1,0 +1,32 @@
+@import '../../css/imports.less';
+
+@c: .HoveringToolbar;
+
+@{c} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  opacity: 0;
+  background: @c-background;
+  border: 1px solid;
+  transition: opacity @td-fast @ease;
+  z-index: @z-index-1;
+  border-radius: 5px;
+
+  &--active {
+    opacity: 1;
+  }
+
+  &-button {
+    padding: 0 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--active {
+      color: @c-success;
+    }
+  }
+}
