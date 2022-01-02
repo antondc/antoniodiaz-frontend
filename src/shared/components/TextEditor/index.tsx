@@ -1,8 +1,51 @@
 import React, { useCallback, useState } from 'react';
-import { createEditor, Descendant, Text, Transforms } from 'slate';
+import { createEditor, Descendant, Editor, Text, Transforms } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
 import './TextEditor.less';
+
+const CustomEditor = {
+  isBoldMarkActive(editor) {
+    const [match] = Editor.nodes(editor, {
+      match: (node: Text) => node.bold === true,
+      universal: true,
+    });
+
+    return !!match;
+  },
+
+  isItalicMarkActive(editor) {
+    const [match] = Editor.nodes(editor, {
+      match: (node: Text) => node.italic === true,
+      universal: true,
+    });
+
+    return !!match;
+  },
+
+  isCodeBlockActive(editor) {
+    const [match] = Editor.nodes(editor, {
+      match: (n) => n.type === 'code',
+    });
+
+    return !!match;
+  },
+
+  toggleBoldMark(editor) {
+    const isActive = CustomEditor.isBoldMarkActive(editor);
+    Transforms.setNodes(editor, { bold: isActive ? null : true }, { match: (n) => Text.isText(n), split: true });
+  },
+
+  toggleItalicMark(editor) {
+    const isActive = CustomEditor.isItalicMarkActive(editor);
+    Transforms.setNodes(editor, { italic: isActive ? null : true }, { match: (n) => Text.isText(n), split: true });
+  },
+
+  toggleCodeBlock(editor) {
+    const isActive = CustomEditor.isCodeBlockActive(editor);
+    Transforms.setNodes(editor, { type: isActive ? null : 'code' }, { match: (n) => Editor.isBlock(editor, n) });
+  },
+};
 
 // Define a React component renderer for our code blocks.
 const CodeElement = (props) => (
@@ -51,6 +94,35 @@ const TextEditor: React.FC<Props> = ({ value }) => {
   return (
     <div className="TextEditor">
       <Slate editor={editor} value={localValue} onChange={setLocalValue}>
+        <div>
+          <button
+            className="TextEditor-button"
+            onMouseDown={(event) => {
+              event.preventDefault();
+              CustomEditor.toggleBoldMark(editor);
+            }}
+          >
+            <b>B</b>
+          </button>
+          <button
+            className="TextEditor-button"
+            onMouseDown={(event) => {
+              event.preventDefault();
+              CustomEditor.toggleItalicMark(editor);
+            }}
+          >
+            <em>I</em>
+          </button>
+          <button
+            className="TextEditor-button"
+            onMouseDown={(event) => {
+              event.preventDefault();
+              CustomEditor.toggleCodeBlock(editor);
+            }}
+          >
+            Code
+          </button>
+        </div>
         <Editable
           renderElement={renderElement}
           renderLeaf={renderLeaf}

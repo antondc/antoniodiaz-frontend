@@ -4,8 +4,13 @@
 
 @{c} {
   pre {
+    margin: 20px 0 10px;
+    padding: 20px;
+    font-family: @ff-code;
+    font-size: @fs-small;
     color: @c-background;
     background: @c-base;
+    border-radius: 4px;
   }
 
   &-span {
@@ -15,6 +20,19 @@
 
     &--italic {
       font-style: italic;
+    }
+  }
+
+  &-button {
+    margin: 5px;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 4px;
+    transition: opacity @td-fast @ease;
+
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
     }
   }
 }
