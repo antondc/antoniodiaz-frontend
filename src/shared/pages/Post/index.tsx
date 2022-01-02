@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import highlight from 'highlight.js';
 
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
@@ -19,6 +20,26 @@ const Post: React.FC = () => {
 
   useEffect(() => {
     dispatch(articlesLoad());
+  }, []);
+
+  useEffect(() => {
+    const imageElements = document.getElementsByTagName('img');
+    const imageElementsArray = Array.from(imageElements);
+
+    imageElementsArray.forEach((imageElement) => {
+      imageElement.decode().then(() => {
+        imageElement.classList.add('Post-image--loaded');
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    const codeElements = document.getElementsByTagName('pre');
+    const codeElementsArray = Array.from(codeElements);
+
+    codeElementsArray.forEach((codeElement) => {
+      highlight.highlightElement(codeElement);
+    });
   }, []);
 
   if (!Number(article?.id)) return <div />;

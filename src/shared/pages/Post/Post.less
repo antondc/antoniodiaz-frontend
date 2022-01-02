@@ -10,17 +10,6 @@
   margin: 0 auto;
   padding: 170px 70px 50px;
 
-  .isMobile &,
-  .isTablet & {
-    padding: 50px 20px 20px;
-  }
-
-  .isDesktop & {
-    @media @desktop-short {
-      min-height: 480px;
-    }
-  }
-
   &-title {
     margin-bottom: 50px;
     font-size: 38px;
@@ -38,28 +27,43 @@
     font-size: 14px;
     font-weight: @fw-semibold;
     text-align: center;
-
-    .isMobile &,
-    .isTablet & {
-      margin-bottom: 40px;
-    }
   }
 
-  &-text {
-    font-family: @ff-sans;
-    font-size: 16px;
-    font-weight: @fw-regular;
-    line-height: 24px;
-    text-align: left;
-
-    .isMobile &,
-    .isTablet & {
-      font-size: 16px;
-      line-height: 20px;
-    }
-
+  &-content {
     p {
       margin-bottom: 10px;
+    }
+
+    img {
+      height: 300px;
+      width: 100%;
+      margin: 20px 0 10px;
+      opacity: 0;
+      box-shadow: 0 0 10px 5px @c-traslucid--light;
+      object-fit: cover;
+      object-position: center;
+      transition: opacity @td-normal @ease;
+      border-radius: 4px;
+
+      &@{c}-image--loaded {
+        opacity: 1;
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 20px;
+      font-size: @fs-small;
+      font-weight: @fw-semibold;
+      text-align: center;
+    }
+
+    pre {
+      margin: 20px 0 10px;
+      border-radius: 4px;
+      padding: 10px 30px 30px;
+      font-family: @ff-code;
+      font-size: @fs-small;
     }
   }
 }

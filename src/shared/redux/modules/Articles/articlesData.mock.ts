@@ -1,4 +1,5 @@
 import { ArticlesLoadApiResponse } from './articles.types';
+import { mockArticle } from './mockArticle';
 
 export const articlesMockData: ArticlesLoadApiResponse = {
   data: [
@@ -12,13 +13,11 @@ export const articlesMockData: ArticlesLoadApiResponse = {
         translations: {
           en: {
             title: '¡Fronteras!',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
           es: {
             title: '¡Fronteras!',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
         },
       },
@@ -33,18 +32,11 @@ export const articlesMockData: ArticlesLoadApiResponse = {
         translations: {
           en: {
             title: 'Article 1',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
           es: {
             title: 'Articulo 1',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
-          },
-          ru: {
-            title: 'Статия 1',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
         },
       },
@@ -59,18 +51,11 @@ export const articlesMockData: ArticlesLoadApiResponse = {
         translations: {
           en: {
             title: 'Article 2',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
           es: {
             title: 'Articulo 2',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
-          },
-          ru: {
-            title: 'Статия 2',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
         },
       },
@@ -85,18 +70,11 @@ export const articlesMockData: ArticlesLoadApiResponse = {
         translations: {
           en: {
             title: 'Article 3',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
           es: {
             title: 'Articulo 3',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
-          },
-          ru: {
-            title: 'Статия 3',
-            htmlContent:
-              '<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab neque ex ipsam excepturi nemo autem, voluptatum repellendus! Voluptates deserunt ex cupiditate minus quasi ipsa blanditiis facere quas consequatur illo.</div>',
+            htmlContent: mockArticle,
           },
         },
       },

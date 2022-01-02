@@ -14,6 +14,6 @@ export const Post: React.FC<Props> = ({ articleTranslation, date }) => (
   <div className="Post">
     <h1 className="Post-title">{articleTranslation?.title}</h1>
     <h2 className="Post-date">{date}</h2>
-    <div className="Post-text">{ReactHtmlParser(articleTranslation?.htmlContent)}</div>
+    <div className="Post-content">{ReactHtmlParser(articleTranslation?.htmlContent)}</div>
   </div>
 );
