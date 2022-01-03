@@ -8,6 +8,14 @@ import { ParagraphElement } from './components/ParagraphElement';
 import { Toolbar } from './components/Toolbar';
 import { CustomEditor } from './customEditor';
 
+// List ul
+// Link a
+// 'h1',
+// 'h2',
+// 'h3',
+// 'center',
+// 'uppercase',
+// 'image',
 import './TextEditor.less';
 
 interface Props {
@@ -48,7 +56,7 @@ const TextEditor: React.FC<Props> = ({ value }) => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (!e.metaKey && !e.ctrlKey) {
+    if ((!e.metaKey && !e.ctrlKey) || (e.key !== 'b' && e.key !== 'i' && e.key !== 'u')) {
       return;
     }
 
