@@ -1,9 +1,9 @@
-import { BaseEditor, Descendant, Node } from 'slate';
+import { BaseEditor, Node } from 'slate';
 import { ReactEditor } from 'slate-react';
 
 export interface CustomText {
   type: string;
-  text: string;
+  text?: string;
   bold?: boolean;
   code?: boolean;
   italic?: boolean;
@@ -11,12 +11,13 @@ export interface CustomText {
   uppercase?: boolean;
   center?: boolean;
   inlineCode?: boolean;
+  children?: any;
 }
 
 export type LinkElement = {
   type: 'link';
   url: string;
-  children: any;
+  children: any; // TODO: type children here
 };
 
 export type CustomElement = {

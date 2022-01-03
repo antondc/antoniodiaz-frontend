@@ -9,8 +9,8 @@ import { EditorH1 } from './components/EditorH1';
 import { EditorH2 } from './components/EditorH2';
 import { EditorH3 } from './components/EditorH3';
 import { EditorItalic } from './components/EditorItalic';
-import { EditorP } from './components/EditorP';
 import { EditorQuote } from './components/EditorQuote';
+import { EditorText } from './components/EditorText';
 import { EditorUl } from './components/EditorUl';
 import { EditorUnderlined } from './components/EditorUnderlined';
 import { EditorUppercase } from './components/EditorUppercase';
@@ -38,7 +38,7 @@ export const useComponentRenders: UseComponentRenders = () => {
       case 'link':
         return <EditorA element={element}>{children}</EditorA>;
       default:
-        return <EditorP>{children}</EditorP>;
+        return <EditorText>{children}</EditorText>;
     }
   }, []);
 

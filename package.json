@@ -163,6 +163,7 @@
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^3.0.0",
     "slate": "^0.72.3",
+    "slate-history": "^0.66.0",
     "slate-react": "^0.72.1",
     "ts-unused-exports": "^7.0.3",
     "uuid": "^8.3.2"

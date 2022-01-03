@@ -1,14 +1,16 @@
 import { Editor } from 'slate';
+import { withHistory } from 'slate-history';
 
-import { testStringIsValidUrl } from '../../tools/utils/url/testStringIsValidUrl';
+import { testStringIsValidUrl } from 'Tools/utils/url/testStringIsValidUrl';
 import { useCustomEditor } from './useCustomEditor';
 
 type UseWrappers = () => {
-  withInlines: (editor: Editor) => Editor;
+  withInlinesWrapper: (editor: Editor) => Editor;
+  withHistoryWrapper: (editor: Editor) => Editor;
 };
 
 export const useWrappers: UseWrappers = () => {
-  const withInlines = (editor: Editor): Editor => {
+  const withInlinesWrapper = (editor) => {
     const { linkWrap } = useCustomEditor();
     const { insertData, insertText, isInline } = editor;
 
@@ -35,5 +37,7 @@ export const useWrappers: UseWrappers = () => {
     return editor;
   };
 
-  return { withInlines };
+  const withHistoryWrapper = (editor) => withHistory(editor);
+
+  return { withInlinesWrapper, withHistoryWrapper };
 };

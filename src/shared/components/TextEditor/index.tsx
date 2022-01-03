@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createEditor, Descendant } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
@@ -16,12 +16,20 @@ interface Props {
 
 const TextEditor: React.FC<Props> = ({ value }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
-  const { withInlines } = useWrappers();
-  const [editor] = useState(() => withInlines(withReact(createEditor())));
+  const [loaded, setLoaded] = useState(false);
+  const { withInlinesWrapper, withHistoryWrapper } = useWrappers();
+  const [editor] = useState(() => withHistoryWrapper(withInlinesWrapper(withReact(createEditor()))));
   const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
 
   const { renderElement, renderLeaf } = useComponentRenders();
   const { onKeyDown } = useEvents(editor);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  // Don't render on server side
+  if (!loaded) return null;
 
   return (
     <div className="TextEditor">

@@ -24,13 +24,6 @@ const value: string = JSON.stringify([
       {
         text: ', and here is a more unusual inline: an ',
       },
-      {
-        type: 'button',
-        children: [{ text: 'editable button' }],
-      },
-      {
-        text: '!',
-      },
     ],
   },
   {
