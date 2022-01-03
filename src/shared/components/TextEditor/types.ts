@@ -14,7 +14,7 @@ export interface CustomText {
 }
 
 export type CustomElement = {
-  type: 'p' | 'code' | 'h1' | 'h2' | 'h3' | 'ul';
+  type: 'p' | 'code' | 'h1' | 'h2' | 'h3' | 'ul' | 'quote';
   children: CustomText[];
 };
 

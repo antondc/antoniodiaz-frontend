@@ -8,6 +8,7 @@ import { H2 } from './components/H2';
 import { H3 } from './components/H3';
 import { HoveringToolbar } from './components/HoveringToolbar';
 import { P } from './components/P';
+import { Quote } from './components/Quote';
 import { Toolbar } from './components/Toolbar';
 import { Ul } from './components/Ul';
 import { CustomEditor } from './customEditor';
@@ -36,6 +37,8 @@ const TextEditor: React.FC<Props> = ({ value }) => {
         return <Ul {...props} />;
       case 'code':
         return <CodeElement {...props} />;
+      case 'quote':
+        return <Quote {...props} />;
       default:
         return <P {...props} />;
     }
@@ -102,7 +105,12 @@ const TextEditor: React.FC<Props> = ({ value }) => {
       <Slate editor={editor} value={localValue} onChange={setLocalValue}>
         <HoveringToolbar />
         <Toolbar />
-        <Editable renderElement={renderElement} renderLeaf={renderLeaf} onKeyDown={onKeyDown} />
+        <Editable
+          className="TextEditor-textBox"
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onKeyDown={onKeyDown}
+        />
       </Slate>
     </div>
   );

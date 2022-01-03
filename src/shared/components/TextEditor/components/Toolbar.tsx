@@ -49,6 +49,12 @@ export const Toolbar: React.FC = () => {
         <code>{`< >`}</code>
       </button>
       <button
+        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'quote') ? ' Toolbar-button--active' : '')}
+        onMouseDown={(e) => onBlockClick(e, 'quote')}
+      >
+        <blockquote>„</blockquote>
+      </button>
+      <button
         className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'code') ? ' Toolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'code')}
       >
