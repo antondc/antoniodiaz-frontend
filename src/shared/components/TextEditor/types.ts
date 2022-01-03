@@ -8,10 +8,13 @@ export interface CustomText {
   code?: boolean;
   italic?: boolean;
   underlined?: boolean;
+  uppercase?: boolean;
+  center?: boolean;
+  inlineCode?: boolean;
 }
 
 export type CustomElement = {
-  type: 'paragraph' | 'code';
+  type: 'p' | 'code' | 'h1' | 'h2' | 'h3' | 'ul';
   children: CustomText[];
 };
 

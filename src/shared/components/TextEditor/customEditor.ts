@@ -5,17 +5,21 @@ import { CustomElement, CustomText } from './types';
 import './TextEditor.less';
 
 export const CustomEditor = {
-  isCodeBlockActive(editor: Editor): boolean {
+  isBlockActive(editor: Editor, blockType: string): boolean {
     const [match] = Editor.nodes(editor, {
-      match: (node: CustomElement) => node.type === 'code',
+      match: (node: CustomElement) => node.type === blockType,
     });
 
     return !!match;
   },
 
-  toggleCodeBlock(editor: Editor): void {
-    const isActive = CustomEditor.isCodeBlockActive(editor);
-    Transforms.setNodes(editor, { type: isActive ? null : 'code' }, { match: (n) => Editor.isBlock(editor, n) });
+  toggleBlock(editor: Editor, blockType: string): void {
+    const isActive = CustomEditor.isBlockActive(editor, blockType);
+    Transforms.setNodes(
+      editor,
+      { type: isActive ? null : blockType },
+      { match: (node) => Editor.isBlock(editor, node) }
+    );
   },
 
   toggleFormat(editor: Editor, format: string): void {

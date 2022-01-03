@@ -3,19 +3,15 @@ import { createEditor, Descendant } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
 import { CodeElement } from './components/CodeElement';
+import { H1 } from './components/H1';
+import { H2 } from './components/H2';
+import { H3 } from './components/H3';
 import { HoveringToolbar } from './components/HoveringToolbar';
-import { ParagraphElement } from './components/ParagraphElement';
+import { P } from './components/P';
 import { Toolbar } from './components/Toolbar';
+import { Ul } from './components/Ul';
 import { CustomEditor } from './customEditor';
 
-// List ul
-// Link a
-// 'h1',
-// 'h2',
-// 'h3',
-// 'center',
-// 'uppercase',
-// 'image',
 import './TextEditor.less';
 
 interface Props {
@@ -30,10 +26,18 @@ const TextEditor: React.FC<Props> = ({ value }) => {
 
   const renderElement = useCallback((props) => {
     switch (props.element.type) {
+      case 'h1':
+        return <H1 {...props} />;
+      case 'h2':
+        return <H2 {...props} />;
+      case 'h3':
+        return <H3 {...props} />;
+      case 'ul':
+        return <Ul {...props} />;
       case 'code':
         return <CodeElement {...props} />;
       default:
-        return <ParagraphElement {...props} />;
+        return <P {...props} />;
     }
   }, []);
 
@@ -48,6 +52,18 @@ const TextEditor: React.FC<Props> = ({ value }) => {
 
     if (leaf.underlined) {
       children = <u>{children}</u>;
+    }
+
+    if (leaf.uppercase) {
+      children = <span className="TextEditor-uppercase">{children}</span>;
+    }
+
+    if (leaf.center) {
+      children = <span className="TextEditor-center">{children}</span>;
+    }
+
+    if (leaf.inlineCode) {
+      children = <code className="TextEditor-inlineCode">{children}</code>;
     }
 
     return <span {...attributes}>{children}</span>;

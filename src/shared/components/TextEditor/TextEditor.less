@@ -3,16 +3,6 @@
 @c: .TextEditor;
 
 @{c} {
-  pre {
-    margin: 20px 0 10px;
-    padding: 20px;
-    font-family: @ff-code;
-    font-size: @fs-small;
-    color: @c-background;
-    background: @c-base;
-    border-radius: 4px;
-  }
-
   &-button {
     margin: 5px;
     padding: 4px;
@@ -24,5 +14,32 @@
       opacity: 0.8;
       cursor: pointer;
     }
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  &-center {
+    display: block;
+    text-align: center;
+  }
+
+  &-left {
+    display: block;
+    text-align: center;
+  }
+
+  &-right {
+    display: block;
+    text-align: center;
+  }
+
+  &-inlineCode {
+    padding: 0 5px;
+    font-family: @ff-code;
+    font-size: @fs-small;
+    background: @c-gray-light;
+    border-radius: 5px;
   }
 }
