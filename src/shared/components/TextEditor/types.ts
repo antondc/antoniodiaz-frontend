@@ -14,6 +14,11 @@ export interface CustomText {
   children?: any;
 }
 
+export type ImageElement = {
+  type: 'image';
+  src: string;
+};
+
 export type LinkElement = {
   type: 'link';
   url: string;

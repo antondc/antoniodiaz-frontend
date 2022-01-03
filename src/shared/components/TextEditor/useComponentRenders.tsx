@@ -8,6 +8,7 @@ import { EditorCodeInlined } from './components/EditorCodeInlined';
 import { EditorH1 } from './components/EditorH1';
 import { EditorH2 } from './components/EditorH2';
 import { EditorH3 } from './components/EditorH3';
+import { EditorImage } from './components/EditorImage';
 import { EditorItalic } from './components/EditorItalic';
 import { EditorQuote } from './components/EditorQuote';
 import { EditorText } from './components/EditorText';
@@ -37,6 +38,8 @@ export const useComponentRenders: UseComponentRenders = () => {
         return <EditorQuote>{children}</EditorQuote>;
       case 'link':
         return <EditorA element={element}>{children}</EditorA>;
+      case 'image':
+        return <EditorImage element={element} />;
       default:
         return <EditorText>{children}</EditorText>;
     }

@@ -47,6 +47,12 @@ export const EditorToolbar: React.FC = () => {
         ℋ
       </button>
       <button
+        className={'EditorToolbar-button' + (isFormatActive(editor, 'image') ? ' EditorToolbar-button--active' : '')}
+        onMouseDown={(e) => onBlockClick(e, 'image')}
+      >
+        ⨕
+      </button>
+      <button
         className={'EditorToolbar-button' + (isFormatActive(editor, 'bold') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onFormatClick(e, 'bold')}
       >
