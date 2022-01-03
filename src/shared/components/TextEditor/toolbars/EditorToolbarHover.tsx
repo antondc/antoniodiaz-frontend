@@ -3,15 +3,16 @@ import { Editor, Range } from 'slate';
 import { ReactEditor, useSlate } from 'slate-react';
 
 import { HOVERING_TOOLBAR_ENABLED } from '../constants';
-import { CustomEditor } from '../customEditor';
+import { useCustomEditor } from '../useCustomEditor';
 
-import './HoveringToolbar.less';
+import './EditorToolbarHover.less';
 
-export const HoveringToolbar: React.FC = () => {
+export const EditorToolbarHover: React.FC = () => {
   const editor = useSlate();
+  const { toggleBlock, toggleFormat, isFormatActive, isBlockActive } = useCustomEditor();
 
   useEffect(() => {
-    const toolbarElement = document.getElementById('HoveringToolbar');
+    const toolbarElement = document.getElementById('EditorToolbarHover');
     const { selection } = editor;
 
     if (!toolbarElement) {
@@ -24,7 +25,7 @@ export const HoveringToolbar: React.FC = () => {
       Range.isCollapsed(selection) ||
       Editor.string(editor, selection) === ''
     ) {
-      toolbarElement.classList.remove('HoveringToolbar--active');
+      toolbarElement.classList.remove('EditorToolbarHover--active');
 
       return;
     }
@@ -33,7 +34,7 @@ export const HoveringToolbar: React.FC = () => {
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
 
-    toolbarElement.classList.add('HoveringToolbar--active');
+    toolbarElement.classList.add('EditorToolbarHover--active');
     toolbarElement.style.top = `${rect.top + window.pageYOffset - toolbarElement.offsetHeight}px`;
     toolbarElement.style.left = `${rect.left + window.pageXOffset - toolbarElement.offsetWidth / 2 + rect.width / 2}px`;
   });
@@ -41,28 +42,27 @@ export const HoveringToolbar: React.FC = () => {
   const onMouseLeave = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    const toolbarElement = document.getElementById('HoveringToolbar');
-    toolbarElement.classList.remove('HoveringToolbar--active');
+    const toolbarElement = document.getElementById('EditorToolbarHover');
+    toolbarElement.classList.remove('EditorToolbarHover--active');
   };
 
   const onFormatClick = (e: React.MouseEvent, format: string) => {
     e.preventDefault();
-    CustomEditor.toggleFormat(editor, format);
+    toggleFormat(editor, format);
   };
 
   const onBlockClick = (e: React.MouseEvent, block: string) => {
     e.preventDefault();
-    CustomEditor.toggleBlock(editor, block);
+    toggleBlock(editor, block);
   };
 
   if (!HOVERING_TOOLBAR_ENABLED) return null;
 
   return (
-    <div className="HoveringToolbar" id="HoveringToolbar" onMouseLeave={onMouseLeave}>
+    <div className="EditorToolbarHover" id="EditorToolbarHover" onMouseLeave={onMouseLeave}>
       <button
         className={
-          'HoveringToolbar-button' +
-          (CustomEditor.isFormatActive(editor, 'bold') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isFormatActive(editor, 'bold') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'bold')}
       >
@@ -70,8 +70,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' +
-          (CustomEditor.isFormatActive(editor, 'italic') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isFormatActive(editor, 'italic') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'italic')}
       >
@@ -79,8 +78,8 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' +
-          (CustomEditor.isFormatActive(editor, 'underlined') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' +
+          (isFormatActive(editor, 'underlined') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'underlined')}
       >
@@ -88,8 +87,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' +
-          (CustomEditor.isBlockActive(editor, 'code') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isBlockActive(editor, 'code') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onBlockClick(e, 'code')}
       >
@@ -97,7 +95,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' + (CustomEditor.isBlockActive(editor, 'h1') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isBlockActive(editor, 'h1') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onBlockClick(e, 'h1')}
       >
@@ -105,7 +103,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' + (CustomEditor.isBlockActive(editor, 'h2') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isBlockActive(editor, 'h2') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onBlockClick(e, 'h2')}
       >
@@ -113,7 +111,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' + (CustomEditor.isBlockActive(editor, 'h3') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isBlockActive(editor, 'h3') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onBlockClick(e, 'h3')}
       >
@@ -121,7 +119,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' + (CustomEditor.isBlockActive(editor, 'ul') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isBlockActive(editor, 'ul') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onBlockClick(e, 'ul')}
       >
@@ -129,8 +127,7 @@ export const HoveringToolbar: React.FC = () => {
       </button>
       <button
         className={
-          'HoveringToolbar-button' +
-          (CustomEditor.isFormatActive(editor, 'center') ? ' HoveringToolbar-button--active' : '')
+          'EditorToolbarHover-button' + (isFormatActive(editor, 'center') ? ' EditorToolbarHover-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'center')}
       >

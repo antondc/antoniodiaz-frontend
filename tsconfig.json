@@ -28,5 +28,5 @@
       "Pages/*": ["./src/shared/pages/*"],
     }
   },
-  "include": ["./src/**/*", "./*"]
+  "include": ["./src/**/*", "./*", "src/shared/components/TextEditor/components/.tsx"]
 }

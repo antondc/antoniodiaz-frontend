@@ -2,30 +2,32 @@ import React from 'react';
 import { useSlate } from 'slate-react';
 
 import { ENTER_URL_MESSAGE } from '../constants';
-import { CustomEditor } from '../customEditor';
+import { useCustomEditor } from '../useCustomEditor';
 
-import './Toolbar.less';
+import './EditorToolbar.less';
 
-export const Toolbar: React.FC = () => {
+export const EditorToolbar: React.FC = () => {
   const editor = useSlate();
+
+  const { isBlockActive, isFormatActive, linkWrap, linkUnWrap, toggleBlock, toggleFormat } = useCustomEditor();
 
   const onFormatClick = (e: React.MouseEvent, format: string) => {
     e.preventDefault();
-    CustomEditor.toggleFormat(editor, format);
+    toggleFormat(editor, format);
   };
 
   const onBlockClick = (e: React.MouseEvent, block: string) => {
     e.preventDefault();
-    CustomEditor.toggleBlock(editor, block);
+    toggleBlock(editor, block);
   };
 
   const onLinkClick = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    const linkBlockActive = CustomEditor.isBlockActive(editor, 'link');
+    const linkBlockActive = isBlockActive(editor, 'link');
 
     if (linkBlockActive) {
-      CustomEditor.linkUnWrap(editor);
+      linkUnWrap(editor);
 
       return;
     }
@@ -33,32 +35,32 @@ export const Toolbar: React.FC = () => {
     const url = window.prompt(ENTER_URL_MESSAGE);
     if (!url) return;
 
-    CustomEditor.linkWrap(editor, url);
+    linkWrap(editor, url);
   };
 
   return (
-    <div className="Toolbar">
+    <div className="EditorToolbar">
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'link') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'link') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={onLinkClick}
       >
         ℋ
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'bold') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isFormatActive(editor, 'bold') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onFormatClick(e, 'bold')}
       >
         <b>B</b>
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'italic') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isFormatActive(editor, 'italic') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onFormatClick(e, 'italic')}
       >
         <em>I</em>
       </button>
       <button
         className={
-          'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'underlined') ? ' Toolbar-button--active' : '')
+          'EditorToolbar-button' + (isFormatActive(editor, 'underlined') ? ' EditorToolbar-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'underlined')}
       >
@@ -66,50 +68,50 @@ export const Toolbar: React.FC = () => {
       </button>
       <button
         className={
-          'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'inlineCode') ? ' Toolbar-button--active' : '')
+          'EditorToolbar-button' + (isFormatActive(editor, 'inlineCode') ? ' EditorToolbar-button--active' : '')
         }
         onMouseDown={(e) => onFormatClick(e, 'inlineCode')}
       >
         <code>{`< >`}</code>
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'quote') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'quote') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'quote')}
       >
         <blockquote>„</blockquote>
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'code') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'code') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'code')}
       >
         Code
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'h1') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'h1') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'h1')}
       >
         H1
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'h2') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'h2') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'h2')}
       >
         H2
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'h3') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'h3') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'h3')}
       >
         H3
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'ul') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'ul') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onBlockClick(e, 'ul')}
       >
         Ul
       </button>
       <button
-        className={'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'center') ? ' Toolbar-button--active' : '')}
+        className={'EditorToolbar-button' + (isFormatActive(editor, 'center') ? ' EditorToolbar-button--active' : '')}
         onMouseDown={(e) => onFormatClick(e, 'center')}
       >
         ...
