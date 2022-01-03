@@ -1,5 +1,17 @@
 import React from 'react';
 
-import './A.less';
+import { LinkElement } from '../types';
 
-export const A: React.FC = ({ children }) => <a className="A">{children}</a>;
+import './AElement.less';
+
+interface Props {
+  children: React.ReactChildren;
+  element: LinkElement;
+  attributes: any;
+}
+
+export const AElement: React.FC<Props> = ({ children, element, attributes }) => (
+  <a className="AElement" href={element.url} {...attributes}>
+    {children}
+  </a>
+);

@@ -14,20 +14,31 @@ const value: string = JSON.stringify([
     type: 'paragraph',
     children: [
       {
-        text: 'This example shows how you can make a hovering menu appear above your content, which you can use to make text ',
+        text: 'In addition to block nodes, you can create inline nodes. Here is a ',
       },
-      { text: 'bold', bold: true },
-      { text: ', ' },
-      { text: 'italic', italic: true },
-      { text: ', or anything else you might want to do!' },
+      {
+        type: 'link',
+        url: 'https://en.wikipedia.org/wiki/Hypertext',
+        children: [{ text: 'hyperlink' }],
+      },
+      {
+        text: ', and here is a more unusual inline: an ',
+      },
+      {
+        type: 'button',
+        children: [{ text: 'editable button' }],
+      },
+      {
+        text: '!',
+      },
     ],
   },
   {
     type: 'paragraph',
     children: [
-      { text: 'Try it out yourself! Just ' },
-      { text: 'select any piece of text and the menu will appear', bold: true },
-      { text: '.' },
+      {
+        text: 'There are two ways to add links. You can either add a link via the toolbar icon above, or if you want in on a little secret, copy a URL to your keyboard and paste it while a range of text is selected.',
+      },
     ],
   },
 ]);

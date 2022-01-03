@@ -1,6 +1,6 @@
-import { Editor, Text, Transforms } from 'slate';
+import { Editor, Element, Range, Text, Transforms } from 'slate';
 
-import { CustomElement, CustomText } from './types';
+import { CustomElement, CustomText, LinkElement } from './types';
 
 import './TextEditor.less';
 
@@ -20,6 +20,29 @@ export const CustomEditor = {
       { type: isActive ? null : blockType },
       { match: (node) => Editor.isBlock(editor, node) }
     );
+  },
+
+  linkWrap(editor: Editor, url: string): void {
+    const { selection } = editor;
+    const isCollapsed = selection && Range.isCollapsed(selection);
+    const link: LinkElement = {
+      type: 'link',
+      url,
+      children: isCollapsed ? [{ text: url }] : [],
+    };
+
+    if (isCollapsed) {
+      Transforms.insertNodes(editor, link);
+    } else {
+      Transforms.wrapNodes(editor, link, { split: true });
+      Transforms.collapse(editor, { edge: 'end' });
+    }
+  },
+
+  linkUnWrap(editor: Editor): void {
+    Transforms.unwrapNodes(editor, {
+      match: (node) => !Editor.isEditor(node) && Element.isElement(node) && node.type === 'link',
+    });
   },
 
   toggleFormat(editor: Editor, format: string): void {

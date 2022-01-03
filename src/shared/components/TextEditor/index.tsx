@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { createEditor, Descendant } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
+import { AElement } from './components/AElement';
 import { CodeElement } from './components/CodeElement';
 import { H1 } from './components/H1';
 import { H2 } from './components/H2';
@@ -12,6 +13,7 @@ import { Quote } from './components/Quote';
 import { Toolbar } from './components/Toolbar';
 import { Ul } from './components/Ul';
 import { CustomEditor } from './customEditor';
+import { withInlines } from './withInlines';
 
 import './TextEditor.less';
 
@@ -22,7 +24,7 @@ interface Props {
 const TextEditor: React.FC<Props> = ({ value }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
 
-  const [editor] = useState(() => withReact(createEditor()));
+  const [editor] = useState(() => withInlines(withReact(createEditor())));
   const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
 
   const renderElement = useCallback((props) => {
@@ -39,40 +41,32 @@ const TextEditor: React.FC<Props> = ({ value }) => {
         return <CodeElement {...props} />;
       case 'quote':
         return <Quote {...props} />;
+      case 'link':
+        return <AElement {...props} />;
       default:
         return <P {...props} />;
     }
   }, []);
 
-  const Leaf = ({ attributes, children, leaf }) => {
-    if (leaf.bold) {
-      children = <strong>{children}</strong>;
+  const renderLeaf = useCallback(({ attributes, children, leaf }) => {
+    switch (true) {
+      case leaf.bold:
+        return <strong>{children}</strong>;
+      case leaf.italic:
+        return <em>{children}</em>;
+      case leaf.underlined:
+        return <u>{children}</u>;
+      case leaf.uppercase:
+        return <span className="TextEditor-uppercase">{children}</span>;
+      case leaf.inlineCode:
+        return <code className="TextEditor-inlineCode">{children}</code>;
+      case leaf.underlined:
+        return <u>{children}</u>;
+
+      default:
+        return <span {...attributes}>{children}</span>;
     }
-
-    if (leaf.italic) {
-      children = <em>{children}</em>;
-    }
-
-    if (leaf.underlined) {
-      children = <u>{children}</u>;
-    }
-
-    if (leaf.uppercase) {
-      children = <span className="TextEditor-uppercase">{children}</span>;
-    }
-
-    if (leaf.center) {
-      children = <span className="TextEditor-center">{children}</span>;
-    }
-
-    if (leaf.inlineCode) {
-      children = <code className="TextEditor-inlineCode">{children}</code>;
-    }
-
-    return <span {...attributes}>{children}</span>;
-  };
-
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+  }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if ((!e.metaKey && !e.ctrlKey) || (e.key !== 'b' && e.key !== 'i' && e.key !== 'u')) {

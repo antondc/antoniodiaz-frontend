@@ -1,4 +1,4 @@
-import { BaseEditor, Node } from 'slate';
+import { BaseEditor, Descendant, Node } from 'slate';
 import { ReactEditor } from 'slate-react';
 
 export interface CustomText {
@@ -13,6 +13,12 @@ export interface CustomText {
   inlineCode?: boolean;
 }
 
+export type LinkElement = {
+  type: 'link';
+  url: string;
+  children: any;
+};
+
 export type CustomElement = {
   type: 'p' | 'code' | 'h1' | 'h2' | 'h3' | 'ul' | 'quote';
   children: CustomText[];
@@ -25,7 +31,7 @@ export type CustomNode = Node & {
 declare module 'slate' {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor & { type: string };
-    Element: CustomElement;
+    Element: CustomElement | LinkElement;
     Text: CustomText;
     Node: CustomNode;
   }

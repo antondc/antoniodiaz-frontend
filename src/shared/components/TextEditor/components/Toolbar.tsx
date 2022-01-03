@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
 
+import { ENTER_URL_MESSAGE } from '../constants';
 import { CustomEditor } from '../customEditor';
 
 import './Toolbar.less';
@@ -18,8 +19,31 @@ export const Toolbar: React.FC = () => {
     CustomEditor.toggleBlock(editor, block);
   };
 
+  const onLinkClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    const linkBlockActive = CustomEditor.isBlockActive(editor, 'link');
+
+    if (linkBlockActive) {
+      CustomEditor.linkUnWrap(editor);
+
+      return;
+    }
+
+    const url = window.prompt(ENTER_URL_MESSAGE);
+    if (!url) return;
+
+    CustomEditor.linkWrap(editor, url);
+  };
+
   return (
     <div className="Toolbar">
+      <button
+        className={'Toolbar-button' + (CustomEditor.isBlockActive(editor, 'link') ? ' Toolbar-button--active' : '')}
+        onMouseDown={onLinkClick}
+      >
+        ℋ
+      </button>
       <button
         className={'Toolbar-button' + (CustomEditor.isFormatActive(editor, 'bold') ? ' Toolbar-button--active' : '')}
         onMouseDown={(e) => onFormatClick(e, 'bold')}
