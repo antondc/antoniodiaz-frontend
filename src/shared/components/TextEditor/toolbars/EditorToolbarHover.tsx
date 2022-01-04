@@ -125,14 +125,6 @@ export const EditorToolbarHover: React.FC = () => {
       >
         Ul
       </button>
-      <button
-        className={
-          'EditorToolbarHover-button' + (isFormatActive(editor, 'center') ? ' EditorToolbarHover-button--active' : '')
-        }
-        onMouseDown={(e) => onFormatClick(e, 'center')}
-      >
-        ...
-      </button>
     </div>
   );
 };

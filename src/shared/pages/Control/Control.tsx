@@ -11,18 +11,19 @@ interface Props {
 
 const value: string = JSON.stringify([
   {
-    type: 'paragraph',
+    type: 'h1',
     children: [
       {
-        text: 'In addition to block nodes, you can create inline nodes. Here is a ',
+        text: 'Title here',
       },
+    ],
+  },
+  {
+    type: 'image',
+    src: 'https://picsum.photos/id/175/1000',
+    children: [
       {
-        type: 'link',
-        url: 'https://en.wikipedia.org/wiki/Hypertext',
-        children: [{ text: 'hyperlink' }],
-      },
-      {
-        text: ', and here is a more unusual inline: an ',
+        text: '',
       },
     ],
   },
@@ -30,7 +31,88 @@ const value: string = JSON.stringify([
     type: 'paragraph',
     children: [
       {
-        text: 'There are two ways to add links. You can either add a link via the toolbar icon above, or if you want in on a little secret, copy a URL to your keyboard and paste it while a range of text is selected.',
+        text: 'Lorem ipsum dolor ',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur ',
+      },
+      {
+        type: 'link',
+        url: 'https://en.wikipedia.org/wiki/Hypertext',
+        children: [{ text: 'hyperlink' }],
+      },
+      {
+        text: ' lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. ',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
+      },
+    ],
+  },
+  {
+    type: 'code',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
+      },
+    ],
+  },
+  {
+    type: 'image',
+    src: 'https://picsum.photos/1000',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod molestiae alias neque corrupti, sequi quibusdam, quasi perferendis omnis maiores rem doloremque officia at repudiandae voluptatem voluptates doloribus aspernatur aliquam?.',
       },
     ],
   },

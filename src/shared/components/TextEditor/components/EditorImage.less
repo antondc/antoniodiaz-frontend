@@ -3,8 +3,37 @@
 @c: .EditorImage;
 
 @{c} {
-  height: 300px;
+  position: relative;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
+  margin: 40px 0;
+
+  &-image {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 10px 5px @c-traslucid--light;
+    border-radius: 8px;
+  }
+
+  &-error {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: @c-base;
+    background: @c-background-traslucidHard;
+    user-select: none;
+  }
+
+  &-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
 }

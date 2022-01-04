@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
+import { Descendant } from 'slate';
 
 import { EditorA } from './components/EditorA';
 import { EditorBold } from './components/EditorBold';
-import { EditorCentered } from './components/EditorCentered';
 import { EditorCode } from './components/EditorCode';
 import { EditorCodeInlined } from './components/EditorCodeInlined';
 import { EditorH1 } from './components/EditorH1';
@@ -39,7 +39,7 @@ export const useComponentRenders: UseComponentRenders = () => {
       case 'link':
         return <EditorA element={element}>{children}</EditorA>;
       case 'image':
-        return <EditorImage element={element} />;
+        return <EditorImage element={element}>{children}</EditorImage>;
       default:
         return <EditorText>{children}</EditorText>;
     }
@@ -60,10 +60,6 @@ export const useComponentRenders: UseComponentRenders = () => {
 
     if (leaf.uppercase) {
       children = <EditorUppercase>{children}</EditorUppercase>;
-    }
-
-    if (leaf.center) {
-      children = <EditorCentered>{children}</EditorCentered>;
     }
 
     if (leaf.inlineCode) {

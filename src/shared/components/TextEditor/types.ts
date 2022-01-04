@@ -9,7 +9,6 @@ export interface CustomText {
   italic?: boolean;
   underlined?: boolean;
   uppercase?: boolean;
-  center?: boolean;
   inlineCode?: boolean;
   children?: any;
 }
@@ -17,6 +16,8 @@ export interface CustomText {
 export type ImageElement = {
   type: 'image';
   src: string;
+  uuid?: string;
+  children?: any;
 };
 
 export type LinkElement = {
@@ -26,7 +27,7 @@ export type LinkElement = {
 };
 
 export type CustomElement = {
-  type: 'p' | 'code' | 'h1' | 'h2' | 'h3' | 'ul' | 'quote';
+  type: 'paragraph' | 'code' | 'h1' | 'h2' | 'h3' | 'ul' | 'quote';
   children: CustomText[];
 };
 
@@ -37,7 +38,7 @@ export type CustomNode = Node & {
 declare module 'slate' {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor & { type: string };
-    Element: CustomElement | LinkElement;
+    Element: CustomElement | LinkElement | CustomElement | ImageElement;
     Text: CustomText;
     Node: CustomNode;
   }

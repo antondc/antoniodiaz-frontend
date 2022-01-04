@@ -17,8 +17,10 @@ interface Props {
 const TextEditor: React.FC<Props> = ({ value }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
   const [loaded, setLoaded] = useState(false);
-  const { withInlinesWrapper, withHistoryWrapper } = useWrappers();
-  const [editor] = useState(() => withHistoryWrapper(withInlinesWrapper(withReact(createEditor()))));
+  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior } = useWrappers();
+  const [editor] = useState(() =>
+    withCorrectVoidBehavior(withHistoryWrapper(withInlinesWrapper(withReact(createEditor()))))
+  );
   const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
 
   const { renderElement, renderLeaf } = useComponentRenders();
@@ -27,6 +29,13 @@ const TextEditor: React.FC<Props> = ({ value }) => {
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    console.log('=======');
+    console.log('localValue:');
+    console.log(JSON.stringify(localValue, null, 4));
+    console.log('=======');
+  }, [localValue]);
 
   // Don't render on server side
   if (!loaded) return null;

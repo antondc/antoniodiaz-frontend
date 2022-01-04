@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
+import { v4 } from 'uuid';
 
 import { ENTER_URL_MESSAGE } from '../constants';
 import { useCustomEditor } from '../useCustomEditor';
@@ -9,7 +10,8 @@ import './EditorToolbar.less';
 export const EditorToolbar: React.FC = () => {
   const editor = useSlate();
 
-  const { isBlockActive, isFormatActive, linkWrap, linkUnWrap, toggleBlock, toggleFormat } = useCustomEditor();
+  const { isBlockActive, isFormatActive, linkWrap, linkUnWrap, toggleBlock, toggleFormat, toggleImageBlock } =
+    useCustomEditor();
 
   const onFormatClick = (e: React.MouseEvent, format: string) => {
     e.preventDefault();
@@ -19,6 +21,12 @@ export const EditorToolbar: React.FC = () => {
   const onBlockClick = (e: React.MouseEvent, block: string) => {
     e.preventDefault();
     toggleBlock(editor, block);
+  };
+
+  const onImageClick = (e: React.MouseEvent) => {
+    const uuid = v4();
+    e.preventDefault();
+    toggleImageBlock(editor, uuid);
   };
 
   const onLinkClick = (e: React.MouseEvent) => {
@@ -47,8 +55,8 @@ export const EditorToolbar: React.FC = () => {
         ℋ
       </button>
       <button
-        className={'EditorToolbar-button' + (isFormatActive(editor, 'image') ? ' EditorToolbar-button--active' : '')}
-        onMouseDown={(e) => onBlockClick(e, 'image')}
+        className={'EditorToolbar-button' + (isBlockActive(editor, 'image') ? ' EditorToolbar-button--active' : '')}
+        onMouseDown={onImageClick}
       >
         ⨕
       </button>
@@ -115,12 +123,6 @@ export const EditorToolbar: React.FC = () => {
         onMouseDown={(e) => onBlockClick(e, 'ul')}
       >
         Ul
-      </button>
-      <button
-        className={'EditorToolbar-button' + (isFormatActive(editor, 'center') ? ' EditorToolbar-button--active' : '')}
-        onMouseDown={(e) => onFormatClick(e, 'center')}
-      >
-        ...
       </button>
     </div>
   );
