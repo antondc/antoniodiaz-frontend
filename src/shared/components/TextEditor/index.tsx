@@ -10,6 +10,17 @@ import { useWrappers } from './useWrappers';
 
 import './TextEditor.less';
 
+const defaultValue = [
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+];
+
 interface Props {
   value: string;
 }
@@ -17,16 +28,22 @@ interface Props {
 const TextEditor: React.FC<Props> = ({ value }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
   const [loaded, setLoaded] = useState(false);
-  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior } = useWrappers();
+  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers();
   const [editor] = useState(() =>
-    withCorrectVoidBehavior(withHistoryWrapper(withInlinesWrapper(withReact(createEditor()))))
+    withImages(withInlinesWrapper(withCorrectVoidBehavior(withHistoryWrapper(withReact(createEditor())))))
   );
-  const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
-
+  const [localValue, setLocalValue] = useState<Descendant[]>(defaultValue);
   const { renderElement, renderLeaf } = useComponentRenders();
   const { onKeyDown } = useEvents(editor);
 
+  // Avoid empty array as value using a default one
+  const setLocalValueOrDefault = (value: Descendant[]) => {
+    const futureValue = value.length ? value : defaultValue;
+    setLocalValue(futureValue);
+  };
+
   useEffect(() => {
+    setLocalValueOrDefault(parsedValue);
     setLoaded(true);
   }, []);
 
@@ -42,7 +59,7 @@ const TextEditor: React.FC<Props> = ({ value }) => {
 
   return (
     <div className="TextEditor">
-      <Slate editor={editor} value={localValue} onChange={setLocalValue}>
+      <Slate editor={editor} value={localValue} onChange={setLocalValueOrDefault}>
         <EditorToolbarHover />
         <EditorToolbar />
         <Editable

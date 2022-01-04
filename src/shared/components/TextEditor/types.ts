@@ -15,8 +15,7 @@ export interface CustomText {
 
 export type ImageElement = {
   type: 'image';
-  src: string;
-  uuid?: string;
+  src: string | ArrayBuffer;
   children?: any;
 };
 

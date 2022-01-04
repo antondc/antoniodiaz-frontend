@@ -1,25 +1,30 @@
-import { Editor, Node as SlateNode, Path as SlatePath, Point, Range, Transforms } from 'slate';
+import { useState } from 'react';
+import { Editor, Node as SlateNode, Path as SlatePath, Range, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 
 import { testStringIsValidUrl } from 'Tools/utils/url/testStringIsValidUrl';
+import { ImageUpload } from '../../services/ImageUpload';
 import { useCustomEditor } from './useCustomEditor';
 
 type UseWrappers = () => {
   withInlinesWrapper: (editor: Editor) => Editor;
   withHistoryWrapper: (editor: Editor) => Editor;
   withCorrectVoidBehavior: (editor: Editor) => Editor;
+  withImages: (editor: Editor) => Editor;
 };
 
 export const useWrappers: UseWrappers = () => {
+  const [percentCompleted, setPercentCompleted] = useState<number>(0);
+
   const withInlinesWrapper = (editor) => {
-    const { linkWrap } = useCustomEditor();
+    const { wrapLink } = useCustomEditor();
     const { insertData, insertText, isInline } = editor;
 
     editor.isInline = (element) => ['link'].includes(element.type) || isInline(element);
 
     editor.insertText = (text) => {
       if (text && testStringIsValidUrl(text)) {
-        linkWrap(editor, text);
+        wrapLink(editor, text);
       } else {
         insertText(text);
       }
@@ -29,7 +34,7 @@ export const useWrappers: UseWrappers = () => {
       const text = data.getData('text/plain');
 
       if (text && testStringIsValidUrl(text)) {
-        linkWrap(editor, text);
+        wrapLink(editor, text);
       } else {
         insertData(data);
       }
@@ -77,9 +82,42 @@ export const useWrappers: UseWrappers = () => {
     return editor;
   };
 
+  // Will capture any image pasted on the editor, send it to imageUpload service and render it as an Image block
+  const withImages = (editor) => {
+    const { insertData, isVoid } = editor;
+    const { insertImageBlockFromUserSelect } = useCustomEditor();
+    const imageUpload = new ImageUpload();
+
+    // Set current item as void
+    editor.isVoid = (element) => (element.type === 'image' ? true : isVoid(element));
+
+    editor.insertData = async (data) => {
+      const text = data.getData('text/plain');
+      const { files } = data;
+
+      if (files && files.length > 0) {
+        for (const file of files) {
+          const data = await imageUpload.uploadFileToServer({
+            file,
+            setPercentCompleted,
+          });
+
+          insertImageBlockFromUserSelect(editor, data?.image);
+        }
+      } else if (testStringIsValidUrl(text)) {
+        insertImageBlockFromUserSelect(editor, text);
+      } else {
+        insertData(data);
+      }
+    };
+
+    return editor;
+  };
+
   return {
     withInlinesWrapper,
     withHistoryWrapper,
     withCorrectVoidBehavior,
+    withImages,
   };
 };

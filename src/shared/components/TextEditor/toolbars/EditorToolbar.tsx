@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
-import { v4 } from 'uuid';
 
 import { ENTER_URL_MESSAGE } from '../constants';
 import { useCustomEditor } from '../useCustomEditor';
@@ -10,8 +9,15 @@ import './EditorToolbar.less';
 export const EditorToolbar: React.FC = () => {
   const editor = useSlate();
 
-  const { isBlockActive, isFormatActive, linkWrap, linkUnWrap, toggleBlock, toggleFormat, toggleImageBlock } =
-    useCustomEditor();
+  const {
+    isBlockActive,
+    isFormatActive,
+    wrapLink,
+    unWrapLink,
+    toggleBlock,
+    toggleFormat,
+    insertImageBlockFromToolbar,
+  } = useCustomEditor();
 
   const onFormatClick = (e: React.MouseEvent, format: string) => {
     e.preventDefault();
@@ -24,9 +30,8 @@ export const EditorToolbar: React.FC = () => {
   };
 
   const onImageClick = (e: React.MouseEvent) => {
-    const uuid = v4();
     e.preventDefault();
-    toggleImageBlock(editor, uuid);
+    insertImageBlockFromToolbar(editor);
   };
 
   const onLinkClick = (e: React.MouseEvent) => {
@@ -35,7 +40,7 @@ export const EditorToolbar: React.FC = () => {
     const linkBlockActive = isBlockActive(editor, 'link');
 
     if (linkBlockActive) {
-      linkUnWrap(editor);
+      unWrapLink(editor);
 
       return;
     }
@@ -43,7 +48,7 @@ export const EditorToolbar: React.FC = () => {
     const url = window.prompt(ENTER_URL_MESSAGE);
     if (!url) return;
 
-    linkWrap(editor, url);
+    wrapLink(editor, url);
   };
 
   return (

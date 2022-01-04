@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSlate } from 'slate-react';
+import { ReactEditor, useSelected, useSlate } from 'slate-react';
 
 import { ImageUpload } from 'Services/ImageUpload';
 import { Fade, ImageField } from '@antoniodcorrea/components';
@@ -15,11 +15,12 @@ interface Props {
 export const EditorImage: React.FC<Props> = ({ element, children }) => {
   const imageUpload = new ImageUpload();
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
-  const [image, setImage] = useState<string>(undefined);
+  const [image, setImage] = useState<string | ArrayBuffer>(undefined);
   const [imageError, setImageError] = useState<string>(null);
-
+  const selected = useSelected();
   const editor = useSlate();
-  const { updateImageBlock } = useCustomEditor();
+  const { updateImageBlock, removeImageBlock } = useCustomEditor();
+  const path = ReactEditor.findPath(editor, element);
 
   const uploadFilesToServer = async (file) => {
     try {
@@ -32,7 +33,7 @@ export const EditorImage: React.FC<Props> = ({ element, children }) => {
         ...element,
         src: data?.image,
       };
-      updateImageBlock(editor, image);
+      updateImageBlock(editor, image, path);
     } catch (error) {
       setImageError(error?.message);
     }
@@ -43,9 +44,11 @@ export const EditorImage: React.FC<Props> = ({ element, children }) => {
     setImage(undefined);
   };
 
-  const removeFilesFromServer = async (url: string) => {
+  const removeFilesFromServer = (url: string) => {
     try {
-      await imageUpload.removeFileFromServer({
+      removeImageBlock(editor, path);
+
+      imageUpload.removeFileFromServer({
         url,
         onRemoved,
       });
@@ -65,12 +68,17 @@ export const EditorImage: React.FC<Props> = ({ element, children }) => {
   }, [element]);
 
   return (
-    <div className="EditorImage" onMouseLeave={onMouseLeave}>
+    <div
+      className={'EditorImage' + (selected ? ' EditorImage--selected' : '')}
+      onMouseLeave={onMouseLeave}
+      contentEditable={false}
+      suppressContentEditableWarning
+    >
       <ImageField
         className="EditorImage-image"
         label="My file"
         name="userImage"
-        image={image}
+        image={image as string}
         grow={false}
         removable
         uploadFiles={uploadFilesToServer}

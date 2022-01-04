@@ -22,26 +22,26 @@ type UseComponentRenders = () => {
 };
 
 export const useComponentRenders: UseComponentRenders = () => {
-  const renderElement = useCallback(({ children, element }) => {
-    switch (element.type) {
+  const renderElement = useCallback((props) => {
+    switch (props.element.type) {
       case 'h1':
-        return <EditorH1>{children}</EditorH1>;
+        return <EditorH1>{props.children}</EditorH1>;
       case 'h2':
-        return <EditorH2>{children}</EditorH2>;
+        return <EditorH2>{props.children}</EditorH2>;
       case 'h3':
-        return <EditorH3>{children}</EditorH3>;
+        return <EditorH3>{props.children}</EditorH3>;
       case 'ul':
-        return <EditorUl>{children}</EditorUl>;
+        return <EditorUl>{props.children}</EditorUl>;
       case 'code':
-        return <EditorCode>{children}</EditorCode>;
+        return <EditorCode>{props.children}</EditorCode>;
       case 'quote':
-        return <EditorQuote>{children}</EditorQuote>;
+        return <EditorQuote>{props.children}</EditorQuote>;
       case 'link':
-        return <EditorA element={element}>{children}</EditorA>;
+        return <EditorA element={props.element}>{props.children}</EditorA>;
       case 'image':
-        return <EditorImage element={element}>{children}</EditorImage>;
+        return <EditorImage element={props.element} {...props} />;
       default:
-        return <EditorText>{children}</EditorText>;
+        return <EditorText>{props.children}</EditorText>;
     }
   }, []);
 

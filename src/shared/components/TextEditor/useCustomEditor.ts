@@ -5,12 +5,14 @@ import { CustomElement, CustomText, ImageElement, LinkElement } from './types';
 type UseCustomEditor = () => {
   isBlockActive: (editor: Editor, blockType: string) => boolean;
   toggleBlock: (editor: Editor, blockType: string) => void;
-  linkWrap: (editor: Editor, url: string) => void;
-  linkUnWrap: (editor: Editor) => void;
+  wrapLink: (editor: Editor, url: string) => void;
+  unWrapLink: (editor: Editor) => void;
   toggleFormat: (editor: Editor, format: string) => void;
   isFormatActive: (editor: Editor, format: string) => boolean;
-  toggleImageBlock: (editor: Editor, uuid: string) => void;
-  updateImageBlock: (editor: Editor, element: ImageElement) => void;
+  insertImageBlockFromToolbar: (editor: Editor) => void;
+  updateImageBlock: (editor: Editor, element: ImageElement, path: number[]) => void;
+  removeImageBlock: (editor: Editor, path: number[]) => void;
+  insertImageBlockFromUserSelect: (editor: Editor, src: string | ArrayBuffer) => void;
 };
 
 export const useCustomEditor: UseCustomEditor = () => {
@@ -35,27 +37,53 @@ export const useCustomEditor: UseCustomEditor = () => {
     );
   };
 
-  const toggleImageBlock = (editor: Editor, uuid: string): void => {
+  const insertImageBlockFromToolbar = (editor: Editor): void => {
     const isActive = isBlockActive(editor, 'image');
     const image: ImageElement = {
       type: isActive ? null : 'image',
       src: '',
-      uuid,
     };
 
     Transforms.setNodes(editor, image, {
-      match: (node) => Editor.isBlock(editor, node) && node.type === 'paragraph' && node.children[0].text === '',
+      match: (node) =>
+        // Add nodes only when selected block is either paragraph or has no node type, and has no content
+        Editor.isBlock(editor, node) && (node.type === 'paragraph' || !node.type) && node.children[0].text === '',
     });
   };
 
-  const updateImageBlock = (editor: Editor, element: ImageElement): void => {
-    const index = editor.children.findIndex((item: ImageElement) => item.uuid === element.uuid);
+  const insertImageBlockFromUserSelect = (editor: Editor, src: string | ArrayBuffer): void => {
+    const image: ImageElement = {
+      type: 'image',
+      src,
+      children: [
+        {
+          text: '',
+        },
+      ],
+    };
 
-    Transforms.removeNodes(editor, { at: [index] });
-    Transforms.insertNodes(editor, element, { at: [index] });
+    Transforms.insertNodes(editor, image);
   };
 
-  const linkWrap = (editor: Editor, url: string): void => {
+  const updateImageBlock = (editor: Editor, element: ImageElement, path: number[]): void => {
+    Transforms.removeNodes(editor, { at: path });
+    Transforms.insertNodes(editor, element, { at: path });
+  };
+
+  const removeImageBlock = (editor: Editor, path: number[]): void => {
+    const text = {
+      type: 'paragraph',
+      children: [
+        {
+          text: '',
+        },
+      ],
+    };
+    Transforms.removeNodes(editor, { at: path });
+    Transforms.insertNodes(editor, text, { at: path });
+  };
+
+  const wrapLink = (editor: Editor, url: string): void => {
     const { selection } = editor;
     const isCollapsed = selection && Range.isCollapsed(selection);
     const link: LinkElement = {
@@ -72,7 +100,7 @@ export const useCustomEditor: UseCustomEditor = () => {
     }
   };
 
-  const linkUnWrap = (editor: Editor): void => {
+  const unWrapLink = (editor: Editor): void => {
     Transforms.unwrapNodes(editor, {
       match: (node) => !Editor.isEditor(node) && Element.isElement(node) && node.type === 'link',
     });
@@ -104,11 +132,13 @@ export const useCustomEditor: UseCustomEditor = () => {
   return {
     isBlockActive,
     toggleBlock,
-    linkWrap,
-    linkUnWrap,
+    wrapLink,
+    unWrapLink,
     toggleFormat,
     isFormatActive,
-    toggleImageBlock,
+    insertImageBlockFromToolbar,
+    insertImageBlockFromUserSelect,
     updateImageBlock,
+    removeImageBlock,
   };
 };
