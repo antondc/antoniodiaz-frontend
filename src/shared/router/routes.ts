@@ -24,6 +24,7 @@ interface RoutesInterface {
   Home: Route;
   Login: Route;
   Control: Route;
+  ControlWhat: Route;
   Who: Route;
   What: Route;
   Project: Route;
@@ -125,7 +126,16 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-
+  ControlWhat: {
+    name: 'ControlWhat',
+    path: '/:lang([a-z]{2})?/control/what',
+    route: '/control/what',
+    exact: true,
+    auth: true,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
   ServerError: {
     name: 'ServerError',
     path: '/:lang([a-z]{2})?/500-server-error',

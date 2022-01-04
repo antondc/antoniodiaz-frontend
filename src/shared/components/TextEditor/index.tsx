@@ -25,9 +25,10 @@ const defaultValue = [
 interface Props {
   imageUpload: ImageUpload;
   value: string;
+  onChange: (value: string) => void;
 }
 
-const TextEditor: React.FC<Props> = ({ value, imageUpload }) => {
+const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
   const [loaded, setLoaded] = useState(false);
   const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers(imageUpload);
@@ -41,6 +42,7 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload }) => {
   // Avoid empty array as value using a default one
   const setLocalValueOrDefault = (value: Descendant[]) => {
     const futureValue = value.length ? value : defaultValue;
+    onChange(JSON.stringify(futureValue));
     setLocalValue(futureValue);
   };
 
@@ -48,13 +50,6 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload }) => {
     setLocalValueOrDefault(parsedValue);
     setLoaded(true);
   }, []);
-
-  // useEffect(() => {
-  //   console.log('=======');
-  //   console.log('localValue:');
-  //   console.log(JSON.stringify(localValue, null, 4));
-  //   console.log('=======');
-  // }, [localValue]);
 
   // Don't render on server side
   if (!loaded) return null;
