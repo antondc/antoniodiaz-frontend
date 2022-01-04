@@ -42,3 +42,11 @@ declare module 'slate' {
     Node: CustomNode;
   }
 }
+
+export interface ImageUpload {
+  uploadFileToServer: (options: {
+    file: File;
+    setPercentCompleted: (number: number) => void;
+  }) => Promise<{ image: string }>;
+  removeFileFromServer: (options: { url: string; onRemoved: () => void }) => Promise<void>;
+}

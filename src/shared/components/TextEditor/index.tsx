@@ -4,6 +4,7 @@ import { Editable, Slate, withReact } from 'slate-react';
 
 import { EditorToolbar } from './toolbars/EditorToolbar';
 import { EditorToolbarHover } from './toolbars/EditorToolbarHover';
+import { ImageUpload } from './types';
 import { useComponentRenders } from './useComponentRenders';
 import { useEvents } from './useEvents';
 import { useWrappers } from './useWrappers';
@@ -22,18 +23,19 @@ const defaultValue = [
 ];
 
 interface Props {
+  imageUpload: ImageUpload;
   value: string;
 }
 
-const TextEditor: React.FC<Props> = ({ value }) => {
+const TextEditor: React.FC<Props> = ({ value, imageUpload }) => {
   const parsedValue = JSON.parse(value) as Descendant[];
   const [loaded, setLoaded] = useState(false);
-  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers();
+  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers(imageUpload);
   const [editor] = useState(() =>
     withImages(withInlinesWrapper(withCorrectVoidBehavior(withHistoryWrapper(withReact(createEditor())))))
   );
   const [localValue, setLocalValue] = useState<Descendant[]>(defaultValue);
-  const { renderElement, renderLeaf } = useComponentRenders();
+  const { renderElement, renderLeaf } = useComponentRenders(imageUpload);
   const { onKeyDown } = useEvents(editor);
 
   // Avoid empty array as value using a default one
@@ -47,12 +49,12 @@ const TextEditor: React.FC<Props> = ({ value }) => {
     setLoaded(true);
   }, []);
 
-  useEffect(() => {
-    console.log('=======');
-    console.log('localValue:');
-    console.log(JSON.stringify(localValue, null, 4));
-    console.log('=======');
-  }, [localValue]);
+  // useEffect(() => {
+  //   console.log('=======');
+  //   console.log('localValue:');
+  //   console.log(JSON.stringify(localValue, null, 4));
+  //   console.log('=======');
+  // }, [localValue]);
 
   // Don't render on server side
   if (!loaded) return null;

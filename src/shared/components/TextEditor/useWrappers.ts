@@ -3,18 +3,18 @@ import { Editor, Node as SlateNode, Path as SlatePath, Range, Transforms } from 
 import { withHistory } from 'slate-history';
 
 import { testStringIsValidUrl } from 'Tools/utils/url/testStringIsValidUrl';
-import { ImageUpload } from '../../services/ImageUpload';
+import { ImageUpload } from './types';
 import { useCustomEditor } from './useCustomEditor';
 
-type UseWrappers = () => {
+type UseWrappers = (imageUpload: ImageUpload) => {
   withInlinesWrapper: (editor: Editor) => Editor;
   withHistoryWrapper: (editor: Editor) => Editor;
   withCorrectVoidBehavior: (editor: Editor) => Editor;
   withImages: (editor: Editor) => Editor;
 };
 
-export const useWrappers: UseWrappers = () => {
-  const [percentCompleted, setPercentCompleted] = useState<number>(0);
+export const useWrappers: UseWrappers = (imageUpload: ImageUpload) => {
+  const [_percentCompleted, setPercentCompleted] = useState<number>(0);
 
   const withInlinesWrapper = (editor) => {
     const { wrapLink } = useCustomEditor();
@@ -43,7 +43,7 @@ export const useWrappers: UseWrappers = () => {
     return editor;
   };
 
-  const withHistoryWrapper = (editor) => withHistory(editor);
+  const withHistoryWrapper = (editor: Editor) => withHistory(editor);
 
   const withCorrectVoidBehavior = <T extends Editor>(editor: T) => {
     const { deleteBackward, insertBreak } = editor;
@@ -85,8 +85,7 @@ export const useWrappers: UseWrappers = () => {
   // Will capture any image pasted on the editor, send it to imageUpload service and render it as an Image block
   const withImages = (editor) => {
     const { insertData, isVoid } = editor;
-    const { insertImageBlockFromUserSelect } = useCustomEditor();
-    const imageUpload = new ImageUpload();
+    const { insertImageBlockFromUserSelect, removeImageBlock } = useCustomEditor();
 
     // Set current item as void
     editor.isVoid = (element) => (element.type === 'image' ? true : isVoid(element));
@@ -108,6 +107,25 @@ export const useWrappers: UseWrappers = () => {
         insertImageBlockFromUserSelect(editor, text);
       } else {
         insertData(data);
+      }
+    };
+
+    // For current nodes of type "image", use imageUpload service to remove the image
+    editor.deleteBackward = async () => {
+      const parentPath = SlatePath.parent(editor.selection.anchor.path);
+      const currentNode = SlateNode.get(editor, parentPath);
+
+      if (currentNode.type === 'image') {
+        try {
+          await imageUpload.removeFileFromServer({
+            url: currentNode['src'],
+            onRemoved: () => {},
+          });
+        } catch (error) {
+          console.error(error);
+        } finally {
+          removeImageBlock(editor, parentPath);
+        }
       }
     };
 

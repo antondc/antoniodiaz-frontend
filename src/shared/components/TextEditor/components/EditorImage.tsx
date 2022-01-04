@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { ReactEditor, useSelected, useSlate } from 'slate-react';
+import { ReactEditor, useFocused, useSelected, useSlate } from 'slate-react';
 
-import { ImageUpload } from 'Services/ImageUpload';
 import { Fade, ImageField } from '@antoniodcorrea/components';
-import { ImageElement } from '../types';
+import { ImageElement, ImageUpload } from '../types';
 import { useCustomEditor } from '../useCustomEditor';
 
 import './EditorImage.less';
 
 interface Props {
+  attributes: any;
+  imageUpload: ImageUpload;
   element: ImageElement;
 }
 
-export const EditorImage: React.FC<Props> = ({ element, children }) => {
-  const imageUpload = new ImageUpload();
+export const EditorImage: React.FC<Props> = ({ attributes, element, children, imageUpload }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
   const [image, setImage] = useState<string | ArrayBuffer>(undefined);
   const [imageError, setImageError] = useState<string>(null);
   const selected = useSelected();
+  const focused = useFocused();
   const editor = useSlate();
   const { updateImageBlock, removeImageBlock } = useCustomEditor();
   const path = ReactEditor.findPath(editor, element);
@@ -44,16 +45,20 @@ export const EditorImage: React.FC<Props> = ({ element, children }) => {
     setImage(undefined);
   };
 
+  const onWrapperClick = () => {
+    ReactEditor.focus(editor);
+  };
+
   const removeFilesFromServer = (url: string) => {
     try {
-      removeImageBlock(editor, path);
-
       imageUpload.removeFileFromServer({
         url,
         onRemoved,
       });
     } catch (error) {
       setImageError(error.message);
+    } finally {
+      removeImageBlock(editor, path);
     }
   };
 
@@ -69,10 +74,12 @@ export const EditorImage: React.FC<Props> = ({ element, children }) => {
 
   return (
     <div
-      className={'EditorImage' + (selected ? ' EditorImage--selected' : '')}
+      className={'EditorImage' + (selected && focused ? ' EditorImage--selected' : '')}
       onMouseLeave={onMouseLeave}
       contentEditable={false}
       suppressContentEditableWarning
+      onClick={onWrapperClick}
+      {...attributes}
     >
       <ImageField
         className="EditorImage-image"

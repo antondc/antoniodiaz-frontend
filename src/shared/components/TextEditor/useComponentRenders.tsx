@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { Descendant } from 'slate';
 
 import { EditorA } from './components/EditorA';
 import { EditorBold } from './components/EditorBold';
@@ -15,13 +14,14 @@ import { EditorText } from './components/EditorText';
 import { EditorUl } from './components/EditorUl';
 import { EditorUnderlined } from './components/EditorUnderlined';
 import { EditorUppercase } from './components/EditorUppercase';
+import { ImageUpload } from './types';
 
-type UseComponentRenders = () => {
+type UseComponentRenders = (imageUpload: ImageUpload) => {
   renderElement: (props) => React.ReactElement;
   renderLeaf: (props) => React.ReactElement;
 };
 
-export const useComponentRenders: UseComponentRenders = () => {
+export const useComponentRenders: UseComponentRenders = (imageUpload: ImageUpload) => {
   const renderElement = useCallback((props) => {
     switch (props.element.type) {
       case 'h1':
@@ -39,7 +39,7 @@ export const useComponentRenders: UseComponentRenders = () => {
       case 'link':
         return <EditorA element={props.element}>{props.children}</EditorA>;
       case 'image':
-        return <EditorImage element={props.element} {...props} />;
+        return <EditorImage element={props.element} {...props} imageUpload={imageUpload} />;
       default:
         return <EditorText>{props.children}</EditorText>;
     }
