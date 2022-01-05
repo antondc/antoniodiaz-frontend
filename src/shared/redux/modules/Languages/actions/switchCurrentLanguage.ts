@@ -1,3 +1,4 @@
+import history from 'Services/History';
 import { AppThunk } from '../../..';
 import {
   LANGUAGES_SWITCH_CURRENT_REQUEST,
@@ -6,7 +7,7 @@ import {
 } from '../languages.types';
 
 export const switchCurrentLanguage =
-  (slug: string): AppThunk<void, LanguagesActions> =>
+  (slug: string, link: string): AppThunk<void, LanguagesActions> =>
   (dispatch, getState): void => {
     const { Languages } = getState();
 
@@ -25,7 +26,6 @@ export const switchCurrentLanguage =
       });
 
       // Timeout due to language loading faster than page reload
-      // TODO: navigate here
       setTimeout(() => {
         dispatch({
           type: LANGUAGES_SWITCH_CURRENT_SUCCESS,
@@ -34,6 +34,8 @@ export const switchCurrentLanguage =
             currentLanguage: newCurrentLanguage,
           },
         });
+
+        history.push(link);
       }, 150);
     }
   };

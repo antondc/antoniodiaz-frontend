@@ -10,10 +10,14 @@ export interface ArticleTranslationState {
 export interface ArticleState {
   id: number;
   order: number;
-  date: string;
-  translations: {
-    [key: string]: ArticleTranslationState;
-  };
+  title: string;
+  contentHtml: string;
+  contentJson: Record<string, any>;
+  published: boolean;
+  userId: string;
+  language: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface ArticlesState {
@@ -30,7 +34,7 @@ export interface ArticlesState {
 }
 
 export interface ArticlesLoadApiItemResponse {
-  type: 'project';
+  type: 'article';
   id: number;
   attributes: ArticleState;
 }

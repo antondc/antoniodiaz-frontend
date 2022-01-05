@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
 
 import Header from 'Components/Header';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
@@ -27,46 +26,43 @@ import { FadeInOut } from '@antoniodcorrea/components';
 import './FullPage.less';
 
 interface Props {
-  loggedIn: boolean;
   location: Location;
-  defaultCurrentSlug: string;
-  pathWithoutLanguageParam: string;
 }
 
-const FullPage: React.FC<Props> = ({ loggedIn, location, defaultCurrentSlug, pathWithoutLanguageParam }) => (
-  <div className="FullPage">
-    <div className="FullPage-background" />
-    <Header />
-    <FadeInOut className="FullPage-content" valueToUpdate={pathWithoutLanguageParam} speed="fastest" appear>
-      <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
-        {/* Redirects */}
-        {loggedIn && <Redirect from={Routes.Login.path} to={'/' + defaultCurrentSlug + '/'} />}
-        {!loggedIn && <Redirect from={Routes.Control.path} to={'/' + defaultCurrentSlug + '/login'} />}
+const FullPage: React.FC<Props> = ({ location }) => {
+  const loggedIn = useSelector(selectSessionLoggedIn);
+  const defaultCurrentSlug = useSelector(selectCurrentLanguageSlug);
+  const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
 
-        {/* General */}
-        <Route exact={Routes.Home.exact} path={Routes.Home.path} component={Home} />
-        <Route exact={Routes.Who.exact} path={Routes.Who.path} component={Who} />
-        <Route exact={Routes.What.exact} path={Routes.What.path} component={What} />
-        <Route exact={Routes.Project.exact} path={Routes.Project.path} component={Project} />
-        <Route exact={Routes.When.exact} path={Routes.When.path} component={When} />
-        <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
-        <Route exact={Routes.Where.exact} path={Routes.Where.path} component={Where} />
-        <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
-        <Route exact={Routes.ControlWhat.exact} path={Routes.ControlWhat.path} component={ControlWhat} />
-        <Route exact={Routes.Login.exact} path={Routes.Login.path} component={Login} />
+  return (
+    <div className="FullPage">
+      <div className="FullPage-background" />
+      <Header />
+      <FadeInOut className="FullPage-content" valueToUpdate={pathWithoutLanguageParam} speed="fastest" appear>
+        <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
+          {/* Redirects */}
+          {loggedIn && <Redirect from={Routes.Login.path} to={'/' + defaultCurrentSlug + '/'} />}
+          {!loggedIn && <Redirect from={Routes.Control.path} to={'/' + defaultCurrentSlug + '/login'} />}
 
-        {/* Guards */}
-        <Route exact={Routes.ServerError.exact} path={Routes.ServerError.path} component={ServerError} />
-        <Route exact={Routes.NotFound.exact} path={Routes.NotFound.path} component={NotFound} />
-      </Switch>
-    </FadeInOut>
-  </div>
-);
+          {/* General */}
+          <Route exact={Routes.Home.exact} path={Routes.Home.path} component={Home} />
+          <Route exact={Routes.Who.exact} path={Routes.Who.path} component={Who} />
+          <Route exact={Routes.What.exact} path={Routes.What.path} component={What} />
+          <Route exact={Routes.Project.exact} path={Routes.Project.path} component={Project} />
+          <Route exact={Routes.When.exact} path={Routes.When.path} component={When} />
+          <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
+          <Route exact={Routes.Where.exact} path={Routes.Where.path} component={Where} />
+          <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
+          <Route exact={Routes.ControlWhat.exact} path={Routes.ControlWhat.path} component={ControlWhat} />
+          <Route exact={Routes.Login.exact} path={Routes.Login.path} component={Login} />
 
-const mapStateToProps = createStructuredSelector({
-  loggedIn: selectSessionLoggedIn,
-  defaultCurrentSlug: selectCurrentLanguageSlug,
-  pathWithoutLanguageParam: selectPathWithoutLanguageParam,
-});
+          {/* Guards */}
+          <Route exact={Routes.ServerError.exact} path={Routes.ServerError.path} component={ServerError} />
+          <Route exact={Routes.NotFound.exact} path={Routes.NotFound.path} component={NotFound} />
+        </Switch>
+      </FadeInOut>
+    </div>
+  );
+};
 
-export default connect(mapStateToProps, {})(FullPage);
+export default FullPage;

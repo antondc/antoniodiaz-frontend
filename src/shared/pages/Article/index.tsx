@@ -4,23 +4,26 @@ import highlight from 'highlight.js';
 
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
+import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
+import { selectLanguageLoading } from '../../redux/modules/Languages/selectors/selectLanguageLoading';
 import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
   const dispatch = useDispatch();
+  const language = useSelector(selectCurrentLanguageSlug);
+  const languageLoading = useSelector(selectLanguageLoading);
   const params = useSelector(selectCurrentRouteParams);
   const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
-
-  const articleTranslation = article?.translations[params?.lang];
-  const date = new LocaleFormattedDate({ unixTime: Number(article?.date), locale: params?.lang });
+  const renderContent = !languageLoading && article?.language === params?.lang;
+  const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
   useEffect(() => {
     dispatch(articlesLoad());
-  }, []);
+  }, [language]);
 
   // Load embedded html images
   useEffect(() => {
@@ -46,6 +49,6 @@ const Article: React.FC = () => {
 
   if (!Number(article?.id)) return <div />;
 
-  return <ArticleUi articleTranslation={articleTranslation} date={createdAtFormatted} />;
+  return <ArticleUi article={article} date={createdAtFormatted} renderContent={renderContent} />;
 };
 export default Article;

@@ -1,3 +1,4 @@
+import HttpClient from 'Root/src/shared/services/HttpClient';
 import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
 import { AppThunk } from '../../..';
 import {
@@ -8,13 +9,11 @@ import {
   ArticlesLoadApiResponse,
   ArticleState,
 } from '../articles.types';
-import { articlesMockData } from '../articlesData.mock';
 
 export const articlesLoad =
   (): AppThunk<Promise<ArticleState[]>, ArticlesActions> =>
   async (dispatch, getState): Promise<ArticleState[]> => {
-    const { Articles: articlesBeforeRequest } = getState();
-
+    const { Articles: articlesBeforeRequest, Languages: languagesBeforeRequest } = getState();
     try {
       dispatch({
         type: ARTICLES_LOAD_REQUEST,
@@ -24,12 +23,9 @@ export const articlesLoad =
         },
       });
 
-      // TODO: uncomment when API is ready
-      // const { meta, data } = await HttpClient.get<void, ArticlesLoadApiResponse>(`/articles${window.location.search}`);
-      const mockPromise: Promise<ArticlesLoadApiResponse> = new Promise((resolve) => {
-        resolve(articlesMockData);
-      });
-      const { meta, data } = await mockPromise;
+      const { meta, data } = await HttpClient.get<void, ArticlesLoadApiResponse>(
+        `${languagesBeforeRequest.currentLanguage.slug}/articles${window.location.search}`
+      );
 
       const articlesArray = data?.map((item) => item.attributes);
 
