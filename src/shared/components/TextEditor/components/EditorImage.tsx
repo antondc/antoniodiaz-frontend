@@ -30,9 +30,11 @@ export const EditorImage: React.FC<Props> = ({ attributes, element, children, im
         setPercentCompleted,
       });
 
-      const image = {
+      const image: ImageElement = {
         ...element,
-        src: data?.image,
+        image: {
+          original: data?.image,
+        },
       };
       updateImageBlock(editor, image, path);
     } catch (error) {
@@ -67,9 +69,9 @@ export const EditorImage: React.FC<Props> = ({ attributes, element, children, im
   };
 
   useEffect(() => {
-    const original = element?.src;
+    const srcOriginal = element?.image?.original;
 
-    setImage(original);
+    setImage(srcOriginal);
   }, [element]);
 
   return (

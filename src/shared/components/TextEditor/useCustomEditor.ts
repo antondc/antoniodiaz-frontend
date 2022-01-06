@@ -41,7 +41,9 @@ export const useCustomEditor: UseCustomEditor = () => {
     const isActive = isBlockActive(editor, 'image');
     const image: ImageElement = {
       type: isActive ? null : 'image',
-      src: '',
+      image: {
+        original: '',
+      },
     };
 
     Transforms.setNodes(editor, image, {
@@ -54,7 +56,9 @@ export const useCustomEditor: UseCustomEditor = () => {
   const insertImageBlockFromUserSelect = (editor: Editor, src: string | ArrayBuffer): void => {
     const image: ImageElement = {
       type: 'image',
-      src,
+      image: {
+        original: src,
+      },
       children: [
         {
           text: '',
