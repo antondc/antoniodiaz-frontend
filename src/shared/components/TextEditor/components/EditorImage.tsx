@@ -51,10 +51,10 @@ export const EditorImage: React.FC<Props> = ({ attributes, element, children, im
     ReactEditor.focus(editor);
   };
 
-  const removeFilesFromServer = (url: string) => {
+  const removeFilesFromServer = (src: string) => {
     try {
       imageUploadService.removeFileFromServer({
-        url,
+        src,
         onRemoved,
       });
     } catch (error) {

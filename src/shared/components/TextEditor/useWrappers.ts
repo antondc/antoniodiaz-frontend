@@ -118,7 +118,7 @@ export const useWrappers: UseWrappers = (imageUploadService: ImageUpload) => {
       if (currentNode.type === 'image') {
         try {
           imageUploadService.removeFileFromServer({
-            url: currentNode['src'],
+            src: currentNode['src'],
             onRemoved: () => {},
           });
         } catch (error) {

@@ -1,7 +1,6 @@
 import HttpClient from 'Services/HttpClient';
 
-const UPLOAD_ENDPOINT = '/files/upload/single';
-const DELETE_ENDPOINT = '/files/upload/single';
+const FILE_ENDPOINT = '/files/single';
 const FILE_UPLOAD_ERROR_MESSAGE = 'Could not upload file to server';
 const FILE_REMOVAL_ERROR_MESSAGE = 'Could not delete file from server';
 
@@ -16,7 +15,7 @@ type UploadFileToServer = (options: {
   setPercentCompleted: (number: number) => void;
 }) => Promise<{ image: string }>;
 
-type RemoveFileFromServer = (options: { url: string; onRemoved: () => void }) => Promise<void>;
+type RemoveFileFromServer = (options: { src: string; onRemoved: () => void }) => Promise<void>;
 
 export class ImageUpload {
   uploadFileToServer: UploadFileToServer = async ({ file, setPercentCompleted }) => {
@@ -33,7 +32,7 @@ export class ImageUpload {
     };
 
     try {
-      const { data } = await HttpClient.post<void, ImageUploadResponse>(UPLOAD_ENDPOINT, formData, config);
+      const { data } = await HttpClient.post<void, ImageUploadResponse>(FILE_ENDPOINT, formData, config);
 
       return data;
     } catch (error) {
@@ -44,11 +43,11 @@ export class ImageUpload {
     }
   };
 
-  removeFileFromServer: RemoveFileFromServer = async ({ url, onRemoved }) => {
+  removeFileFromServer: RemoveFileFromServer = async ({ src, onRemoved }) => {
     if (!confirm('Are you sure?')) return;
 
     try {
-      await HttpClient.delete<void, ImageUploadResponse>(DELETE_ENDPOINT, { url });
+      await HttpClient.delete<void, ImageUploadResponse>(FILE_ENDPOINT, { data: { path: src } });
 
       onRemoved();
     } catch (error) {
