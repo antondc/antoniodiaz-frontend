@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TextEditor from 'Components/TextEditor';
+import TextEditor, { TextEditorValue } from 'Components/TextEditor';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ImageUpload } from 'Services/ImageUpload';
 import { Button } from '@antoniodcorrea/components';
@@ -10,24 +10,24 @@ import './ControlWhat.less';
 
 interface Props {
   glossary: GlossaryState;
-  textEditorValue: string;
+  textEditorValue: TextEditorValue;
+  onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUpload: ImageUpload;
   submitError: string;
   submitting: boolean;
   submitSuccess: boolean;
   onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
-  onChangeTextEditorValue: (value: string) => void;
 }
 
 export const ControlWhat: React.FC<Props> = ({
   glossary,
   imageUpload,
   textEditorValue,
+  onChangeTextEditorValue,
   onSubmit,
   submitError,
   submitting,
   submitSuccess,
-  onChangeTextEditorValue,
 }) => (
   <div className="ControlWhat">
     <h1 className="ControlWhat-title">{glossary?.control}What</h1>

@@ -1,4 +1,7 @@
 import {
+  ARTICLE_UPDATE_ONE_FAILURE,
+  ARTICLE_UPDATE_ONE_REQUEST,
+  ARTICLE_UPDATE_ONE_SUCCEED,
   ARTICLES_LOAD_FAILURE,
   ARTICLES_LOAD_REQUEST,
   ARTICLES_LOAD_SUCCEED,
@@ -15,6 +18,9 @@ export const Articles = (state = initialState, action: ArticlesActions): Article
     case ARTICLES_LOAD_FAILURE:
     case ARTICLES_LOAD_SUCCEED:
     case ARTICLES_LOAD_REQUEST:
+    case ARTICLE_UPDATE_ONE_REQUEST:
+    case ARTICLE_UPDATE_ONE_SUCCEED:
+    case ARTICLE_UPDATE_ONE_FAILURE:
       return Object.assign({}, state, action.payload);
 
     default:

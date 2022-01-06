@@ -22,10 +22,12 @@ const defaultValue = [
   },
 ];
 
+export type TextEditorValue = Array<any>;
+
 interface Props {
   imageUpload: ImageUpload;
-  value: string;
-  onChange: (value: string) => void;
+  value: TextEditorValue;
+  onChange: (value: TextEditorValue) => void;
 }
 
 const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
@@ -36,7 +38,7 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
   // Viable fix defer rendering to available state
   if (!value) return <div />;
 
-  const parsedValue = JSON.parse(value) as Descendant[];
+  const parsedValue = value as Descendant[];
   const [loaded, setLoaded] = useState(false);
   const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers(imageUpload);
   const [editor] = useState(() =>
@@ -49,7 +51,7 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
   // Avoid empty array as value using a default one
   const setLocalValueOrDefault = (value: Descendant[]) => {
     const futureValue = !!value.length ? value : defaultValue;
-    onChange(JSON.stringify(futureValue));
+    onChange(futureValue);
     setLocalValue(futureValue);
   };
 

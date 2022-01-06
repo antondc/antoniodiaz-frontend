@@ -1,6 +1,11 @@
+import { TextEditorValue } from 'Components/TextEditor';
+
 export const ARTICLES_LOAD_REQUEST = 'ARTICLES_LOAD_REQUEST';
 export const ARTICLES_LOAD_SUCCEED = 'ARTICLES_LOAD_SUCCEED';
-export const ARTICLES_LOAD_FAILURE = 'PROJECT_LOAD_FAILURE';
+export const ARTICLES_LOAD_FAILURE = 'ARTICLES_LOAD_FAILURE';
+export const ARTICLE_UPDATE_ONE_REQUEST = 'ARTICLE_UPDATE_ONE_REQUEST';
+export const ARTICLE_UPDATE_ONE_SUCCEED = 'ARTICLE_UPDATE_ONE_SUCCEED';
+export const ARTICLE_UPDATE_ONE_FAILURE = 'ARTICLE_UPDATE_ONE_FAILURE';
 
 export interface ArticleTranslationState {
   title: string;
@@ -12,7 +17,7 @@ export interface ArticleState {
   order: number;
   title: string;
   contentHtml: string;
-  contentJson: Record<string, any>;
+  contentJson: TextEditorValue;
   published: boolean;
   userId: string;
   language: string;
@@ -33,14 +38,22 @@ export interface ArticlesState {
   errors?: Error[];
 }
 
-export interface ArticlesLoadApiItemResponse {
+export interface ArticlesItemResponse {
   type: 'article';
   id: number;
   attributes: ArticleState;
 }
 
 export interface ArticlesLoadApiResponse {
-  data: ArticlesLoadApiItemResponse[];
+  data: ArticlesItemResponse[];
+  meta: {
+    totalItems?: number;
+    sort?: string;
+  };
+}
+
+export interface ArticlesCreateOneApiResponse {
+  data: ArticlesItemResponse;
   meta: {
     totalItems?: number;
     sort?: string;
@@ -62,4 +75,25 @@ interface ArticlesLoadFailureAction {
   payload: Partial<ArticlesState>;
 }
 
-export type ArticlesActions = ArticlesLoadRequestAction | ArticlesLoadSuccessAction | ArticlesLoadFailureAction;
+interface ArticleUpdateOneRequestAction {
+  type: typeof ARTICLE_UPDATE_ONE_REQUEST;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleUpdateOneSuccessAction {
+  type: typeof ARTICLE_UPDATE_ONE_SUCCEED;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleUpdateOneFailureAction {
+  type: typeof ARTICLE_UPDATE_ONE_FAILURE;
+  payload: Partial<ArticlesState>;
+}
+
+export type ArticlesActions =
+  | ArticlesLoadRequestAction
+  | ArticlesLoadSuccessAction
+  | ArticlesLoadFailureAction
+  | ArticleUpdateOneRequestAction
+  | ArticleUpdateOneSuccessAction
+  | ArticleUpdateOneFailureAction;
