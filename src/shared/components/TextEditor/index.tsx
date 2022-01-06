@@ -25,12 +25,12 @@ export const textEditorDefaultValue = [
 export type TextEditorValue = Array<any>;
 
 interface Props {
-  imageUpload: ImageUpload;
+  imageUploadService: ImageUpload;
   value: TextEditorValue;
   onChange: (value: TextEditorValue) => void;
 }
 
-const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
+const TextEditor: React.FC<Props> = ({ value, imageUploadService, onChange }) => {
   // Bug on recent versions when initializing state from API
   // https://github.com/ianstormtaylor/slate/issues/4612
   // https://github.com/ianstormtaylor/slate/pull/4540#issuecomment-951380551
@@ -40,12 +40,13 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
 
   const parsedValue = value as Descendant[];
   const [loaded, setLoaded] = useState(false);
-  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers(imageUpload);
+  const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } =
+    useWrappers(imageUploadService);
   const [editor] = useState(() =>
     withImages(withInlinesWrapper(withCorrectVoidBehavior(withHistoryWrapper(withReact(createEditor())))))
   );
   const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
-  const { renderElement, renderLeaf } = useComponentRenders(imageUpload);
+  const { renderElement, renderLeaf } = useComponentRenders(imageUploadService);
   const { onKeyDown } = useEvents(editor);
 
   // Avoid empty array as value using a default one

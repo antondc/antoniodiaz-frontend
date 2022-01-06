@@ -6,14 +6,14 @@ import { testStringIsValidUrl } from 'Tools/utils/url/testStringIsValidUrl';
 import { ImageUpload } from './types';
 import { useCustomEditor } from './useCustomEditor';
 
-type UseWrappers = (imageUpload: ImageUpload) => {
+type UseWrappers = (imageUploadService: ImageUpload) => {
   withInlinesWrapper: (editor: Editor) => Editor;
   withHistoryWrapper: (editor: Editor) => Editor;
   withCorrectVoidBehavior: (editor: Editor) => Editor;
   withImages: (editor: Editor) => Editor;
 };
 
-export const useWrappers: UseWrappers = (imageUpload: ImageUpload) => {
+export const useWrappers: UseWrappers = (imageUploadService: ImageUpload) => {
   const [_percentCompleted, setPercentCompleted] = useState<number>(0);
 
   const withInlinesWrapper = (editor) => {
@@ -82,7 +82,7 @@ export const useWrappers: UseWrappers = (imageUpload: ImageUpload) => {
     return editor;
   };
 
-  // Will capture any image pasted on the editor, send it to imageUpload service and render it as an Image block
+  // Will capture any image pasted on the editor, send it to imageUploadService service and render it as an Image block
   const withImages = (editor) => {
     const { insertData, isVoid } = editor;
     const { insertImageBlockFromUserSelect, removeImageBlock } = useCustomEditor();
@@ -96,7 +96,7 @@ export const useWrappers: UseWrappers = (imageUpload: ImageUpload) => {
 
       if (files && files.length > 0) {
         for (const file of files) {
-          const data = await imageUpload.uploadFileToServer({
+          const data = await imageUploadService.uploadFileToServer({
             file,
             setPercentCompleted,
           });
@@ -110,14 +110,14 @@ export const useWrappers: UseWrappers = (imageUpload: ImageUpload) => {
       }
     };
 
-    // For current nodes of type "image", use imageUpload service to remove the image
+    // For current nodes of type "image", use imageUploadService service to remove the image
     editor.deleteBackward = async () => {
       const parentPath = SlatePath.parent(editor.selection.anchor.path);
       const currentNode = SlateNode.get(editor, parentPath);
 
       if (currentNode.type === 'image') {
         try {
-          await imageUpload.removeFileFromServer({
+          await imageUploadService.removeFileFromServer({
             url: currentNode['src'],
             onRemoved: () => {},
           });

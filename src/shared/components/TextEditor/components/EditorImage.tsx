@@ -9,11 +9,11 @@ import './EditorImage.less';
 
 interface Props {
   attributes: any;
-  imageUpload: ImageUpload;
+  imageUploadService: ImageUpload;
   element: ImageElement;
 }
 
-export const EditorImage: React.FC<Props> = ({ attributes, element, children, imageUpload }) => {
+export const EditorImage: React.FC<Props> = ({ attributes, element, children, imageUploadService }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
   const [image, setImage] = useState<string | ArrayBuffer>(undefined);
   const [imageError, setImageError] = useState<string>(null);
@@ -25,7 +25,7 @@ export const EditorImage: React.FC<Props> = ({ attributes, element, children, im
 
   const uploadFilesToServer = async (file) => {
     try {
-      const data = await imageUpload.uploadFileToServer({
+      const data = await imageUploadService.uploadFileToServer({
         file,
         setPercentCompleted,
       });
@@ -51,7 +51,7 @@ export const EditorImage: React.FC<Props> = ({ attributes, element, children, im
 
   const removeFilesFromServer = (url: string) => {
     try {
-      imageUpload.removeFileFromServer({
+      imageUploadService.removeFileFromServer({
         url,
         onRemoved,
       });

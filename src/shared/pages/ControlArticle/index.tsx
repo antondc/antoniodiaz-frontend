@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { textEditorDefaultValue, TextEditorValue } from 'Components/TextEditor';
+import { TextEditorValue } from 'Components/TextEditor';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleUpdateOne } from 'Modules/Articles/actions/articleUpdateOne';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
@@ -16,7 +16,7 @@ import './ControlArticle.less';
 const ControlArticle: React.FC = () => {
   const dispatch = useDispatch();
   const language = useSelector(selectCurrentLanguageSlug);
-  const imageUpload = new ImageUpload();
+  const imageUploadService = new ImageUpload();
   const articleId = useSelector(selectCurrentRouteParamArticleId);
   const article = useSelector((state: RootState) => selectArticle(state, Number(articleId)));
   const [titleValue, setTitleValue] = useState<string>(undefined);
@@ -25,6 +25,7 @@ const ControlArticle: React.FC = () => {
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
+  const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -42,6 +43,15 @@ const ControlArticle: React.FC = () => {
     setTextEditorValue(value);
   };
 
+  const onChangePublished = (e: React.FormEvent<HTMLInputElement>) => {
+    const { checked } = e.currentTarget;
+
+    setSubmitError(undefined);
+    setSubmitting(undefined);
+    setSubmitSuccess(undefined);
+    setPublishedValue(checked);
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -52,6 +62,7 @@ const ControlArticle: React.FC = () => {
         title: titleValue,
         contentJson: textEditorValue,
         contentHtml: '<div />',
+        published: publishedValue,
       };
       dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 
@@ -68,25 +79,27 @@ const ControlArticle: React.FC = () => {
   }, [language]);
 
   useEffect(() => {
-    const textFormData = article?.contentJson || textEditorDefaultValue;
+    const textFormData = article?.contentJson;
 
+    setPublishedValue(article?.published);
     setTitleValue(article?.title);
-
-    onChangeTextEditorValue(textFormData);
+    setTextEditorValue(textFormData);
   }, [article]);
 
   return (
     <ControlWhenUi
-      onChangeTitle={onChangeTitle}
       titleValue={titleValue}
       titleError={titleError}
+      onChangeTitle={onChangeTitle}
       textEditorValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
-      imageUpload={imageUpload}
+      imageUploadService={imageUploadService}
       onSubmit={onSubmit}
       submitError={submitError}
       submitting={submitting}
       submitSuccess={submitSuccess}
+      publishedValue={publishedValue}
+      onChangePublished={onChangePublished}
     />
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import BaseForm, { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
+import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import TextEditor, { TextEditorValue } from 'Components/TextEditor';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Input } from '@antoniodcorrea/components';
+import { Button, Input, Switch } from '@antoniodcorrea/components';
 
 import './ControlArticle.less';
 
@@ -13,7 +13,9 @@ interface Props {
   onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
   textEditorValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
-  imageUpload: ImageUpload;
+  imageUploadService: ImageUpload;
+  publishedValue: boolean;
+  onChangePublished: (e: React.FormEvent<HTMLInputElement>) => void;
   submitError: string;
   submitting: boolean;
   submitSuccess: boolean;
@@ -21,12 +23,14 @@ interface Props {
 }
 
 export const ControlArticle: React.FC<Props> = ({
-  imageUpload,
+  imageUploadService,
   onChangeTitle,
   titleValue,
   titleError,
   textEditorValue,
   onChangeTextEditorValue,
+  publishedValue,
+  onChangePublished,
   onSubmit,
   submitError,
   submitting,
@@ -47,7 +51,15 @@ export const ControlArticle: React.FC<Props> = ({
         />
       </BaseFormField>
       <BaseFormField>
-        <TextEditor value={textEditorValue} onChange={onChangeTextEditorValue} imageUpload={imageUpload} />
+        <TextEditor
+          value={textEditorValue}
+          onChange={onChangeTextEditorValue}
+          imageUploadService={imageUploadService}
+        />
+      </BaseFormField>
+      <BaseFormField>
+        <BaseFormLabel>Published</BaseFormLabel>
+        <Switch name="published" checked={publishedValue} onChange={onChangePublished} />
       </BaseFormField>
       <BaseFormSubmit>
         <Button

@@ -16,12 +16,12 @@ import { EditorUnderlined } from './components/EditorUnderlined';
 import { EditorUppercase } from './components/EditorUppercase';
 import { ImageUpload } from './types';
 
-type UseComponentRenders = (imageUpload: ImageUpload) => {
+type UseComponentRenders = (imageUploadService: ImageUpload) => {
   renderElement: (props) => React.ReactElement;
   renderLeaf: (props) => React.ReactElement;
 };
 
-export const useComponentRenders: UseComponentRenders = (imageUpload: ImageUpload) => {
+export const useComponentRenders: UseComponentRenders = (imageUploadService: ImageUpload) => {
   const renderElement = useCallback((props) => {
     switch (props.element.type) {
       case 'h1':
@@ -39,7 +39,7 @@ export const useComponentRenders: UseComponentRenders = (imageUpload: ImageUploa
       case 'link':
         return <EditorA element={props.element}>{props.children}</EditorA>;
       case 'image':
-        return <EditorImage element={props.element} {...props} imageUpload={imageUpload} />;
+        return <EditorImage element={props.element} {...props} imageUploadService={imageUploadService} />;
       default:
         return <EditorText>{props.children}</EditorText>;
     }

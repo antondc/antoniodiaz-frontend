@@ -13,7 +13,7 @@ import './ControlArticleCreate.less';
 
 const ControlArticleCreate: React.FC = () => {
   const dispatch = useDispatch();
-  const imageUpload = new ImageUpload();
+  const imageUploadService = new ImageUpload();
   const language = useSelector(selectCurrentLanguageSlug);
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
@@ -67,7 +67,7 @@ const ControlArticleCreate: React.FC = () => {
       titleError={titleError}
       textEditorValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
-      imageUpload={imageUpload}
+      imageUploadService={imageUploadService}
       onSubmit={onSubmit}
       submitError={submitError}
       submitting={submitting}
