@@ -84,7 +84,7 @@ export const useWrappers: UseWrappers = (imageUploadService: ImageUpload) => {
 
   // Will capture any image pasted on the editor, send it to imageUploadService service and render it as an Image block
   const withImages = (editor) => {
-    const { insertData, isVoid } = editor;
+    const { deleteBackward, insertData, isVoid } = editor;
     const { insertImageBlockFromUserSelect, removeImageBlock } = useCustomEditor();
 
     // Set current item as void
@@ -111,13 +111,13 @@ export const useWrappers: UseWrappers = (imageUploadService: ImageUpload) => {
     };
 
     // For current nodes of type "image", use imageUploadService service to remove the image
-    editor.deleteBackward = async () => {
+    editor.deleteBackward = (unit) => {
       const parentPath = SlatePath.parent(editor.selection.anchor.path);
       const currentNode = SlateNode.get(editor, parentPath);
 
       if (currentNode.type === 'image') {
         try {
-          await imageUploadService.removeFileFromServer({
+          imageUploadService.removeFileFromServer({
             url: currentNode['src'],
             onRemoved: () => {},
           });
@@ -126,6 +126,8 @@ export const useWrappers: UseWrappers = (imageUploadService: ImageUpload) => {
         } finally {
           removeImageBlock(editor, parentPath);
         }
+      } else {
+        deleteBackward(unit);
       }
     };
 
