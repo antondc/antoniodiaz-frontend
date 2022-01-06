@@ -48,6 +48,7 @@ export const EditorToolbarHover: React.FC = () => {
 
   const onFormatClick = (e: React.MouseEvent, format: string) => {
     e.preventDefault();
+
     toggleFormat(editor, format);
   };
 
@@ -64,7 +65,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isFormatActive(editor, 'bold') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onFormatClick(e, 'bold')}
+        onClick={(e) => onFormatClick(e, 'bold')}
       >
         <b>B</b>
       </button>
@@ -72,7 +73,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isFormatActive(editor, 'italic') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onFormatClick(e, 'italic')}
+        onClick={(e) => onFormatClick(e, 'italic')}
       >
         <em>I</em>
       </button>
@@ -81,7 +82,7 @@ export const EditorToolbarHover: React.FC = () => {
           'EditorToolbarHover-button' +
           (isFormatActive(editor, 'underlined') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onFormatClick(e, 'underlined')}
+        onClick={(e) => onFormatClick(e, 'underlined')}
       >
         <u>U</u>
       </button>
@@ -89,7 +90,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isBlockActive(editor, 'code') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onBlockClick(e, 'code')}
+        onClick={(e) => onBlockClick(e, 'code')}
       >
         Code
       </button>
@@ -97,7 +98,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isBlockActive(editor, 'h1') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onBlockClick(e, 'h1')}
+        onClick={(e) => onBlockClick(e, 'h1')}
       >
         H1
       </button>
@@ -105,7 +106,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isBlockActive(editor, 'h2') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onBlockClick(e, 'h2')}
+        onClick={(e) => onBlockClick(e, 'h2')}
       >
         H2
       </button>
@@ -113,7 +114,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isBlockActive(editor, 'h3') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onBlockClick(e, 'h3')}
+        onClick={(e) => onBlockClick(e, 'h3')}
       >
         H3
       </button>
@@ -121,7 +122,7 @@ export const EditorToolbarHover: React.FC = () => {
         className={
           'EditorToolbarHover-button' + (isBlockActive(editor, 'ul') ? ' EditorToolbarHover-button--active' : '')
         }
-        onMouseDown={(e) => onBlockClick(e, 'ul')}
+        onClick={(e) => onBlockClick(e, 'ul')}
       >
         Ul
       </button>

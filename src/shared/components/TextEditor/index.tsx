@@ -16,7 +16,7 @@ const defaultValue = [
     type: 'paragraph',
     children: [
       {
-        text: '',
+        text: 'DEFAULT VALUE',
       },
     ],
   },
@@ -29,27 +29,35 @@ interface Props {
 }
 
 const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
+  // Bug on recent versions when initializing state from API
+  // https://github.com/ianstormtaylor/slate/issues/4612
+  // https://github.com/ianstormtaylor/slate/pull/4540#issuecomment-951380551
+  // editor.children = futureValue; // Posible fix, causes re-renders
+  // Viable fix defer rendering to available state
+  if (!value) return <div />;
+
   const parsedValue = JSON.parse(value) as Descendant[];
   const [loaded, setLoaded] = useState(false);
   const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } = useWrappers(imageUpload);
   const [editor] = useState(() =>
     withImages(withInlinesWrapper(withCorrectVoidBehavior(withHistoryWrapper(withReact(createEditor())))))
   );
-  const [localValue, setLocalValue] = useState<Descendant[]>(defaultValue);
+  const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
   const { renderElement, renderLeaf } = useComponentRenders(imageUpload);
   const { onKeyDown } = useEvents(editor);
 
   // Avoid empty array as value using a default one
   const setLocalValueOrDefault = (value: Descendant[]) => {
-    const futureValue = value.length ? value : defaultValue;
+    const futureValue = !!value.length ? value : defaultValue;
     onChange(JSON.stringify(futureValue));
     setLocalValue(futureValue);
   };
 
   useEffect(() => {
     setLocalValueOrDefault(parsedValue);
+
     setLoaded(true);
-  }, []);
+  }, [value]);
 
   // Don't render on server side
   if (!loaded) return null;

@@ -5,10 +5,10 @@ import highlight from 'highlight.js';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
-import { selectLanguageLoading } from '../../redux/modules/Languages/selectors/selectLanguageLoading';
 import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
