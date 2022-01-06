@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { textEditorDefaultValue, TextEditorValue } from 'Components/TextEditor';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
-import { articleTranslationCreateOne } from 'Modules/Articles/actions/articleTranslationCreateOne';
 import { articleUpdateOne } from 'Modules/Articles/actions/articleUpdateOne';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
@@ -54,11 +53,7 @@ const ControlArticle: React.FC = () => {
         contentJson: textEditorValue,
         contentHtml: '<div />',
       };
-      if (!article?.id) {
-        dispatch(articleTranslationCreateOne({ articleId: Number(articleId), articleData }));
-      } else {
-        dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
-      }
+      dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 
       setSubmitSuccess(true);
     } catch (error) {
