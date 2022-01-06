@@ -42,7 +42,7 @@ export const articleCreateOne =
           byKey: {
             ...articlesAfterApiCall.byKey,
             [article?.id]: {
-              ...articleData,
+              ...article,
             },
           },
           loading: false,

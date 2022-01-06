@@ -79,10 +79,10 @@ const ControlArticle: React.FC = () => {
   }, [language]);
 
   useEffect(() => {
-    const textFormData = article?.contentJson;
-
     setPublishedValue(article?.published);
     setTitleValue(article?.title);
+
+    const textFormData = article?.contentJson;
     setTextEditorValue(textFormData);
   }, [article]);
 

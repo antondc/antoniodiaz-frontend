@@ -51,9 +51,8 @@ const TextEditor: React.FC<Props> = ({ value, imageUploadService, onChange }) =>
 
   // Avoid empty array as value using a default one
   const setLocalValueOrDefault = (value: Descendant[]) => {
-    const futureValue = !!value.length ? value : textEditorDefaultValue;
-    onChange(futureValue);
-    setLocalValue(futureValue);
+    onChange(value);
+    setLocalValue(value);
   };
 
   useEffect(() => {

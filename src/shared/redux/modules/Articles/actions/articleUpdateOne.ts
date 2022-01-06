@@ -51,7 +51,7 @@ export const articleUpdateOne =
             ...articlesAfterApiCall.byKey,
             [articleId]: {
               ...articlesBeforeRequest.byKey[articleId],
-              ...articleData,
+              ...article,
             },
           },
           loading: false,
