@@ -1,42 +1,34 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
 import { AppThunk } from '../../..';
 import {
-  ARTICLE_UPDATE_ONE_FAILURE,
-  ARTICLE_UPDATE_ONE_REQUEST,
-  ARTICLE_UPDATE_ONE_SUCCEED,
+  ARTICLE_CREATE_ONE_FAILURE,
+  ARTICLE_CREATE_ONE_REQUEST,
+  ARTICLE_CREATE_ONE_SUCCEED,
   ArticlesActions,
   ArticlesCreateOneApiResponse,
   ArticleState,
 } from '../articles.types';
 
 type Params = {
-  articleId: number;
   articleData: Partial<ArticleState>;
 };
 
-export const articleUpdateOne =
-  ({ articleId, articleData }: Params): AppThunk<Promise<ArticleState>, ArticlesActions> =>
+export const articleCreateOne =
+  ({ articleData }: Params): AppThunk<Promise<ArticleState>, ArticlesActions> =>
   async (dispatch, getState): Promise<ArticleState> => {
     const { Articles: articlesBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
     try {
       dispatch({
-        type: ARTICLE_UPDATE_ONE_REQUEST,
+        type: ARTICLE_CREATE_ONE_REQUEST,
         payload: {
           ...articlesBeforeRequest,
-          byKey: {
-            ...articlesBeforeRequest.byKey,
-            [articleId]: {
-              ...articlesBeforeRequest.byKey[articleId],
-              ...articleData,
-            },
-          },
           loading: true,
         },
       });
 
-      const { data } = await HttpClient.put<void, ArticlesCreateOneApiResponse>(
-        `${languagesBeforeRequest.currentLanguage.slug}/articles/${articleId}`,
+      const { data } = await HttpClient.post<void, ArticlesCreateOneApiResponse>(
+        `${languagesBeforeRequest.currentLanguage.slug}/articles/`,
         articleData
       );
 
@@ -44,13 +36,12 @@ export const articleUpdateOne =
       const article = data?.attributes;
 
       dispatch({
-        type: ARTICLE_UPDATE_ONE_SUCCEED,
+        type: ARTICLE_CREATE_ONE_SUCCEED,
         payload: {
           ...articlesAfterApiCall,
           byKey: {
             ...articlesAfterApiCall.byKey,
-            [articleId]: {
-              ...articlesBeforeRequest.byKey[articleId],
+            [article?.id]: {
               ...articleData,
             },
           },
@@ -63,7 +54,7 @@ export const articleUpdateOne =
       const { Articles: articlesOnError } = getState();
 
       dispatch({
-        type: ARTICLE_UPDATE_ONE_FAILURE,
+        type: ARTICLE_CREATE_ONE_FAILURE,
         payload: {
           ...articlesOnError,
           errors: [...(articlesOnError.errors || []), error],

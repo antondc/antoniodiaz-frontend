@@ -26,6 +26,7 @@ interface RoutesInterface {
   Control: Route;
   ControlWhat: Route;
   ControlArticle: Route;
+  ControlArticleCreate: Route;
   ControlWhen: Route;
   Who: Route;
   What: Route;
@@ -152,6 +153,16 @@ export const Routes: RoutesInterface = {
     name: 'ControlArticle',
     path: '/:lang([a-z]{2})?/control/when/:articleId',
     route: '/control/when',
+    exact: true,
+    auth: true,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  ControlArticleCreate: {
+    name: 'ControlArticleCreate',
+    path: '/:lang([a-z]{2})?/control/when/new',
+    route: '/control/when/new',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],

@@ -1,9 +1,9 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
 import { AppThunk } from '../../..';
 import {
-  ARTICLE_UPDATE_ONE_FAILURE,
-  ARTICLE_UPDATE_ONE_REQUEST,
-  ARTICLE_UPDATE_ONE_SUCCEED,
+  ARTICLE_TRANSLATION_CREATE_ONE_FAILURE,
+  ARTICLE_TRANSLATION_CREATE_ONE_REQUEST,
+  ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED,
   ArticlesActions,
   ArticlesCreateOneApiResponse,
   ArticleState,
@@ -14,28 +14,21 @@ type Params = {
   articleData: Partial<ArticleState>;
 };
 
-export const articleUpdateOne =
+export const articleTranslationCreateOne =
   ({ articleId, articleData }: Params): AppThunk<Promise<ArticleState>, ArticlesActions> =>
   async (dispatch, getState): Promise<ArticleState> => {
     const { Articles: articlesBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
     try {
       dispatch({
-        type: ARTICLE_UPDATE_ONE_REQUEST,
+        type: ARTICLE_TRANSLATION_CREATE_ONE_REQUEST,
         payload: {
           ...articlesBeforeRequest,
-          byKey: {
-            ...articlesBeforeRequest.byKey,
-            [articleId]: {
-              ...articlesBeforeRequest.byKey[articleId],
-              ...articleData,
-            },
-          },
           loading: true,
         },
       });
 
-      const { data } = await HttpClient.put<void, ArticlesCreateOneApiResponse>(
+      const { data } = await HttpClient.patch<void, ArticlesCreateOneApiResponse>(
         `${languagesBeforeRequest.currentLanguage.slug}/articles/${articleId}`,
         articleData
       );
@@ -44,13 +37,12 @@ export const articleUpdateOne =
       const article = data?.attributes;
 
       dispatch({
-        type: ARTICLE_UPDATE_ONE_SUCCEED,
+        type: ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED,
         payload: {
           ...articlesAfterApiCall,
           byKey: {
             ...articlesAfterApiCall.byKey,
-            [articleId]: {
-              ...articlesBeforeRequest.byKey[articleId],
+            [article?.id]: {
               ...articleData,
             },
           },
@@ -63,7 +55,7 @@ export const articleUpdateOne =
       const { Articles: articlesOnError } = getState();
 
       dispatch({
-        type: ARTICLE_UPDATE_ONE_FAILURE,
+        type: ARTICLE_TRANSLATION_CREATE_ONE_FAILURE,
         payload: {
           ...articlesOnError,
           errors: [...(articlesOnError.errors || []), error],

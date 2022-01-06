@@ -1,8 +1,8 @@
 import React from 'react';
 
+import A from 'Components/A';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import A from '../../components/A';
 
 import './What.less';
 

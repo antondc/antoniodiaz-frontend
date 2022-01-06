@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { textEditorDefaultValue, TextEditorValue } from 'Components/TextEditor';
-import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
-import { articleTranslationCreateOne } from 'Modules/Articles/actions/articleTranslationCreateOne';
-import { articleUpdateOne } from 'Modules/Articles/actions/articleUpdateOne';
-import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
+import { articleCreateOne } from 'Modules/Articles/actions/articleCreateOne';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
-import { RootState } from 'Modules/rootType';
-import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
+import { DELAY_SLOW_MS } from 'Root/src/shared/constants';
+import history from 'Services/History';
 import { ImageUpload } from 'Services/ImageUpload';
-import { ControlArticle as ControlWhenUi } from './ControlArticle';
+import { ControlArticleCreate as ControlWhenUi } from './ControlArticleCreate';
 
-import './ControlArticle.less';
+import './ControlArticleCreate.less';
 
-const ControlArticle: React.FC = () => {
+const ControlArticleCreate: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const imageUpload = new ImageUpload();
-  const articleId = useSelector(selectCurrentRouteParamArticleId);
-  const article = useSelector((state: RootState) => selectArticle(state, Number(articleId)));
+  const language = useSelector(selectCurrentLanguageSlug);
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
-  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(undefined);
+  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(textEditorDefaultValue);
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
@@ -54,31 +49,16 @@ const ControlArticle: React.FC = () => {
         contentJson: textEditorValue,
         contentHtml: '<div />',
       };
-      if (!article?.id) {
-        dispatch(articleTranslationCreateOne({ articleId: Number(articleId), articleData }));
-      } else {
-        dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
-      }
-
+      const article = await dispatch(articleCreateOne({ articleData }));
       setSubmitSuccess(true);
+
+      setTimeout(() => history.push(`/${language}/control/when/${article?.id}`), DELAY_SLOW_MS);
     } catch (error) {
       setSubmitError(error.message);
     } finally {
       setSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    dispatch(articlesLoad());
-  }, [language]);
-
-  useEffect(() => {
-    const textFormData = article?.contentJson || textEditorDefaultValue;
-
-    setTitleValue(article?.title);
-
-    onChangeTextEditorValue(textFormData);
-  }, [article]);
 
   return (
     <ControlWhenUi
@@ -96,4 +76,4 @@ const ControlArticle: React.FC = () => {
   );
 };
 
-export default ControlArticle;
+export default ControlArticleCreate;

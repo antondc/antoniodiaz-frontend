@@ -10,6 +10,7 @@ import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLo
 import Article from 'Pages/Article';
 import Control from 'Pages/Control';
 import ControlArticle from 'Pages/ControlArticle';
+import ControlArticleCreate from 'Pages/ControlArticleCreate';
 import ControlWhat from 'Pages/ControlWhat';
 import ControlWhen from 'Pages/ControlWhen';
 import Home from 'Pages/Home';
@@ -57,6 +58,11 @@ const FullPage: React.FC<Props> = ({ location }) => {
           <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
           <Route exact={Routes.ControlWhat.exact} path={Routes.ControlWhat.path} component={ControlWhat} />
           <Route exact={Routes.ControlWhen.exact} path={Routes.ControlWhen.path} component={ControlWhen} />
+          <Route
+            exact={Routes.ControlArticleCreate.exact}
+            path={Routes.ControlArticleCreate.path}
+            component={ControlArticleCreate}
+          />
           <Route exact={Routes.ControlArticle.exact} path={Routes.ControlArticle.path} component={ControlArticle} />
           <Route exact={Routes.Login.exact} path={Routes.Login.path} component={Login} />
 

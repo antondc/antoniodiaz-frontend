@@ -29,14 +29,21 @@ export const articlesLoad =
 
       const articlesArray = data?.map((item) => item.attributes);
 
-      const { Articles: articlesAfterApiCall } = getState();
+      const { Articles: articlesAfterApiCall, Languages: languagesAfterRequest } = getState();
+
+      // Filter out articles not matching current language
+      const articlesFilteredByCurrentLanguage = Object.values(articlesAfterApiCall.byKey).filter(
+        (item) => item.language === languagesAfterRequest.currentLanguage.slug
+      );
 
       dispatch({
         type: ARTICLES_LOAD_SUCCEED,
         payload: {
           ...articlesAfterApiCall,
           byKey: {
-            ...articlesAfterApiCall.byKey,
+            ...serializerFromArrayToByKey<ArticleState, ArticleState>({
+              data: articlesFilteredByCurrentLanguage,
+            }),
             ...serializerFromArrayToByKey<ArticleState, ArticleState>({
               data: articlesArray,
             }),

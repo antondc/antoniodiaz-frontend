@@ -24,6 +24,7 @@ export const ControlWhen: React.FC<Props> = ({ glossary, articles, renderContent
           </li>
         ))}
       </ul>
+      <A href="/control/when/new">Create new article</A>
     </div>
   </Fade>
 );

@@ -11,12 +11,12 @@ import { useWrappers } from './useWrappers';
 
 import './TextEditor.less';
 
-const defaultValue = [
+export const textEditorDefaultValue = [
   {
     type: 'paragraph',
     children: [
       {
-        text: 'DEFAULT VALUE',
+        text: 'Edit me...',
       },
     ],
   },
@@ -50,7 +50,7 @@ const TextEditor: React.FC<Props> = ({ value, imageUpload, onChange }) => {
 
   // Avoid empty array as value using a default one
   const setLocalValueOrDefault = (value: Descendant[]) => {
-    const futureValue = !!value.length ? value : defaultValue;
+    const futureValue = !!value.length ? value : textEditorDefaultValue;
     onChange(futureValue);
     setLocalValue(futureValue);
   };

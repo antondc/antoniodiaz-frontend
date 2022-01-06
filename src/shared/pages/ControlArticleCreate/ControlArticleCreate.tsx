@@ -5,7 +5,7 @@ import TextEditor, { TextEditorValue } from 'Components/TextEditor';
 import { ImageUpload } from 'Services/ImageUpload';
 import { Button, Input } from '@antoniodcorrea/components';
 
-import './ControlArticle.less';
+import './ControlArticleCreate.less';
 
 interface Props {
   titleValue: string;
@@ -20,7 +20,7 @@ interface Props {
   onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 
-export const ControlArticle: React.FC<Props> = ({
+export const ControlArticleCreate: React.FC<Props> = ({
   imageUpload,
   onChangeTitle,
   titleValue,
@@ -32,7 +32,7 @@ export const ControlArticle: React.FC<Props> = ({
   submitting,
   submitSuccess,
 }) => (
-  <div className="ControlArticle">
+  <div className="ControlArticleCreate">
     <BaseForm>
       <BaseFormField>
         <Input

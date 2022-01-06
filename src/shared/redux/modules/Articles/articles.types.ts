@@ -6,6 +6,12 @@ export const ARTICLES_LOAD_FAILURE = 'ARTICLES_LOAD_FAILURE';
 export const ARTICLE_UPDATE_ONE_REQUEST = 'ARTICLE_UPDATE_ONE_REQUEST';
 export const ARTICLE_UPDATE_ONE_SUCCEED = 'ARTICLE_UPDATE_ONE_SUCCEED';
 export const ARTICLE_UPDATE_ONE_FAILURE = 'ARTICLE_UPDATE_ONE_FAILURE';
+export const ARTICLE_CREATE_ONE_REQUEST = 'ARTICLE_CREATE_ONE_REQUEST';
+export const ARTICLE_CREATE_ONE_SUCCEED = 'ARTICLE_CREATE_ONE_SUCCEED';
+export const ARTICLE_CREATE_ONE_FAILURE = 'ARTICLE_CREATE_ONE_FAILURE';
+export const ARTICLE_TRANSLATION_CREATE_ONE_REQUEST = 'ARTICLE_TRANSLATION_CREATE_ONE_REQUEST';
+export const ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED = 'ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED';
+export const ARTICLE_TRANSLATION_CREATE_ONE_FAILURE = 'ARTICLE_TRANSLATION_CREATE_ONE_FAILURE';
 
 export interface ArticleTranslationState {
   title: string;
@@ -90,10 +96,46 @@ interface ArticleUpdateOneFailureAction {
   payload: Partial<ArticlesState>;
 }
 
+interface ArticleCreateOneRequestAction {
+  type: typeof ARTICLE_CREATE_ONE_REQUEST;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleCreateOneSuccessAction {
+  type: typeof ARTICLE_CREATE_ONE_SUCCEED;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleCreateOneFailureAction {
+  type: typeof ARTICLE_CREATE_ONE_FAILURE;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleTranslationCreateOneRequestAction {
+  type: typeof ARTICLE_TRANSLATION_CREATE_ONE_REQUEST;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleTranslationCreateOneSuccessAction {
+  type: typeof ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleTranslationCreateOneFailureAction {
+  type: typeof ARTICLE_TRANSLATION_CREATE_ONE_FAILURE;
+  payload: Partial<ArticlesState>;
+}
+
 export type ArticlesActions =
   | ArticlesLoadRequestAction
   | ArticlesLoadSuccessAction
   | ArticlesLoadFailureAction
   | ArticleUpdateOneRequestAction
   | ArticleUpdateOneSuccessAction
-  | ArticleUpdateOneFailureAction;
+  | ArticleUpdateOneFailureAction
+  | ArticleCreateOneRequestAction
+  | ArticleCreateOneSuccessAction
+  | ArticleCreateOneFailureAction
+  | ArticleTranslationCreateOneRequestAction
+  | ArticleTranslationCreateOneSuccessAction
+  | ArticleTranslationCreateOneFailureAction;
