@@ -14,9 +14,11 @@
   transition: opacity @td-fast @ease;
   z-index: @z-index-1;
   border-radius: 5px;
+  pointer-events: none;
 
   &--active {
     opacity: 1;
+    pointer-events: all;
   }
 
   &-button {

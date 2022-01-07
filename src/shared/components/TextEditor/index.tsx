@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createEditor, Descendant } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
+import { PLACEHOLDER_TEXT } from './constants';
 import { EditorToolbar } from './toolbars/EditorToolbar';
 import { EditorToolbarHover } from './toolbars/EditorToolbarHover';
 import { ImageUpload } from './types';
@@ -16,7 +17,7 @@ export const textEditorDefaultValue = [
     type: 'paragraph',
     children: [
       {
-        text: 'Edit me...',
+        text: '',
       },
     ],
   },
@@ -61,6 +62,7 @@ const TextEditor: React.FC<Props> = ({ initialValue, imageUploadService, onChang
     if (!!initialValue && initialValue?.length) {
       editor.children = initialValue;
     } else if (!initialValue) {
+      setLocalValueOrDefault(textEditorDefaultValue);
       editor.children = textEditorDefaultValue;
     }
   }, [initialValue]);
@@ -74,6 +76,7 @@ const TextEditor: React.FC<Props> = ({ initialValue, imageUploadService, onChang
         <EditorToolbarHover />
         <EditorToolbar />
         <Editable
+          placeholder={PLACEHOLDER_TEXT}
           className="TextEditor-textBox"
           renderElement={renderElement}
           renderLeaf={renderLeaf}
