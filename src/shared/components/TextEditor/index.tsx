@@ -25,27 +25,19 @@ export const textEditorDefaultValue = [
 export type TextEditorValue = Array<any>;
 
 interface Props {
+  initialValue: TextEditorValue;
   imageUploadService: ImageUpload;
-  value: TextEditorValue;
   onChange: (value: TextEditorValue) => void;
 }
 
-const TextEditor: React.FC<Props> = ({ value, imageUploadService, onChange }) => {
-  // Bug on recent versions when initializing state from API
-  // https://github.com/ianstormtaylor/slate/issues/4612
-  // https://github.com/ianstormtaylor/slate/pull/4540#issuecomment-951380551
-  // editor.children = futureValue; // Posible fix, causes re-renders
-  // Viable fix defer rendering to available state
-  if (!value) return <div />;
-
-  const parsedValue = value as Descendant[];
+const TextEditor: React.FC<Props> = ({ initialValue, imageUploadService, onChange }) => {
   const [loaded, setLoaded] = useState(false);
   const { withInlinesWrapper, withHistoryWrapper, withCorrectVoidBehavior, withImages } =
     useWrappers(imageUploadService);
   const [editor] = useState(() =>
     withImages(withInlinesWrapper(withCorrectVoidBehavior(withHistoryWrapper(withReact(createEditor())))))
   );
-  const [localValue, setLocalValue] = useState<Descendant[]>(parsedValue);
+  const [localValue, setLocalValue] = useState<Descendant[]>(textEditorDefaultValue);
   const { renderElement, renderLeaf } = useComponentRenders(imageUploadService);
   const { onKeyDown } = useEvents(editor);
 
@@ -56,10 +48,22 @@ const TextEditor: React.FC<Props> = ({ value, imageUploadService, onChange }) =>
   };
 
   useEffect(() => {
-    setLocalValueOrDefault(parsedValue);
-
     setLoaded(true);
-  }, [value]);
+  }, []);
+
+  // Bug on recent versions when initializing state from API
+  // https://github.com/ianstormtaylor/slate/issues/4612
+  // https://github.com/ianstormtaylor/slate/pull/4540#issuecomment-951380551
+  // Viable fix:
+  // 1. defer rendering to available state: if (!value) return <div />;
+  // 2. editor.children within useEffect
+  useEffect(() => {
+    if (!!initialValue && initialValue?.length) {
+      editor.children = initialValue;
+    } else if (!initialValue) {
+      editor.children = textEditorDefaultValue;
+    }
+  }, [initialValue]);
 
   // Don't render on server side
   if (!loaded) return null;

@@ -65,7 +65,6 @@ const ControlArticleCreate: React.FC = () => {
       onChangeTitle={onChangeTitle}
       titleValue={titleValue}
       titleError={titleError}
-      textEditorValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
       onSubmit={onSubmit}

@@ -91,7 +91,7 @@ const ControlArticle: React.FC = () => {
       titleValue={titleValue}
       titleError={titleError}
       onChangeTitle={onChangeTitle}
-      textEditorValue={textEditorValue}
+      textEditorInitialValue={article?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
       onSubmit={onSubmit}

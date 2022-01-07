@@ -11,7 +11,6 @@ interface Props {
   titleValue: string;
   titleError: string;
   onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
-  textEditorValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUploadService: ImageUpload;
   submitError: string;
@@ -25,7 +24,6 @@ export const ControlArticleCreate: React.FC<Props> = ({
   onChangeTitle,
   titleValue,
   titleError,
-  textEditorValue,
   onChangeTextEditorValue,
   onSubmit,
   submitError,
@@ -47,11 +45,7 @@ export const ControlArticleCreate: React.FC<Props> = ({
         />
       </BaseFormField>
       <BaseFormField>
-        <TextEditor
-          value={textEditorValue}
-          onChange={onChangeTextEditorValue}
-          imageUploadService={imageUploadService}
-        />
+        <TextEditor initialValue={[]} onChange={onChangeTextEditorValue} imageUploadService={imageUploadService} />
       </BaseFormField>
       <BaseFormSubmit>
         <Button
