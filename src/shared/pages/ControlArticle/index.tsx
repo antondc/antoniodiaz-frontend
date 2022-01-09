@@ -8,7 +8,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
-import { TextEditorValue } from '@antoniodcorrea/components';
+import { TextEditorValue, toHtml } from '@antoniodcorrea/components';
 import { ControlArticle as ControlWhenUi } from './ControlArticle';
 
 import './ControlArticle.less';
@@ -22,6 +22,9 @@ const ControlArticle: React.FC = () => {
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
   const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(undefined);
+  const [publishError, setPublishError] = useState<string>(undefined);
+  const [publishing, setPublishing] = useState<boolean>(undefined);
+  const [publishSuccess, setPublishingSuccess] = useState<boolean>(undefined);
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
@@ -33,23 +36,39 @@ const ControlArticle: React.FC = () => {
     setTitleValue(value);
     setSubmitError(undefined);
     setTitleError(undefined);
+    setPublishError(undefined);
+    setPublishingSuccess(undefined);
+    setSubmitSuccess(undefined);
   };
 
   const onChangeTextEditorValue = (value: TextEditorValue) => {
     setSubmitError(undefined);
     setSubmitting(undefined);
     setSubmitSuccess(undefined);
+    setPublishError(undefined);
+    setPublishing(undefined);
+    setPublishingSuccess(undefined);
 
     setTextEditorValue(value);
   };
 
-  const onChangePublished = (e: React.FormEvent<HTMLInputElement>) => {
-    const { checked } = e.currentTarget;
+  const onChangePublish = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setPublishing(true);
 
-    setSubmitError(undefined);
-    setSubmitting(undefined);
-    setSubmitSuccess(undefined);
-    setPublishedValue(checked);
+    try {
+      const articleData = {
+        ...article,
+        published: !publishedValue,
+      };
+      dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
+
+      setPublishingSuccess(true);
+    } catch (error) {
+      setPublishError(error.message);
+    } finally {
+      setPublishing(false);
+    }
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
@@ -59,10 +78,10 @@ const ControlArticle: React.FC = () => {
 
     try {
       const articleData = {
+        ...article,
         title: titleValue,
         contentJson: textEditorValue,
-        contentHtml: '<div />',
-        published: publishedValue,
+        contentHtml: toHtml({ children: textEditorValue, type: '' }),
       };
       dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 
@@ -79,7 +98,7 @@ const ControlArticle: React.FC = () => {
   }, [language]);
 
   useEffect(() => {
-    setPublishedValue(article?.published);
+    setPublishedValue(!!article?.published);
     setTitleValue(article?.title);
 
     const textFormData = article?.contentJson;
@@ -94,12 +113,15 @@ const ControlArticle: React.FC = () => {
       textEditorInitialValue={article?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
+      onChangePublish={onChangePublish}
+      publishError={publishError}
+      publishing={publishing}
+      publishSuccess={publishSuccess}
       onSubmit={onSubmit}
       submitError={submitError}
       submitting={submitting}
       submitSuccess={submitSuccess}
       publishedValue={publishedValue}
-      onChangePublished={onChangePublished}
     />
   );
 };

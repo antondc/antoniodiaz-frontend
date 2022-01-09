@@ -46,16 +46,18 @@ export const Header: React.FC<Props> = ({
         >
           What
         </A>
+      </>
+    )}
+    <div className='Header-buttons'>
+      {loggedIn && (
         <div className="Header-item Header-logOut" onClick={onLogOut}>
           <LogOut />
         </div>
-      </>
-    )}
-    <div>
+      )}
+      <LanguageSwitchButton />
       <Fade mounted={uiLanguagesModalMounted}>
         <LanguagesSwitch />
       </Fade>
-      <LanguageSwitchButton />
     </div>
   </header>
 );

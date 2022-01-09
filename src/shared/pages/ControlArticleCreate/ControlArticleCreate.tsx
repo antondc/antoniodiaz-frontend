@@ -35,9 +35,9 @@ export const ControlArticleCreate: React.FC<Props> = ({
     <BaseForm>
       <BaseFormField>
         <Input
-          name="nameOrEmail"
+          name="title"
           type="text"
-          label="Name or Email"
+          label="Title"
           onChange={onChangeTitle}
           onBlur={onChangeTitle}
           value={titleValue}
@@ -54,7 +54,7 @@ export const ControlArticleCreate: React.FC<Props> = ({
       </BaseFormField>
       <BaseFormSubmit>
         <Button
-          text="Submit"
+          text="Save"
           type="submit"
           onClick={onSubmit}
           error={!!submitError}

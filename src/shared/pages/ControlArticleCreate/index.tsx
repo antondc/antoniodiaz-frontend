@@ -6,7 +6,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { DELAY_SLOW_MS } from 'Root/src/shared/constants';
 import history from 'Services/History';
 import { ImageUpload } from 'Services/ImageUpload';
-import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
+import { textEditorDefaultValue, TextEditorValue, toHtml } from '@antoniodcorrea/components';
 import { ControlArticleCreate as ControlWhenUi } from './ControlArticleCreate';
 
 import './ControlArticleCreate.less';
@@ -47,7 +47,7 @@ const ControlArticleCreate: React.FC = () => {
       const articleData = {
         title: titleValue,
         contentJson: textEditorValue,
-        contentHtml: '<div />',
+        contentHtml: toHtml({ children: textEditorValue, type: '' }),
       };
       const article = await dispatch(articleCreateOne({ articleData }));
       setSubmitSuccess(true);

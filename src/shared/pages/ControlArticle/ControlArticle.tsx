@@ -2,7 +2,7 @@ import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import { Button, Hr, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlArticle.less';
 
@@ -14,7 +14,10 @@ interface Props {
   onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUploadService: ImageUpload;
   publishedValue: boolean;
-  onChangePublished: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChangePublish: (e: React.FormEvent<HTMLButtonElement>) => void;
+  publishError: string;
+  publishSuccess: boolean;
+  publishing: boolean;
   submitError: string;
   submitting: boolean;
   submitSuccess: boolean;
@@ -29,19 +32,22 @@ export const ControlArticle: React.FC<Props> = ({
   textEditorInitialValue,
   onChangeTextEditorValue,
   publishedValue,
-  onChangePublished,
-  onSubmit,
+  onChangePublish,
+  publishError,
+  publishSuccess,
+  publishing,
   submitError,
   submitting,
   submitSuccess,
+  onSubmit,
 }) => (
   <div className="ControlArticle">
     <BaseForm>
       <BaseFormField>
         <Input
-          name="nameOrEmail"
+          name="title"
           type="text"
-          label="Name or Email"
+          label="Title"
           onChange={onChangeTitle}
           onBlur={onChangeTitle}
           value={titleValue}
@@ -56,9 +62,10 @@ export const ControlArticle: React.FC<Props> = ({
           imageUploadService={imageUploadService}
         />
       </BaseFormField>
+      <Hr spacer />
       <BaseFormField>
         <BaseFormLabel>Published</BaseFormLabel>
-        <Switch name="published" checked={publishedValue} onChange={onChangePublished} />
+        <Switch className="ControlArticle-published" name="published" checked={publishedValue} />
       </BaseFormField>
       <BaseFormSubmit>
         <Button
@@ -69,6 +76,17 @@ export const ControlArticle: React.FC<Props> = ({
           success={submitSuccess}
           disabled={false}
           loading={submitting}
+          grow
+        />
+        <Hr spacer />
+        <Button
+          text={publishedValue ? 'UnPublish' : 'Publish'}
+          type="submit"
+          onClick={onChangePublish}
+          error={!!publishError}
+          success={publishSuccess}
+          disabled={false}
+          loading={publishing}
           grow
         />
       </BaseFormSubmit>

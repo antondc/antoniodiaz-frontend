@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 200px;
 
   &-title {
     margin-bottom: 40px;
@@ -15,22 +15,27 @@
   }
 
   &-sortable {
-    padding: 5px;
-    border: 1px dashed @c-accent;
-    border-radius: 8px;
+    padding-bottom: 20px;
   }
 
   &-sortableItem {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
-    background: @c-background;
-    border: 1px solid @c-accent;
-    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  &-sortableItemTitle {
+    font-weight: @fw-bold;
+  }
+
+  &-sortableItemDate {
+    font-size: @fs-normal;
   }
 
   &-sortableItemHandle {
     padding: 0 8px;
+    border-top: 1px dotted @c-base;
+    border-bottom: 1px dotted @c-base;
 
     &:hover {
       cursor: grab;
