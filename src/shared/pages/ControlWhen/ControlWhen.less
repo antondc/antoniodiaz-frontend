@@ -13,4 +13,31 @@
     font-size: @fs-huge;
     font-weight: @fw-extraBold;
   }
+
+  &-sortable {
+    padding: 5px;
+    border: 1px dashed @c-accent;
+    border-radius: 8px;
+  }
+
+  &-sortableItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background: @c-background;
+    border: 1px solid @c-accent;
+    border-radius: 8px;
+  }
+
+  &-sortableItemHandle {
+    padding: 0 8px;
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
 }

@@ -1,11 +1,11 @@
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import HttpClient from 'Root/src/shared/services/HttpClient';
 import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
-import { ArticlesLoadApiResponse, ArticlesState, ArticleState } from './articles.types';
+import { ArticlesApiResponse, ArticlesState, ArticleState } from './articles.types';
 
 export const initialArticlesLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
   const lang = params?.lang ? `/${params?.lang}` : '';
-  const { data }: ArticlesLoadApiResponse = await HttpClient.get(`${lang}/articles`);
+  const { data, meta }: ArticlesApiResponse = await HttpClient.get(`${lang}/articles`);
 
   const articlesArray = data?.map((item) => item.attributes);
 
@@ -16,6 +16,8 @@ export const initialArticlesLoader = async ({ params }: RequestParameters): Prom
           data: articlesArray,
         }),
       },
+      currentIds: data?.map((item) => item.id),
+      meta,
     },
   };
 

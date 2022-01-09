@@ -12,6 +12,9 @@ export const ARTICLE_CREATE_ONE_FAILURE = 'ARTICLE_CREATE_ONE_FAILURE';
 export const ARTICLE_TRANSLATION_CREATE_ONE_REQUEST = 'ARTICLE_TRANSLATION_CREATE_ONE_REQUEST';
 export const ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED = 'ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED';
 export const ARTICLE_TRANSLATION_CREATE_ONE_FAILURE = 'ARTICLE_TRANSLATION_CREATE_ONE_FAILURE';
+export const ARTICLE_SORT_ONE_REQUEST = 'ARTICLE_SORT_ONE_REQUEST';
+export const ARTICLE_SORT_ONE_SUCCEED = 'ARTICLE_SORT_ONE_SUCCEED';
+export const ARTICLE_SORT_ONE_FAILURE = 'ARTICLE_SORT_ONE_FAILURE';
 
 export interface ArticleTranslationState {
   title: string;
@@ -35,7 +38,7 @@ export interface ArticlesState {
   byKey: {
     [key: string]: ArticleState;
   };
-  currentIds?: number[];
+  currentIds: number[];
   loading?: boolean;
   meta?: {
     totalItems?: number;
@@ -44,22 +47,22 @@ export interface ArticlesState {
   errors?: Error[];
 }
 
-export interface ArticlesItemResponse {
+export interface ArticleItemResponse {
   type: 'article';
   id: number;
   attributes: ArticleState;
 }
 
-export interface ArticlesLoadApiResponse {
-  data: ArticlesItemResponse[];
+export interface ArticlesApiResponse {
+  data: ArticleItemResponse[];
   meta: {
     totalItems?: number;
     sort?: string;
   };
 }
 
-export interface ArticlesCreateOneApiResponse {
-  data: ArticlesItemResponse;
+export interface ArticleApiResponse {
+  data: ArticleItemResponse;
   meta: {
     totalItems?: number;
     sort?: string;
@@ -126,6 +129,21 @@ interface ArticleTranslationCreateOneFailureAction {
   payload: Partial<ArticlesState>;
 }
 
+interface ArticleSortOneRequestAction {
+  type: typeof ARTICLE_SORT_ONE_REQUEST;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleSortOneSuccessAction {
+  type: typeof ARTICLE_SORT_ONE_SUCCEED;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleSortOneFailureAction {
+  type: typeof ARTICLE_SORT_ONE_FAILURE;
+  payload: Partial<ArticlesState>;
+}
+
 export type ArticlesActions =
   | ArticlesLoadRequestAction
   | ArticlesLoadSuccessAction
@@ -138,4 +156,7 @@ export type ArticlesActions =
   | ArticleCreateOneFailureAction
   | ArticleTranslationCreateOneRequestAction
   | ArticleTranslationCreateOneSuccessAction
-  | ArticleTranslationCreateOneFailureAction;
+  | ArticleTranslationCreateOneFailureAction
+  | ArticleSortOneRequestAction
+  | ArticleSortOneSuccessAction
+  | ArticleSortOneFailureAction;

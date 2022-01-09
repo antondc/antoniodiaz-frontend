@@ -2,6 +2,9 @@ import {
   ARTICLE_CREATE_ONE_FAILURE,
   ARTICLE_CREATE_ONE_REQUEST,
   ARTICLE_CREATE_ONE_SUCCEED,
+  ARTICLE_SORT_ONE_FAILURE,
+  ARTICLE_SORT_ONE_REQUEST,
+  ARTICLE_SORT_ONE_SUCCEED,
   ARTICLE_TRANSLATION_CREATE_ONE_FAILURE,
   ARTICLE_TRANSLATION_CREATE_ONE_REQUEST,
   ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED,
@@ -17,6 +20,7 @@ import {
 
 const initialState: ArticlesState = {
   byKey: {},
+  currentIds: [],
 };
 
 export const Articles = (state = initialState, action: ArticlesActions): ArticlesState => {
@@ -33,6 +37,9 @@ export const Articles = (state = initialState, action: ArticlesActions): Article
     case ARTICLE_TRANSLATION_CREATE_ONE_REQUEST:
     case ARTICLE_TRANSLATION_CREATE_ONE_SUCCEED:
     case ARTICLE_TRANSLATION_CREATE_ONE_FAILURE:
+    case ARTICLE_SORT_ONE_REQUEST:
+    case ARTICLE_SORT_ONE_SUCCEED:
+    case ARTICLE_SORT_ONE_FAILURE:
       return Object.assign({}, state, action.payload);
 
     default:

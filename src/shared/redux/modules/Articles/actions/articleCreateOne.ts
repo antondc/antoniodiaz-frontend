@@ -4,8 +4,8 @@ import {
   ARTICLE_CREATE_ONE_FAILURE,
   ARTICLE_CREATE_ONE_REQUEST,
   ARTICLE_CREATE_ONE_SUCCEED,
+  ArticleApiResponse,
   ArticlesActions,
-  ArticlesCreateOneApiResponse,
   ArticleState,
 } from '../articles.types';
 
@@ -27,7 +27,7 @@ export const articleCreateOne =
         },
       });
 
-      const { data } = await HttpClient.post<void, ArticlesCreateOneApiResponse>(
+      const { data } = await HttpClient.post<void, ArticleApiResponse>(
         `${languagesBeforeRequest.currentLanguage.slug}/articles/`,
         articleData
       );

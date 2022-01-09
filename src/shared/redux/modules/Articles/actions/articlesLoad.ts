@@ -6,7 +6,7 @@ import {
   ARTICLES_LOAD_REQUEST,
   ARTICLES_LOAD_SUCCEED,
   ArticlesActions,
-  ArticlesLoadApiResponse,
+  ArticlesApiResponse,
   ArticleState,
 } from '../articles.types';
 
@@ -23,7 +23,7 @@ export const articlesLoad =
         },
       });
 
-      const { meta, data } = await HttpClient.get<void, ArticlesLoadApiResponse>(
+      const { meta, data } = await HttpClient.get<void, ArticlesApiResponse>(
         `${languagesBeforeRequest.currentLanguage.slug}/articles${window.location.search}`
       );
 
