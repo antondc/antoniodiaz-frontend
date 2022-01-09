@@ -1,4 +1,4 @@
-import { TextEditorValue } from 'Components/TextEditor';
+import { TextEditorValue } from '@antoniodcorrea/components';
 
 export const ARTICLES_LOAD_REQUEST = 'ARTICLES_LOAD_REQUEST';
 export const ARTICLES_LOAD_SUCCEED = 'ARTICLES_LOAD_SUCCEED';

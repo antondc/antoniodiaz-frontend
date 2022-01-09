@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { textEditorDefaultValue, TextEditorValue } from 'Components/TextEditor';
 import { articleCreateOne } from 'Modules/Articles/actions/articleCreateOne';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { DELAY_SLOW_MS } from 'Root/src/shared/constants';
 import history from 'Services/History';
 import { ImageUpload } from 'Services/ImageUpload';
+import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
 import { ControlArticleCreate as ControlWhenUi } from './ControlArticleCreate';
 
 import './ControlArticleCreate.less';

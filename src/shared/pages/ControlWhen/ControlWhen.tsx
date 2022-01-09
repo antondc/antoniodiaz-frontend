@@ -1,10 +1,9 @@
 import React from 'react';
 
 import A from 'Components/A';
-import SortableList, { SortableItem } from 'Components/SortableList';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { Fade } from '@antoniodcorrea/components';
+import { Fade, SortableItem, SortableList } from '@antoniodcorrea/components';
 
 import './ControlWhen.less';
 
@@ -31,13 +30,6 @@ export const ControlWhen: React.FC<Props> = ({ glossary, articles, renderContent
       </SortableList>
       <br />
       <hr />
-      {/* <ul>
-        {articles?.map((item) => (
-          <li key={item.id}>
-            <A href={`control/when/${item.id}`}>{item.title}</A>
-          </li>
-        ))}
-      </ul> */}
       <A href="/control/when/new">Create new article</A>
     </div>
   </Fade>

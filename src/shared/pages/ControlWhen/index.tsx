@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SortableItem } from 'Components/SortableList';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleSortOne } from 'Modules/Articles/actions/articleSortOne';
 import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
+import { SortableItem } from '@antoniodcorrea/components';
 import { ControlWhen as ControlWhenUi } from './ControlWhen';
 
 import './ControlWhen.less';

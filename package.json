@@ -119,7 +119,7 @@
   },
   "dependencies": {
     "@ant-design/react-slick": "^0.28.4",
-    "@antoniodcorrea/components": "^1.0.5",
+    "@antoniodcorrea/components": "^1.0.6",
     "@popperjs/core": "^2.9.2",
     "@types/qs": "^6.9.5",
     "@types/react": "^17.0.38",

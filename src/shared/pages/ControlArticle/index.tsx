@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { TextEditorValue } from 'Components/TextEditor';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleUpdateOne } from 'Modules/Articles/actions/articleUpdateOne';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
@@ -9,6 +8,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
+import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlArticle as ControlWhenUi } from './ControlArticle';
 
 import './ControlArticle.less';
