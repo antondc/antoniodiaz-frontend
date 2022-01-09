@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import highlight from 'highlight.js';
 
+import { useLoadImages } from 'Hooks/loadImages';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
@@ -21,9 +22,19 @@ const Article: React.FC = () => {
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
+  useLoadImages({ wrapperClass: 'Article-content', data: article });
+
   useEffect(() => {
     dispatch(articlesLoad());
   }, [language]);
+
+  // Load images from blog
+  useEffect(() => {
+    const childDivs = document.getElementById('Article-content')?.getElementsByTagName('img');
+    const images = Array.from(childDivs || []);
+
+    images?.forEach((element) => element.decode().then(() => element.classList.add('Article-image--loaded')));
+  }, [article]);
 
   // Load embedded html images
   useEffect(() => {

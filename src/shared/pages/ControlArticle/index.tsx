@@ -8,7 +8,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
-import { TextEditorValue, toHtml } from '@antoniodcorrea/components';
+import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlArticle as ControlWhenUi } from './ControlArticle';
 
 import './ControlArticle.less';
@@ -81,7 +81,6 @@ const ControlArticle: React.FC = () => {
         ...article,
         title: titleValue,
         contentJson: textEditorValue,
-        contentHtml: toHtml({ children: textEditorValue, type: '' }),
       };
       dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 

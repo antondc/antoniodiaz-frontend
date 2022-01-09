@@ -168,7 +168,8 @@
     "slate-react": "^0.72.1",
     "sortablejs": "^1.14.0",
     "ts-unused-exports": "^7.0.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "colors": "1.1.2"
   },
   "license": "ISC"
 }

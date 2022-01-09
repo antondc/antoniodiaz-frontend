@@ -17,7 +17,9 @@ export const Article: React.FC<Props> = ({ article, date, renderContent }) => (
     <div className="Article">
       <h1 className="Article-title">{article?.title}</h1>
       <h2 className="Article-date">{date}</h2>
-      <div className="Article-content">{ReactHtmlParser(article?.contentHtml)}</div>
+      <div className="Article-content" id="Article-content">
+        {ReactHtmlParser(article?.contentHtml)}
+      </div>
     </div>
   </Fade>
 );
