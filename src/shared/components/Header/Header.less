@@ -8,8 +8,8 @@
   position: fixed;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
   height: 100px;
-  width: 100%;
   min-width: 960px;
   top: 0;
   left: 0;
@@ -26,6 +26,11 @@
     min-width: unset;
     top: 0;
     padding: 20px 10px 20px 20px;
+  }
+
+  &--loggedIn {
+    background: @c-background;
+    border: 10px solid @c-blue--pastel;
   }
 
   &-logo {
@@ -103,16 +108,25 @@
     }
   }
 
-  &-logOut {
-    height: 29px;
-    width: 29px;
+  &-item {
+    font-size: @fs-medium;
+    font-weight: @fw-bold;
+    text-transform: uppercase;
+    transition: color @td-fast @ease;
 
-    .SvgSprite {
-      fill: @c-blue--pastel;
+    &--active,
+    &:hover {
+      color: @c-blue--pastel;
+      cursor: pointer;
     }
+  }
+
+  &-logOut {
+    width: 35px;
+    transition: fill @td-fast @ease;
 
     &:hover {
-      cursor: pointer;
+      fill: @c-blue--pastel;
     }
   }
 }

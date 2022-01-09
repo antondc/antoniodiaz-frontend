@@ -7,12 +7,15 @@ import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguages
 import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
+import { selectSessionLoggedIn } from '../../redux/modules/Session/selectors/selectSessionLoggedIn';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
 import './LanguagesSwitch.less';
 
 const LanguagesSwitch: React.FC = () => {
   const dispatch = useDispatch();
+  const loggedIn = useSelector(selectSessionLoggedIn);
+
   const languagesList = useSelector(selectLanguagesList);
   const currentLanguage = useSelector(selectCurrentLanguage);
   const currentRouteParamLanguage = useSelector(selectCurrentRouteParamLanguage);
@@ -44,6 +47,7 @@ const LanguagesSwitch: React.FC = () => {
 
   return (
     <LanguagesSwitchUi
+      loggedIn={loggedIn}
       currentLanguage={currentLanguage}
       languagesSorted={languagesSorted}
       onLanguageSwitch={onLanguageSwitch}
