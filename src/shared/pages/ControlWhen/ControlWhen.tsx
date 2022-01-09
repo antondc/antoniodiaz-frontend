@@ -25,16 +25,23 @@ export const ControlWhen: React.FC<Props> = ({
   <Fade mounted={renderContent} appear>
     <div className="ControlWhen">
       <h1 className="ControlWhen-title">{glossary?.control}When</h1>
-      <SortableList className="ControlWhen-sortable" onSortChange={onSortChange}>
+      <SortableList
+        className="ControlWhen-sortable"
+        onSortChange={onSortChange}
+        handleClass="ControlWhen-sortableItemHandle"
+        ghostClass="ControlWhen-ghost"
+        dragClass="ControlWhen-drag"
+        chosenClass="ControlWhen-chosen"
+      >
         {articles?.map((item) => (
           <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
-            <span>
+            <span className="ControlWhen-sortableItemLeft">
               <A className="ControlWhen-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
                 {item.title}
               </A>
-              : <span className='ControlWhen-sortableItemDate'>{item.date}</span>
+              <div className="ControlWhen-sortableItemDate">{item.date}</div>
             </span>
-            <span className="ControlWhen-sortableItemHandle Sortable-handle">≡</span>
+            <span className="ControlWhen-sortableItemHandle">≡</span>
           </li>
         ))}
       </SortableList>
