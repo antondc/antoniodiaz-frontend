@@ -7,7 +7,7 @@ import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrent
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
-import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
+import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { When as WhenUi } from './When';
 
 const When: React.FC = () => {

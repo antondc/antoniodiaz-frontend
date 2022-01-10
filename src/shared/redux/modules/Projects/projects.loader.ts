@@ -1,4 +1,4 @@
-import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { ProjectsLoadApiResponse, ProjectsState, ProjectState } from './projects.types';
 import { projectsMockData } from './projectsMockData';
 

@@ -5,7 +5,7 @@ import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrent
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectRouterHistory } from 'Modules/Routes/selectors/selectRouterHistory';
 import history from 'Services/History';
-import { toAbsolute } from 'Tools/utils/url/toAbsolute';
+import { toAbsolute } from '@antoniodcorrea/utils';
 import { Routes } from '../../router/routes';
 import { Home as HomeUi } from './Home';
 

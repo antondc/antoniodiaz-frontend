@@ -1,4 +1,4 @@
-import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   PROJECTS_LOAD_FAILURE,

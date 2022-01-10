@@ -7,8 +7,8 @@ import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticles
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
-import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
 import { SortableItem } from '@antoniodcorrea/components';
+import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import history from '../../services/History';
 import { ControlWhen as ControlWhenUi } from './ControlWhen';
 

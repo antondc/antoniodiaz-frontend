@@ -6,7 +6,7 @@ import { sessionResetErrors } from 'Modules/Session/actions/sessionResetErrors';
 import { selectSessionErrorLast } from 'Modules/Session/selectors/selectSessionErrorLast';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { EVENT_BLUR } from 'Root/src/shared/constants';
-import { validateEmailAddress } from 'Tools/utils/string/validateEmailAddress';
+import { validateEmailAddress } from '@antoniodcorrea/utils';
 import { LoginForm as LoginFormUi } from './LoginForm';
 
 import './LoginForm.less';

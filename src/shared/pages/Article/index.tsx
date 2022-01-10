@@ -9,7 +9,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
-import { LocaleFormattedDate } from 'Tools/utils/Date/localeFormattedDate';
+import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {

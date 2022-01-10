@@ -4,7 +4,7 @@ import {
   LanguagesState,
   LanguageState,
 } from 'Modules/Languages/languages.types';
-import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { languagesData } from './languagesData.mock';
 import { getCurrentOrDefaultLanguage } from './utils/getCurrentOrDefaultLanguage';
 

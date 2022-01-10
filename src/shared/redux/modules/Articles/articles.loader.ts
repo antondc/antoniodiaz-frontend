@@ -1,6 +1,6 @@
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { serializerFromArrayToByKey } from 'Tools/utils/serializers/serializerFromArrayToByKey';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { ArticlesApiResponse, ArticlesState, ArticleState } from './articles.types';
 
 export const initialArticlesLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
