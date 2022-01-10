@@ -1,12 +1,62 @@
 import React, { useEffect, useState } from 'react';
 
 import A from 'Components/A';
-import BaseCarousel from 'Components/BaseCarousel';
+import { CarouselFieldImages } from 'Components/CarouselFieldImages';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { Button, Fade, ImageField, SortableItem, SortableList } from '@antoniodcorrea/components';
+import { ImageUpload } from 'Services/ImageUpload';
+import { Button, Fade, Hr, SortableItem, SortableList } from '@antoniodcorrea/components';
 
 import './ControlWhen.less';
+
+const emptyImage = {
+  id: 0,
+  order: 0,
+  src: '',
+  sizes: '',
+  srcSet: '',
+  title: '',
+  alt: '',
+};
+
+const incomingImages: Image[] = [
+  {
+    id: 1,
+    order: 0,
+    src: 'https://picsum.photos/id/100/1000',
+    sizes: '',
+    srcSet: '',
+    title: 'https://picsum.photos/id/100/1000',
+    alt: 'https://picsum.photos/id/100/1000',
+  },
+  {
+    id: 2,
+    order: 1,
+    src: 'https://picsum.photos/id/200/1000',
+    sizes: '',
+    srcSet: '',
+    title: 'https://picsum.photos/id/200/1000',
+    alt: 'https://picsum.photos/id/200/1000',
+  },
+  {
+    id: 3,
+    order: 2,
+    src: 'https://picsum.photos/id/301/1000',
+    sizes: '',
+    srcSet: '',
+    title: 'https://picsum.photos/id/301/1000',
+    alt: 'https://picsum.photos/id/301/1000',
+  },
+  {
+    id: 4,
+    order: 3,
+    src: 'https://picsum.photos/id/400/1000',
+    sizes: '',
+    srcSet: '',
+    title: 'https://picsum.photos/id/400/1000',
+    alt: 'https://picsum.photos/id/400/1000',
+  },
+];
 
 interface Props {
   glossary: GlossaryState;
@@ -16,12 +66,14 @@ interface Props {
   onNewArticleClick: () => void;
 }
 
-const emptySlide = {
-  src: '',
-  sizes: '',
-  srcSet: '',
-  title: '',
-  alt: '',
+type Image = {
+  id: number;
+  order: number;
+  title: string;
+  src: string;
+  sizes: string;
+  srcSet: string;
+  alt: string;
 };
 
 export const ControlWhen: React.FC<Props> = ({
@@ -31,82 +83,101 @@ export const ControlWhen: React.FC<Props> = ({
   onSortChange,
   onNewArticleClick,
 }) => {
-  const incomingSlides = [
-    {
-      src: 'https://picsum.photos/id/237/1000',
-      sizes: '',
-      srcSet: '',
-      title: 'https://picsum.photos/id/237/1000',
-      alt: 'https://picsum.photos/id/237/1000',
-    },
-    {
-      src: 'https://picsum.photos/id/234/1000',
-      sizes: '',
-      srcSet: '',
-      title: 'https://picsum.photos/id/234/1000',
-      alt: 'https://picsum.photos/id/234/1000',
-    },
-  ];
+  const [images, setImages] = useState<Array<Image>>([]);
+  const [percentCompleted, setPercentCompleted] = useState<number>(0);
 
-  const [slides, setSlides] = useState([]);
+  const imageUploadService = new ImageUpload();
 
-  const onSlideAdd = () => {
-    const lastSlide = slides[slides.length - 1];
-    if (!lastSlide?.src) {
-      return false;
-    }
-
-    setSlides([...slides, emptySlide]);
-
-    return true;
+  const onImagesChange = (images) => {
+    const sortedImages = images.sort((prevItem, nextItem) => prevItem.order - nextItem.order);
+    setImages(sortedImages);
   };
 
-  const onSlideRemove = (url: string) => {
-    if (slides.length <= 1) {
-      setSlides([emptySlide]);
+  const onAdd = () => {
+    setImages([...images, { ...emptyImage }]);
+  };
 
+  const onRemove = (images) => {
+    setImages(images);
+  };
+
+  const onFileUpload = async (file) => {
+    if (!imageUploadService) {
       return;
     }
 
-    if (!!url) {
-      const filteredSlides = slides.filter((item) => item.src !== url);
-      setSlides(filteredSlides);
+    try {
+      const data = await imageUploadService.uploadFileToServer({
+        file,
+        setPercentCompleted,
+      });
+      const ids = images.map((item) => item.id);
+      const newId = Math.max(...ids) + 1;
+      const orders = images.map((item) => item.order);
+      const newOrder = Math.max(...orders) + 1;
 
+      const imagesWithNew = images.map((item) => {
+        if (item.src) {
+          return item;
+        }
+
+        return {
+          id: newId,
+          order: newOrder,
+          src: data.image,
+          sizes: data.image,
+          srcSet: data.image,
+          title: data.image,
+          alt: data.image,
+        };
+      });
+      setImages(imagesWithNew);
+
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onRemoved = (): void => {
+    //
+  };
+
+  const onFileRemove = (src: string) => {
+    if (!imageUploadService) {
       return;
     }
 
-    const filteredSlides = slides.splice(0, slides.length - 1);
-    setSlides(filteredSlides);
+    try {
+      imageUploadService.removeFileFromServer({
+        src,
+        onRemoved,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    setSlides(incomingSlides);
+    const sortedImages = incomingImages.sort((prevItem, nextItem) => prevItem.order - nextItem.order);
+    setImages(sortedImages);
   }, []);
 
   return (
     <Fade mounted={renderContent} appear>
       <div className="ControlWhen">
         <h1 className="ControlWhen-title">{glossary?.control}When</h1>
-        <BaseCarousel onAdd={onSlideAdd}>
-          {slides?.map((item, index) => (
-            <div className="Project-slide" key={item.src}>
-              <ImageField
-                label={item.title}
-                name={`${item.src}-${index}`}
-                image={item.src}
-                grow={false}
-                uploadFiles={(e) => {
-                  console.log(e);
-                }}
-                onRemove={onSlideRemove}
-                percentCompleted={0}
-                removable
-                accept=".jpg,.jpeg"
-              />
-            </div>
-          ))}
-        </BaseCarousel>
+        <CarouselFieldImages
+          images={images}
+          onChange={onImagesChange}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onFileUpload={onFileUpload}
+          onFileRemove={onFileRemove}
+        />
+        <Hr spacer />
         <SortableList
+          id="ControlWhen-sortable"
           className="ControlWhen-sortable"
           onSortChange={onSortChange}
           handleClass="ControlWhen-sortableItemHandle"

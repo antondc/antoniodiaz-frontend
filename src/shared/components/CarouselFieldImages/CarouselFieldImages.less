@@ -1,0 +1,104 @@
+@import '../../css/imports.less';
+
+@c: .CarouselFieldImages;
+
+@{c} {
+  &-current {
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  &-list {
+    display: flex;
+    padding: 10px;
+    overflow-x: scroll;
+
+    .hideScrollbar;
+  }
+
+  &-images {
+    display: flex;
+  }
+
+  &-item {
+    position: relative;
+    flex-shrink: 0;
+    height: 150px;
+    width: 150px;
+    margin-right: 30px;
+    box-shadow: 0 0 10px 5px @c-traslucid--light;
+    outline: 2px solid @c-transparent;
+    transition: outline @td-fast @ease, box-shadow @td-slow @ease;
+
+    img {
+      height: 100%;
+    }
+
+    &--current {
+      box-shadow: 0 0 0 2px @c-transparent;
+      outline: 2px solid @c-blue--pastel;
+    }
+
+    &:hover {
+      cursor: grab;
+
+      @{c}-overlay {
+        opacity: 0.2;
+      }
+
+      @{c}-iconRemove {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &-iconRemove {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    right: 10px;
+    margin-left: 10px;
+    opacity: 0;
+    fill: @c-background;
+    transition: opacity @td-fast @ease;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-itemAdd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    margin-right: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-iconAdd {
+    height: 40px;
+    width: 40px;
+  }
+
+  &-overlay {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background: @c-base;
+    transition: opacity @td-fast @ease;
+  }
+}
