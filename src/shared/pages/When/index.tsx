@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
-import { selectArticlesAll } from 'Modules/Articles/selectors/selectArticlesAll';
+import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
@@ -16,7 +16,7 @@ const When: React.FC = () => {
   const params = useSelector(selectCurrentRouteParams);
   const language = useSelector(selectCurrentLanguageSlug);
   const languageLoading = useSelector(selectLanguageLoading);
-  const articles = useSelector(selectArticlesAll);
+  const articles = useSelector(selectArticlesCurrent);
   const renderContent = !languageLoading && articles?.every((item) => item.language === language);
 
   const articlesWithDates = articles.map((item) => {
