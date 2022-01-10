@@ -120,6 +120,7 @@
   "dependencies": {
     "@ant-design/react-slick": "^0.28.4",
     "@antoniodcorrea/components": "^1.0.9",
+    "@antoniodcorrea/utils": "0.0.2",
     "@popperjs/core": "^2.9.2",
     "@types/qs": "^6.9.5",
     "@types/react": "^17.0.38",
@@ -131,6 +132,7 @@
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
     "body-parser": "^1.18.3",
+    "colors": "1.1.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "ejs": "^3.0.2",
@@ -168,8 +170,7 @@
     "slate-react": "^0.72.1",
     "sortablejs": "^1.14.0",
     "ts-unused-exports": "^7.0.3",
-    "uuid": "^8.3.2",
-    "colors": "1.1.2"
+    "uuid": "^8.3.2"
   },
   "license": "ISC"
 }

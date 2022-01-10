@@ -1,7 +1,7 @@
 import express from 'express';
 
 import HttpClient from 'Services/HttpClient';
-import { URLWrapper } from 'Services/URLWrapper';
+import { URLWrapper } from '@antoniodcorrea/utils';
 import { TokenService } from '../services/TokenService';
 
 const ROUTE_REGEX = '/:lang([a-z]{2})?/sign-up-confirmation/check';
