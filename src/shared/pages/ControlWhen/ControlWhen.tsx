@@ -6,23 +6,14 @@ import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ImageUpload } from 'Services/ImageUpload';
 import { Button, Fade, Hr, SortableItem, SortableList } from '@antoniodcorrea/components';
+import { noop } from '@antoniodcorrea/utils';
 
 import './ControlWhen.less';
-
-const emptyImage = {
-  id: 0,
-  order: 0,
-  src: '',
-  sizes: '',
-  srcSet: '',
-  title: '',
-  alt: '',
-};
 
 const incomingImages: Image[] = [
   {
     id: 1,
-    order: 0,
+    order: 10,
     src: 'https://picsum.photos/id/100/1000',
     sizes: '',
     srcSet: '',
@@ -84,24 +75,15 @@ export const ControlWhen: React.FC<Props> = ({
   onNewArticleClick,
 }) => {
   const [images, setImages] = useState<Array<Image>>([]);
-  const [percentCompleted, setPercentCompleted] = useState<number>(0);
+  const [_, setPercentCompleted] = useState<number>(0);
 
   const imageUploadService = new ImageUpload();
 
   const onImagesChange = (images) => {
-    const sortedImages = images.sort((prevItem, nextItem) => prevItem.order - nextItem.order);
-    setImages(sortedImages);
-  };
-
-  const onAdd = () => {
-    setImages([...images, { ...emptyImage }]);
-  };
-
-  const onRemove = (images) => {
     setImages(images);
   };
 
-  const onFileUpload = async (file) => {
+  const onFileUpload = async (file): Promise<{ image: string }> => {
     if (!imageUploadService) {
       return;
     }
@@ -111,47 +93,22 @@ export const ControlWhen: React.FC<Props> = ({
         file,
         setPercentCompleted,
       });
-      const ids = images.map((item) => item.id);
-      const newId = Math.max(...ids) + 1;
-      const orders = images.map((item) => item.order);
-      const newOrder = Math.max(...orders) + 1;
 
-      const imagesWithNew = images.map((item) => {
-        if (item.src) {
-          return item;
-        }
-
-        return {
-          id: newId,
-          order: newOrder,
-          src: data.image,
-          sizes: data.image,
-          srcSet: data.image,
-          title: data.image,
-          alt: data.image,
-        };
-      });
-      setImages(imagesWithNew);
-
-      return true;
+      return data;
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onRemoved = (): void => {
-    //
-  };
-
-  const onFileRemove = (src: string) => {
+  const onFileRemove = async (src: string) => {
     if (!imageUploadService) {
       return;
     }
 
     try {
-      imageUploadService.removeFileFromServer({
+      await imageUploadService.removeFileFromServer({
         src,
-        onRemoved,
+        onRemoved: noop,
       });
     } catch (error) {
       console.log(error);
@@ -159,8 +116,7 @@ export const ControlWhen: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    const sortedImages = incomingImages.sort((prevItem, nextItem) => prevItem.order - nextItem.order);
-    setImages(sortedImages);
+    setImages(incomingImages);
   }, []);
 
   return (
@@ -170,8 +126,6 @@ export const ControlWhen: React.FC<Props> = ({
         <CarouselFieldImages
           images={images}
           onChange={onImagesChange}
-          onAdd={onAdd}
-          onRemove={onRemove}
           onFileUpload={onFileUpload}
           onFileRemove={onFileRemove}
         />
@@ -182,8 +136,6 @@ export const ControlWhen: React.FC<Props> = ({
           onSortChange={onSortChange}
           handleClass="ControlWhen-sortableItemHandle"
           ghostClass="ControlWhen-ghost"
-          dragClass="ControlWhen-drag"
-          chosenClass="ControlWhen-chosen"
         >
           {articles?.map((item) => (
             <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>

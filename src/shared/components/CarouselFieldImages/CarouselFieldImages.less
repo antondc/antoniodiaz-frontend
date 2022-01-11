@@ -3,15 +3,39 @@
 @c: .CarouselFieldImages;
 
 @{c} {
+  overflow: hidden;
+
   &-current {
     height: 300px;
     margin-bottom: 20px;
+    color: @c-transparent;
+  }
+
+  &-input {
+    input {
+      padding: 0;
+      background: @c-transparent;
+      border-bottom: 2px solid @gradientColors[blue-3];
+      border-radius: 0;
+      transition: border-bottom @td-fast @ease;
+
+      &:focus,
+      &:valid {
+        border-bottom: 2px solid @c-blue--pastel;
+      }
+
+      &:not(.noClass) {
+        box-shadow: unset;
+        outline: 0;
+      }
+    }
   }
 
   &-list {
     display: flex;
-    padding: 10px;
+    padding: 2px 5px 5px 2px;
     overflow-x: scroll;
+    overflow-y: visible;
 
     .hideScrollbar;
   }
@@ -32,6 +56,9 @@
 
     img {
       height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     &--current {
