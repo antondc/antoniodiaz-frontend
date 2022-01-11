@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import A from 'Components/A';
-import { CarouselFieldImages } from 'Components/CarouselFieldImages';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Fade, Hr, SortableItem, SortableList } from '@antoniodcorrea/components';
+import { Button, CarouselField, Fade, Hr, SortableItem, SortableList } from '@antoniodcorrea/components';
 import { noop } from '@antoniodcorrea/utils';
 
 import './ControlWhen.less';
@@ -123,7 +122,7 @@ export const ControlWhen: React.FC<Props> = ({
     <Fade mounted={renderContent} appear>
       <div className="ControlWhen">
         <h1 className="ControlWhen-title">{glossary?.control}When</h1>
-        <CarouselFieldImages
+        <CarouselField
           images={images}
           onChange={onImagesChange}
           onFileUpload={onFileUpload}
