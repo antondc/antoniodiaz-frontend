@@ -3,12 +3,13 @@ import React from 'react';
 import A from 'Components/A';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
+import Img from '../../components/Img';
 
 import './What.less';
 
 interface Props {
   glossary: GlossaryState;
-  projects: ProjectState[];
+  projects: Array<ProjectState>;
 }
 
 export const What: React.FC<Props> = ({ glossary, projects }) => (
@@ -17,36 +18,24 @@ export const What: React.FC<Props> = ({ glossary, projects }) => (
       <div className="What-title">{glossary.what}</div>
       <div className="What-text">{glossary.whatSubtitle}</div>
       <div className="What-gridWrapper">
-        {projects.map((item, index) => (
-          <A href={`/what/${item.id}`} className="What-gridItem isLoading" data-id={index} key={index}>
-            <img
+        {projects?.map((item, index) => (
+          <A href={`/what/${item?.id}`} className="What-gridItem" data-id={index} key={index}>
+            <Img
               className="What-gridImage"
-              src={item.images[0].original}
+              title={item.title}
+              alt={item.title}
+              src={item.carousel[0].images['original']}
               sizes="600px"
               srcSet={
-                item.images[0].w200 +
+                item.carousel[0].images['w200'] +
                 ' 200w, ' +
-                item.images[0].w400 +
+                item.carousel[0].images['w400'] +
                 ' 400w, ' +
-                item.images[0].w1200 +
+                item.carousel[0].images['w1200'] +
                 ' 1200w, ' +
-                item.images[0].w2400 +
+                item.carousel[0].images['w2400'] +
                 ' 2400w, '
               }
-              ref={(input) => {
-                if (!input) {
-                  return;
-                }
-                const img = input;
-                const updateFunc = () => {
-                  img.parentElement.classList.remove('isLoading');
-                  img.classList.add('isLoaded');
-                };
-                img.onload = updateFunc;
-                if (img.complete) {
-                  updateFunc();
-                }
-              }}
             />
           </A>
         ))}

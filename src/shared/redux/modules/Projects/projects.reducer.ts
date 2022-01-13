@@ -8,6 +8,7 @@ import {
 
 const initialState: ProjectsState = {
   byKey: {},
+  currentIds: [],
 };
 
 export const Projects = (state = initialState, action: ProjectsActions): ProjectsState => {

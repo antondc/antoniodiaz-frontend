@@ -9,8 +9,8 @@ import { What as WhatUi } from './What';
 const What: React.FC = () => {
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsAll);
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(projectsLoad());
   }, []);

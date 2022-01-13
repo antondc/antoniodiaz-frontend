@@ -109,25 +109,6 @@
       }
     }
 
-    &.isLoading {
-      animation: frameAnimation 1s infinite;
-      border-radius: 6px;
-
-      @keyframes frameAnimation {
-        0% {
-          transform: scale(1);
-        }
-
-        33% {
-          transform: scale(0.9);
-        }
-
-        100% {
-          transform: scale(1);
-        }
-      }
-    }
-
     .isTablet & {
       margin-bottom: 40px;
     }
@@ -143,13 +124,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    opacity: 0;
     object-fit: cover;
     object-position: center;
-    transition: opacity @td-normal ease;
-
-    &.isLoaded {
-      opacity: 1;
-    }
   }
 }

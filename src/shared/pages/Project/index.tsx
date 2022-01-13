@@ -14,14 +14,14 @@ const Project: React.FC = () => {
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProjectById(state, Number(projectId)));
 
-  const slidesWithData = project?.images?.map((item) => ({
-    src: item?.original,
-    srcSet: Object.entries(item)
+  const slidesWithData = project?.carousel?.map((item) => ({
+    src: item?.images.original,
+    srcSet: Object.entries(item?.images)
       .map(([key, value]) => `${value} ${key}`)
       .join(', '),
     sizes: '1200px',
-    title: project?.translations[lang].title,
-    alt: project?.translations[lang].title,
+    title: item?.title,
+    alt: item?.title,
   }));
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Project: React.FC = () => {
     });
   }, []);
 
-  if (!project?.id || !project?.translations[lang]) return <div />;
+  if (!project?.id) return <div />;
 
   return <ProjectUi project={project} lang={lang} slidesWithData={slidesWithData} />;
 };

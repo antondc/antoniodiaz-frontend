@@ -1,14 +1,12 @@
+import { RequestParameters } from 'Root/src/server/routes/allRoutes';
+import HttpClient from 'Root/src/shared/services/HttpClient';
 import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
-import { ProjectsLoadApiResponse, ProjectsState, ProjectState } from './projects.types';
-import { projectsMockData } from './projectsMockData';
+import { ProjectsApiResponse, ProjectsState, ProjectState } from './projects.types';
 
-export const initialProjectsLoader = async (): Promise<{ Projects: ProjectsState }> => {
-  // TODO: uncomment when API is ready
-  // const { meta, data } = await HttpClient.get<void, ProjectsLoadApiResponse>(`/projects${window.location.search}`);
-  const mockPromise: Promise<ProjectsLoadApiResponse> = new Promise((resolve) => {
-    resolve(projectsMockData);
-  });
-  const { meta, data } = await mockPromise;
+export const initialProjectsLoader = async ({ params }: RequestParameters): Promise<{ Projects: ProjectsState }> => {
+  const lang = params?.lang ? `/${params?.lang}` : '';
+  const { data, meta }: ProjectsApiResponse = await HttpClient.get(`${lang}/projects`);
+
   const projectsArray = data?.map((item) => item.attributes);
 
   const result = {
@@ -18,6 +16,8 @@ export const initialProjectsLoader = async (): Promise<{ Projects: ProjectsState
           data: projectsArray,
         }),
       },
+      currentIds: data?.map((item) => item.id),
+      meta,
     },
   };
 

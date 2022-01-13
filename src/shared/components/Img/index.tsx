@@ -5,8 +5,8 @@ import './Img.less';
 interface Props {
   className?: string;
   src: string;
-  sizes: string;
-  srcSet: string;
+  sizes?: string;
+  srcSet?: string;
   title: string;
   alt: string;
 }

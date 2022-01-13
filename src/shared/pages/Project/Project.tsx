@@ -24,7 +24,7 @@ interface Props {
 
 export const Project: React.FC<Props> = ({ lang, project, slidesWithData }) => (
   <div className="Project">
-    <div className="Project-title">{project.translations[lang]?.title}</div>
+    <div className="Project-title">{project?.title}</div>
     {!!slides.length && (
       <BaseCarousel>
         {slidesWithData?.map((item) => (
@@ -41,7 +41,6 @@ export const Project: React.FC<Props> = ({ lang, project, slidesWithData }) => (
         ))}
       </BaseCarousel>
     )}
-    <div className="Project-subtitle">{project.translations[lang]?.subtitle}</div>
-    <div className="Project-content">{ReactHtmlParser(project.translations[lang]?.htmlContent)}</div>
+  
   </div>
 );
