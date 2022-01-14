@@ -8,7 +8,8 @@ import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
 import { ImageUpload } from 'Services/ImageUpload';
-import { TextEditorValue } from '@antoniodcorrea/components';
+import { CarouselFieldSlide, TextEditorValue } from '@antoniodcorrea/components';
+import { noop } from '@antoniodcorrea/utils';
 import { ControlProject as ControlWhenUi } from './ControlProject';
 
 import './ControlProject.less';
@@ -21,6 +22,8 @@ const ControlProject: React.FC = () => {
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
+  const [carouselImages, setCarouselImages] = useState<Array<CarouselFieldSlide>>([]);
+  const [_, setCarouselPercentCompleted] = useState<number>(0);
   const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(undefined);
   const [publishError, setPublishError] = useState<string>(undefined);
   const [publishing, setPublishing] = useState<boolean>(undefined);
@@ -81,6 +84,7 @@ const ControlProject: React.FC = () => {
         ...project,
         title: titleValue,
         contentJson: textEditorValue,
+        carousel: carouselImages,
       };
       dispatch(projectUpdateOne({ projectId: Number(projectId), projectData }));
 
@@ -92,11 +96,48 @@ const ControlProject: React.FC = () => {
     }
   };
 
+  const onCarouselChange = (carouselImages) => {
+    setCarouselImages(carouselImages);
+  };
+
+  const onFileUpload = async (file): Promise<{ image: string }> => {
+    if (!imageUploadService) {
+      return;
+    }
+
+    try {
+      const data = await imageUploadService.uploadFileToServer({
+        file,
+        setPercentCompleted: setCarouselPercentCompleted,
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onFileRemove = async (src: string) => {
+    if (!imageUploadService) {
+      return;
+    }
+
+    try {
+      await imageUploadService.removeFileFromServer({
+        src,
+        onRemoved: noop,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     dispatch(projectsLoad());
   }, [language]);
 
   useEffect(() => {
+    setCarouselImages(project?.carousel);
     setPublishedValue(!!project?.published);
     setTitleValue(project?.title);
 
@@ -109,6 +150,10 @@ const ControlProject: React.FC = () => {
       titleValue={titleValue}
       titleError={titleError}
       onChangeTitle={onChangeTitle}
+      carouselImages={carouselImages}
+      onCarouselChange={onCarouselChange}
+      onFileRemove={onFileRemove}
+      onFileUpload={onFileUpload}
       textEditorInitialValue={project?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}

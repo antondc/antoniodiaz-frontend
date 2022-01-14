@@ -2,7 +2,16 @@ import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Hr, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import {
+  Button,
+  CarouselField,
+  CarouselFieldSlide,
+  Hr,
+  Input,
+  Switch,
+  TextEditor,
+  TextEditorValue,
+} from '@antoniodcorrea/components';
 
 import './ControlProject.less';
 
@@ -10,6 +19,10 @@ interface Props {
   titleValue: string;
   titleError: string;
   onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
+  carouselImages: CarouselFieldSlide[];
+  onCarouselChange: (images) => void;
+  onFileUpload: (file: File) => Promise<{ image: string }>;
+  onFileRemove: (src: string) => Promise<void>;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUploadService: ImageUpload;
@@ -29,6 +42,10 @@ export const ControlProject: React.FC<Props> = ({
   onChangeTitle,
   titleValue,
   titleError,
+  carouselImages,
+  onCarouselChange,
+  onFileUpload,
+  onFileRemove,
   textEditorInitialValue,
   onChangeTextEditorValue,
   publishedValue,
@@ -55,6 +72,14 @@ export const ControlProject: React.FC<Props> = ({
           grow
         />
       </BaseFormField>
+      <Hr spacer />
+      <CarouselField
+        images={carouselImages}
+        onChange={onCarouselChange}
+        onFileUpload={onFileUpload}
+        onFileRemove={onFileRemove}
+      />
+      <Hr spacer />
       <BaseFormField>
         <TextEditor
           initialValue={textEditorInitialValue}

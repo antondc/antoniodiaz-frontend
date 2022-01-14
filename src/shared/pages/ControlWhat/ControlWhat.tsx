@@ -3,15 +3,7 @@ import React from 'react';
 import A from 'Components/A';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import {
-  Button,
-  CarouselField,
-  CarouselFieldImage,
-  Fade,
-  Hr,
-  SortableItem,
-  SortableList,
-} from '@antoniodcorrea/components';
+import { Button, Fade, SortableItem, SortableList } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 
@@ -21,11 +13,6 @@ interface Props {
   renderContent: boolean;
   onSortChange: (data: SortableItem) => void;
   onNewProjectClick: () => void;
-  carouselImages: CarouselFieldImage[];
-  onImagesChange: (images) => void;
-  onFileUpload: (file: File) => Promise<{ image: string }>;
-  onFileRemove: (src: string) => Promise<void>;
-  onCarouselSave: () => void;
 }
 
 export const ControlWhat: React.FC<Props> = ({
@@ -34,23 +21,10 @@ export const ControlWhat: React.FC<Props> = ({
   renderContent,
   onSortChange,
   onNewProjectClick,
-  carouselImages,
-  onImagesChange,
-  onFileUpload,
-  onFileRemove,
-  onCarouselSave,
 }) => (
   <Fade mounted={renderContent} appear>
     <div className="ControlWhat">
       <h1 className="ControlWhat-title">{glossary?.control}What</h1>
-      <CarouselField
-        images={carouselImages}
-        onChange={onImagesChange}
-        onFileUpload={onFileUpload}
-        onFileRemove={onFileRemove}
-      />
-      <Button text="Save" onClick={onCarouselSave} />
-      <Hr spacer />
       <SortableList
         id="ControlWhat-sortable"
         className="ControlWhat-sortable"

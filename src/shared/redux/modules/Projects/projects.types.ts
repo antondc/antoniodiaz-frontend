@@ -28,6 +28,8 @@ export interface ProjectTranslationState {
 }
 
 type Slide = {
+  id: number;
+  order: number;
   title: string;
   images: {
     original: string;
