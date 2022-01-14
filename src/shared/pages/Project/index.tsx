@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
-import { selectProjectById } from 'Modules/Projects/selectors/selectProjectById';
+import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
@@ -12,7 +12,7 @@ const Project: React.FC = () => {
   const dispatch = useDispatch();
   const lang = useSelector(selectCurrentRouteParamLanguage);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
-  const project = useSelector((state: RootState) => selectProjectById(state, Number(projectId)));
+  const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
   const slidesWithData = project?.carousel?.map((item) => ({
     src: item?.images.original,

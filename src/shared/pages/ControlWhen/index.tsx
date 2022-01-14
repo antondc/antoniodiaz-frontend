@@ -7,9 +7,9 @@ import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticles
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
+import history from 'Services/History';
 import { SortableItem } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
-import history from '../../services/History';
 import { ControlWhen as ControlWhenUi } from './ControlWhen';
 
 import './ControlWhen.less';
@@ -21,7 +21,6 @@ const ControlWhen: React.FC = () => {
   const articles = useSelector(selectArticlesCurrent);
   const languageLoading = useSelector(selectLanguageLoading);
   const renderContent = !languageLoading && articles?.every((item) => item.language === language);
-
   const articlesWithDates = articles.map((item) => {
     const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: language });
     const formattedDate = date.getLocaleFormattedDate();

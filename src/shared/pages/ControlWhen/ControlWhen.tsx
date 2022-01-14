@@ -4,12 +4,20 @@ import A from 'Components/A';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, CarouselField, Fade, Hr, SortableItem, SortableList } from '@antoniodcorrea/components';
+import {
+  Button,
+  CarouselField,
+  CarouselFieldImage,
+  Fade,
+  Hr,
+  SortableItem,
+  SortableList,
+} from '@antoniodcorrea/components';
 import { noop } from '@antoniodcorrea/utils';
 
 import './ControlWhen.less';
 
-const incomingImages: Image[] = [
+const incomingImages: CarouselFieldImage[] = [
   {
     id: 1,
     order: 10,
@@ -56,16 +64,6 @@ interface Props {
   onNewArticleClick: () => void;
 }
 
-type Image = {
-  id: number;
-  order: number;
-  title: string;
-  src: string;
-  sizes: string;
-  srcSet: string;
-  alt: string;
-};
-
 export const ControlWhen: React.FC<Props> = ({
   glossary,
   articles,
@@ -73,7 +71,7 @@ export const ControlWhen: React.FC<Props> = ({
   onSortChange,
   onNewArticleClick,
 }) => {
-  const [images, setImages] = useState<Array<Image>>([]);
+  const [images, setImages] = useState<Array<CarouselFieldImage>>([]);
   const [_, setPercentCompleted] = useState<number>(0);
 
   const imageUploadService = new ImageUpload();

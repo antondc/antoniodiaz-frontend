@@ -15,6 +15,12 @@ export const PROJECT_TRANSLATION_CREATE_ONE_FAILURE = 'PROJECT_TRANSLATION_CREAT
 export const PROJECT_SORT_ONE_REQUEST = 'PROJECT_SORT_ONE_REQUEST';
 export const PROJECT_SORT_ONE_SUCCEED = 'PROJECT_SORT_ONE_SUCCEED';
 export const PROJECT_SORT_ONE_FAILURE = 'PROJECT_SORT_ONE_FAILURE';
+export const PROJECTS_PAGE_LOAD_REQUEST = 'PROJECTS_PAGE_LOAD_REQUEST';
+export const PROJECTS_PAGE_LOAD_SUCCEED = 'PROJECTS_PAGE_LOAD_SUCCEED';
+export const PROJECTS_PAGE_LOAD_FAILURE = 'PROJECTS_PAGE_LOAD_FAILURE';
+export const PROJECTS_PAGE_UPLOAD_REQUEST = 'PROJECTS_PAGE_UPLOAD_REQUEST';
+export const PROJECTS_PAGE_UPLOAD_SUCCEED = 'PROJECTS_PAGE_UPLOAD_SUCCEED';
+export const PROJECTS_PAGE_UPLOAD_FAILURE = 'PROJECTS_PAGE_UPLOAD_FAILURE';
 
 export interface ProjectTranslationState {
   title: string;
@@ -153,6 +159,36 @@ interface ProjectSortOneFailureAction {
   payload: Partial<ProjectsState>;
 }
 
+interface ProjectsPageLoadRequestAction {
+  type: typeof PROJECTS_PAGE_LOAD_REQUEST;
+  payload: Partial<ProjectsState>;
+}
+
+interface ProjectsPageLoadSuccessAction {
+  type: typeof PROJECTS_PAGE_LOAD_SUCCEED;
+  payload: Partial<ProjectsState>;
+}
+
+interface ProjectsPageLoadFailureAction {
+  type: typeof PROJECTS_PAGE_LOAD_FAILURE;
+  payload: Partial<ProjectsState>;
+}
+
+interface ProjectsPageUpdateRequestAction {
+  type: typeof PROJECTS_PAGE_UPLOAD_REQUEST;
+  payload: Partial<ProjectsState>;
+}
+
+interface ProjectsPageUpdateSuccessAction {
+  type: typeof PROJECTS_PAGE_UPLOAD_SUCCEED;
+  payload: Partial<ProjectsState>;
+}
+
+interface ProjectsPageUpdateFailureAction {
+  type: typeof PROJECTS_PAGE_UPLOAD_FAILURE;
+  payload: Partial<ProjectsState>;
+}
+
 export type ProjectsActions =
   | ProjectsLoadRequestAction
   | ProjectsLoadSuccessAction
@@ -168,4 +204,10 @@ export type ProjectsActions =
   | ProjectTranslationCreateOneFailureAction
   | ProjectSortOneRequestAction
   | ProjectSortOneSuccessAction
-  | ProjectSortOneFailureAction;
+  | ProjectSortOneFailureAction
+  | ProjectsPageLoadRequestAction
+  | ProjectsPageLoadSuccessAction
+  | ProjectsPageLoadFailureAction
+  | ProjectsPageUpdateRequestAction
+  | ProjectsPageUpdateSuccessAction
+  | ProjectsPageUpdateFailureAction;

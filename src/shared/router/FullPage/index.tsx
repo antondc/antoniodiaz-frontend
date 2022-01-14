@@ -11,6 +11,8 @@ import Article from 'Pages/Article';
 import Control from 'Pages/Control';
 import ControlArticle from 'Pages/ControlArticle';
 import ControlArticleCreate from 'Pages/ControlArticleCreate';
+import ControlProject from 'Pages/ControlProject';
+import ControlProjectCreate from 'Pages/ControlProjectCreate';
 import ControlWhat from 'Pages/ControlWhat';
 import ControlWhen from 'Pages/ControlWhen';
 import Home from 'Pages/Home';
@@ -57,6 +59,12 @@ const FullPage: React.FC<Props> = ({ location }) => {
           <Route exact={Routes.Where.exact} path={Routes.Where.path} component={Where} />
           <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
           <Route exact={Routes.ControlWhat.exact} path={Routes.ControlWhat.path} component={ControlWhat} />
+          <Route
+            exact={Routes.ControlProjectCreate.exact}
+            path={Routes.ControlProjectCreate.path}
+            component={ControlProjectCreate}
+          />
+          <Route exact={Routes.ControlProject.exact} path={Routes.ControlProject.path} component={ControlProject} />
           <Route exact={Routes.ControlWhen.exact} path={Routes.ControlWhen.path} component={ControlWhen} />
           <Route
             exact={Routes.ControlArticleCreate.exact}
