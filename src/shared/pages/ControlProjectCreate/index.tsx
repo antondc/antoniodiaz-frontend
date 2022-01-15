@@ -51,7 +51,7 @@ const ControlProjectCreate: React.FC = () => {
       const project = await dispatch(projectCreateOne({ projectData }));
       setSubmitSuccess(true);
 
-      setTimeout(() => history.push(`/${language}/control/when/${project?.id}`), DELAY_SLOW_MS);
+      setTimeout(() => history.push(`/${language}/control/what/${project?.id}`), DELAY_SLOW_MS);
     } catch (error) {
       setSubmitError(error.message);
     } finally {

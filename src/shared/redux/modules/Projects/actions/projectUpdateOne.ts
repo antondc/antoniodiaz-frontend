@@ -37,7 +37,7 @@ export const projectUpdateOne =
 
       const { data } = await HttpClient.put<void, ProjectApiResponse>(
         `${languagesBeforeRequest.currentLanguage.slug}/projects/${projectId}`,
-        projectData
+        projectDataE
       );
 
       const { Projects: projectsAfterApiCall } = getState();
@@ -49,10 +49,7 @@ export const projectUpdateOne =
           ...projectsAfterApiCall,
           byKey: {
             ...projectsAfterApiCall.byKey,
-            [projectId]: {
-              ...projectsBeforeRequest.byKey[projectId],
-              ...project,
-            },
+            [projectId]: project,
           },
           loading: false,
         },

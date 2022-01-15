@@ -9,9 +9,6 @@ export const PROJECT_UPDATE_ONE_FAILURE = 'PROJECT_UPDATE_ONE_FAILURE';
 export const PROJECT_CREATE_ONE_REQUEST = 'PROJECT_CREATE_ONE_REQUEST';
 export const PROJECT_CREATE_ONE_SUCCEED = 'PROJECT_CREATE_ONE_SUCCEED';
 export const PROJECT_CREATE_ONE_FAILURE = 'PROJECT_CREATE_ONE_FAILURE';
-export const PROJECT_TRANSLATION_CREATE_ONE_REQUEST = 'PROJECT_TRANSLATION_CREATE_ONE_REQUEST';
-export const PROJECT_TRANSLATION_CREATE_ONE_SUCCEED = 'PROJECT_TRANSLATION_CREATE_ONE_SUCCEED';
-export const PROJECT_TRANSLATION_CREATE_ONE_FAILURE = 'PROJECT_TRANSLATION_CREATE_ONE_FAILURE';
 export const PROJECT_SORT_ONE_REQUEST = 'PROJECT_SORT_ONE_REQUEST';
 export const PROJECT_SORT_ONE_SUCCEED = 'PROJECT_SORT_ONE_SUCCEED';
 export const PROJECT_SORT_ONE_FAILURE = 'PROJECT_SORT_ONE_FAILURE';
@@ -131,21 +128,6 @@ interface ProjectCreateOneFailureAction {
   payload: Partial<ProjectsState>;
 }
 
-interface ProjectTranslationCreateOneRequestAction {
-  type: typeof PROJECT_TRANSLATION_CREATE_ONE_REQUEST;
-  payload: Partial<ProjectsState>;
-}
-
-interface ProjectTranslationCreateOneSuccessAction {
-  type: typeof PROJECT_TRANSLATION_CREATE_ONE_SUCCEED;
-  payload: Partial<ProjectsState>;
-}
-
-interface ProjectTranslationCreateOneFailureAction {
-  type: typeof PROJECT_TRANSLATION_CREATE_ONE_FAILURE;
-  payload: Partial<ProjectsState>;
-}
-
 interface ProjectSortOneRequestAction {
   type: typeof PROJECT_SORT_ONE_REQUEST;
   payload: Partial<ProjectsState>;
@@ -201,9 +183,6 @@ export type ProjectsActions =
   | ProjectCreateOneRequestAction
   | ProjectCreateOneSuccessAction
   | ProjectCreateOneFailureAction
-  | ProjectTranslationCreateOneRequestAction
-  | ProjectTranslationCreateOneSuccessAction
-  | ProjectTranslationCreateOneFailureAction
   | ProjectSortOneRequestAction
   | ProjectSortOneSuccessAction
   | ProjectSortOneFailureAction
