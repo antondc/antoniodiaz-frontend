@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Img.less';
 
@@ -18,6 +18,10 @@ const Img: React.FC<Props> = ({ className, src, sizes, srcSet, title, alt }) => 
     if (!img) return;
 
     img.decode().then(() => {
+      // Conflict betweeen img.decode and srcSet:
+      // https://stackoverflow.com/questions/65146920/domexception-invalid-image-request
+      // We need to set srcSet after image is loaded
+      img.setAttribute('srcSet', srcSet);
       setLoaded(true);
     });
   };
@@ -27,7 +31,6 @@ const Img: React.FC<Props> = ({ className, src, sizes, srcSet, title, alt }) => 
       className={'Img' + (className ? ` ${className}` : '') + (loaded ? ' Img--loaded' : '')}
       src={src}
       sizes={sizes}
-      srcSet={srcSet}
       title={title}
       alt={alt}
       ref={onImageDecode}
