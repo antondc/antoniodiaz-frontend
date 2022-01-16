@@ -3,14 +3,14 @@ import React from 'react';
 import Edit from 'Assets/svg/edit-2.svg';
 import Move from 'Assets/svg/move-2.svg';
 import A from 'Components/A';
-import { SortableItem, SortableList } from 'Components/SortableList';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Button, Fade, Img } from '@antoniodcorrea/components';
+import { Button, Fade, Hr, Img, SortableItem, SortableList } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 
 interface Props {
+  languageSlug: string;
   glossary: GlossaryState;
   projects: Array<ProjectState & { date: string }>;
   renderContent: boolean;
@@ -19,6 +19,7 @@ interface Props {
 }
 
 export const ControlWhat: React.FC<Props> = ({
+  languageSlug,
   glossary,
   projects,
   renderContent,
@@ -54,7 +55,7 @@ export const ControlWhat: React.FC<Props> = ({
               }
             />
             <div className="ControlWhat-sortableIcons">
-              <A href={`/what/${item?.id}`}>
+              <A href={`/${languageSlug}/control/what/${item?.id}`}>
                 <Edit className="ControlWhat-sortableIcon ControlWhat-sortableEdit" />
               </A>
               <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
@@ -62,7 +63,9 @@ export const ControlWhat: React.FC<Props> = ({
           </li>
         ))}
       </SortableList>
+      <Hr spacer size="big" />
       <Button text="Create new project" onClick={onNewProjectClick} />
+      <Hr spacer size="big" />
     </div>
   </Fade>
 );

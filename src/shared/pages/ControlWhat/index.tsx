@@ -16,13 +16,13 @@ import './ControlWhat.less';
 
 const ControlWhat: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
+  const languageSlug = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsCurrent);
   const languageLoading = useSelector(selectLanguageLoading);
-  const renderContent = !languageLoading && projects?.every((item) => item.language === language);
+  const renderContent = !languageLoading && projects?.every((item) => item.language === languageSlug);
   const projectsWithDates = projects.map((item) => {
-    const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: language });
+    const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: languageSlug });
     const formattedDate = date.getLocaleFormattedDate();
 
     return {
@@ -42,15 +42,16 @@ const ControlWhat: React.FC = () => {
   };
 
   const onNewProjectClick = () => {
-    history.push(`/${language}/control/what/new`);
+    history.push(`/${languageSlug}/control/what/new`);
   };
 
   useEffect(() => {
     dispatch(projectsLoad());
-  }, [language]);
+  }, [languageSlug]);
 
   return (
     <ControlWhatUi
+      languageSlug={languageSlug}
       glossary={glossary}
       projects={projectsWithDates}
       renderContent={renderContent}
