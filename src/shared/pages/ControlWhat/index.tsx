@@ -31,14 +31,13 @@ const ControlWhat: React.FC = () => {
     };
   });
 
-  const onSortChange = async (sortableItem: SortableItem) => {
-    await dispatch(
+  const onSortChange = (sortableItem: SortableItem) => {
+    dispatch(
       projectSortOne({
         projectId: sortableItem.id,
         order: sortableItem.order,
       })
     );
-    dispatch(projectsLoad());
   };
 
   const onNewProjectClick = () => {

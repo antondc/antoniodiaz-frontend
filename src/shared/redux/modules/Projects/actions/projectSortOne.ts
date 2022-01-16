@@ -17,6 +17,8 @@ type Params = {
 export const projectSortOne =
   ({ projectId, order }: Params): AppThunk<Promise<ProjectState>, ProjectsActions> =>
   async (dispatch, getState): Promise<ProjectState> => {
+    if (!projectId) return;
+
     const { Projects: projectsBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
     try {
