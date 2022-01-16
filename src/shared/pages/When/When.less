@@ -3,10 +3,9 @@
 @c: .When;
 
 @{c} {
-  display: flex;
-  flex-direction: column;
+  gap: 10px 10px;
   max-width: 720px;
-  min-height: calc(100vh ~'-' @header-height ~'-' 10px);
+  // min-height: calc(100vh ~'-' @header-height ~'-' 10px);
   margin: 0 auto;
   padding: 170px 70px 50px;
 
@@ -22,10 +21,10 @@
   }
 
   &-title {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-size: 38px;
     font-weight: @fw-bold;
-    text-align: center;
+    text-align: left;
 
     .isMobile &,
     .isTablet & {
@@ -35,6 +34,7 @@
 
   &-articles {
     list-style-type: none;
+    text-align: left;
   }
 
   &-article {
