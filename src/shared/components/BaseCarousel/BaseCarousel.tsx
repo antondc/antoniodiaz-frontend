@@ -23,7 +23,7 @@ export const BaseCarousel: React.FC<Props> = forwardRef(
       <Slider
         className="BaseCarousel-slider"
         ref={sliderRef}
-        fade={false}
+        fade={true}
         infinite={true}
         speed={500}
         slidesToShow={1}
