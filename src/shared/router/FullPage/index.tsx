@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from 'Components/Header';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { selectCurrentRouteName } from 'Modules/Routes/selectors/selectCurrentRouteName';
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import Article from 'Pages/Article';
@@ -38,10 +39,12 @@ const FullPage: React.FC<Props> = ({ location }) => {
   const loggedIn = useSelector(selectSessionLoggedIn);
   const defaultCurrentSlug = useSelector(selectCurrentLanguageSlug);
   const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
+  const currentRouteName = useSelector(selectCurrentRouteName);
+  const withGrid = currentRouteName === Routes.When.name || currentRouteName === Routes.Article.name;
 
   return (
     <div className="FullPage">
-      <div className="FullPage-background" />
+      <div className={'FullPage-background' + (withGrid ? ' FullPage-background--grid' : '')} />
       <Header />
       <FadeInOut className="FullPage-content" valueToUpdate={pathWithoutLanguageParam} speed="fastest" appear>
         <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>

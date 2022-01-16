@@ -21,10 +21,10 @@ export const When: React.FC<Props> = ({ glossary, articlesWithDates, renderConte
       <ul className="When-articles">
         {articlesWithDates.map((item) => (
           <li className="When-article" key={item.id}>
-            <A className="When-articleTitle" href={`/when/${item.id}`}>
+            <A className="When-articleTitle" href={`/when/${item.id}`} styled={false}>
               {item?.title}
-              <span className="When-articleDate">: {item?.date}</span>
             </A>
+            <span className="When-articleDate">{item?.date}</span>
           </li>
         ))}
       </ul>
