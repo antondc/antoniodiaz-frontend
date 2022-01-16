@@ -3,7 +3,7 @@ import React from 'react';
 import A from 'Components/A';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import Img from '../../components/Img';
+import { Img } from '@antoniodcorrea/components';
 
 import './What.less';
 

@@ -4,17 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
-import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
 import { Project as ProjectUi } from './Project';
 
+export type SlideItem = {
+  src: string;
+  srcSet: string;
+  sizes: string;
+  title: string;
+  alt: string;
+};
+
 const Project: React.FC = () => {
   const dispatch = useDispatch();
-  const lang = useSelector(selectCurrentRouteParamLanguage);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
-  const slidesWithData = project?.carousel?.map((item) => ({
+  const carouselSlides: SlideItem[] = project?.carousel?.map((item) => ({
     src: item?.images.original,
     srcSet: Object.entries(item?.images)
       .map(([key, value]) => `${value} ${key}`)
@@ -42,6 +48,6 @@ const Project: React.FC = () => {
 
   if (!project?.id) return <div />;
 
-  return <ProjectUi project={project} lang={lang} slidesWithData={slidesWithData} />;
+  return <ProjectUi project={project} carouselSlides={carouselSlides} />;
 };
 export default Project;

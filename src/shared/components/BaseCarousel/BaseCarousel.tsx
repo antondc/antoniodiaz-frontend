@@ -2,41 +2,23 @@
 // - For slide, needs image without wrapper first next click next slide is not loaded
 // - For Fade, needs image wrapped in div
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import Slider from 'react-slick';
 
 import ArrowLeft from 'Assets/svg/arrowLeft.svg';
 import ArrowRight from 'Assets/svg/arrowRight.svg';
-import PlusCircle from 'Assets/svg/plusCircle.svg';
 
 import './BaseCarousel.less';
 
 interface Props {
   children: React.ReactChild | React.ReactChild[];
-  onAdd: () => boolean;
+  sliderRef: React.RefObject<Slider>;
+  onSliderLeave: () => void;
+  onNavigatorHoverEnter: () => void;
 }
 
-export const BaseCarousel: React.FC<Props> = ({ children, onAdd }) => {
-  const sliderRef = useRef<Slider>();
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    const added = onAdd();
-    if (!added) return;
-
-    sliderRef.current.slickGoTo(React.Children.count(children));
-  };
-
-  const onNavigatorHoverEnter = () => {
-    // sliderRef.current.slickPause();
-  };
-
-  const onSliderLeave = () => {
-    // sliderRef.current.slickPlay();
-  };
-
-  return (
+export const BaseCarousel: React.FC<Props> = forwardRef(
+  ({ children, sliderRef, onSliderLeave, onNavigatorHoverEnter }) => (
     <div className="BaseCarousel" id="BaseCarousel" onMouseLeave={onSliderLeave}>
       <Slider
         className="BaseCarousel-slider"
@@ -48,7 +30,7 @@ export const BaseCarousel: React.FC<Props> = ({ children, onAdd }) => {
         slidesToScroll={1}
         dots={true}
         arrows={true}
-        // autoplay
+        autoplay
         pauseOnHover
         pauseOnDotsHover
         pauseOnFocus
@@ -66,7 +48,6 @@ export const BaseCarousel: React.FC<Props> = ({ children, onAdd }) => {
       >
         {children}
       </Slider>
-      {onAdd && <PlusCircle className="BaseCarousel-addIcon" id="BaseCarousel-addIcon" onClick={handleClick} />}
     </div>
-  );
-};
+  )
+);
