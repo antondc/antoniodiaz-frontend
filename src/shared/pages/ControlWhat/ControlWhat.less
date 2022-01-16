@@ -31,8 +31,8 @@
       width: 100%;
       top: 0;
       left: 0;
-      opacity: 0.1;
-      background: @c-white;
+      opacity: 0;
+      background: @c-base;
       transition: opacity @td-normal ease, transform @td-normal ease, background @td-normal ease;
       z-index: @z-index-1;
       pointer-events: none;
@@ -45,7 +45,7 @@
       }
 
       &:before {
-        opacity: 0;
+        opacity: 0.2;
       }
     }
   }
@@ -56,6 +56,8 @@
     width: 100%;
     top: 0;
     left: 0;
+    object-fit: cover;
+    object-position: center;
   }
 
   &-sortableIcons {
@@ -64,6 +66,7 @@
     right: 10px;
     opacity: 0;
     transition: opacity @td-fast @ease;
+    z-index: 1;
   }
 
   &-sortableIcon {

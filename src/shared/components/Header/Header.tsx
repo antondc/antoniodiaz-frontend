@@ -35,18 +35,18 @@ export const Header: React.FC<Props> = ({
     {controlHeader && (
       <div className="Header-navigation">
         <A
-          className={'Header-navigationItem' + (routeName === 'ControlWhen' ? ' Header-navigationItem--active' : '')}
-          href="/control/when"
-          styled={false}
-        >
-          When
-        </A>
-        <A
           className={'Header-navigationItem' + (routeName === 'ControlWhat' ? ' Header-navigationItem--active' : '')}
           href="/control/what"
           styled={false}
         >
           What
+        </A>
+        <A
+          className={'Header-navigationItem' + (routeName === 'ControlWhen' ? ' Header-navigationItem--active' : '')}
+          href="/control/when"
+          styled={false}
+        >
+          When
         </A>
       </div>
     )}
