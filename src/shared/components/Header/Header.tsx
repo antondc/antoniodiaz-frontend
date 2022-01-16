@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LogOut from 'Assets/svg/logOut.svg';
+import Exit from 'Assets/svg/exit.svg';
 import Triangle from 'Assets/svg/triangle.svg';
 import A from 'Components/A';
 import LanguagesSwitch from 'Components/LanguagesSwitch';
@@ -10,48 +10,50 @@ import { Fade } from '@antoniodcorrea/components';
 import './Header.less';
 
 interface Props {
-  loggedIn: boolean;
   uiLanguagesModalMounted: boolean;
   logoActive: boolean;
   backRoute: string;
   routeName: string;
+  controlHeader: boolean;
   onLogOut: () => void;
 }
 
 export const Header: React.FC<Props> = ({
-  loggedIn,
   uiLanguagesModalMounted,
   logoActive,
   backRoute,
   routeName,
+  controlHeader,
   onLogOut,
 }) => (
-  <header className={'Header' + (loggedIn ? ' Header--loggedIn' : '')}>
-    <A href={backRoute} className="Header-logo">
-      <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />
-    </A>
-    {loggedIn && (
-      <>
+  <header className={'Header' + (controlHeader ? ' Header--control' : '')}>
+    {!controlHeader && (
+      <A href={backRoute} className="Header-logo">
+        <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />
+      </A>
+    )}
+    {controlHeader && (
+      <div className="Header-navigation">
         <A
-          className={'Header-item' + (routeName === 'ControlWhen' ? ' Header-item--active' : '')}
+          className={'Header-navigationItem' + (routeName === 'ControlWhen' ? ' Header-navigationItem--active' : '')}
           href="/control/when"
           styled={false}
         >
           When
         </A>
         <A
-          className={'Header-item' + (routeName === 'ControlWhat' ? ' Header-item--active' : '')}
+          className={'Header-navigationItem' + (routeName === 'ControlWhat' ? ' Header-navigationItem--active' : '')}
           href="/control/what"
           styled={false}
         >
           What
         </A>
-      </>
+      </div>
     )}
-    <div className='Header-buttons'>
-      {loggedIn && (
+    <div className="Header-buttons">
+      {controlHeader && (
         <div className="Header-item Header-logOut" onClick={onLogOut}>
-          <LogOut />
+          <Exit />
         </div>
       )}
       <LanguageSwitchButton />

@@ -11,10 +11,11 @@ interface Props {
   location: Location;
   renderLoader: boolean;
   routeName: string;
+  control: boolean;
 }
 
-export const Layout: React.FC<Props> = ({ location, renderLoader, routeName }) => (
-  <div className={'Layout Layout--' + routeName}>
+export const Layout: React.FC<Props> = ({ location, renderLoader, routeName, control }) => (
+  <div className={'Layout Layout--' + routeName + (control ? ' Layout--control' : '')}>
     <ScreenSizePixel />
     <div className="Layout-generalBackground" />
     <Router location={location} />

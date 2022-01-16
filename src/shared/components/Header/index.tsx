@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute';
 import { selectCurrentRouteName } from 'Modules/Routes/selectors/selectCurrentRouteName';
 import { sessionLogOut } from 'Modules/Session/actions/sessionLogOut';
-import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { selectUiLanguagesModalMounted } from 'Modules/Ui/selectors/selectUiLanguagesModalMounted';
 import { Routes } from 'Router/routes';
 import { Header as HeaderUi } from './Header';
@@ -12,14 +12,14 @@ import './Header.less';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const currentRoute = useSelector(selectCurrentRouteName);
-  const loggedIn = useSelector(selectSessionLoggedIn);
+  const currentRoute = useSelector(selectCurrentRoute);
   const routeName = useSelector(selectCurrentRouteName);
-  const logoActive = currentRoute !== Routes.Home.name;
-  const currentRouteArticle = currentRoute === Routes.Article.name;
-  const currentRouteProject = currentRoute === Routes.Project.name;
+  const logoActive = currentRoute?.name !== Routes.Home.name;
+  const currentRouteArticle = currentRoute?.name === Routes.Article.name;
+  const currentRouteProject = currentRoute?.name === Routes.Project.name;
   const uiLanguagesModalMounted = useSelector(selectUiLanguagesModalMounted);
   const backRoute = currentRouteArticle ? '/when' : currentRouteProject ? '/what' : '/';
+  const controlHeader = currentRoute.auth;
 
   const onLogOut = () => {
     dispatch(sessionLogOut());
@@ -30,9 +30,9 @@ const Header: React.FC = () => {
       uiLanguagesModalMounted={uiLanguagesModalMounted}
       logoActive={logoActive}
       backRoute={backRoute}
-      loggedIn={loggedIn}
       routeName={routeName}
       onLogOut={onLogOut}
+      controlHeader={controlHeader}
     />
   );
 };

@@ -7,7 +7,7 @@
   align-content: space-between;
   flex-flow: row wrap;
   height: 25px;
-  width: 35px;
+  width: 27px;
 
   span {
     height: 5px;
@@ -37,18 +37,6 @@
 
   &:hover {
     cursor: pointer;
-
-    &:not(.isActive) {
-      span {
-        &:first-child {
-          transform: translate(0, -2px);
-        }
-
-        &:last-child {
-          transform: translate(0, 2px);
-        }
-      }
-    }
   }
 
   &.isActive {

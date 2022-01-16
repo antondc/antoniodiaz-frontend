@@ -5,6 +5,7 @@ import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguag
 import { pushNewRoute } from 'Modules/Routes/actions/pushNewRoute';
 import { RouteState } from 'Modules/Routes/routes.types';
 import { selectCurrentPathAndQuery } from 'Modules/Routes/selectors/selectCurrentPathAndQuery';
+import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute';
 import { selectCurrentRouteName } from 'Modules/Routes/selectors/selectCurrentRouteName';
 import { selectSession } from 'Modules/Session/selectors/selectSession';
 import { uiResetModalsState } from 'Modules/Ui/actions/uiResetModalsState';
@@ -34,6 +35,8 @@ const Layout: React.FC<Props> = ({ location }) => {
   const uiScreenMobileLocked = useSelector(selectUiScreenMobileLocked);
   const renderLoader = !!languageLoading; /* || otherVariables */
   const routeName = useSelector(selectCurrentRouteName);
+  const currentRoute = useSelector(selectCurrentRoute);
+  const control = currentRoute.auth;
 
   const addBodyClasses = () => {
     document.body.classList.remove('preload'); // Preventing animations on load
@@ -96,7 +99,7 @@ const Layout: React.FC<Props> = ({ location }) => {
     dispatch(userLoad(session?.id));
   }, [session?.id]);
 
-  return <LayoutUi renderLoader={renderLoader} location={location} routeName={routeName} />;
+  return <LayoutUi renderLoader={renderLoader} location={location} routeName={routeName} control={control} />;
 };
 
 export default Layout;

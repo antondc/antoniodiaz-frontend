@@ -18,6 +18,12 @@
   overflow: visible;
   z-index: @z-index-5;
 
+  &--control {
+    height: 75px;
+    padding: 10px 30px 0;
+    border-bottom: 1px solid @c-traslucid--light;
+  }
+
   .isMobile &,
   .isTablet & {
     position: sticky;
@@ -26,11 +32,6 @@
     min-width: unset;
     top: 0;
     padding: 20px 10px 20px 20px;
-  }
-
-  &--loggedIn {
-    background: @c-background;
-    border: 10px solid @c-blue--pastel;
   }
 
   &-logo {
@@ -108,15 +109,20 @@
     }
   }
 
-  &-item {
+  &-navigation {
+    //
+  }
+
+  &-navigationItem {
+    padding: 0 30px;
     font-size: @fs-medium;
     font-weight: @fw-bold;
     text-transform: uppercase;
+    color: @c-blue--pastel;
     transition: color @td-fast @ease;
 
     &--active,
     &:hover {
-      color: @c-blue--pastel;
       cursor: pointer;
     }
   }
@@ -127,13 +133,14 @@
   }
 
   &-logOut {
-    width: 35px;
+    width: 27px;
     margin-right: 20px;
     fill: @c-accentLight;
     transition: fill @td-fast @ease;
 
     &:hover {
       fill: @c-blue--pastel;
+      cursor: pointer;
     }
   }
 }
