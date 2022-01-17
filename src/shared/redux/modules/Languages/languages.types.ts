@@ -3,6 +3,9 @@ import { TextEditorValue } from '@antoniodcorrea/components';
 export const LANGUAGES_LOAD_REQUEST = 'LANGUAGES_LOAD_REQUEST';
 export const LANGUAGES_LOAD_SUCCESS = 'LANGUAGES_LOAD_SUCCESS';
 export const LANGUAGES_LOAD_FAILURE = 'LANGUAGES_LOAD_FAILURE';
+export const LANGUAGES_UPDATE_REQUEST = 'LANGUAGES_UPDATE_REQUEST';
+export const LANGUAGES_UPDATE_SUCCESS = 'LANGUAGES_UPDATE_SUCCESS';
+export const LANGUAGES_UPDATE_FAILURE = 'LANGUAGES_UPDATE_FAILURE';
 export const LANGUAGES_SWITCH_CURRENT_SUCCESS = 'LANGUAGES_SWITCH_CURRENT_SUCCESS';
 export const LANGUAGES_SWITCH_CURRENT_REQUEST = 'LANGUAGES_SWITCH_CURRENT_REQUEST';
 
@@ -54,6 +57,13 @@ export interface LanguagesApiResponse {
   data: LanguagesApiResponseItem[];
 }
 
+export interface LanguageApiResponse {
+  links: {
+    [key: string]: string;
+  };
+  data: LanguagesApiResponseItem;
+}
+
 interface LanguagesLoadRequestAction {
   type: typeof LANGUAGES_LOAD_REQUEST;
   payload: Partial<LanguagesState>;
@@ -66,6 +76,21 @@ interface LanguagesLoadSuccessAction {
 
 interface LanguagesLoadFailureAction {
   type: typeof LANGUAGES_LOAD_FAILURE;
+  payload: Partial<LanguagesState>;
+}
+
+interface LanguagesUpdateRequestAction {
+  type: typeof LANGUAGES_UPDATE_REQUEST;
+  payload: Partial<LanguagesState>;
+}
+
+interface LanguagesUpdateSuccessAction {
+  type: typeof LANGUAGES_UPDATE_SUCCESS;
+  payload: Partial<LanguagesState>;
+}
+
+interface LanguagesUpdateFailureAction {
+  type: typeof LANGUAGES_UPDATE_FAILURE;
   payload: Partial<LanguagesState>;
 }
 
@@ -83,5 +108,8 @@ export type LanguagesActions =
   | LanguagesLoadRequestAction
   | LanguagesLoadSuccessAction
   | LanguagesLoadFailureAction
+  | LanguagesUpdateRequestAction
+  | LanguagesUpdateSuccessAction
+  | LanguagesUpdateFailureAction
   | LanguagesSwitchCurrentRequestAction
   | LanguagesSwitchCurrentSuccessAction;

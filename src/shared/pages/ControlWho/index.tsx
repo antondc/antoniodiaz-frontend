@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { languagesLoad } from 'Modules/Languages/actions/languagesLoad';
+import { languageUpdateOne } from 'Modules/Languages/actions/languagesUpdate';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
+import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { ImageUpload } from 'Services/ImageUpload';
 import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlWho as ControlWhoUi } from './ControlWho';
 
 const ControlWho: React.FC = () => {
   const dispatch = useDispatch();
+  const language = useSelector(selectCurrentLanguage);
   const glossary = useSelector(selectCurrentGlossary);
   const imageUploadService = new ImageUpload();
   const [titleValue, setTitleValue] = useState<string>(undefined);
@@ -41,11 +44,11 @@ const ControlWho: React.FC = () => {
     setSubmitting(true);
 
     try {
-      const articleData = {
-        title: titleValue,
+      const glossaryData = {
+        who: titleValue,
         contentJson: textEditorValue,
       };
-      // dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
+      dispatch(languageUpdateOne({ languageId: Number(language?.id), glossaryData }));
 
       setSubmitSuccess(true);
     } catch (error) {

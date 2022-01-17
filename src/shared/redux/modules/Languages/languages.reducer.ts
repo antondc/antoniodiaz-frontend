@@ -4,6 +4,9 @@ import {
   LANGUAGES_LOAD_SUCCESS,
   LANGUAGES_SWITCH_CURRENT_REQUEST,
   LANGUAGES_SWITCH_CURRENT_SUCCESS,
+  LANGUAGES_UPDATE_FAILURE,
+  LANGUAGES_UPDATE_REQUEST,
+  LANGUAGES_UPDATE_SUCCESS,
   LanguagesActions,
   LanguagesState,
 } from './languages.types';
@@ -39,6 +42,9 @@ export const Languages = (state = initialState, action: LanguagesActions): Langu
     case LANGUAGES_LOAD_REQUEST:
     case LANGUAGES_LOAD_SUCCESS:
     case LANGUAGES_LOAD_FAILURE:
+    case LANGUAGES_UPDATE_REQUEST:
+    case LANGUAGES_UPDATE_SUCCESS:
+    case LANGUAGES_UPDATE_FAILURE:
     case LANGUAGES_SWITCH_CURRENT_REQUEST:
     case LANGUAGES_SWITCH_CURRENT_SUCCESS:
       return Object.assign({}, state, action.payload);
