@@ -6,48 +6,25 @@ import {
   LANGUAGES_UPDATE_REQUEST,
   LANGUAGES_UPDATE_SUCCESS,
   LanguagesActions,
-  LanguagesState,
+  LanguageState,
 } from '../languages.types';
 
-type Params = {
-  languageId: number;
-  glossaryData: Partial<GlossaryState>;
-};
-
-export const languageUpdateOne =
-  ({ languageId, glossaryData }: Params): AppThunk<Promise<LanguagesState>, LanguagesActions> =>
-  async (dispatch, getState): Promise<LanguagesState> => {
+export const languagesUpdateCurrentLanguage =
+  (glossaryData: Partial<GlossaryState>): AppThunk<Promise<LanguageState>, LanguagesActions> =>
+  async (dispatch, getState): Promise<LanguageState> => {
     const { Languages: languagesBeforeRequest } = getState();
-    const currentLanguageSlug = languagesBeforeRequest.currentLanguage.slug;
 
     try {
       dispatch({
         type: LANGUAGES_UPDATE_REQUEST,
         payload: {
           ...languagesBeforeRequest,
-          byKey: {
-            ...languagesBeforeRequest.byKey,
-            [languageId]: {
-              ...languagesBeforeRequest.byKey[languageId],
-              glossary: {
-                ...languagesBeforeRequest.byKey[languageId]?.glossary,
-                ...glossaryData,
-              },
-            },
-          },
-          currentLanguage: {
-            ...languagesBeforeRequest.currentLanguage,
-            glossary: {
-              ...languagesBeforeRequest.currentLanguage.glossary,
-              ...glossaryData,
-            },
-          },
           loading: true,
         },
       });
 
-      const { data } = await HttpClient.put<void, { data: { attributes: LanguagesState } }>(
-        `${languagesBeforeRequest.currentLanguage.slug}/languages/${currentLanguageSlug}`,
+      const { data } = await HttpClient.put<void, { data: { attributes: LanguageState } }>(
+        `${languagesBeforeRequest.currentLanguage.slug}/languages/${languagesBeforeRequest.currentLanguage.slug}`,
         glossaryData
       );
 
@@ -60,7 +37,9 @@ export const languageUpdateOne =
           ...languagesAfterApiCall,
           byKey: {
             ...languagesAfterApiCall.byKey,
+            [data.attributes.id]: data.attributes,
           },
+          currentLanguage: data.attributes,
           loading: false,
         },
       });

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { languagesLoad } from 'Modules/Languages/actions/languagesLoad';
-import { languageUpdateOne } from 'Modules/Languages/actions/languagesUpdate';
+import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { ImageUpload } from 'Services/ImageUpload';
@@ -46,9 +46,9 @@ const ControlWho: React.FC = () => {
     try {
       const glossaryData = {
         who: titleValue,
-        contentJson: textEditorValue,
+        whoContentJson: textEditorValue,
       };
-      dispatch(languageUpdateOne({ languageId: Number(language?.id), glossaryData }));
+      dispatch(languagesUpdateCurrentLanguage(glossaryData));
 
       setSubmitSuccess(true);
     } catch (error) {
