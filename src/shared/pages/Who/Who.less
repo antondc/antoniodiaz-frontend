@@ -5,10 +5,11 @@
 @{c} {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 720px;
   min-height: calc(100vh ~'-' @header-height ~'-' 10px);
   margin: 0 auto;
-  padding: 170px 70px 50px;
+  padding: 170px 0;
 
   .isMobile &,
   .isTablet & {
@@ -65,10 +66,10 @@
 
     pre {
       margin: 20px 0 10px;
-      border-radius: 4px;
       padding: 10px 30px 30px;
       font-family: @ff-code;
       font-size: @fs-small;
+      border-radius: 4px;
     }
   }
 }
