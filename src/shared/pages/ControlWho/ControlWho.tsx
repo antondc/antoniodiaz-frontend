@@ -1,19 +1,72 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 
+import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { GlossaryState } from 'Modules/Languages/languages.types';
+import { ImageUpload } from 'Services/ImageUpload';
+import { Button, Hr, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlWho.less';
 
 interface Props {
-  glossary: GlossaryState;
+  titleValue: string;
+  onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
+  titleError: string;
+  textEditorInitialValue: TextEditorValue;
+  onChangeTextEditorValue: (value: TextEditorValue) => void;
+  imageUploadService: ImageUpload;
+  onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
+  submitError: string;
+  submitSuccess: boolean;
+  submitting: boolean;
 }
 
-export const ControlWho: React.FC<Props> = ({ glossary }) => (
+export const ControlWho: React.FC<Props> = ({
+  titleValue,
+  onChangeTitle,
+  titleError,
+  textEditorInitialValue,
+  onChangeTextEditorValue,
+  imageUploadService,
+  onSubmit,
+  submitError,
+  submitSuccess,
+  submitting,
+}) => (
   <div className="ControlWho">
-    <div className="ControlWho-content">
-      <div className="ControlWho-title">{glossary.who}</div>
-      <div className="ControlWho-text">{ReactHtmlParser(glossary.whoHtmlText)}</div>
-    </div>
+    <BaseForm>
+      <BaseFormField>
+        <Input
+          name="title"
+          type="text"
+          label="Title"
+          onChange={onChangeTitle}
+          onBlur={onChangeTitle}
+          value={titleValue}
+          error={titleError}
+          grow
+        />
+      </BaseFormField>
+      <BaseFormField>
+        <TextEditor
+          initialValue={textEditorInitialValue}
+          onChange={onChangeTextEditorValue}
+          imageUploadService={imageUploadService}
+        />
+      </BaseFormField>
+      <Hr spacer />
+      <BaseFormSubmit>
+        <Button
+          text="Submit"
+          type="submit"
+          onClick={onSubmit}
+          error={!!submitError}
+          success={submitSuccess}
+          disabled={false}
+          loading={submitting}
+          grow
+        />
+      </BaseFormSubmit>
+    </BaseForm>
   </div>
 );

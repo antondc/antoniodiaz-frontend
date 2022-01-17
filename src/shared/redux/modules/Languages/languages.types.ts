@@ -1,10 +1,14 @@
+import { TextEditorValue } from '@antoniodcorrea/components';
+
 export const LANGUAGES_LOAD_REQUEST = 'LANGUAGES_LOAD_REQUEST';
 export const LANGUAGES_LOAD_SUCCESS = 'LANGUAGES_LOAD_SUCCESS';
+export const LANGUAGES_LOAD_FAILURE = 'LANGUAGES_LOAD_FAILURE';
 export const LANGUAGES_SWITCH_CURRENT_SUCCESS = 'LANGUAGES_SWITCH_CURRENT_SUCCESS';
 export const LANGUAGES_SWITCH_CURRENT_REQUEST = 'LANGUAGES_SWITCH_CURRENT_REQUEST';
 
 export interface GlossaryState {
   who: string;
+  whoContentJson: TextEditorValue;
   whoHtmlText: string;
   what: string;
   whatSubtitle: string;
@@ -35,6 +39,7 @@ export type LanguagesState = {
     [key: string]: LanguageState;
   };
   currentLanguage?: LanguageState;
+  errors?: Error[];
 };
 
 export interface LanguagesApiResponseItem {
@@ -59,6 +64,11 @@ interface LanguagesLoadSuccessAction {
   payload: Partial<LanguagesState>;
 }
 
+interface LanguagesLoadFailureAction {
+  type: typeof LANGUAGES_LOAD_FAILURE;
+  payload: Partial<LanguagesState>;
+}
+
 interface LanguagesSwitchCurrentRequestAction {
   type: typeof LANGUAGES_SWITCH_CURRENT_REQUEST;
   payload: Partial<LanguagesState>;
@@ -72,5 +82,6 @@ interface LanguagesSwitchCurrentSuccessAction {
 export type LanguagesActions =
   | LanguagesLoadRequestAction
   | LanguagesLoadSuccessAction
+  | LanguagesLoadFailureAction
   | LanguagesSwitchCurrentRequestAction
   | LanguagesSwitchCurrentSuccessAction;

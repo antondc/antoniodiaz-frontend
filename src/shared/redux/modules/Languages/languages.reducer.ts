@@ -1,4 +1,5 @@
 import {
+  LANGUAGES_LOAD_FAILURE,
   LANGUAGES_LOAD_REQUEST,
   LANGUAGES_LOAD_SUCCESS,
   LANGUAGES_SWITCH_CURRENT_REQUEST,
@@ -17,6 +18,7 @@ const initialState: LanguagesState = {
     isDefault: false,
     glossary: {
       who: '',
+      whoContentJson: [],
       whoHtmlText: '',
       what: '',
       whatSubtitle: '',
@@ -29,12 +31,14 @@ const initialState: LanguagesState = {
     },
     links: {},
   },
+  errors: [],
 };
 
 export const Languages = (state = initialState, action: LanguagesActions): LanguagesState => {
   switch (action.type) {
     case LANGUAGES_LOAD_REQUEST:
     case LANGUAGES_LOAD_SUCCESS:
+    case LANGUAGES_LOAD_FAILURE:
     case LANGUAGES_SWITCH_CURRENT_REQUEST:
     case LANGUAGES_SWITCH_CURRENT_SUCCESS:
       return Object.assign({}, state, action.payload);
