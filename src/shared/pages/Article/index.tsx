@@ -22,19 +22,15 @@ const Article: React.FC = () => {
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
-  useLoadImages({ wrapperClass: 'Article-content', data: article });
+  useLoadImages({
+    id: 'Article-content',
+    className: 'Article-image--loaded',
+    data: article,
+  });
 
   useEffect(() => {
     dispatch(articlesLoad());
   }, [language]);
-
-  // Load images from blog
-  useEffect(() => {
-    const childDivs = document.getElementById('Article-content')?.getElementsByTagName('img');
-    const images = Array.from(childDivs || []);
-
-    images?.forEach((element) => element.decode().then(() => element.classList.add('Article-image--loaded')));
-  }, [article]);
 
   // Load embedded html images
   useEffect(() => {

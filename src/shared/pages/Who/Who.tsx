@@ -13,7 +13,9 @@ export const Who: React.FC<Props> = ({ glossary }) => (
   <div className="Who">
     <div className="Who-content">
       <div className="Who-title">{glossary.who}</div>
-      <div className="Who-text">{ReactHtmlParser(glossary.whoHtmlText)}</div>
+      <div className="Who-content" id="Who-content">
+        {ReactHtmlParser(glossary.whoContentHtml)}
+      </div>
     </div>
   </div>
 );

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadImages } from 'Hooks/loadImages';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
@@ -30,20 +31,14 @@ const Project: React.FC = () => {
     alt: item?.title,
   }));
 
+  useLoadImages({
+    id: 'Project-content',
+    className: 'Project-image--loaded',
+    data: project,
+  });
+
   useEffect(() => {
     dispatch(projectsLoad());
-  }, []);
-
-  // Load embedded html images
-  useEffect(() => {
-    const imageElements = document.getElementsByTagName('img');
-    const imageElementsArray = Array.from(imageElements);
-
-    imageElementsArray.forEach((imageElement) => {
-      imageElement.decode().then(() => {
-        imageElement.classList.add('Project-image--loaded');
-      });
-    });
   }, []);
 
   if (!project?.id) return <div />;

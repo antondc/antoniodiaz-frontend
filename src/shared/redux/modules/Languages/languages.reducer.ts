@@ -22,7 +22,7 @@ const initialState: LanguagesState = {
     glossary: {
       who: '',
       whoContentJson: [],
-      whoHtmlText: '',
+      whoContentHtml: '',
       what: '',
       whatSubtitle: '',
       when: '',

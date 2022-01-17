@@ -12,7 +12,7 @@ export const LANGUAGES_SWITCH_CURRENT_REQUEST = 'LANGUAGES_SWITCH_CURRENT_REQUES
 export interface GlossaryState {
   who: string;
   whoContentJson: TextEditorValue;
-  whoHtmlText: string;
+  whoContentHtml: string;
   what: string;
   whatSubtitle: string;
   when: string;
