@@ -28,6 +28,7 @@ interface RoutesInterface {
   ControlProject: Route;
   ControlProjectCreate: Route;
   ControlWhen: Route;
+  ControlWho: Route;
   ControlArticle: Route;
   ControlArticleCreate: Route;
   Who: Route;
@@ -135,6 +136,16 @@ export const Routes: RoutesInterface = {
     name: 'ControlWhat',
     path: '/:lang([a-z]{2})?/control/what',
     route: '/control/what',
+    exact: true,
+    auth: true,
+    initialDataLoadersVisitor: [],
+    initialDataLoadersSession: [],
+    layout: RouteLayout.fullPage,
+  },
+  ControlWho: {
+    name: 'ControlWho',
+    path: '/:lang([a-z]{2})?/control/who',
+    route: '/control/who',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],
