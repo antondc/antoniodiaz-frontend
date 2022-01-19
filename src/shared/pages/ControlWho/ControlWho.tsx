@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactHtmlParser from 'react-html-parser';
 
-import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
-import { GlossaryState } from 'Modules/Languages/languages.types';
+import BaseForm, { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Hr, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import { Button, Hr, Input, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlWho.less';
 
@@ -49,6 +47,7 @@ export const ControlWho: React.FC<Props> = ({
       </BaseFormField>
       <BaseFormField>
         <TextEditor
+          className="ControlWho-textEditorContent"
           initialValue={textEditorInitialValue}
           onChange={onChangeTextEditorValue}
           imageUploadService={imageUploadService}

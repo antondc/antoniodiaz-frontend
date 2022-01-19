@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { languagesLoad } from 'Modules/Languages/actions/languagesLoad';
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
-import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { ImageUpload } from 'Services/ImageUpload';
 import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlWho as ControlWhoUi } from './ControlWho';
 
 const ControlWho: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguage);
   const glossary = useSelector(selectCurrentGlossary);
   const imageUploadService = new ImageUpload();
   const [titleValue, setTitleValue] = useState<string>(undefined);
