@@ -2,6 +2,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import useragent from 'express-useragent';
+import 'dotenv/config';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import http from 'http';
