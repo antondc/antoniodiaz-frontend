@@ -7,6 +7,7 @@ import {
   LANGUAGES_LOAD_SUCCESS,
   LanguagesActions,
   LanguagesApiResponse,
+  LanguagesApiResponseItem,
   LanguageState,
 } from '../languages.types';
 
@@ -35,11 +36,11 @@ export const languagesLoad =
         type: LANGUAGES_LOAD_SUCCESS,
         payload: {
           ...languagesAfterRequest,
-          byKey: {
-            ...serializerFromArrayToByKey<LanguageState, LanguageState>({
-              data: languagesArray,
-            }),
-          },
+          byKey: serializerFromArrayToByKey<LanguagesApiResponseItem, LanguageState>({
+            data,
+            contentPath: 'attributes',
+            keyPath: 'attributes.slug',
+          }),
           loading: false,
         },
       });
