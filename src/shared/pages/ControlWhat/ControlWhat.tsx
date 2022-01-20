@@ -2,6 +2,7 @@ import React from 'react';
 
 import Edit from 'Assets/svg/edit-2.svg';
 import Move from 'Assets/svg/move-2.svg';
+import Cross from 'Assets/svg/plusCircle.svg';
 import A from 'Components/A';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
@@ -16,6 +17,7 @@ interface Props {
   renderContent: boolean;
   onSortChange: (data: SortableItem) => void;
   onNewProjectClick: () => void;
+  onDeleteProjectClick: (projectId: number) => void;
 }
 
 export const ControlWhat: React.FC<Props> = ({
@@ -25,6 +27,7 @@ export const ControlWhat: React.FC<Props> = ({
   renderContent,
   onSortChange,
   onNewProjectClick,
+  onDeleteProjectClick,
 }) => (
   <Fade mounted={renderContent} appear>
     <div className="ControlWhat">
@@ -58,6 +61,10 @@ export const ControlWhat: React.FC<Props> = ({
               <A href={`/${languageSlug}/control/what/${item?.id}`}>
                 <Edit className="ControlWhat-sortableIcon ControlWhat-sortableEdit" />
               </A>
+              <Cross
+                className="ControlWhat-sortableIcon ControlWhat-sortableCross"
+                onClick={() => onDeleteProjectClick(item?.id)}
+              />
               <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
             </div>
           </li>

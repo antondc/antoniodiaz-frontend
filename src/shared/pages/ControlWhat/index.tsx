@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
+import { projectDeleteOne } from 'Modules/Projects/actions/projectDeleteOne';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { projectSortOne } from 'Modules/Projects/actions/projectSortOne';
 import { selectProjectsCurrent } from 'Modules/Projects/selectors/selectProjectsCurrent';
@@ -40,6 +41,12 @@ const ControlWhat: React.FC = () => {
     );
   };
 
+  const onDeleteProjectClick = (projectId: number) => {
+    if (!confirm('Are you sure?')) return;
+
+    dispatch(projectDeleteOne(projectId));
+  };
+
   const onNewProjectClick = () => {
     history.push(`/${languageSlug}/control/what/new`);
   };
@@ -55,6 +62,7 @@ const ControlWhat: React.FC = () => {
       projects={projectsWithDates}
       renderContent={renderContent}
       onSortChange={onSortChange}
+      onDeleteProjectClick={onDeleteProjectClick}
       onNewProjectClick={onNewProjectClick}
     />
   );
