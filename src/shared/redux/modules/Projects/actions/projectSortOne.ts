@@ -1,4 +1,6 @@
+import { sortableSort } from 'Root/src/shared/components/Sortable/sortableSort';
 import HttpClient from 'Root/src/shared/services/HttpClient';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   PROJECT_SORT_ONE_FAILURE,
@@ -21,12 +23,23 @@ export const projectSortOne =
 
     const { Projects: projectsBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
+    const sorted = sortableSort<Array<ProjectState>>({
+      data: Object.values(projectsBeforeRequest.byKey),
+      id: projectId,
+      order: order,
+    });
+    const sortedIds = sorted.map((item) => item.id);
+
     try {
       dispatch({
         type: PROJECT_SORT_ONE_REQUEST,
         payload: {
           ...projectsBeforeRequest,
+          byKey: serializerFromArrayToByKey<ProjectState, ProjectState>({
+            data: sorted,
+          }),
           loading: true,
+          currentIds: sortedIds,
         },
       });
 

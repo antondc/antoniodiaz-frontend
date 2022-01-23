@@ -4,9 +4,10 @@ import Edit from 'Assets/svg/edit-2.svg';
 import Move from 'Assets/svg/move-2.svg';
 import Cross from 'Assets/svg/plusCircle.svg';
 import A from 'Components/A';
+import { Sortable, SortableSortProps } from 'Components/Sortable';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Button, Fade, Hr, Img, SortableItem, SortableList } from '@antoniodcorrea/components';
+import { Button, Fade, Hr, Img } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 
@@ -15,7 +16,8 @@ interface Props {
   glossary: GlossaryState;
   projects: Array<ProjectState & { date: string }>;
   renderContent: boolean;
-  onSortChange: (data: SortableItem) => void;
+  sortableDisabled: boolean;
+  onSortChange: (data: SortableSortProps) => void;
   onNewProjectClick: () => void;
   onDeleteProjectClick: (projectId: number) => void;
 }
@@ -25,6 +27,7 @@ export const ControlWhat: React.FC<Props> = ({
   glossary,
   projects,
   renderContent,
+  sortableDisabled,
   onSortChange,
   onNewProjectClick,
   onDeleteProjectClick,
@@ -32,14 +35,15 @@ export const ControlWhat: React.FC<Props> = ({
   <Fade mounted={renderContent} appear>
     <div className="ControlWhat">
       <h1 className="ControlWhat-title">{glossary?.control}What</h1>
-      <SortableList
-        id="ControlWhat-sortable"
-        className="ControlWhat-sortable"
-        onSortChange={onSortChange}
-        handleClass="ControlWhat-sortableHandle"
-      >
+      <Sortable className="ControlWhat-sortable" onSortEnd={onSortChange} disabled={sortableDisabled}>
         {projects?.map((item) => (
-          <li className="ControlWhat-sortableItem" data-id={item.id} data-order={item.order} key={item.order}>
+          <div
+            className="ControlWhat-sortableItem"
+            key={item.id}
+            data-id={item.id}
+            data-order={item.order}
+            style={{ border: '1px solid', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
             <Img
               className="ControlWhat-sortableImage"
               title={item.title}
@@ -63,13 +67,16 @@ export const ControlWhat: React.FC<Props> = ({
               </A>
               <Cross
                 className="ControlWhat-sortableIcon ControlWhat-sortableCross"
-                onClick={() => onDeleteProjectClick(item?.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onDeleteProjectClick(item?.id);
+                }}
               />
               <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
             </div>
-          </li>
+          </div>
         ))}
-      </SortableList>
+      </Sortable>
       <Hr spacer size="big" />
       <Button text="Create new project" onClick={onNewProjectClick} />
       <Hr spacer size="big" />

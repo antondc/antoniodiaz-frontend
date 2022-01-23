@@ -5,6 +5,8 @@ import {
   PROJECT_DELETE_ONE_FAILURE,
   PROJECT_DELETE_ONE_REQUEST,
   PROJECT_DELETE_ONE_SUCCEED,
+  PROJECT_SORT_ONE_FAILURE,
+  PROJECT_SORT_ONE_REQUEST,
   PROJECT_UPDATE_ONE_FAILURE,
   PROJECT_UPDATE_ONE_REQUEST,
   PROJECT_UPDATE_ONE_SUCCEED,
@@ -46,6 +48,8 @@ export const Projects = (state = initialState, action: ProjectsActions): Project
     case PROJECTS_PAGE_UPLOAD_REQUEST:
     case PROJECTS_PAGE_UPLOAD_SUCCEED:
     case PROJECTS_PAGE_UPLOAD_FAILURE:
+    case PROJECT_SORT_ONE_REQUEST:
+    case PROJECT_SORT_ONE_FAILURE:
       return Object.assign({}, state, action.payload);
 
     default:

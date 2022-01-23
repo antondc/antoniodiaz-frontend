@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { SortableSortProps } from 'Components/Sortable';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
@@ -9,7 +10,6 @@ import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { projectSortOne } from 'Modules/Projects/actions/projectSortOne';
 import { selectProjectsCurrent } from 'Modules/Projects/selectors/selectProjectsCurrent';
 import history from 'Services/History';
-import { SortableItem } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { ControlWhat as ControlWhatUi } from './ControlWhat';
 
@@ -17,6 +17,7 @@ import './ControlWhat.less';
 
 const ControlWhat: React.FC = () => {
   const dispatch = useDispatch();
+  const [sortableDisabled, setSortableDisabled] = useState(false);
   const languageSlug = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsCurrent);
@@ -32,13 +33,15 @@ const ControlWhat: React.FC = () => {
     };
   });
 
-  const onSortChange = (sortableItem: SortableItem) => {
-    dispatch(
+  const onSortChange = async (sortableItem: SortableSortProps) => {
+    setSortableDisabled(true);
+    await dispatch(
       projectSortOne({
         projectId: sortableItem.id,
         order: sortableItem.order,
       })
     );
+    setSortableDisabled(false);
   };
 
   const onDeleteProjectClick = (projectId: number) => {
@@ -64,6 +67,7 @@ const ControlWhat: React.FC = () => {
       onSortChange={onSortChange}
       onDeleteProjectClick={onDeleteProjectClick}
       onNewProjectClick={onNewProjectClick}
+      sortableDisabled={sortableDisabled}
     />
   );
 };
