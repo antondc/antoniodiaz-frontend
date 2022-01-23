@@ -1,5 +1,5 @@
-import { sortArrayByIdAndOrder } from 'Components/Sortable';
 import HttpClient from 'Root/src/shared/services/HttpClient';
+import { sortArrayByIdAndOrder } from '@antoniodcorrea/components';
 import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {

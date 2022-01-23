@@ -4,10 +4,9 @@ import Edit from 'Assets/svg/edit-2.svg';
 import Move from 'Assets/svg/move-2.svg';
 import Cross from 'Assets/svg/plusCircle.svg';
 import A from 'Components/A';
-import { Sortable, SortableSortProps } from 'Components/Sortable';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Button, Fade, Hr, Img } from '@antoniodcorrea/components';
+import { Button, Fade, Hr, Img, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 
