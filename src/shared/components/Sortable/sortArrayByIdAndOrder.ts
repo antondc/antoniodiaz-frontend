@@ -3,7 +3,7 @@ type SortableDataItem = {
   order: number;
 };
 
-export const sortableSort = <T extends Array<SortableDataItem>>({
+export const sortArrayByIdAndOrder = <T extends Array<SortableDataItem>>({
   data,
   id,
   order,

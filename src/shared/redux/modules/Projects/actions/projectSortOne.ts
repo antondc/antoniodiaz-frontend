@@ -1,4 +1,4 @@
-import { sortableSort } from 'Root/src/shared/components/Sortable/sortableSort';
+import { sortArrayByIdAndOrder } from 'Components/Sortable';
 import HttpClient from 'Root/src/shared/services/HttpClient';
 import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
@@ -23,10 +23,10 @@ export const projectSortOne =
 
     const { Projects: projectsBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
-    const sorted = sortableSort<Array<ProjectState>>({
+    const sorted = sortArrayByIdAndOrder<Array<ProjectState>>({
       data: Object.values(projectsBeforeRequest.byKey),
       id: projectId,
-      order: order,
+      order,
     });
     const sortedIds = sorted.map((item) => item.id);
 
