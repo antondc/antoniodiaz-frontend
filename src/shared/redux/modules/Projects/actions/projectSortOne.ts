@@ -1,6 +1,5 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { sortArrayByIdAndOrder } from '@antoniodcorrea/components';
-import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
+import { serializerFromArrayToByKey, sortArrayByIdAndOrder } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   PROJECT_SORT_ONE_FAILURE,
