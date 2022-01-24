@@ -3,7 +3,7 @@ import React from 'react';
 import A from 'Components/A';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { Button, Fade, SortableItem, SortableList } from '@antoniodcorrea/components';
+import { Button, Fade, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './ControlWhen.less';
 
@@ -11,7 +11,7 @@ interface Props {
   glossary: GlossaryState;
   articles: Array<ArticleState & { date: string }>;
   renderContent: boolean;
-  onSortChange: (data: SortableItem) => void;
+  onSortChange: (data: SortableSortProps) => void;
   onNewArticleClick: () => void;
 }
 
@@ -25,13 +25,7 @@ export const ControlWhen: React.FC<Props> = ({
   <Fade mounted={renderContent} appear>
     <div className="ControlWhen">
       <h1 className="ControlWhen-title">{glossary?.control}When</h1>
-      <SortableList
-        id="ControlWhen-sortable"
-        className="ControlWhen-sortable"
-        onSortChange={onSortChange}
-        handleClass="ControlWhen-sortableItemHandle"
-        ghostClass="ControlWhen-ghost"
-      >
+      <Sortable className="ControlWhen-sortable" onSortEnd={onSortChange}>
         {articles?.map((item) => (
           <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
             <span className="ControlWhen-sortableItemLeft">
@@ -43,7 +37,7 @@ export const ControlWhen: React.FC<Props> = ({
             <span className="ControlWhen-sortableItemHandle">≡</span>
           </li>
         ))}
-      </SortableList>
+      </Sortable>
 
       <Button text="Create new article" onClick={onNewArticleClick} />
     </div>

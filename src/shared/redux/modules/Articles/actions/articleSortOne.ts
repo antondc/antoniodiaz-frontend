@@ -1,4 +1,5 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
+import { serializerFromArrayToByKey, sortArrayByIdAndOrder } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   ARTICLE_SORT_ONE_FAILURE,
@@ -19,12 +20,23 @@ export const articleSortOne =
   async (dispatch, getState): Promise<ArticleState> => {
     const { Articles: articlesBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
+    const sorted = sortArrayByIdAndOrder<Array<ArticleState>>({
+      data: Object.values(articlesBeforeRequest.byKey),
+      id: articleId,
+      order,
+    });
+    const sortedIds = sorted.map((item) => item.id);
+
     try {
       dispatch({
         type: ARTICLE_SORT_ONE_REQUEST,
         payload: {
           ...articlesBeforeRequest,
+          byKey: serializerFromArrayToByKey<ArticleState, ArticleState>({
+            data: sorted,
+          }),
           loading: true,
+          currentIds: sortedIds,
         },
       });
 

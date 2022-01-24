@@ -8,7 +8,7 @@ import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrent
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import history from 'Services/History';
-import { SortableItem } from '@antoniodcorrea/components';
+import { SortableSortProps } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { ControlWhen as ControlWhenUi } from './ControlWhen';
 
@@ -31,7 +31,7 @@ const ControlWhen: React.FC = () => {
     };
   });
 
-  const onSortChange = async (sortableItem: SortableItem) => {
+  const onSortChange = async (sortableItem: SortableSortProps) => {
     await dispatch(
       articleSortOne({
         articleId: sortableItem.id,
