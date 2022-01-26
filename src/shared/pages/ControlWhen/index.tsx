@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { articleDeleteOne } from 'Modules/Articles/actions/articleDeleteOne';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleSortOne } from 'Modules/Articles/actions/articleSortOne';
 import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
@@ -56,6 +57,12 @@ const ControlWhen: React.FC = () => {
     dispatch(articlesLoad());
   };
 
+  const onDeleteArticleClick = (projectId: string) => {
+    if (!confirm('Are you sure?')) return;
+
+    dispatch(articleDeleteOne(Number(projectId)));
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -93,6 +100,7 @@ const ControlWhen: React.FC = () => {
       articles={articlesWithDates}
       renderContent={renderContent}
       onSortChange={onSortChange}
+      onDeleteArticleClick={onDeleteArticleClick}
       onNewArticleClick={onNewArticleClick}
       subtitleValue={subtitleValue}
       subtitleError={subtitleError}

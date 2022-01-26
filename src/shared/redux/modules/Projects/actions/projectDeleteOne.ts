@@ -1,4 +1,5 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
+import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   PROJECT_DELETE_ONE_FAILURE,
@@ -15,10 +16,15 @@ export const projectDeleteOne =
     const { Projects: projectsBeforeRequest, Languages: languagesBeforeRequest } = getState();
 
     try {
+      const projectsWithoutDeletedProject = Object.values(projectsBeforeRequest.byKey).filter(
+        (item) => item.id !== projectId
+      );
+
       dispatch({
         type: PROJECT_DELETE_ONE_REQUEST,
         payload: {
-          ...projectsBeforeRequest,
+          byKey: serializerFromArrayToByKey<ProjectState, ProjectState>({ data: projectsWithoutDeletedProject }),
+          currentIds: projectsWithoutDeletedProject.map((item) => item.id),
           loading: true,
         },
       });
@@ -28,17 +34,11 @@ export const projectDeleteOne =
       );
 
       const { Projects: projectsAfterApiCall } = getState();
-      const projectIdsWithoutProjectId = projectsAfterApiCall.currentIds.filter((item) => item !== projectId);
 
       dispatch({
         type: PROJECT_DELETE_ONE_SUCCEED,
         payload: {
           ...projectsAfterApiCall,
-          byKey: {
-            ...projectsAfterApiCall.byKey,
-            [projectId]: undefined,
-          },
-          currentIds: projectIdsWithoutProjectId,
           loading: false,
         },
       });

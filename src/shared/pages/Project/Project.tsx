@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 
 import BaseCarousel from 'Components/BaseCarousel';
 import { ProjectState } from 'Modules/Projects/projects.types';
@@ -32,5 +33,8 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
         ))}
       </BaseCarousel>
     )}
+    <div className="What-content" id="Article-content">
+      {ReactHtmlParser(project?.contentHtml)}
+    </div>
   </div>
 );

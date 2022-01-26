@@ -32,7 +32,11 @@
   }
 
   &-sortableItemLeft {
-    //
+    display: flex;
+  }
+
+  &-sortableItemText {
+    padding-left: 24px;
   }
 
   &-sortableItemTitle {
@@ -50,9 +54,9 @@
   &-sortableItemHandle {
     display: flex;
     align-items: center;
-    padding: 0 8px 0 24px;
+    padding: 0 24px 0 8px;
     font-size: @fs-medium;
-    border-left: 1px solid @c-accentLight-hard;
+    border-right: 1px solid @c-accentLight-hard;
 
     &:hover {
       cursor: grab;
@@ -61,5 +65,24 @@
     &:active {
       cursor: grabbing;
     }
+  }
+
+  &-sortableItemRemove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px 0 22px;
+    font-size: @fs-medium;
+    border-left: 1px solid @c-accentLight-hard;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-sortableItemRemoveIcon {
+    height: 15px;
+    width: 15px;
+    fill: @c-accent;
   }
 }

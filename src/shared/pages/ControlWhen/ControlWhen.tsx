@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Cross from 'Assets/svg/cross.svg';
 import A from 'Components/A';
 import { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
 import { ArticleState } from 'Modules/Articles/articles.types';
@@ -14,6 +15,7 @@ interface Props {
   renderContent: boolean;
   onNewArticleClick: () => void;
   onSortChange: (data: SortableSortProps) => void;
+  onDeleteArticleClick: (projectId: string) => void;
   subtitleValue: string;
   subtitleError: string;
   onChangeSubtitle: (e: React.FormEvent<HTMLInputElement>) => void;
@@ -32,6 +34,7 @@ export const ControlWhen: React.FC<Props> = ({
   subtitleError,
   onChangeSubtitle,
   onSortChange,
+  onDeleteArticleClick,
   onSubmit,
   submitError,
   submitSuccess,
@@ -64,16 +67,21 @@ export const ControlWhen: React.FC<Props> = ({
           grow
         />
       </BaseFormSubmit>
-      <Sortable className="ControlWhen-sortable" onSortEnd={onSortChange}>
+      <Sortable className="ControlWhen-sortable" onSortEnd={onSortChange} onRemove={onDeleteArticleClick}>
         {articles?.map((item) => (
           <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
             <span className="ControlWhen-sortableItemLeft">
-              <A className="ControlWhen-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
-                {item.title}
-              </A>
-              <div className="ControlWhen-sortableItemDate">{item.date}</div>
+              <span className="ControlWhen-sortableItemHandle">≡</span>
+              <div className="ControlWhen-sortableItemText">
+                <A className="ControlWhen-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
+                  {item.title}
+                </A>
+                <div className="ControlWhen-sortableItemDate">{item.date}</div>
+              </div>
             </span>
-            <span className="ControlWhen-sortableItemHandle">≡</span>
+            <span className="ControlWhen-sortableItemRemove">
+              <Cross className="ControlWhen-sortableItemRemoveIcon" id="Remove" />
+            </span>
           </li>
         ))}
       </Sortable>

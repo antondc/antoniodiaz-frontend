@@ -13,7 +13,7 @@ const What: React.FC = () => {
 
   useEffect(() => {
     dispatch(projectsLoad());
-  }, []);
+  }, [glossary]);
 
   return <WhatUi glossary={glossary} projects={projects} />;
 };

@@ -60,10 +60,10 @@ const ControlWhat: React.FC = () => {
     setSortableDisabled(false);
   };
 
-  const onDeleteProjectClick = (projectId: number) => {
+  const onDeleteProjectClick = (projectId: string) => {
     if (!confirm('Are you sure?')) return;
 
-    dispatch(projectDeleteOne(projectId));
+    dispatch(projectDeleteOne(Number(projectId)));
   };
 
   const onNewProjectClick = () => {

@@ -12,6 +12,9 @@ export const ARTICLE_CREATE_ONE_FAILURE = 'ARTICLE_CREATE_ONE_FAILURE';
 export const ARTICLE_SORT_ONE_REQUEST = 'ARTICLE_SORT_ONE_REQUEST';
 export const ARTICLE_SORT_ONE_SUCCEED = 'ARTICLE_SORT_ONE_SUCCEED';
 export const ARTICLE_SORT_ONE_FAILURE = 'ARTICLE_SORT_ONE_FAILURE';
+export const ARTICLE_DELETE_ONE_REQUEST = 'ARTICLE_DELETE_ONE_REQUEST';
+export const ARTICLE_DELETE_ONE_SUCCEED = 'ARTICLE_DELETE_ONE_SUCCEED';
+export const ARTICLE_DELETE_ONE_FAILURE = 'ARTICLE_DELETE_ONE_FAILURE';
 
 export interface ArticleTranslationState {
   title: string;
@@ -126,6 +129,21 @@ interface ArticleSortOneFailureAction {
   payload: Partial<ArticlesState>;
 }
 
+interface ArticleDeleteOneRequestAction {
+  type: typeof ARTICLE_DELETE_ONE_REQUEST;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleDeleteOneSuccessAction {
+  type: typeof ARTICLE_DELETE_ONE_SUCCEED;
+  payload: Partial<ArticlesState>;
+}
+
+interface ArticleDeleteOneFailureAction {
+  type: typeof ARTICLE_DELETE_ONE_FAILURE;
+  payload: Partial<ArticlesState>;
+}
+
 export type ArticlesActions =
   | ArticlesLoadRequestAction
   | ArticlesLoadSuccessAction
@@ -138,4 +156,7 @@ export type ArticlesActions =
   | ArticleCreateOneFailureAction
   | ArticleSortOneRequestAction
   | ArticleSortOneSuccessAction
-  | ArticleSortOneFailureAction;
+  | ArticleSortOneFailureAction
+  | ArticleDeleteOneRequestAction
+  | ArticleDeleteOneSuccessAction
+  | ArticleDeleteOneFailureAction;
