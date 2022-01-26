@@ -15,17 +15,29 @@ export const languagesUpdateCurrentLanguage =
     const { Languages: languagesBeforeRequest } = getState();
 
     try {
+      const glossaryToSave = {
+        ...languagesBeforeRequest.currentLanguage.glossary,
+        ...glossaryData,
+      };
+
       dispatch({
         type: LANGUAGES_UPDATE_REQUEST,
         payload: {
           ...languagesBeforeRequest,
+          currentLanguage: {
+            ...languagesBeforeRequest.currentLanguage,
+            glossary: {
+              ...languagesBeforeRequest.currentLanguage.glossary,
+              ...glossaryData,
+            },
+          },
           loading: true,
         },
       });
 
       const { data } = await HttpClient.put<void, { data: { attributes: LanguageState } }>(
         `${languagesBeforeRequest.currentLanguage.slug}/languages/${languagesBeforeRequest.currentLanguage.slug}`,
-        glossaryData
+        { glossary: glossaryToSave }
       );
 
       const { Languages: languagesAfterApiCall } = getState();

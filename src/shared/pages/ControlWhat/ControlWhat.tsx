@@ -4,9 +4,10 @@ import Edit from 'Assets/svg/edit-2.svg';
 import Move from 'Assets/svg/move-2.svg';
 import Cross from 'Assets/svg/plusCircle.svg';
 import A from 'Components/A';
+import { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Button, Fade, Hr, Img, Sortable, SortableSortProps } from '@antoniodcorrea/components';
+import { Button, Fade, Hr, Img, Input, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 
@@ -15,10 +16,17 @@ interface Props {
   glossary: GlossaryState;
   projects: Array<ProjectState & { date: string }>;
   renderContent: boolean;
+  subtitleValue: string;
+  subtitleError: string;
+  onChangeSubtitle: (e: React.FormEvent<HTMLInputElement>) => void;
   sortableDisabled: boolean;
   onSortChange: (data: SortableSortProps) => void;
   onNewProjectClick: () => void;
   onDeleteProjectClick: (projectId: number) => void;
+  submitError: string;
+  submitSuccess: boolean;
+  submitting: boolean;
+  onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 
 export const ControlWhat: React.FC<Props> = ({
@@ -26,14 +34,45 @@ export const ControlWhat: React.FC<Props> = ({
   glossary,
   projects,
   renderContent,
+  subtitleValue,
+  subtitleError,
+  onChangeSubtitle,
   sortableDisabled,
   onSortChange,
   onNewProjectClick,
   onDeleteProjectClick,
+  onSubmit,
+  submitError,
+  submitSuccess,
+  submitting,
 }) => (
   <Fade mounted={renderContent} appear>
     <div className="ControlWhat">
       <h1 className="ControlWhat-title">{glossary?.control}What</h1>
+      <BaseFormField>
+        <Input
+          name="subtitle"
+          type="text"
+          label="Name or Email"
+          onChange={onChangeSubtitle}
+          onBlur={onChangeSubtitle}
+          value={subtitleValue}
+          error={subtitleError}
+          grow
+        />
+      </BaseFormField>
+      <BaseFormSubmit>
+        <Button
+          text="Submit"
+          type="submit"
+          onClick={onSubmit}
+          error={!!submitError}
+          success={submitSuccess}
+          disabled={false}
+          loading={submitting}
+          grow
+        />
+      </BaseFormSubmit>
       <Sortable className="ControlWhat-sortable" onSortEnd={onSortChange} disabled={sortableDisabled}>
         {projects?.map((item) => (
           <div
