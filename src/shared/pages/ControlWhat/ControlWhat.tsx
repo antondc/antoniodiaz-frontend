@@ -73,7 +73,16 @@ export const ControlWhat: React.FC<Props> = ({
           grow
         />
       </BaseFormSubmit>
-      <Sortable className="ControlWhat-sortable" onSortEnd={onSortChange} disabled={sortableDisabled}>
+      <Sortable
+        className="ControlWhat-sortable"
+        onSortEnd={onSortChange}
+        disabled={sortableDisabled}
+        onRemove={(e) => {
+          console.log('---------------');
+          console.log('onRemove: ', e);
+          console.log('---------------');
+        }}
+      >
         {projects?.map((item) => (
           <div
             className="ControlWhat-sortableItem"
@@ -105,6 +114,7 @@ export const ControlWhat: React.FC<Props> = ({
               </A>
               <Cross
                 className="ControlWhat-sortableIcon ControlWhat-sortableCross"
+                id="Remove"
                 onClick={(e) => {
                   e.preventDefault();
                   onDeleteProjectClick(item?.id);
