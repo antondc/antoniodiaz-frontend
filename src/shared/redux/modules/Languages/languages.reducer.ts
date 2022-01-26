@@ -26,6 +26,7 @@ const initialState: LanguagesState = {
       what: '',
       whatSubtitle: '',
       when: '',
+      whenSubtitle: '',
       where: '',
       post: '',
       serverError: '',

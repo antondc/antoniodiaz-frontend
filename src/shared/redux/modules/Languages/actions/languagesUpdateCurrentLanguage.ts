@@ -49,7 +49,7 @@ export const languagesUpdateCurrentLanguage =
           ...languagesAfterApiCall,
           byKey: {
             ...languagesAfterApiCall.byKey,
-            [data.attributes.id]: data.attributes,
+            [data.attributes.slug]: data.attributes,
           },
           currentLanguage: data.attributes,
           loading: false,

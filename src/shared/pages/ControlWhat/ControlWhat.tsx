@@ -48,7 +48,7 @@ export const ControlWhat: React.FC<Props> = ({
 }) => (
   <Fade mounted={renderContent} appear>
     <div className="ControlWhat">
-      <h1 className="ControlWhat-title">{glossary?.control}What</h1>
+      <h1 className="ControlWhat-title">{glossary?.what}</h1>
       <BaseFormField>
         <Input
           name="subtitle"

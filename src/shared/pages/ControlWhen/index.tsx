@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleSortOne } from 'Modules/Articles/actions/articleSortOne';
 import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
+import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
@@ -16,6 +17,11 @@ import './ControlWhen.less';
 
 const ControlWhen: React.FC = () => {
   const dispatch = useDispatch();
+  const [subtitleValue, setSubtitleValue] = useState<string>('');
+  const [subtitleError, setSubtitleError] = useState<string>('');
+  const [submitError, setSubmitError] = useState<string>(undefined);
+  const [submitting, setSubmitting] = useState<boolean>(undefined);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const language = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const articles = useSelector(selectArticlesCurrent);
@@ -31,6 +37,15 @@ const ControlWhen: React.FC = () => {
     };
   });
 
+  const onChangeSubtitle = async (e: React.FormEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+
+    setSubtitleValue(value);
+    setSubmitSuccess(undefined);
+    setSubmitting(undefined);
+    setSubtitleError(undefined);
+  };
+
   const onSortChange = async (sortableItem: SortableSortProps) => {
     await dispatch(
       articleSortOne({
@@ -41,6 +56,25 @@ const ControlWhen: React.FC = () => {
     dispatch(articlesLoad());
   };
 
+  const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    setSubmitting(true);
+
+    try {
+      const glossaryData = {
+        whenSubtitle: subtitleValue,
+      };
+      dispatch(languagesUpdateCurrentLanguage(glossaryData));
+
+      setSubmitSuccess(true);
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const onNewArticleClick = () => {
     history.push(`/${language}/control/when/new`);
   };
@@ -49,6 +83,10 @@ const ControlWhen: React.FC = () => {
     dispatch(articlesLoad());
   }, [language]);
 
+  useEffect(() => {
+    setSubtitleValue(glossary.whenSubtitle);
+  }, [glossary]);
+
   return (
     <ControlWhenUi
       glossary={glossary}
@@ -56,6 +94,13 @@ const ControlWhen: React.FC = () => {
       renderContent={renderContent}
       onSortChange={onSortChange}
       onNewArticleClick={onNewArticleClick}
+      subtitleValue={subtitleValue}
+      subtitleError={subtitleError}
+      onChangeSubtitle={onChangeSubtitle}
+      onSubmit={onSubmit}
+      submitError={submitError}
+      submitSuccess={submitSuccess}
+      submitting={submitting}
     />
   );
 };
