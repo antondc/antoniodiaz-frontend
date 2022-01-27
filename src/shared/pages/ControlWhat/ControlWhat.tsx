@@ -85,7 +85,6 @@ export const ControlWhat: React.FC<Props> = ({
             key={item.id}
             data-id={item.id}
             data-order={item.order}
-            style={{ border: '1px solid', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             <Img
               className="ControlWhat-sortableImage"
