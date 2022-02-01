@@ -2,19 +2,19 @@
   "development": {
     "PORT_HTTP": 80,
     "PORT_HTTPS": 443,
-    "API_URL": "https://dev.antoniodiaz.me:3000/api/v1/",
+    "API_URL": "https://www.dev.antoniodiaz.me:3000/api/v1/",
     "DOMAIN": "dev.antoniodiaz.me"
   },
   "staging": {
     "PORT_HTTP": 4005,
     "PORT_HTTPS": 4006,
-    "API_URL": "https://api-staging.antoniodiaz.me/api/v1/",
+    "API_URL": "https://www.api-staging.antoniodiaz.me/api/v1/",
     "DOMAIN": "staging.antoniodiaz.me"
   },
   "production": {
     "PORT_HTTP": 4007,
     "PORT_HTTPS": 4008,
-    "API_URL": "https://api.antoniodiaz.me/api/v1/",
+    "API_URL": "https://www.api.antoniodiaz.me/api/v1/",
     "DOMAIN": "antoniodiaz.me"
   },
   "ENABLE_ISOMORPHISM": true,
