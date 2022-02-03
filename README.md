@@ -46,7 +46,7 @@ Hot module reloading with `webpack-hot-middleware` and `webpack-dev-middleware.
       localityName_default        = MA
       organizationName            = AntonioDiaz
       organizationName_default    = AntonioDiaz
-      commonName                  = antoniodiaz.me
+      commonName                  = www.dev.antoniodiaz.me
       commonName_max              = 64
       commonName_default          = localhost
 
@@ -54,8 +54,7 @@ Hot module reloading with `webpack-hot-middleware` and `webpack-dev-middleware.
       subjectAltName = @alt_names
 
       [alt_names]
-      DNS.1   = antoniodiaz.me
-      DNS.2   = dev.antoniodiaz.me
+      DNS.1   = www.antoniodiaz.me
 
 Create a directory ./ssl for your project close to server, and place ssl.conf.
 Open this folder.
