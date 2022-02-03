@@ -33,7 +33,7 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
         ))}
       </BaseCarousel>
     )}
-    <div className="What-content" id="Article-content">
+    <div className="Project-content" id="Project-content">
       {ReactHtmlParser(project?.contentHtml)}
     </div>
   </div>
