@@ -23,6 +23,7 @@ interface Props {
   onCarouselChange: (images) => void;
   onFileUpload: (file: File) => Promise<{ image: string }>;
   onFileRemove: (src: string) => Promise<void>;
+  carouselPercentCompleted: number;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUploadService: ImageUpload;
@@ -46,6 +47,7 @@ export const ControlProject: React.FC<Props> = ({
   onCarouselChange,
   onFileUpload,
   onFileRemove,
+  carouselPercentCompleted,
   textEditorInitialValue,
   onChangeTextEditorValue,
   publishedValue,
@@ -78,6 +80,7 @@ export const ControlProject: React.FC<Props> = ({
         onChange={onCarouselChange}
         onFileUpload={onFileUpload}
         onFileRemove={onFileRemove}
+        percentCompleted={carouselPercentCompleted}
       />
       <Hr spacer />
       <BaseFormField>

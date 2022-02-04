@@ -23,7 +23,7 @@ const ControlProject: React.FC = () => {
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
   const [carouselImages, setCarouselImages] = useState<Array<CarouselFieldSlide>>([]);
-  const [_, setCarouselPercentCompleted] = useState<number>(0);
+  const [carouselPercentCompleted, setCarouselPercentCompleted] = useState<number>(0);
   const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(undefined);
   const [publishError, setPublishError] = useState<string>(undefined);
   const [publishing, setPublishing] = useState<boolean>(undefined);
@@ -154,6 +154,7 @@ const ControlProject: React.FC = () => {
       onCarouselChange={onCarouselChange}
       onFileRemove={onFileRemove}
       onFileUpload={onFileUpload}
+      carouselPercentCompleted={carouselPercentCompleted}
       textEditorInitialValue={project?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
