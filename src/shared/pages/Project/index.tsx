@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useLoadImages } from 'Hooks/loadImages';
+import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
@@ -18,6 +19,7 @@ export type SlideItem = {
 
 const Project: React.FC = () => {
   const dispatch = useDispatch();
+  const language = useSelector(selectCurrentLanguageSlug);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
@@ -39,7 +41,7 @@ const Project: React.FC = () => {
 
   useEffect(() => {
     dispatch(projectsLoad());
-  }, []);
+  }, [language]);
 
   if (!project?.id) return <div />;
 
