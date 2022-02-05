@@ -24,14 +24,14 @@ export const What: React.FC<Props> = ({ glossary, projects }) => (
               className="What-gridImage"
               title={item.title}
               alt={item.title}
-              src={item.carousel[0]?.image['w600h600']}
-              sizes="w1200h1200"
+              src={item.carousel[0]?.image['600w']}
+              sizes="1200w"
               srcSet={
-                item.carousel[0]?.image['w200h200'] +
+                item.carousel[0]?.image['200w'] +
                 ' 200w, ' +
-                item.carousel[0]?.image['w600h600'] +
+                item.carousel[0]?.image['600w'] +
                 ' 600w, ' +
-                item.carousel[0]?.image['w1200h1200'] +
+                item.carousel[0]?.image['1200w'] +
                 ' 1200w, '
               }
             />

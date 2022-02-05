@@ -24,12 +24,11 @@ const Project: React.FC = () => {
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
   const carouselSlides: SlideItem[] = project?.carousel?.map((item) => ({
-    src: item?.image['w600h600'],
+    src: item?.image['600w'],
     srcSet: Object.entries(item?.image)
-      .filter(([key]) => key !== 'original')
-      .map(([key, value]) => `${value} ${key.replace('w', '').split('h')[0]}w`)
+      .map(([key, value]) => `${value} ${key}`)
       .join(', '),
-    sizes: 'w1200h1200',
+    sizes: '1200w',
     title: item?.title,
     alt: item?.title,
   }));
