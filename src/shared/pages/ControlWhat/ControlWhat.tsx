@@ -80,27 +80,20 @@ export const ControlWhat: React.FC<Props> = ({
         onRemove={onDeleteProjectClick}
       >
         {projects?.map((item) => (
-          <div
-            className="ControlWhat-sortableItem"
-            key={item.id}
-            data-id={item.id}
-            data-order={item.order}
-          >
+          <div className="ControlWhat-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
             <Img
               className="ControlWhat-sortableImage"
               title={item.title}
               alt={item.title}
-              src={item.carousel[0]?.images['original']}
-              sizes="600px"
+              src={item.carousel[0]?.image['w200h200']}
+              sizes="w1200h1200"
               srcSet={
-                item.carousel[0]?.images['w200'] +
+                item.carousel[0]?.image['w200h200'] +
                 ' 200w, ' +
-                item.carousel[0]?.images['w400'] +
-                ' 400w, ' +
-                item.carousel[0]?.images['w1200'] +
-                ' 1200w, ' +
-                item.carousel[0]?.images['w2400'] +
-                ' 2400w, '
+                item.carousel[0]?.image['w600h600'] +
+                ' 600w, ' +
+                item.carousel[0]?.image['w1200h1200'] +
+                ' 1200w, '
               }
             />
             <div className="ControlWhat-sortableIcons">

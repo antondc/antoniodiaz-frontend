@@ -31,7 +31,7 @@ type Slide = {
   id: number;
   order: number;
   title: string;
-  images: {
+  image: {
     original: string;
     [key: string]: string;
   };
