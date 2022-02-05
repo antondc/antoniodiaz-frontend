@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
+import { FILE_SIZE_LIMIT } from 'Root/src/shared/constants';
 import { ImageUpload } from 'Services/ImageUpload';
 import {
   Button,
@@ -81,6 +82,7 @@ export const ControlProject: React.FC<Props> = ({
         onFileUpload={onFileUpload}
         onFileRemove={onFileRemove}
         percentCompleted={carouselPercentCompleted}
+        maxSize={FILE_SIZE_LIMIT}
       />
       <Hr spacer />
       <BaseFormField>
