@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
-import { selectProjectsLoading } from 'Modules/Projects/selectors/selectProjectLoading';
+import { selectProjectSaving } from 'Modules/Projects/selectors/selectProjectSaving';
 import { pushNewRoute } from 'Modules/Routes/actions/pushNewRoute';
 import { RouteState } from 'Modules/Routes/routes.types';
 import { selectCurrentPathAndQuery } from 'Modules/Routes/selectors/selectCurrentPathAndQuery';
@@ -34,8 +34,9 @@ const Layout: React.FC<Props> = ({ location }) => {
   const languageLoading = useSelector(selectLanguageLoading);
   const uiScreenLocked = useSelector(selectUiScreenLocked);
   const uiScreenMobileLocked = useSelector(selectUiScreenMobileLocked);
-  const projectsLoading = useSelector(selectProjectsLoading);
-  const renderLoader = !!languageLoading || !!projectsLoading; /* || otherVariables */
+  const projectSaving = useSelector(selectProjectSaving);
+  const renderLoader = !!projectSaving; /* || otherVariables */
+  const renderLayOver = !!languageLoading; /* || otherVariables */
   const routeName = useSelector(selectCurrentRouteName);
   const currentRoute = useSelector(selectCurrentRoute);
   const control = currentRoute.auth;
@@ -60,20 +61,20 @@ const Layout: React.FC<Props> = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    if (uiScreenLocked || renderLoader) {
+    if (uiScreenLocked || renderLoader || renderLayOver) {
       document.body.classList.add('scrollLocked');
     } else {
       document.body.classList.remove('scrollLocked');
     }
-  }, [uiScreenLocked, renderLoader]);
+  }, [uiScreenLocked, renderLoader, renderLayOver]);
 
   useEffect(() => {
-    if (uiScreenMobileLocked || renderLoader) {
+    if (uiScreenMobileLocked || renderLoader || renderLayOver) {
       document.body.classList.add('scrollMobileLocked');
     } else {
       document.body.classList.remove('scrollMobileLocked');
     }
-  }, [uiScreenMobileLocked, renderLoader]);
+  }, [uiScreenMobileLocked, renderLoader, renderLayOver]);
 
   useEffect(() => {
     if (currentPathAndQuery === locationPathAndSearchQuery) return; // For first render: if the route coming from server is the same as the one rendered by client, return
@@ -101,7 +102,15 @@ const Layout: React.FC<Props> = ({ location }) => {
     dispatch(userLoad(session?.id));
   }, [session?.id]);
 
-  return <LayoutUi renderLoader={renderLoader} location={location} routeName={routeName} control={control} />;
+  return (
+    <LayoutUi
+      renderLayOver={renderLayOver}
+      renderLoader={renderLoader}
+      location={location}
+      routeName={routeName}
+      control={control}
+    />
+  );
 };
 
 export default Layout;

@@ -57,6 +57,7 @@ export interface ProjectsState {
   };
   currentIds?: number[];
   loading?: boolean;
+  saving?: boolean;
   meta?: {
     totalItems?: number;
     sort?: string;

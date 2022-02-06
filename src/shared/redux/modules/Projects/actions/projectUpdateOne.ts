@@ -31,7 +31,7 @@ export const projectUpdateOne =
               ...projectData,
             },
           },
-          loading: true,
+          saving: true,
         },
       });
 
@@ -51,7 +51,7 @@ export const projectUpdateOne =
             ...projectsAfterApiCall.byKey,
             [projectId]: project,
           },
-          loading: false,
+          saving: false,
         },
       });
 
