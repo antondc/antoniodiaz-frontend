@@ -60,20 +60,20 @@ const Layout: React.FC<Props> = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    if (uiScreenLocked) {
+    if (uiScreenLocked || renderLoader) {
       document.body.classList.add('scrollLocked');
     } else {
       document.body.classList.remove('scrollLocked');
     }
-  }, [uiScreenLocked]);
+  }, [uiScreenLocked, renderLoader]);
 
   useEffect(() => {
-    if (uiScreenMobileLocked) {
+    if (uiScreenMobileLocked || renderLoader) {
       document.body.classList.add('scrollMobileLocked');
     } else {
       document.body.classList.remove('scrollMobileLocked');
     }
-  }, [uiScreenMobileLocked]);
+  }, [uiScreenMobileLocked, renderLoader]);
 
   useEffect(() => {
     if (currentPathAndQuery === locationPathAndSearchQuery) return; // For first render: if the route coming from server is the same as the one rendered by client, return

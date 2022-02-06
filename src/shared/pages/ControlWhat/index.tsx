@@ -24,7 +24,6 @@ const ControlWhat: React.FC = () => {
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
-
   const languageSlug = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsCurrent);

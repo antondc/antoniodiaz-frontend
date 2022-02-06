@@ -101,6 +101,13 @@ const ControlProject: React.FC = () => {
   };
 
   const onFileUpload = async (file): Promise<{ image: string }> => {
+    setSubmitError(undefined);
+    setSubmitting(undefined);
+    setSubmitSuccess(undefined);
+    setPublishError(undefined);
+    setPublishing(undefined);
+    setPublishingSuccess(undefined);
+
     if (!imageUploadService) {
       return;
     }
