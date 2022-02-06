@@ -81,28 +81,28 @@ export const ControlWhat: React.FC<Props> = ({
       >
         {projects?.map((item) => (
           <div className="ControlWhat-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
-            <Img
-              className="ControlWhat-sortableImage"
-              title={item.title}
-              alt={item.title}
-              src={item.carousel[0]?.image['200w']}
-              sizes="1200w"
-              srcSet={
-                item.carousel[0]?.image['200w'] +
-                ' 200w, ' +
-                item.carousel[0]?.image['600w'] +
-                ' 600w, ' +
-                item.carousel[0]?.image['1200w'] +
-                ' 1200w'
-              }
-            />
-            <div className="ControlWhat-sortableIcons">
-              <A href={`/${languageSlug}/control/what/${item?.id}`}>
+            <A href={`/${languageSlug}/control/what/${item?.id}`}>
+              <Img
+                className="ControlWhat-sortableImage"
+                title={item.title}
+                alt={item.title}
+                src={item.carousel[0]?.image['200w']}
+                sizes="1200w"
+                srcSet={
+                  item.carousel[0]?.image['200w'] +
+                  ' 200w, ' +
+                  item.carousel[0]?.image['600w'] +
+                  ' 600w, ' +
+                  item.carousel[0]?.image['1200w'] +
+                  ' 1200w'
+                }
+              />
+              <div className="ControlWhat-sortableIcons">
                 <Edit className="ControlWhat-sortableIcon ControlWhat-sortableEdit" />
-              </A>
-              <Cross className="ControlWhat-sortableIcon ControlWhat-sortableCross" id="Remove" />
-              <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
-            </div>
+                <Cross className="ControlWhat-sortableIcon ControlWhat-sortableCross" id="Remove" />
+                <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
+              </div>
+            </A>
           </div>
         ))}
       </Sortable>
