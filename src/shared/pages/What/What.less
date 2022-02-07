@@ -9,9 +9,8 @@
   min-height: calc(100vh ~'-' @header-height ~'-' 10px);
   padding: 170px 70px 50px;
 
-  .isMobile &,
-  .isTablet & {
-    padding: 50px 20px 20px;
+  @media @br-mobile {
+    padding: 50px 0 20px;
   }
 
   .isDesktop & {
@@ -35,8 +34,7 @@
       margin: 0 auto;
     }
 
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile {
       padding: 0;
     }
   }
@@ -75,10 +73,12 @@
   }
 
   &-gridWrapper {
-    .isDesktop & {
-      display: grid;
-      grid-gap: 10px;
-      grid-template-columns: auto auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto;
+
+    @media @br-mobile {
+      display: block;
     }
   }
 
@@ -120,7 +120,7 @@
       grid-gap: 10px;
       grid-template-columns: auto auto;
       width: 100%;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
     }
   }
 
