@@ -9,13 +9,17 @@
   padding: 15px 10px;
   font-size: @fs-medium;
 
-  .isMobile & {
-    top: 35px;
-    left: 0;
+  @media @br-mobile {
+    top: 5px;
+    left: -51px;
   }
 
   &--loggedIn {
     left: -43px;
+
+    @media @br-mobile {
+      left: -51px;
+    }
   }
 
   &-language {

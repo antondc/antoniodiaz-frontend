@@ -114,7 +114,12 @@
       margin-bottom: 40px;
     }
 
-    .isMobile & {
+    @media @br-mobile {
+      display: inline-block;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: auto auto;
+      width: 100%;
       margin-bottom: 25px;
     }
   }
