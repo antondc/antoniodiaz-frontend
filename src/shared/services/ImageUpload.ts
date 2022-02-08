@@ -6,21 +6,21 @@ const FILE_REMOVAL_ERROR_MESSAGE = 'Could not delete file from server';
 
 type ImageUploadResponse = {
   data: {
-    image: string;
+    file: string;
   };
 };
 
 type UploadFileToServer = (options: {
   file: File;
   setPercentCompleted: (number: number) => void;
-}) => Promise<{ image: string }>;
+}) => Promise<{ file: string }>;
 
 type RemoveFileFromServer = (options: { src: string; onRemoved: () => void }) => Promise<void>;
 
 export class ImageUpload {
   uploadFileToServer: UploadFileToServer = async ({ file, setPercentCompleted }) => {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('file', file);
 
     const config = {
       onUploadProgress: (progressEvent): void => {

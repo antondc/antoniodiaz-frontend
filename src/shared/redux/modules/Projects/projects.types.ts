@@ -49,6 +49,10 @@ export interface ProjectState {
   language: string;
   createdAt: number;
   updatedAt: number;
+  files: {
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface ProjectsState {

@@ -7,6 +7,7 @@ import { projectUpdateOne } from 'Modules/Projects/actions/projectUpdateOne';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
+import { ENDPOINT_API } from 'Root/webpack/constants';
 import { ImageUpload } from 'Services/ImageUpload';
 import { CarouselFieldSlide, TextEditorValue } from '@antoniodcorrea/components';
 import { noop } from '@antoniodcorrea/utils';
@@ -32,6 +33,9 @@ const ControlProject: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
+  const [pressFileName, setPressFileName] = useState<string>(undefined);
+  const [pressFileUrl, setPressFileUrl] = useState<string>(undefined);
+  const [pressFileError, setPressFileError] = useState<string>(undefined);
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -85,6 +89,12 @@ const ControlProject: React.FC = () => {
         title: titleValue,
         contentJson: textEditorValue,
         carousel: carouselImages,
+        files: [
+          {
+            name: pressFileName,
+            url: pressFileUrl,
+          },
+        ],
       };
       dispatch(projectUpdateOne({ projectId: Number(projectId), projectData }));
 
@@ -100,7 +110,7 @@ const ControlProject: React.FC = () => {
     setCarouselImages(carouselImages);
   };
 
-  const onFileUpload = async (file): Promise<{ image: string }> => {
+  const onFileUpload = async (file): Promise<{ file: string }> => {
     setSubmitError(undefined);
     setSubmitting(undefined);
     setSubmitSuccess(undefined);
@@ -124,10 +134,15 @@ const ControlProject: React.FC = () => {
     }
   };
 
+  const onPressFileUpdated = async (file: File) => {
+    const uploadedFile = await onFileUpload(file);
+
+    setPressFileUrl(uploadedFile.file);
+    setPressFileName(file.name);
+  };
+
   const onFileRemove = async (src: string) => {
-    if (!imageUploadService) {
-      return;
-    }
+    if (!imageUploadService) return;
 
     try {
       await imageUploadService.removeFileFromServer({
@@ -136,6 +151,22 @@ const ControlProject: React.FC = () => {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const onPressFileRemove = async (src: string) => {
+    if (!imageUploadService) return;
+
+    try {
+      await imageUploadService.removeFileFromServer({
+        src,
+        onRemoved: () => {
+          setPressFileUrl(undefined);
+          setPressFileName(undefined);
+        },
+      });
+    } catch (error) {
+      setPressFileError(error.message);
     }
   };
 
@@ -150,6 +181,11 @@ const ControlProject: React.FC = () => {
 
     const textFormData = project?.contentJson;
     setTextEditorValue(textFormData);
+
+    if (!!project?.files) {
+      setPressFileUrl(ENDPOINT_API + project?.files[0].url);
+      setPressFileName(project?.files[0].name);
+    }
   }, [project]);
 
   return (
@@ -161,6 +197,11 @@ const ControlProject: React.FC = () => {
       onCarouselChange={onCarouselChange}
       onFileRemove={onFileRemove}
       onFileUpload={onFileUpload}
+      onPressFileUpdated={onPressFileUpdated}
+      onPressFileRemove={onPressFileRemove}
+      pressFileName={pressFileName}
+      pressFileUrl={pressFileUrl}
+      pressFileError={pressFileError}
       carouselPercentCompleted={carouselPercentCompleted}
       textEditorInitialValue={project?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}

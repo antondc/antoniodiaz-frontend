@@ -7,6 +7,7 @@ import {
   Button,
   CarouselField,
   CarouselFieldSlide,
+  FileField,
   Hr,
   Input,
   Switch,
@@ -22,8 +23,13 @@ interface Props {
   onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
   carouselImages: CarouselFieldSlide[];
   onCarouselChange: (images) => void;
-  onFileUpload: (file: File) => Promise<{ image: string }>;
+  onFileUpload: (file: File) => Promise<{ file: string }>;
   onFileRemove: (src: string) => Promise<void>;
+  onPressFileUpdated: (file: File) => Promise<void>;
+  onPressFileRemove: (src: string) => Promise<void>;
+  pressFileName: string;
+  pressFileUrl: string;
+  pressFileError: string;
   carouselPercentCompleted: number;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
@@ -47,7 +53,12 @@ export const ControlProject: React.FC<Props> = ({
   carouselImages,
   onCarouselChange,
   onFileUpload,
+  onPressFileUpdated,
+  onPressFileRemove,
   onFileRemove,
+  pressFileName,
+  pressFileError,
+  pressFileUrl,
   carouselPercentCompleted,
   textEditorInitialValue,
   onChangeTextEditorValue,
@@ -97,6 +108,22 @@ export const ControlProject: React.FC<Props> = ({
         <BaseFormLabel>Published</BaseFormLabel>
         <Switch className="ControlProject-published" name="published" checked={publishedValue} />
       </BaseFormField>
+      <Hr spacer />
+      <BaseFormField>
+        <FileField
+          label="Press"
+          name="Some file"
+          accept=".pdf"
+          fileUrl={pressFileUrl}
+          uploadFiles={onPressFileUpdated}
+          onRemove={onPressFileRemove}
+          percentCompleted={0}
+          removable
+          success={!!pressFileUrl}
+          error={!!pressFileError}
+        />
+      </BaseFormField>
+      <Hr spacer />
       <BaseFormSubmit>
         <Button
           text="Submit"
