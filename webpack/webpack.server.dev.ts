@@ -21,6 +21,7 @@ const webpackServerDevConfig = {
         SERVER_PORT_HTTP: development.PORT_HTTP,
         SERVER_PORT_HTTPS: development.PORT_HTTPS,
         ENDPOINT_API: JSON.stringify(development.API_URL),
+        SERVER_URL: JSON.stringify(development.SERVER_URL),
         ENVIRONMENT: JSON.stringify(ENVIRONMENT_DEV),
       },
     }),

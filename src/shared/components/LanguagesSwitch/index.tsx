@@ -6,8 +6,8 @@ import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrent
 import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguagesList';
 import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
+import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
-import { selectSessionLoggedIn } from '../../redux/modules/Session/selectors/selectSessionLoggedIn';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
 import './LanguagesSwitch.less';

@@ -3,7 +3,8 @@ import ReactHtmlParser from 'react-html-parser';
 
 import BaseCarousel from 'Components/BaseCarousel';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Img } from '@antoniodcorrea/components';
+import { SERVER_URL } from 'Root/webpack/constants';
+import { A, Img } from '@antoniodcorrea/components';
 import { SlideItem } from '.';
 import { slides } from './constants';
 
@@ -36,5 +37,12 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
     <div className="Project-content" id="Project-content">
       {ReactHtmlParser(project?.contentHtml)}
     </div>
+    <hr />
+    <h3>Files</h3>
+    {project?.files?.map((item) => (
+      <A className="Project-file" href={SERVER_URL + item.url} key={item.url} styled={false} targetBlank>
+        {item.name}
+      </A>
+    ))}
   </div>
 );

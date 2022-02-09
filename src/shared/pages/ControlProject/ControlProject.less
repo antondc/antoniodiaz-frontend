@@ -13,4 +13,42 @@
     font-size: @fs-huge;
     font-weight: @fw-extraBold;
   }
+
+  &-files {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    gap: 20px 10px;
+  }
+
+  &-file {
+    height: 100%;
+    width: 100%;
+
+    .FileField {
+      width: 100%;
+    }
+  }
+
+  &-addFile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    opacity: 0.8;
+    border: 2px dashed @c-blue--pastel;
+    transition: opacity @td-fast @ease;
+
+    svg {
+      height: 30px;
+      width: 30px;
+      fill: @c-blue--pastel;
+    }
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
 }

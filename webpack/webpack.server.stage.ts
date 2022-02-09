@@ -20,6 +20,7 @@ const webpackServerProdConfig = {
         SERVER_PORT_HTTP: staging.PORT_HTTP,
         SERVER_PORT_HTTPS: staging.PORT_HTTPS,
         ENDPOINT_API: JSON.stringify(staging.API_URL),
+        SERVER_URL: JSON.stringify(staging.SERVER_URL),
         ENVIRONMENT: JSON.stringify(ENVIRONMENT_STAGING),
       },
     }),

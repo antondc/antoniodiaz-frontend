@@ -31,6 +31,7 @@ const webpackClientDevConfig = {
       'process.env': {
         DOMAIN: JSON.stringify(development.DOMAIN),
         ENDPOINT_API: JSON.stringify(development.API_URL),
+        SERVER_URL: JSON.stringify(development.SERVER_URL),
         ENVIRONMENT: JSON.stringify(ENVIRONMENT_DEV),
       },
     }),

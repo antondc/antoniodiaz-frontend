@@ -64,6 +64,8 @@ export const projectUpdateOne =
         payload: {
           ...projectsOnError,
           errors: [...(projectsOnError.errors || []), error],
+          loading: false,
+          saving: false,
         },
       });
     }

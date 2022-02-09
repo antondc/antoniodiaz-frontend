@@ -115,4 +115,18 @@
       font-size: @fs-small;
     }
   }
+
+  &-file {
+    font-weight: @fw-bold;
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    color: @c-blue--pastel;
+    transition: text-decoration-color @td-fast @ease;
+
+    &:hover {
+      text-decoration-color: @c-blue--pastel;
+      cursor: pointer;
+    }
+  }
 }

@@ -5,13 +5,14 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { projectUpdateOne } from 'Modules/Projects/actions/projectUpdateOne';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
+import { selectProjectsErrors } from 'Modules/Projects/selectors/selectProjectsErrors';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
-import { ENDPOINT_API } from 'Root/webpack/constants';
+import { SERVER_URL } from 'Root/webpack/constants';
 import { ImageUpload } from 'Services/ImageUpload';
 import { CarouselFieldSlide, TextEditorValue } from '@antoniodcorrea/components';
 import { noop } from '@antoniodcorrea/utils';
-import { ControlProject as ControlWhenUi } from './ControlProject';
+import { ControlProject as ControlWhenUi, FileUploadType } from './ControlProject';
 
 import './ControlProject.less';
 
@@ -19,6 +20,7 @@ const ControlProject: React.FC = () => {
   const dispatch = useDispatch();
   const language = useSelector(selectCurrentLanguageSlug);
   const imageUploadService = new ImageUpload();
+  const projectAsyncErrors = useSelector(selectProjectsErrors);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
   const [titleValue, setTitleValue] = useState<string>(undefined);
@@ -33,9 +35,7 @@ const ControlProject: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
-  const [pressFileName, setPressFileName] = useState<string>(undefined);
-  const [pressFileUrl, setPressFileUrl] = useState<string>(undefined);
-  const [pressFileError, setPressFileError] = useState<string>(undefined);
+  const [files, setFiles] = useState<Array<FileUploadType>>([]);
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -84,17 +84,13 @@ const ControlProject: React.FC = () => {
     setSubmitting(true);
 
     try {
+      const filesActive = files.filter((item) => !!item.url);
       const projectData = {
         ...project,
         title: titleValue,
         contentJson: textEditorValue,
         carousel: carouselImages,
-        files: [
-          {
-            name: pressFileName,
-            url: pressFileUrl,
-          },
-        ],
+        files: filesActive,
       };
       dispatch(projectUpdateOne({ projectId: Number(projectId), projectData }));
 
@@ -134,11 +130,22 @@ const ControlProject: React.FC = () => {
     }
   };
 
-  const onPressFileUpdated = async (file: File) => {
+  const onPressFileUpdated = async (file: File, id: number) => {
     const uploadedFile = await onFileUpload(file);
 
-    setPressFileUrl(uploadedFile.file);
-    setPressFileName(file.name);
+    const filesUpdated = files.map((item) => {
+      if (item.id === id) {
+        return {
+          id,
+          url: uploadedFile.file,
+          name: uploadedFile.file,
+        };
+      }
+
+      return item;
+    });
+
+    setFiles(filesUpdated);
   };
 
   const onFileRemove = async (src: string) => {
@@ -161,13 +168,42 @@ const ControlProject: React.FC = () => {
       await imageUploadService.removeFileFromServer({
         src,
         onRemoved: () => {
-          setPressFileUrl(undefined);
-          setPressFileName(undefined);
+          const filteredFiles = files.filter((item) => item.url !== src);
+          setFiles(filteredFiles);
         },
       });
-    } catch (error) {
-      setPressFileError(error.message);
-    }
+    } catch {}
+  };
+
+  const onAddFile = (): void => {
+    const someEmptyFile = files.some((item) => !item.url);
+    if (someEmptyFile) return;
+
+    const filesWithNewFile = [
+      ...files,
+      {
+        id: files.length,
+        url: null,
+        name: null,
+      },
+    ];
+    setFiles(filesWithNewFile);
+  };
+
+  const onFileFieldTitleChange = (e: React.FormEvent<HTMLInputElement>, id: number) => {
+    const { value } = e.currentTarget;
+    const filesWithUpdatedName = files.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          name: value,
+        };
+      }
+
+      return item;
+    });
+
+    setFiles(filesWithUpdatedName);
   };
 
   useEffect(() => {
@@ -182,11 +218,21 @@ const ControlProject: React.FC = () => {
     const textFormData = project?.contentJson;
     setTextEditorValue(textFormData);
 
-    if (!!project?.files) {
-      setPressFileUrl(ENDPOINT_API + project?.files[0].url);
-      setPressFileName(project?.files[0].name);
-    }
+    const files = project?.files?.map((item, index) => ({ ...item, id: index, url: SERVER_URL + item.url }));
+    if (files) setFiles(files);
   }, [project]);
+
+  useEffect(() => {
+    if (!files.length) {
+      setFiles([{ id: 0, url: undefined, name: undefined }]);
+    }
+  }, [files]);
+
+  useEffect(() => {
+    if (!projectAsyncErrors?.length) return;
+
+    setSubmitError(projectAsyncErrors[0].message);
+  }, [projectAsyncErrors]);
 
   return (
     <ControlWhenUi
@@ -199,9 +245,9 @@ const ControlProject: React.FC = () => {
       onFileUpload={onFileUpload}
       onPressFileUpdated={onPressFileUpdated}
       onPressFileRemove={onPressFileRemove}
-      pressFileName={pressFileName}
-      pressFileUrl={pressFileUrl}
-      pressFileError={pressFileError}
+      files={files}
+      onAddFile={onAddFile}
+      onFileFieldTitleChange={onFileFieldTitleChange}
       carouselPercentCompleted={carouselPercentCompleted}
       textEditorInitialValue={project?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}

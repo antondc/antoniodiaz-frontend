@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PlusCircle from 'Assets/svg/plusCircle.svg';
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { FILE_SIZE_LIMIT } from 'Root/src/shared/constants';
 import { ImageUpload } from 'Services/ImageUpload';
@@ -17,6 +18,13 @@ import {
 
 import './ControlProject.less';
 
+export type FileUploadType = {
+  id: number;
+  name: string;
+  url: string;
+  error?: boolean;
+};
+
 interface Props {
   titleValue: string;
   titleError: string;
@@ -25,11 +33,11 @@ interface Props {
   onCarouselChange: (images) => void;
   onFileUpload: (file: File) => Promise<{ file: string }>;
   onFileRemove: (src: string) => Promise<void>;
-  onPressFileUpdated: (file: File) => Promise<void>;
+  onPressFileUpdated: (file: File, index) => Promise<void>;
   onPressFileRemove: (src: string) => Promise<void>;
-  pressFileName: string;
-  pressFileUrl: string;
-  pressFileError: string;
+  files: Array<FileUploadType>;
+  onAddFile: () => void;
+  onFileFieldTitleChange: (e: React.FormEvent<HTMLInputElement>, id: number) => void;
   carouselPercentCompleted: number;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
@@ -56,9 +64,9 @@ export const ControlProject: React.FC<Props> = ({
   onPressFileUpdated,
   onPressFileRemove,
   onFileRemove,
-  pressFileName,
-  pressFileError,
-  pressFileUrl,
+  onAddFile,
+  files,
+  onFileFieldTitleChange,
   carouselPercentCompleted,
   textEditorInitialValue,
   onChangeTextEditorValue,
@@ -110,18 +118,38 @@ export const ControlProject: React.FC<Props> = ({
       </BaseFormField>
       <Hr spacer />
       <BaseFormField>
-        <FileField
-          label="Press"
-          name="Some file"
-          accept=".pdf"
-          fileUrl={pressFileUrl}
-          uploadFiles={onPressFileUpdated}
-          onRemove={onPressFileRemove}
-          percentCompleted={0}
-          removable
-          success={!!pressFileUrl}
-          error={!!pressFileError}
-        />
+        <BaseFormLabel>Files</BaseFormLabel>
+        <div className="ControlProject-files">
+          {files.map((item, index) => (
+            <div className="ControlProject-file" key={item.url}>
+              <FileField
+                name="Some file"
+                accept=".pdf"
+                fileUrl={item.url}
+                uploadFiles={(file) => onPressFileUpdated(file, index)}
+                onRemove={onPressFileRemove}
+                percentCompleted={0}
+                removable
+                success={!!item.url}
+                error={!!item.error}
+              />
+              <Hr spacer size="small" />
+              <Input
+                name=""
+                type="text"
+                label=""
+                onChange={(e) => onFileFieldTitleChange(e, index)}
+                onBlur={(e) => onFileFieldTitleChange(e, index)}
+                value={item?.name}
+                error={item?.error}
+                grow
+              />
+            </div>
+          ))}
+          <div className="ControlProject-addFile" onClick={onAddFile}>
+            <PlusCircle />
+          </div>
+        </div>
       </BaseFormField>
       <Hr spacer />
       <BaseFormSubmit>

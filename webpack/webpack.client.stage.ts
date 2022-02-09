@@ -31,6 +31,7 @@ const webpackClientProdConfig = {
       'process.env': {
         DOMAIN: JSON.stringify(staging.DOMAIN),
         ENDPOINT_API: JSON.stringify(staging.API_URL),
+        SERVER_URL: JSON.stringify(staging.SERVER_URL),
         ENVIRONMENT: JSON.stringify(ENVIRONMENT_STAGING),
       },
     }),
