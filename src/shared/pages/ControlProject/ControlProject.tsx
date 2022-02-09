@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PlusCircle from 'Assets/svg/plusCircle.svg';
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { FILE_SIZE_LIMIT } from 'Root/src/shared/constants';
 import { ImageUpload } from 'Services/ImageUpload';
@@ -8,7 +7,7 @@ import {
   Button,
   CarouselField,
   CarouselFieldSlide,
-  FileField,
+  FileFieldMultiple,
   Hr,
   Input,
   Switch,
@@ -33,11 +32,8 @@ interface Props {
   onCarouselChange: (images) => void;
   onFileUpload: (file: File) => Promise<{ file: string }>;
   onFileRemove: (src: string) => Promise<void>;
-  onPressFileUpdated: (file: File, index) => Promise<void>;
-  onPressFileRemove: (src: string) => Promise<void>;
   files: Array<FileUploadType>;
-  onAddFile: () => void;
-  onFileFieldTitleChange: (e: React.FormEvent<HTMLInputElement>, id: number) => void;
+  onFilesChange: (files: Array<FileUploadType>) => void;
   carouselPercentCompleted: number;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
@@ -61,12 +57,9 @@ export const ControlProject: React.FC<Props> = ({
   carouselImages,
   onCarouselChange,
   onFileUpload,
-  onPressFileUpdated,
-  onPressFileRemove,
   onFileRemove,
-  onAddFile,
   files,
-  onFileFieldTitleChange,
+  onFilesChange,
   carouselPercentCompleted,
   textEditorInitialValue,
   onChangeTextEditorValue,
@@ -118,38 +111,7 @@ export const ControlProject: React.FC<Props> = ({
       </BaseFormField>
       <Hr spacer />
       <BaseFormField>
-        <BaseFormLabel>Files</BaseFormLabel>
-        <div className="ControlProject-files">
-          {files.map((item, index) => (
-            <div className="ControlProject-file" key={item.url}>
-              <FileField
-                name="Some file"
-                accept=".pdf"
-                fileUrl={item.url}
-                uploadFiles={(file) => onPressFileUpdated(file, index)}
-                onRemove={onPressFileRemove}
-                percentCompleted={0}
-                removable
-                success={!!item.url}
-                error={!!item.error}
-              />
-              <Hr spacer size="small" />
-              <Input
-                name=""
-                type="text"
-                label=""
-                onChange={(e) => onFileFieldTitleChange(e, index)}
-                onBlur={(e) => onFileFieldTitleChange(e, index)}
-                value={item?.name}
-                error={item?.error}
-                grow
-              />
-            </div>
-          ))}
-          <div className="ControlProject-addFile" onClick={onAddFile}>
-            <PlusCircle />
-          </div>
-        </div>
+        <FileFieldMultiple files={files} imageUploadService={imageUploadService} onChange={onFilesChange} />
       </BaseFormField>
       <Hr spacer />
       <BaseFormSubmit>

@@ -35,7 +35,7 @@ const ControlProject: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
-  const [files, setFiles] = useState<Array<FileUploadType>>([]);
+  const [files, setLocalFiles] = useState<Array<FileUploadType>>([]);
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -130,24 +130,6 @@ const ControlProject: React.FC = () => {
     }
   };
 
-  const onPressFileUpdated = async (file: File, id: number) => {
-    const uploadedFile = await onFileUpload(file);
-
-    const filesUpdated = files.map((item) => {
-      if (item.id === id) {
-        return {
-          id,
-          url: uploadedFile.file,
-          name: uploadedFile.file,
-        };
-      }
-
-      return item;
-    });
-
-    setFiles(filesUpdated);
-  };
-
   const onFileRemove = async (src: string) => {
     if (!imageUploadService) return;
 
@@ -159,51 +141,6 @@ const ControlProject: React.FC = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const onPressFileRemove = async (src: string) => {
-    if (!imageUploadService) return;
-
-    try {
-      await imageUploadService.removeFileFromServer({
-        src,
-        onRemoved: () => {
-          const filteredFiles = files.filter((item) => item.url !== src);
-          setFiles(filteredFiles);
-        },
-      });
-    } catch {}
-  };
-
-  const onAddFile = (): void => {
-    const someEmptyFile = files.some((item) => !item.url);
-    if (someEmptyFile) return;
-
-    const filesWithNewFile = [
-      ...files,
-      {
-        id: files.length,
-        url: null,
-        name: null,
-      },
-    ];
-    setFiles(filesWithNewFile);
-  };
-
-  const onFileFieldTitleChange = (e: React.FormEvent<HTMLInputElement>, id: number) => {
-    const { value } = e.currentTarget;
-    const filesWithUpdatedName = files.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          name: value,
-        };
-      }
-
-      return item;
-    });
-
-    setFiles(filesWithUpdatedName);
   };
 
   useEffect(() => {
@@ -219,19 +156,21 @@ const ControlProject: React.FC = () => {
     setTextEditorValue(textFormData);
 
     const files = project?.files?.map((item, index) => ({ ...item, id: index, url: SERVER_URL + item.url }));
-    if (files) setFiles(files);
+    if (files) {
+      setLocalFiles(files);
+    } else {
+      setLocalFiles(undefined);
+    }
   }, [project]);
 
-  useEffect(() => {
-    if (!files.length) {
-      setFiles([{ id: 0, url: undefined, name: undefined }]);
-    }
-  }, [files]);
+  const onFilesChange = (files: Array<FileUploadType>) => {
+    setLocalFiles(files);
+  };
 
   useEffect(() => {
     if (!projectAsyncErrors?.length) return;
 
-    setSubmitError(projectAsyncErrors[0].message);
+    setSubmitError(projectAsyncErrors[0]?.message);
   }, [projectAsyncErrors]);
 
   return (
@@ -243,11 +182,8 @@ const ControlProject: React.FC = () => {
       onCarouselChange={onCarouselChange}
       onFileRemove={onFileRemove}
       onFileUpload={onFileUpload}
-      onPressFileUpdated={onPressFileUpdated}
-      onPressFileRemove={onPressFileRemove}
       files={files}
-      onAddFile={onAddFile}
-      onFileFieldTitleChange={onFileFieldTitleChange}
+      onFilesChange={onFilesChange}
       carouselPercentCompleted={carouselPercentCompleted}
       textEditorInitialValue={project?.contentJson}
       onChangeTextEditorValue={onChangeTextEditorValue}
