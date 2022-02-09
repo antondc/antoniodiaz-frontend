@@ -37,12 +37,16 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
     <div className="Project-content" id="Project-content">
       {ReactHtmlParser(project?.contentHtml)}
     </div>
-    <hr />
-    <h3>Files</h3>
-    {project?.files?.map((item) => (
-      <A className="Project-file" href={SERVER_URL + item.url} key={item.url} styled={false} targetBlank>
-        {item.name}
-      </A>
-    ))}
+    {project?.files?.length && (
+      <>
+        <hr />
+        <h3>Files</h3>
+        {project?.files?.map((item) => (
+          <A className="Project-file" href={SERVER_URL + item.url} key={item.url} styled={false} targetBlank>
+            {item.name}
+          </A>
+        ))}
+      </>
+    )}
   </div>
 );
