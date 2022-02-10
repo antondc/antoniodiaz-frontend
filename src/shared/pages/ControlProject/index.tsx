@@ -84,7 +84,7 @@ const ControlProject: React.FC = () => {
     setSubmitting(true);
 
     try {
-      const filesActive = files.filter((item) => !!item.url);
+      const filesActive = files?.filter((item) => !!item.url);
       const projectData = {
         ...project,
         title: titleValue,
