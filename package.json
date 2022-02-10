@@ -119,7 +119,7 @@
   },
   "dependencies": {
     "@ant-design/react-slick": "^0.28.4",
-    "@antoniodcorrea/components": "^1.0.89",
+    "@antoniodcorrea/components": "^1.0.90",
     "@antoniodcorrea/utils": "0.0.13",
     "@types/qs": "^6.9.5",
     "@types/react": "^17.0.38",
