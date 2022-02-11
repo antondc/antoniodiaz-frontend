@@ -37,7 +37,7 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
     <div className="Project-content" id="Project-content">
       {ReactHtmlParser(project?.contentHtml)}
     </div>
-    {project?.files?.length && (
+    {!!project?.files?.length && (
       <>
         <hr />
         <h3>Files</h3>
