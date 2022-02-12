@@ -37,24 +37,24 @@ const ControlProject: React.FC = () => {
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
   const [files, setLocalFiles] = useState<Array<FileUploadType>>([]);
 
-  const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-
-    setTitleValue(value);
+  const resetFormState = () => {
     setSubmitError(undefined);
     setTitleError(undefined);
     setPublishError(undefined);
     setPublishingSuccess(undefined);
     setSubmitSuccess(undefined);
+    setPublishing(undefined);
+  };
+
+  const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+
+    setTitleValue(value);
+    resetFormState();
   };
 
   const onChangeTextEditorValue = (value: TextEditorValue) => {
-    setSubmitError(undefined);
-    setSubmitting(undefined);
-    setSubmitSuccess(undefined);
-    setPublishError(undefined);
-    setPublishing(undefined);
-    setPublishingSuccess(undefined);
+    resetFormState();
 
     setTextEditorValue(value);
   };
@@ -107,12 +107,7 @@ const ControlProject: React.FC = () => {
   };
 
   const onFileUpload = async (file): Promise<{ file: string }> => {
-    setSubmitError(undefined);
-    setSubmitting(undefined);
-    setSubmitSuccess(undefined);
-    setPublishError(undefined);
-    setPublishing(undefined);
-    setPublishingSuccess(undefined);
+    resetFormState();
 
     if (!imageUploadService) {
       return;
@@ -164,6 +159,7 @@ const ControlProject: React.FC = () => {
   }, [project]);
 
   const onFilesChange = (files: Array<FileUploadType>) => {
+    resetFormState();
     setLocalFiles(files);
   };
 

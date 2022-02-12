@@ -65,8 +65,6 @@
   }
 
   &-content {
-    font-weight: @fw-bold;
-
     a {
       text-decoration: underline;
       text-decoration-color: @c-transparent;
@@ -107,12 +105,27 @@
       user-select: none;
     }
 
+    mark {
+      padding: 4px 6px;
+      font-family: @ff-code;
+      font-size: 14px;
+      font-weight: @fw-bold;
+      color: @c-accent;
+      background: @c-traslucid--light;
+      border-radius: 4px;
+    }
+
     pre {
       margin: 20px 0 10px;
-      border-radius: 4px;
       padding: 10px 30px 30px;
       font-family: @ff-code;
       font-size: @fs-small;
+      border-radius: 4px;
+      white-space: pre;
+
+      code {
+        white-space: pre;
+      }
     }
   }
 
