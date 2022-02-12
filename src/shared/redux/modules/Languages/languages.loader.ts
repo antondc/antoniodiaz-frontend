@@ -19,6 +19,7 @@ export const initialLanguagesLoader = async (lang: string): Promise<{ Languages:
         keyPath: 'attributes.slug',
       }),
       errors: [],
+      loading: false,
     };
 
     const currentLanguage = getCurrentOrDefaultLanguage(languagesByKey, lang);
@@ -27,6 +28,7 @@ export const initialLanguagesLoader = async (lang: string): Promise<{ Languages:
       Languages: {
         ...languagesByKey,
         currentLanguage,
+        loading: false,
       },
     };
 

@@ -36,6 +36,7 @@ const initialState: LanguagesState = {
     links: {},
   },
   errors: [],
+  loading: false,
 };
 
 export const Languages = (state = initialState, action: LanguagesActions): LanguagesState => {

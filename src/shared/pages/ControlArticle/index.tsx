@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleUpdateOne } from 'Modules/Articles/actions/articleUpdateOne';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
@@ -15,7 +15,6 @@ import './ControlArticle.less';
 
 const ControlArticle: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const imageUploadService = new ImageUpload();
   const articleId = useSelector(selectCurrentRouteParamArticleId);
   const article = useSelector((state: RootState) => selectArticle(state, Number(articleId)));
@@ -29,6 +28,11 @@ const ControlArticle: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
+
+  const loadInitialData = async () => {
+    await dispatch(articlesLoad());
+  };
+  useLoadInitialData({ loadInitialData });
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -91,10 +95,6 @@ const ControlArticle: React.FC = () => {
       setSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    dispatch(articlesLoad());
-  }, [language]);
 
   useEffect(() => {
     setPublishedValue(!!article?.published);

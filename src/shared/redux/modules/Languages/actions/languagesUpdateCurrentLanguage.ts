@@ -65,6 +65,7 @@ export const languagesUpdateCurrentLanguage =
         payload: {
           ...languagesOnError,
           errors: [...(languagesOnError.errors || []), error],
+          loading: false,
         },
       });
     }

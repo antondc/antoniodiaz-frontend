@@ -9,11 +9,13 @@ import {
   UI_SCREEN_MOBILE_LOCK,
   UI_SCREEN_MOBILE_UNLOCK,
   UI_SCREEN_TYPE_SET,
+  UI_SWITCH_MOUNTED,
   UiActions,
   UiState,
 } from './ui.types';
 
 export const initialState: UiState = {
+  mounted: true,
   screenType: 'desktop',
   screenLocked: false,
   screenMobileLocked: false,
@@ -51,6 +53,7 @@ export const Ui = (state = initialState, action: UiActions): UiState => {
     case SWITCH_FORGOT_PASSWORD_MODAL:
     case SWITCH_RESET_PASSWORD_MODAL:
     case UI_CLOSE_ALL_MODALS:
+    case UI_SWITCH_MOUNTED:
       return Object.assign({}, state, action.payload);
 
     default:

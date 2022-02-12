@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useLoadImages } from 'Hooks/loadImages';
 import { useHljs } from 'Hooks/useHljs';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
@@ -20,9 +20,13 @@ export type SlideItem = {
 
 const Project: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
+
+  const loadInitialData = async () => {
+    await dispatch(projectsLoad());
+  };
+  useLoadInitialData({ loadInitialData });
 
   useHljs({ data: project });
 
@@ -41,10 +45,6 @@ const Project: React.FC = () => {
     className: 'Project-image--loaded',
     data: project,
   });
-
-  useEffect(() => {
-    dispatch(projectsLoad());
-  }, [language]);
 
   if (!project?.id) return <div />;
 

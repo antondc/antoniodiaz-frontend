@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { languagesLoad } from 'Modules/Languages/actions/languagesLoad';
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
@@ -18,6 +19,13 @@ const ControlWho: React.FC = () => {
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
+
+  const loadInitialData = async () => {
+    await dispatch(languagesLoad());
+    setTitleValue(glossary.who);
+    setTextEditorValue(glossary.whoContentJson);
+  };
+  useLoadInitialData({ loadInitialData });
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -55,13 +63,6 @@ const ControlWho: React.FC = () => {
       setSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    dispatch(languagesLoad());
-
-    setTitleValue(glossary.who);
-    setTextEditorValue(glossary.whoContentJson);
-  }, [glossary]);
 
   return (
     <ControlWhoUi

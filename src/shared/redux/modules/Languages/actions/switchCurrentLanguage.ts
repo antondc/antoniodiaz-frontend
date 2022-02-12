@@ -1,4 +1,5 @@
 import history from 'Services/History';
+import { mockAsync } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   LANGUAGES_SWITCH_CURRENT_REQUEST,
@@ -8,34 +9,33 @@ import {
 
 export const switchCurrentLanguage =
   (slug: string, link: string): AppThunk<void, LanguagesActions> =>
-  (dispatch, getState): void => {
-    const { Languages } = getState();
+  async (dispatch, getState): Promise<void> => {
+    const { Languages: languagesBeforeRequest } = getState();
 
-    if (Languages.currentLanguage.slug !== slug) {
-      const newCurrentLanguage = Languages.byKey[slug];
+    if (languagesBeforeRequest.currentLanguage.slug !== slug) {
+      const newCurrentLanguage = languagesBeforeRequest.byKey[slug];
 
       dispatch({
         type: LANGUAGES_SWITCH_CURRENT_REQUEST,
         payload: {
-          ...Languages,
-          currentLanguage: {
-            ...Languages.currentLanguage,
-            loading: true,
-          },
+          ...languagesBeforeRequest,
+          loading: true,
         },
       });
 
-      // Timeout due to language loading faster than page reload
-      setTimeout(() => {
-        dispatch({
-          type: LANGUAGES_SWITCH_CURRENT_SUCCESS,
-          payload: {
-            ...Languages,
-            currentLanguage: newCurrentLanguage,
-          },
-        });
+      await mockAsync({ timeout: 500 });
 
-        history.push(link);
-      }, 150);
+      const { Languages: languagesAfterReponse } = getState();
+
+      dispatch({
+        type: LANGUAGES_SWITCH_CURRENT_SUCCESS,
+        payload: {
+          ...languagesAfterReponse,
+          currentLanguage: newCurrentLanguage,
+          loading: false,
+        },
+      });
+
+      history.push(link);
     }
   };

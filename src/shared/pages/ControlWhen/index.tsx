@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articleDeleteOne } from 'Modules/Articles/actions/articleDeleteOne';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleSortOne } from 'Modules/Articles/actions/articleSortOne';
@@ -37,6 +38,12 @@ const ControlWhen: React.FC = () => {
       date: formattedDate,
     };
   });
+
+  const loadInitialData = async () => {
+    await dispatch(articlesLoad());
+    setSubtitleValue(glossary.whenSubtitle);
+  };
+  useLoadInitialData({ loadInitialData });
 
   const onChangeSubtitle = async (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -85,14 +92,6 @@ const ControlWhen: React.FC = () => {
   const onNewArticleClick = () => {
     history.push(`/${language}/control/when/new`);
   };
-
-  useEffect(() => {
-    dispatch(articlesLoad());
-  }, [language]);
-
-  useEffect(() => {
-    setSubtitleValue(glossary.whenSubtitle);
-  }, [glossary]);
 
   return (
     <ControlWhenUi

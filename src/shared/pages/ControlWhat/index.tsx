@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
+import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { projectDeleteOne } from 'Modules/Projects/actions/projectDeleteOne';
@@ -24,6 +26,7 @@ const ControlWhat: React.FC = () => {
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
+  const language = useSelector(selectCurrentLanguage);
   const languageSlug = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsCurrent);
@@ -38,6 +41,12 @@ const ControlWhat: React.FC = () => {
       date: formattedDate,
     };
   });
+
+  const loadInitialData = async () => {
+    await dispatch(projectsLoad());
+    setSubtitleValue(glossary.whatSubtitle);
+  };
+  useLoadInitialData({ loadInitialData });
 
   const onChangeSubtitle = async (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -87,14 +96,6 @@ const ControlWhat: React.FC = () => {
       setSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    dispatch(projectsLoad());
-  }, [languageSlug]);
-
-  useEffect(() => {
-    setSubtitleValue(glossary.whatSubtitle);
-  }, [glossary]);
 
   return (
     <ControlWhatUi

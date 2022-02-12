@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { projectUpdateOne } from 'Modules/Projects/actions/projectUpdateOne';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
@@ -18,7 +18,6 @@ import './ControlProject.less';
 
 const ControlProject: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const imageUploadService = new ImageUpload();
   const projectAsyncErrors = useSelector(selectProjectsErrors);
   const projectId = useSelector(selectCurrentRouteParamProjectId);
@@ -36,6 +35,11 @@ const ControlProject: React.FC = () => {
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
   const [publishedValue, setPublishedValue] = useState<boolean>(undefined);
   const [files, setLocalFiles] = useState<Array<FileUploadType>>([]);
+
+  const loadInitialData = async () => {
+    await dispatch(projectsLoad());
+  };
+  useLoadInitialData({ loadInitialData });
 
   const resetFormState = () => {
     setSubmitError(undefined);
@@ -137,10 +141,6 @@ const ControlProject: React.FC = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    dispatch(projectsLoad());
-  }, [language]);
 
   useEffect(() => {
     setCarouselImages(project?.carousel);

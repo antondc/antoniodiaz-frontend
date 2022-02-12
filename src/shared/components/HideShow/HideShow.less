@@ -1,0 +1,31 @@
+@import '../../css/imports.less';
+
+@c: .HideShow;
+
+@{c} {
+  opacity: 0;
+
+  &--shown {
+    opacity: 1;
+  }
+
+  &--fastest {
+    transition: opacity @td-fastest ease-in-out;
+  }
+
+  &--fast {
+    transition: opacity @td-fast ease-in-out;
+  }
+
+  &--normal {
+    transition: opacity @td-normal ease-in-out;
+  }
+
+  &--normalSlow {
+    transition: opacity @td-normalSlow ease-in-out;
+  }
+
+  &--slow {
+    transition: opacity @td-slow ease-in-out;
+  }
+}

@@ -8,6 +8,7 @@ export const SWITCH_LANGUAGES_MODAL = 'SWITCH_LANGUAGES_MODAL';
 export const SWITCH_FORGOT_PASSWORD_MODAL = 'SWITCH_FORGOT_PASSWORD_MODAL';
 export const SWITCH_RESET_PASSWORD_MODAL = 'SWITCH_RESET_PASSWORD_MODAL';
 export const UI_CLOSE_ALL_MODALS = 'UI_CLOSE_ALL_MODALS';
+export const UI_SWITCH_MOUNTED = 'UI_SWITCH_MOUNTED';
 
 export type UiBaseModal = {
   type?: 'modal' | 'popup' | 'slider';
@@ -22,6 +23,7 @@ export type BookmarkListsModal = {
 export type ScreenType = 'desktop' | 'tablet' | 'mobile';
 
 export type UiState = {
+  mounted: boolean;
   screenType: ScreenType;
   screenMobileLocked: boolean;
   screenLocked: boolean;
@@ -82,6 +84,11 @@ interface UiCloseAllModals {
   payload: UiState;
 }
 
+interface UiSwitchMounted {
+  type: typeof UI_SWITCH_MOUNTED;
+  payload: Partial<UiState>;
+}
+
 export type UiActions =
   | UiScreenTypeSet
   | UiScreenLock
@@ -92,4 +99,5 @@ export type UiActions =
   | SwitchLoginModal
   | SwitchForgotPasswordModal
   | SwitchResetPasswordModal
-  | UiCloseAllModals;
+  | UiCloseAllModals
+  | UiSwitchMounted;

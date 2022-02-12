@@ -14,7 +14,7 @@ interface Props {
 
 export const Article: React.FC<Props> = ({ article, date, renderContent }) => (
   <Fade mounted={renderContent} appear>
-    <div className="Article">
+    <div className="Article" id="Article">
       <h1 className="Article-title">{article?.title}</h1>
       <h2 className="Article-date">{date}</h2>
       <div className="Article-content" id="Article-content">

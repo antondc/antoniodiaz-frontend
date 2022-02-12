@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
@@ -29,9 +30,10 @@ const When: React.FC = () => {
     };
   });
 
-  useEffect(() => {
-    dispatch(articlesLoad());
-  }, [language]);
+  const loadInitialData = async () => {
+    await dispatch(articlesLoad());
+  };
+  useLoadInitialData({ loadInitialData });
 
   return (
     <WhenUi

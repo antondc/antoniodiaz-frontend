@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useLoadImages } from 'Hooks/loadImages';
 import { useHljs } from 'Hooks/useHljs';
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
@@ -14,7 +14,6 @@ import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const languageLoading = useSelector(selectLanguageLoading);
   const params = useSelector(selectCurrentRouteParams);
   const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
@@ -22,16 +21,17 @@ const Article: React.FC = () => {
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
+  const loadInitialData = async () => {
+    await dispatch(articlesLoad());
+  };
+
   useHljs({ data: article });
   useLoadImages({
     id: 'Article-content',
     className: 'Article-image--loaded',
     data: article,
   });
-
-  useEffect(() => {
-    dispatch(articlesLoad());
-  }, [language]);
+  useLoadInitialData({ loadInitialData });
 
   // Load embedded html images
   useEffect(() => {

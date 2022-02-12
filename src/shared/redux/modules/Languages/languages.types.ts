@@ -30,7 +30,6 @@ export interface LanguageState {
   slug: string;
   name: string;
   isDefault: boolean;
-  loading?: boolean;
   glossary: GlossaryState;
   links: {
     [key: string]: string;
@@ -44,6 +43,7 @@ export type LanguagesState = {
   };
   currentLanguage?: LanguageState;
   errors?: Error[];
+  loading?: boolean;
 };
 
 export interface LanguagesApiResponseItem {
