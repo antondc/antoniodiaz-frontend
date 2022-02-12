@@ -5,7 +5,6 @@ interface Props {
   data: unknown;
 }
 
-// Loads images with img tag within given wrapper element
 export const useHljs = ({ data }: Props): void => {
   // Preserve breaklines with <br/>
   // https://github.com/highlightjs/highlight.js/issues/2559
@@ -14,8 +13,9 @@ export const useHljs = ({ data }: Props): void => {
       el.innerHTML = el.innerHTML.replace(/<br>/g, '\n');
     },
   };
-
   hljs.addPlugin(brPlugin);
+  // Disable errors, as we are already escaping html
+  hljs.configure({ ignoreUnescapedHTML: true });
 
   useEffect(() => {
     const codeElements = document.getElementsByTagName('pre');

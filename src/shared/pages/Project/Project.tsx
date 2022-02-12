@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactHtmlParser from 'react-html-parser';
 
 import BaseCarousel from 'Components/BaseCarousel';
 import { ProjectState } from 'Modules/Projects/projects.types';
 import { SERVER_URL } from 'Root/webpack/constants';
-import { A, Img } from '@antoniodcorrea/components';
+import { A, HtmlSanitizer, Img } from '@antoniodcorrea/components';
 import { SlideItem } from '.';
 import { slides } from './constants';
 
@@ -35,7 +34,7 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
       </BaseCarousel>
     )}
     <div className="Project-content" id="Project-content">
-      {ReactHtmlParser(project?.contentHtml)}
+      <HtmlSanitizer html={project.contentHtml} />
     </div>
     {!!project?.files?.length && (
       <>

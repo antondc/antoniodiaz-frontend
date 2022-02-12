@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactHtmlParser from 'react-html-parser';
 
 import { GlossaryState } from 'Modules/Languages/languages.types';
+import { HtmlSanitizer } from '@antoniodcorrea/components';
 
 import './Who.less';
 
@@ -12,7 +12,7 @@ interface Props {
 export const Who: React.FC<Props> = ({ glossary }) => (
   <div className="Who">
     <div className="Who-content" id="Who-content">
-      {ReactHtmlParser(glossary.whoContentHtml)}
+      <HtmlSanitizer html={glossary.whoContentHtml} />
     </div>
   </div>
 );

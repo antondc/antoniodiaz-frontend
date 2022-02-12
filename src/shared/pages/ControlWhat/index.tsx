@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
-import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
-import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { projectDeleteOne } from 'Modules/Projects/actions/projectDeleteOne';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { projectSortOne } from 'Modules/Projects/actions/projectSortOne';
@@ -26,12 +24,9 @@ const ControlWhat: React.FC = () => {
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
-  const language = useSelector(selectCurrentLanguage);
   const languageSlug = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsCurrent);
-  const languageLoading = useSelector(selectLanguageLoading);
-  const renderContent = !languageLoading && projects?.every((item) => item.language === languageSlug);
   const projectsWithDates = projects.map((item) => {
     const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: languageSlug });
     const formattedDate = date.getLocaleFormattedDate();
@@ -102,7 +97,6 @@ const ControlWhat: React.FC = () => {
       languageSlug={languageSlug}
       glossary={glossary}
       projects={projectsWithDates}
-      renderContent={renderContent}
       subtitleValue={subtitleValue}
       subtitleError={subtitleError}
       onChangeSubtitle={onChangeSubtitle}

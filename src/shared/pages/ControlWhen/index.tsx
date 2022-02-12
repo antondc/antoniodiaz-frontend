@@ -9,7 +9,7 @@ import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticles
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
-import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
+import { selectUiMounted } from 'Modules/Ui/selectors/selectUiMounted';
 import history from 'Services/History';
 import { SortableSortProps } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
@@ -27,8 +27,6 @@ const ControlWhen: React.FC = () => {
   const language = useSelector(selectCurrentLanguageSlug);
   const glossary = useSelector(selectCurrentGlossary);
   const articles = useSelector(selectArticlesCurrent);
-  const languageLoading = useSelector(selectLanguageLoading);
-  const renderContent = !languageLoading && articles?.every((item) => item.language === language);
   const articlesWithDates = articles.map((item) => {
     const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: language });
     const formattedDate = date.getLocaleFormattedDate();
@@ -97,7 +95,6 @@ const ControlWhen: React.FC = () => {
     <ControlWhenUi
       glossary={glossary}
       articles={articlesWithDates}
-      renderContent={renderContent}
       onSortChange={onSortChange}
       onDeleteArticleClick={onDeleteArticleClick}
       onNewArticleClick={onNewArticleClick}

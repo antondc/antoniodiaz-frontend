@@ -6,7 +6,6 @@ import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
-import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
@@ -14,10 +13,8 @@ import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
   const dispatch = useDispatch();
-  const languageLoading = useSelector(selectLanguageLoading);
   const params = useSelector(selectCurrentRouteParams);
   const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
-  const renderContent = !languageLoading && article?.language === params?.lang;
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
@@ -47,6 +44,6 @@ const Article: React.FC = () => {
 
   if (!Number(article?.id)) return <div />;
 
-  return <ArticleUi article={article} date={createdAtFormatted} renderContent={renderContent} />;
+  return <ArticleUi article={article} date={createdAtFormatted} />;
 };
 export default Article;
