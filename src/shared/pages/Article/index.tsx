@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import highlight from 'highlight.js';
 
 import { useLoadImages } from 'Hooks/loadImages';
+import { useHljs } from 'Hooks/useHljs';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
@@ -22,6 +22,7 @@ const Article: React.FC = () => {
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
 
+  useHljs({ data: article });
   useLoadImages({
     id: 'Article-content',
     className: 'Article-image--loaded',
@@ -41,16 +42,6 @@ const Article: React.FC = () => {
       imageElement.decode().then(() => {
         imageElement.classList.add('Article-image--loaded');
       });
-    });
-  }, []);
-
-  // Style embedded html code blocks
-  useEffect(() => {
-    const codeElements = document.getElementsByTagName('pre');
-    const codeElementsArray = Array.from(codeElements);
-
-    codeElementsArray.forEach((codeElement) => {
-      highlight.highlightElement(codeElement);
     });
   }, []);
 
