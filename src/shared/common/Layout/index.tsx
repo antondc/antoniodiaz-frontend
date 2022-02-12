@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
+import { selectProjectsLoading } from 'Modules/Projects/selectors/selectProjectLoading';
 import { selectProjectSaving } from 'Modules/Projects/selectors/selectProjectSaving';
 import { pushNewRoute } from 'Modules/Routes/actions/pushNewRoute';
 import { RouteState } from 'Modules/Routes/routes.types';
@@ -34,9 +35,10 @@ const Layout: React.FC<Props> = ({ location }) => {
   const languageLoading = useSelector(selectLanguageLoading);
   const uiScreenLocked = useSelector(selectUiScreenLocked);
   const uiScreenMobileLocked = useSelector(selectUiScreenMobileLocked);
+  const projectsLoading = useSelector(selectProjectsLoading);
   const projectSaving = useSelector(selectProjectSaving);
   const renderLoader = !!projectSaving; /* || otherVariables */
-  const renderLayOver = !!languageLoading; /* || otherVariables */
+  const renderLayOver = !!languageLoading || projectsLoading; /* || otherVariables */
   const routeName = useSelector(selectCurrentRouteName);
   const currentRoute = useSelector(selectCurrentRoute);
   const control = currentRoute.auth;
