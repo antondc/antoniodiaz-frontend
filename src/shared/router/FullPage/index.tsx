@@ -45,7 +45,7 @@ const FullPage: React.FC<Props> = ({ location }) => {
   return (
     <div className="FullPage">
       <div className="FullPage-background" />
-      <FadeInOut valueToUpdate={uiMounted} unmountOnExit={false} speed="fastest" appear>
+      <FadeInOut valueToUpdate={uiMounted + pathWithoutLanguageParam} unmountOnExit={false} speed="fastest" appear>
         <Fade mounted={uiMounted} unmountOnExit={false} speed="fastest" appear>
           <FadeInOut className="FullPage-content" valueToUpdate={pathWithoutLanguageParam} speed="fastest" appear>
             <Header />

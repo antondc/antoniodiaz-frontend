@@ -12,30 +12,28 @@ export const switchCurrentLanguage =
   async (dispatch, getState): Promise<void> => {
     const { Languages: languagesBeforeRequest } = getState();
 
-    if (languagesBeforeRequest.currentLanguage.slug !== slug) {
-      const newCurrentLanguage = languagesBeforeRequest.byKey[slug];
+    if (languagesBeforeRequest.currentLanguage.slug === slug) return;
 
-      dispatch({
-        type: LANGUAGES_SWITCH_CURRENT_REQUEST,
-        payload: {
-          ...languagesBeforeRequest,
-          loading: true,
-        },
-      });
+    const newCurrentLanguage = languagesBeforeRequest.byKey[slug];
 
-      await mockAsync({ timeout: 500 });
+    dispatch({
+      type: LANGUAGES_SWITCH_CURRENT_REQUEST,
+      payload: {
+        ...languagesBeforeRequest,
+        loading: true,
+      },
+    });
 
-      const { Languages: languagesAfterReponse } = getState();
+    history.push(link);
 
-      dispatch({
-        type: LANGUAGES_SWITCH_CURRENT_SUCCESS,
-        payload: {
-          ...languagesAfterReponse,
-          currentLanguage: newCurrentLanguage,
-          loading: false,
-        },
-      });
+    const { Languages: languagesAfterReponse } = getState();
 
-      history.push(link);
-    }
+    dispatch({
+      type: LANGUAGES_SWITCH_CURRENT_SUCCESS,
+      payload: {
+        ...languagesAfterReponse,
+        currentLanguage: newCurrentLanguage,
+        loading: false,
+      },
+    });
   };

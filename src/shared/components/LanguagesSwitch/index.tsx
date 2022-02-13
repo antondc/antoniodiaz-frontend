@@ -8,6 +8,8 @@ import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPat
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
+import { uiSwitchMounted } from 'Modules/Ui/actions/uiSwitchMounted';
+import { mockAsync } from '@antoniodcorrea/utils';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
 import './LanguagesSwitch.less';
@@ -32,11 +34,13 @@ const LanguagesSwitch: React.FC = () => {
   const languagesWithLink = languagesList.map((language) => addLinkToLanguage(language));
   const languagesSorted = languagesWithLink.sort((first, second) => second.id - first.id);
 
-  const onLanguageSwitch = (e: React.MouseEvent<HTMLButtonElement>, slug: string, link: string) => {
+  const onLanguageSwitch = async (e: React.MouseEvent<HTMLButtonElement>, slug: string, link: string) => {
     e.preventDefault();
 
     if (currentLanguage.slug === slug) return;
 
+    dispatch(uiSwitchMounted(false));
+    await mockAsync({ timeout: 150 });
     dispatch(switchCurrentLanguage(slug, link));
     dispatch(switchLanguagesModal(false));
   };

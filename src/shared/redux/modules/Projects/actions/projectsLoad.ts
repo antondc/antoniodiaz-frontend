@@ -1,5 +1,5 @@
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
+import { mockAsync, serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   PROJECTS_LOAD_FAILURE,
