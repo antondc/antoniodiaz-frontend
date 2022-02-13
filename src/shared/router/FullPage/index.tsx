@@ -53,7 +53,7 @@ const FullPage: React.FC<Props> = ({ location }) => {
         speed="fastest"
         appear
       >
-        <Fade mounted={uiMounted} unmountOnExit={false} speed="fastest" appear>
+        <Fade className="FullPage-content" mounted={uiMounted} unmountOnExit={false} speed="fastest" appear>
           <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
             {/* Redirects */}
             {loggedIn && <Redirect from={Routes.Login.path} to={'/' + defaultCurrentSlug + '/'} />}
