@@ -23,11 +23,7 @@ const Article: React.FC = () => {
   };
 
   useHljs({ data: article });
-  useLoadImages({
-    id: 'Article-content',
-    className: 'Article-image--loaded',
-    data: article,
-  });
+
   useLoadInitialData({ loadInitialData });
 
   // Load embedded html images

@@ -1,0 +1,107 @@
+@import '../../css/imports.less';
+
+@c: .StyledContent;
+
+@{c} {
+  h1 {
+    margin-bottom: 20px;
+    font-size: @fs-medium;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: @fs-normal;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    color: @c-blue--pastel;
+    transition: text-decoration-color @td-fast @ease;
+
+    &:hover {
+      text-decoration-color: @c-blue--light;
+    }
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  // Set margin only for ul elements that are not children of another ul
+  :not(ul) > ul {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-top: 5px;
+    margin-left: 20px;
+
+    li {
+      list-style: disc;
+      list-style-position: inside;
+      margin-top: 5px;
+      padding-left: 1.4em;
+      text-indent: -1em;
+    }
+
+    ul:not(.noClass) {
+      list-style-type: circle;
+    }
+
+    ul:not(.noClass) ul:not(.noClass) {
+      list-style-type: square;
+    }
+  }
+
+  img {
+    width: 100%;
+    margin: 20px 0;
+    opacity: 0;
+    box-shadow: 0 0 10px 5px @c-traslucid--light;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity @td-normal @ease;
+    border-radius: 4px;
+
+    &@{c}-image--loaded {
+      opacity: 1;
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: @fs-small;
+    font-weight: @fw-semibold;
+    text-align: center;
+    user-select: none;
+  }
+
+  mark {
+    padding: 4px 6px;
+    font-family: @ff-code;
+    font-size: 14px;
+    font-weight: @fw-bold;
+    color: @c-accent;
+    background: @c-traslucid--light;
+    border-radius: 4px;
+  }
+
+  pre {
+    margin: 20px 0 10px;
+    padding: 10px 30px 30px;
+    font-family: @ff-code;
+    font-size: @fs-small;
+    border-radius: 4px;
+    white-space: pre;
+
+    code {
+      white-space: pre;
+    }
+  }
+}

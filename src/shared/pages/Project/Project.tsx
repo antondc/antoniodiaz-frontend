@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BaseCarousel from 'Components/BaseCarousel';
+import { StyledContent } from 'Components/StyledContent';
 import { ProjectState } from 'Modules/Projects/projects.types';
 import { SERVER_URL } from 'Root/webpack/constants';
 import { A, HtmlSanitizer, Img } from '@antoniodcorrea/components';
@@ -33,9 +34,9 @@ export const Project: React.FC<Props> = ({ project, carouselSlides }) => (
         ))}
       </BaseCarousel>
     )}
-    <div className="Project-content" id="Project-content">
+    <StyledContent id="Project-content">
       <HtmlSanitizer html={project.contentHtml} />
-    </div>
+    </StyledContent>
     {!!project?.files?.length && (
       <>
         <hr />
