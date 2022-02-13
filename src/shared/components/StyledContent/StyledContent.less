@@ -29,6 +29,7 @@
 
   p {
     margin-bottom: 10px;
+    line-height: @fh-normal;
   }
 
   // Set margin only for ul elements that are not children of another ul
@@ -68,9 +69,16 @@
     object-position: center;
     transition: opacity @td-normal @ease;
     border-radius: 4px;
+  }
 
-    &@{c}-image--loaded {
-      opacity: 1;
+  figcaption {
+    font-family: @ff-sans;
+    font-size: @fs-small;
+    font-weight: @fw-bold;
+    line-height: @fh-small;
+
+    mark {
+      font-size: @fs-small;
     }
   }
 
@@ -98,11 +106,27 @@
     padding: 30px;
     font-family: @ff-code;
     font-size: @fs-small;
-    border-radius: 4px;
     white-space: pre;
+    border-radius: 4px;
 
     code {
       white-space: pre;
     }
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding-left: 10px;
+    color: @c-accent;
+    border-left: 2px solid @c-accent;
+    font-style: italic;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
   }
 }
