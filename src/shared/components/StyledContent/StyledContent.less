@@ -14,11 +14,13 @@
   }
 
   a {
+    font-weight: @fw-bold;
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
     color: @c-blue--pastel;
     transition: text-decoration-color @td-fast @ease;
+    cursor: pointer;
 
     &:hover {
       text-decoration-color: @c-blue--light;
@@ -39,10 +41,8 @@
     list-style-type: disc;
     list-style-position: inside;
     margin-top: 5px;
-    margin-left: 20px;
 
     li {
-      list-style: disc;
       list-style-position: inside;
       margin-top: 5px;
       padding-left: 1.4em;
@@ -51,6 +51,7 @@
 
     ul:not(.noClass) {
       list-style-type: circle;
+      margin-left: 15px;
     }
 
     ul:not(.noClass) ul:not(.noClass) {
@@ -94,7 +95,7 @@
 
   pre {
     margin: 20px 0 10px;
-    padding: 10px 30px 30px;
+    padding: 30px;
     font-family: @ff-code;
     font-size: @fs-small;
     border-radius: 4px;

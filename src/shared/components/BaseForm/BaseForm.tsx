@@ -8,7 +8,7 @@ interface Props extends HTMLProps<HTMLFormElement> {
 }
 
 const BaseForm: React.FC<Props> = ({ children, className, ...props }) => (
-  <form className={'BaseForm' + (className ? ' ' + className : '')} {...props}>
+  <form className={'BaseForm' + (className ? ' ' + className : '')} {...props} spellCheck="false">
     {children}
   </form>
 );
