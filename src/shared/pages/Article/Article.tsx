@@ -16,7 +16,7 @@ export const Article: React.FC<Props> = ({ article, date }) => (
     <h1 className="Article-title">{article?.title}</h1>
     <h2 className="Article-date">{date}</h2>
     <StyledContent id="Article-content">
-      <HtmlSanitizer html={article.contentHtml} />
+      <HtmlSanitizer html={article?.contentHtml} />
     </StyledContent>
   </div>
 );

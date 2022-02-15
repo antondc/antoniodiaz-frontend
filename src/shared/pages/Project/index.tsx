@@ -2,9 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useLoadImages } from 'Hooks/loadImages';
+import { useCachedData } from 'Hooks/useCachedData';
 import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
+import { ProjectState } from 'Modules/Projects/projects.types';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamProjectId } from 'Modules/Routes/selectors/selectCurrentRouteParamProjectId';
@@ -24,9 +26,12 @@ const Project: React.FC = () => {
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
   const loadInitialData = async () => {
+    if (!project) return;
+
     await dispatch(projectsLoad());
   };
   useLoadInitialData({ loadInitialData });
+  const cachedProject = useCachedData<ProjectState>(project);
 
   useHljs({ data: project });
 
@@ -46,8 +51,6 @@ const Project: React.FC = () => {
     data: project,
   });
 
-  if (!project?.id) return <div />;
-
-  return <ProjectUi project={project} carouselSlides={carouselSlides} />;
+  return <ProjectUi project={cachedProject} carouselSlides={carouselSlides} />;
 };
 export default Project;
