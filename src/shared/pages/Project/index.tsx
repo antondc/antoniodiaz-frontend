@@ -26,8 +26,6 @@ const Project: React.FC = () => {
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
 
   const loadInitialData = async () => {
-    if (!project) return;
-
     await dispatch(projectsLoad());
   };
   useLoadInitialData({ loadInitialData });

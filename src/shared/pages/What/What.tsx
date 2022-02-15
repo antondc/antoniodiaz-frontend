@@ -15,8 +15,8 @@ interface Props {
 export const What: React.FC<Props> = ({ glossary, projects }) => (
   <div className="What">
     <div className="What-content">
-      <div className="What-title">{glossary.what}</div>
-      <div className="What-text">{glossary.whatSubtitle}</div>
+      <div className="What-title">{glossary?.what}</div>
+      <div className="What-text">{glossary?.whatSubtitle}</div>
       <div className="What-gridWrapper">
         {projects?.map((item, index) => (
           <A href={`/what/${item?.id}`} className="What-gridItem" data-id={index} key={index}>
