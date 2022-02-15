@@ -143,6 +143,8 @@ const ControlProject: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!project) return;
+
     setCarouselImages(project?.carousel);
     setPublishedValue(!!project?.published);
     setTitleValue(project?.title);
@@ -181,7 +183,7 @@ const ControlProject: React.FC = () => {
       files={files}
       onFilesChange={onFilesChange}
       carouselPercentCompleted={carouselPercentCompleted}
-      textEditorInitialValue={project?.contentJson}
+      textEditorInitialValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
       onChangePublish={onChangePublish}

@@ -52,7 +52,6 @@ const ControlArticle: React.FC = () => {
     setPublishError(undefined);
     setPublishing(undefined);
     setPublishingSuccess(undefined);
-
     setTextEditorValue(value);
   };
 
@@ -97,6 +96,8 @@ const ControlArticle: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!article) return;
+
     setPublishedValue(!!article?.published);
     setTitleValue(article?.title);
 
@@ -109,7 +110,7 @@ const ControlArticle: React.FC = () => {
       titleValue={titleValue}
       titleError={titleError}
       onChangeTitle={onChangeTitle}
-      textEditorInitialValue={article?.contentJson}
+      textEditorInitialValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
       onChangePublish={onChangePublish}
