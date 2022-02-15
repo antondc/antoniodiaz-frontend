@@ -98,7 +98,7 @@ export const ControlWhat: React.FC<Props> = ({
               <Edit className="ControlWhat-sortableIcon ControlWhat-sortableEdit" />
             </A>
             <Cross className="ControlWhat-sortableIcon ControlWhat-sortableCross" id="Remove" />
-            <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" />
+            <Move className="ControlWhat-sortableIcon ControlWhat-sortableHandle" id="Handle" />
           </div>
         </div>
       ))}

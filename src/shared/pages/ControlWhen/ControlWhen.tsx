@@ -68,7 +68,9 @@ export const ControlWhen: React.FC<Props> = ({
       {articles?.map((item) => (
         <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
           <span className="ControlWhen-sortableItemLeft">
-            <span className="ControlWhen-sortableItemHandle">≡</span>
+            <span className="ControlWhen-sortableItemHandle" id="Handle">
+              ≡
+            </span>
             <div className="ControlWhen-sortableItemText">
               <A className="ControlWhen-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
                 {item.title}
