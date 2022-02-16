@@ -15,6 +15,7 @@ interface Props {
 export const When: React.FC<Props> = ({ glossary, articlesWithDates }) => (
   <div className="When">
     <h1 className="When-title">{glossary.when}</h1>
+    <div className="When-subtitle">{glossary?.whenSubtitle}</div>
     <ul className="When-articles">
       {articlesWithDates.map((item) => (
         <li className="When-article" key={item.id}>

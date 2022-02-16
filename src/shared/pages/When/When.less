@@ -21,15 +21,35 @@
   }
 
   &-title {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-size: @fs-huge;
     font-weight: @fw-bold;
     line-height: @fh-huge;
-    text-align: left;
+    text-align: center;
 
     .isMobile &,
     .isTablet & {
       margin-bottom: 40px;
+    }
+  }
+
+  &-subtitle {
+    margin-bottom: 50px;
+    font-family: @ff-sans;
+    font-size: 16px;
+    font-weight: @fw-regular;
+    line-height: 24px;
+    text-align: left;
+    text-align: center;
+
+    .isMobile &,
+    .isTablet & {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
     }
   }
 

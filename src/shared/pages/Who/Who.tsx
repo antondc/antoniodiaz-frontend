@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { StyledContent } from 'Components/StyledContent';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { HtmlSanitizer } from '@antoniodcorrea/components';
 
@@ -11,8 +12,9 @@ interface Props {
 
 export const Who: React.FC<Props> = ({ glossary }) => (
   <div className="Who">
-    <div className="Who-content" id="Who-content">
+    <h1 className="Who-title">{glossary?.who}</h1>
+    <StyledContent id="Who-content">
       <HtmlSanitizer html={glossary.whoContentHtml} />
-    </div>
+    </StyledContent>
   </div>
 );

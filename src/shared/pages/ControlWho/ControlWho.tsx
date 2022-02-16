@@ -47,7 +47,6 @@ export const ControlWho: React.FC<Props> = ({
       </BaseFormField>
       <BaseFormField>
         <TextEditor
-          className="ControlWho-textEditorContent"
           initialValue={textEditorInitialValue}
           onChange={onChangeTextEditorValue}
           imageUploadService={imageUploadService}
