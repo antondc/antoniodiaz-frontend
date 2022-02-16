@@ -22,7 +22,7 @@ export const Where: React.FC<Props> = () => (
       title="GitLab"
     >
       <GitLab className="Where-itemIcon" />
-      <div className="Where-itemText">GitLab</div>
+      <div className="Where-itemText">Code</div>
     </A>
     <A
       className="Where-item Where-item--mail"
