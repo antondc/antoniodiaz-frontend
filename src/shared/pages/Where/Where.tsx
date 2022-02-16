@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Github from 'Assets/svg/iconGitHub.svg';
+import GitLab from 'Assets/svg/iconGitLab.svg';
 import Linkedin from 'Assets/svg/iconLinkedin.svg';
 import Mail from 'Assets/svg/iconMail.svg';
-import Twitter from 'Assets/svg/logoTwitter.svg';
+import Rss from 'Assets/svg/iconRss.svg';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { A } from '@antoniodcorrea/components';
 
@@ -15,14 +15,14 @@ interface Props {
 export const Where: React.FC<Props> = () => (
   <div className="Where">
     <A
-      className="Where-item Where-item--gitHub"
-      href="https://github.com/antoniodcorrea/"
+      className="Where-item Where-item--gitLab"
+      href="https://gitlab.com/antoniodiaz/"
       targetBlank
       styled={false}
-      title="GitHub"
+      title="GitLab"
     >
-      <Github className="Where-itemIcon" />
-      <div className="Where-itemText">GitHub</div>
+      <GitLab className="Where-itemIcon" />
+      <div className="Where-itemText">GitLab</div>
     </A>
     <A
       className="Where-item Where-item--mail"
@@ -35,14 +35,14 @@ export const Where: React.FC<Props> = () => (
       <div className="Where-itemText">Mail</div>
     </A>
     <A
-      className="Where-item Where-item--twitter"
-      href="https://twitter.com/AntonioDCorrea"
+      className="Where-item Where-item--rss"
+      href="https://antoniodiaz.me/when/rss"
       targetBlank
       styled={false}
-      title="Twitter"
+      title="RSS"
     >
-      <Twitter className="Where-itemIcon" />
-      <div className="Where-itemText">Twitter</div>
+      <Rss className="Where-itemIcon" />
+      <div className="Where-itemText Where-itemTextRSS">rss</div>
     </A>
     <A
       className="Where-item Where-item--linkedin"

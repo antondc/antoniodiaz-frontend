@@ -56,19 +56,21 @@
     }
   }
 
-  &-item--gitHub {
+  &-item--gitLab {
     @{c}-itemIcon {
-      fill: @c-blue--pastel;
+      fill: @c-orangeGitLab;
+      stroke: @c-background;
+      stroke-width: 2px;
     }
 
     @{c}-itemText {
-      color: @c-blue--pastel;
+      color: @c-orangeGitLab;
     }
   }
 
-  &-item--twitter {
+  &-item--rss {
     @{c}-itemIcon {
-      fill: transparent;
+      fill: @c-turquoise;
       stroke: @c-turquoise;
     }
 
@@ -81,15 +83,20 @@
     @{c}-itemIcon {
       height: 45px;
       width: 45px;
-      fill: @c-alert;
+      fill: @c-success;
     }
 
     @{c}-itemText {
-      color: @c-alert;
+      color: @c-success;
     }
   }
 
   &-itemText {
     margin-top: 10px;
+    font-weight: 600;
+  }
+
+  &-itemTextRSS {
+    font-variant: small-caps;
   }
 }
