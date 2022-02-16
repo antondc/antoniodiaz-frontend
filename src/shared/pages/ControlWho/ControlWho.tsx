@@ -1,8 +1,9 @@
 import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
+import { Input } from 'Components/Input';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Hr, Input, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import { Button, Hr, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlWho.less';
 

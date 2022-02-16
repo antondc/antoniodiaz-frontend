@@ -5,9 +5,10 @@ import Move from 'Assets/svg/move-2.svg';
 import Cross from 'Assets/svg/plusCircle.svg';
 import A from 'Components/A';
 import { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
+import { Input } from 'Components/Input';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
-import { Button, Hr, Img, Input, Sortable, SortableSortProps } from '@antoniodcorrea/components';
+import { Button, Hr, Img, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './ControlWhat.less';
 

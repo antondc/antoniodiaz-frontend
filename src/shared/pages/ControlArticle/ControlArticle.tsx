@@ -1,8 +1,9 @@
 import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
+import { Input } from 'Components/Input';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Hr, Input, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import { Button, Hr, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlArticle.less';
 

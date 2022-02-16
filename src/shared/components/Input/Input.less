@@ -1,0 +1,17 @@
+@import '../../css/imports.less';
+
+@c: .Input;
+
+@{c} {
+  &-input:not(.noClass) {
+    background: transparent;
+    box-shadow: 2px 2px 0 0 @c-base;
+    border: 2px solid @c-base;
+    outline: none;
+  }
+
+  &-label {
+    padding-left: 5px;
+    color: @c-base;
+  }
+}

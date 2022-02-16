@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
+import { Input } from 'Components/Input';
 import { FILE_SIZE_LIMIT } from 'Root/src/shared/constants';
 import { ImageUpload } from 'Services/ImageUpload';
 import {
@@ -9,7 +10,6 @@ import {
   CarouselFieldSlide,
   FileFieldMultiple,
   Hr,
-  Input,
   Switch,
   TextEditor,
   TextEditorValue,

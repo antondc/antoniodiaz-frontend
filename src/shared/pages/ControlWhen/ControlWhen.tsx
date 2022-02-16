@@ -3,9 +3,10 @@ import React from 'react';
 import Cross from 'Assets/svg/cross.svg';
 import A from 'Components/A';
 import { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
+import { Input } from 'Components/Input';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { Button, Input, Sortable, SortableSortProps } from '@antoniodcorrea/components';
+import { Button, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './ControlWhen.less';
 
