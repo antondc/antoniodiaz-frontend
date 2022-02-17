@@ -7,6 +7,7 @@ import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
+import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
@@ -19,6 +20,7 @@ const Article: React.FC = () => {
   const cachedArticle = useCachedData<ArticleState>(article);
   const date = new LocaleFormattedDate({ unixTime: Number(cachedArticle?.createdAt), locale: params?.lang });
   const createdAtFormatted = date.getLocaleFormattedDate();
+  const glossary = useSelector(selectCurrentGlossary);
 
   const loadInitialData = async () => {
     await dispatch(articlesLoad());
@@ -39,6 +41,6 @@ const Article: React.FC = () => {
     });
   }, []);
 
-  return <ArticleUi article={cachedArticle} date={createdAtFormatted} />;
+  return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} />;
 };
 export default Article;

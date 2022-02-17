@@ -11,7 +11,6 @@ const What: React.FC = () => {
   const dispatch = useDispatch();
   const glossary = useSelector(selectCurrentGlossary);
   const projects = useSelector(selectProjectsAll);
-
   const loadInitialData = async () => {
     await dispatch(projectsLoad());
   };

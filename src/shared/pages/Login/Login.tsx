@@ -4,13 +4,21 @@ import Helmet from 'react-helmet';
 import { BaseModalTitle } from 'Components/BaseModal';
 import BasePanel from 'Components/BasePanel';
 import LoginForm from 'Components/LoginForm';
-import { SITE_TITLE } from 'Root/src/shared/constants';
+import { GlossaryState } from 'Modules/Languages/languages.types';
 
 import './Login.less';
 
-export const Login: React.FC = () => (
+interface Props {
+  glossary: GlossaryState;
+}
+
+export const Login: React.FC<Props> = ({ glossary }) => (
   <>
-    <Helmet title={`${SITE_TITLE} · Login`} />
+    <Helmet>
+      <title>title={`${glossary.siteTitle} · Login`}</title>
+      <meta property="og:title" content={`${glossary.siteTitle} · Login`} />
+      <meta property="twitter:title" content={`${glossary.siteTitle} · Login`} />
+    </Helmet>
     <BasePanel>
       <BaseModalTitle>Login</BaseModalTitle>
       <LoginForm />

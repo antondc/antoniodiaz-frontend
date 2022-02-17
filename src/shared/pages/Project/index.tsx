@@ -5,6 +5,7 @@ import { useLoadImages } from 'Hooks/loadImages';
 import { useCachedData } from 'Hooks/useCachedData';
 import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
+import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { projectsLoad } from 'Modules/Projects/actions/projectsLoad';
 import { ProjectState } from 'Modules/Projects/projects.types';
 import { selectProject } from 'Modules/Projects/selectors/selectProject';
@@ -24,7 +25,7 @@ const Project: React.FC = () => {
   const dispatch = useDispatch();
   const projectId = useSelector(selectCurrentRouteParamProjectId);
   const project = useSelector((state: RootState) => selectProject(state, Number(projectId)));
-
+  const glossary = useSelector(selectCurrentGlossary);
   const loadInitialData = async () => {
     await dispatch(projectsLoad());
   };
@@ -49,6 +50,6 @@ const Project: React.FC = () => {
     data: project,
   });
 
-  return <ProjectUi project={cachedProject} carouselSlides={carouselSlides} />;
+  return <ProjectUi project={cachedProject} carouselSlides={carouselSlides} glossary={glossary} />;
 };
 export default Project;

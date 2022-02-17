@@ -14,7 +14,6 @@ const When: React.FC = () => {
   const glossary = useSelector(selectCurrentGlossary);
   const params = useSelector(selectCurrentRouteParams);
   const articles = useSelector(selectArticlesCurrent);
-
   const articlesWithDates = articles.map((item) => {
     const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: params?.lang });
     const formattedDate = date.getLocaleFormattedDate();
@@ -30,6 +29,6 @@ const When: React.FC = () => {
   };
   useLoadInitialData({ loadInitialData });
 
-  return <WhenUi glossary={glossary} articlesWithDates={articlesWithDates} lang={params.lang} />;
+  return <WhenUi glossary={glossary} articlesWithDates={articlesWithDates} />;
 };
 export default When;
