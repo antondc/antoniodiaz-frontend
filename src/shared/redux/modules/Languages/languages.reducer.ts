@@ -2,6 +2,7 @@ import {
   LANGUAGES_LOAD_FAILURE,
   LANGUAGES_LOAD_REQUEST,
   LANGUAGES_LOAD_SUCCESS,
+  LANGUAGES_SET_LOADING,
   LANGUAGES_SWITCH_CURRENT_REQUEST,
   LANGUAGES_SWITCH_CURRENT_SUCCESS,
   LANGUAGES_UPDATE_FAILURE,
@@ -20,6 +21,9 @@ const initialState: LanguagesState = {
     name: '',
     isDefault: false,
     glossary: {
+      siteTitle: '',
+      siteDescription: '',
+      author: '',
       who: '',
       whoContentJson: [],
       whoContentHtml: '',
@@ -28,6 +32,8 @@ const initialState: LanguagesState = {
       when: '',
       whenSubtitle: '',
       where: '',
+      code: '',
+      email: '',
       post: '',
       serverError: '',
       control: '',
@@ -49,6 +55,7 @@ export const Languages = (state = initialState, action: LanguagesActions): Langu
     case LANGUAGES_UPDATE_FAILURE:
     case LANGUAGES_SWITCH_CURRENT_REQUEST:
     case LANGUAGES_SWITCH_CURRENT_SUCCESS:
+    case LANGUAGES_SET_LOADING:
       return Object.assign({}, state, action.payload);
 
     default:

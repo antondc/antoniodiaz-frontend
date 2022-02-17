@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from 'Components/Header';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { selectUiMounted } from 'Modules/Ui/selectors/selectUiMounted';
@@ -39,8 +40,10 @@ interface Props {
 const FullPage: React.FC<Props> = ({ location }) => {
   const loggedIn = useSelector(selectSessionLoggedIn);
   const defaultCurrentSlug = useSelector(selectCurrentLanguageSlug);
+  const languageLoading = useSelector(selectLanguageLoading);
   const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
   const uiMounted = useSelector(selectUiMounted);
+  const renderUi = uiMounted && !languageLoading;
 
   return (
     <div className="FullPage">
@@ -48,12 +51,12 @@ const FullPage: React.FC<Props> = ({ location }) => {
       <Header />
       <FadeInOut
         className="FullPage-content"
-        valueToUpdate={uiMounted + pathWithoutLanguageParam}
+        valueToUpdate={renderUi + pathWithoutLanguageParam}
         unmountOnExit={false}
         speed="fastest"
         appear
       >
-        <Fade className="FullPage-content" mounted={uiMounted} unmountOnExit={false} speed="fastest" appear>
+        <Fade className="FullPage-content" mounted={renderUi} unmountOnExit={false} speed="fastest" appear>
           <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
             {/* Redirects */}
             {loggedIn && <Redirect from={Routes.Login.path} to={'/' + defaultCurrentSlug + '/'} />}

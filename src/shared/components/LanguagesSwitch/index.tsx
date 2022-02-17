@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { languagesSetLoading } from 'Modules/Languages/actions/languagesSetLoading';
 import { switchCurrentLanguage } from 'Modules/Languages/actions/switchCurrentLanguage';
 import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguagesList';
@@ -8,7 +9,6 @@ import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPat
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
-import { uiSwitchMounted } from 'Modules/Ui/actions/uiSwitchMounted';
 import { mockAsync } from '@antoniodcorrea/utils';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
@@ -39,7 +39,7 @@ const LanguagesSwitch: React.FC = () => {
 
     if (currentLanguage.slug === slug) return;
 
-    dispatch(uiSwitchMounted(false));
+    dispatch(languagesSetLoading(true));
     await mockAsync({ timeout: 150 });
     dispatch(switchCurrentLanguage(slug, link));
     dispatch(switchLanguagesModal(false));

@@ -8,8 +8,12 @@ export const LANGUAGES_UPDATE_SUCCESS = 'LANGUAGES_UPDATE_SUCCESS';
 export const LANGUAGES_UPDATE_FAILURE = 'LANGUAGES_UPDATE_FAILURE';
 export const LANGUAGES_SWITCH_CURRENT_SUCCESS = 'LANGUAGES_SWITCH_CURRENT_SUCCESS';
 export const LANGUAGES_SWITCH_CURRENT_REQUEST = 'LANGUAGES_SWITCH_CURRENT_REQUEST';
+export const LANGUAGES_SET_LOADING = 'LANGUAGES_SET_LOADING';
 
 export interface GlossaryState {
+  siteTitle: string;
+  siteDescription: string;
+  author: string;
   who: string;
   whoContentJson: TextEditorValue;
   whoContentHtml: string;
@@ -107,6 +111,11 @@ interface LanguagesSwitchCurrentSuccessAction {
   payload: Partial<LanguagesState>;
 }
 
+interface LanguagesSetLoadingAction {
+  type: typeof LANGUAGES_SET_LOADING;
+  payload: Partial<LanguagesState>;
+}
+
 export type LanguagesActions =
   | LanguagesLoadRequestAction
   | LanguagesLoadSuccessAction
@@ -115,4 +124,5 @@ export type LanguagesActions =
   | LanguagesUpdateSuccessAction
   | LanguagesUpdateFailureAction
   | LanguagesSwitchCurrentRequestAction
-  | LanguagesSwitchCurrentSuccessAction;
+  | LanguagesSwitchCurrentSuccessAction
+  | LanguagesSetLoadingAction;
