@@ -23,7 +23,7 @@ export const Where: React.FC<Props> = ({ language }) => (
       title="GitLab"
     >
       <GitLab className="Where-itemIcon" />
-      <div className="Where-itemText">Code</div>
+      <div className="Where-itemText">{language.glossary.code}</div>
     </A>
     <A
       className="Where-item Where-item--mail"
@@ -33,15 +33,9 @@ export const Where: React.FC<Props> = ({ language }) => (
       title="Email"
     >
       <Mail className="Where-itemIcon" />
-      <div className="Where-itemText">Mail</div>
+      <div className="Where-itemText">{language.glossary.email}</div>
     </A>
-    <A
-      className="Where-item Where-item--rss"
-      href={`${language.slug}/es/rss/blog`}
-      targetBlank
-      styled={false}
-      title="RSS"
-    >
+    <A className="Where-item Where-item--rss" href="/rss/blog" targetBlank styled={false} title="RSS">
       <Rss className="Where-itemIcon" />
       <div className="Where-itemText Where-itemTextRSS">rss</div>
     </A>
