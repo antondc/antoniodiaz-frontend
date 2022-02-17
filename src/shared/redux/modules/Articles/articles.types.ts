@@ -30,6 +30,7 @@ export interface ArticleState {
   published: boolean;
   userId: string;
   language: string;
+  date?: string;
   createdAt: number;
   updatedAt: number;
 }

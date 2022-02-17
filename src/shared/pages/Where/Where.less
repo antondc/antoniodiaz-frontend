@@ -12,10 +12,9 @@
   margin: 0 auto;
   padding: 80px;
 
-  .isMobile &,
-  .isTablet & {
+  @media @br-mobile, @br-tablet {
     flex-wrap: wrap;
-    padding: 10vh 10vw 30vh;
+    padding: 30vh 10vw;
   }
 
   &-item {
@@ -30,8 +29,7 @@
       cursor: pointer;
     }
 
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile, @br-tablet {
       width: 50%;
     }
 

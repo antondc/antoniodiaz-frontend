@@ -5,7 +5,7 @@
 @{c} {
   h1 {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: @fs-medium;
   }
 
@@ -83,6 +83,10 @@
     line-height: @fh-small;
     text-align: center;
 
+    @media @br-mobile, @br-tablet {
+      font-size: 10px;
+    }
+
     mark {
       font-size: @fs-small;
     }
@@ -114,6 +118,15 @@
     font-size: @fs-small;
     white-space: pre;
     border-radius: 4px;
+    overflow-x: scroll;
+
+    @media @br-mobile, @br-tablet {
+      padding: 15px 9px;
+      font-size: 10px;
+      line-height: 14px;
+    }
+
+    .hideScrollbar;
 
     code {
       white-space: pre;

@@ -12,12 +12,11 @@
   padding: 170px 0;
   user-select: none;
 
-  .isMobile &,
-  .isTablet & {
-    padding: 50px 20px 20px;
+  @media @br-mobile, @br-tablet {
+    padding: 100px 20px 20px;
   }
 
-  .isDesktop & {
+  @media @br-greaterThanTablet {
     @media @desktop-short {
       min-height: 480px;
     }
@@ -29,9 +28,8 @@
     line-height: @fh-huge;
     text-align: center;
 
-    .isMobile &,
-    .isTablet & {
-      margin-bottom: 40px;
+    @media @br-mobile, @br-tablet {
+      margin-bottom: 20px;
     }
   }
 }

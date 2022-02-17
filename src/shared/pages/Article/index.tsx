@@ -39,6 +39,6 @@ const Article: React.FC = () => {
     });
   }, []);
 
-  return <ArticleUi article={article} date={createdAtFormatted} />;
+  return <ArticleUi article={cachedArticle} date={createdAtFormatted} />;
 };
 export default Article;

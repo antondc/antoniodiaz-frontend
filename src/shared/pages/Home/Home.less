@@ -8,8 +8,7 @@
 
   .u-minHeight;
 
-  .isMobile &,
-  .isTablet & {
+  @media @br-mobile, @br-tablet {
     height: auto;
     padding: 0 20px 20px;
   }
@@ -96,7 +95,7 @@
       margin-bottom: 0;
     }
 
-    .isDesktop & {
+    @media @br-greaterThanTablet {
 
       &:hover:not(@{c}-all) {
         color: @c-tomato;
@@ -104,8 +103,7 @@
       }
     }
 
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile, @br-tablet {
       position: relative;
       height: 100vw;
       width: 100%;
@@ -119,7 +117,7 @@
     }
   }
 
-  .isDesktop & {
+  @media @br-greaterThanTablet {
     &-bigSquare {
       height: 55%;
       width: 55%;
@@ -219,16 +217,14 @@
     width: 100%;
     max-width: 1200px;
 
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile, @br-tablet {
       flex-wrap: wrap;
       padding: 70px 40px;
     }
   }
 
   &-fourthIconLink {
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile, @br-tablet {
       width: 50%;
     }
 
