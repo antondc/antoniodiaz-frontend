@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
+import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
 import { Where as WhereUi } from './Where';
 
 const Where: React.FC = () => {
-  const glossary = useSelector(selectCurrentGlossary);
+  const language = useSelector(selectCurrentLanguage);
 
-  return <WhereUi glossary={glossary} />;
+  return <WhereUi language={language} />;
 };
 export default Where;

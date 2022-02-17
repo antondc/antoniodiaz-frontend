@@ -4,15 +4,16 @@ import GitLab from 'Assets/svg/iconGitLab.svg';
 import Linkedin from 'Assets/svg/iconLinkedin.svg';
 import Mail from 'Assets/svg/iconMail.svg';
 import Rss from 'Assets/svg/iconRss.svg';
-import { GlossaryState } from 'Modules/Languages/languages.types';
+import { LanguageState } from 'Modules/Languages/languages.types';
 import { A } from '@antoniodcorrea/components';
 
 import './Where.less';
 
 interface Props {
-  glossary: GlossaryState;
+  language: LanguageState;
 }
-export const Where: React.FC<Props> = () => (
+
+export const Where: React.FC<Props> = ({ language }) => (
   <div className="Where">
     <A
       className="Where-item Where-item--gitLab"
@@ -36,7 +37,7 @@ export const Where: React.FC<Props> = () => (
     </A>
     <A
       className="Where-item Where-item--rss"
-      href="https://antoniodiaz.me/when/rss"
+      href={`${language.slug}/es/rss/blog`}
       targetBlank
       styled={false}
       title="RSS"
