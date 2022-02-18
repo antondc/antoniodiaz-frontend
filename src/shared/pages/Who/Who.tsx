@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import Footer from 'Components/Footer';
 import { StyledContent } from 'Components/StyledContent';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { HtmlSanitizer } from '@antoniodcorrea/components';
@@ -24,5 +25,6 @@ export const Who: React.FC<Props> = ({ glossary }) => (
         <HtmlSanitizer html={glossary.whoContentHtml} />
       </StyledContent>
     </div>
+    <Footer />
   </>
 );

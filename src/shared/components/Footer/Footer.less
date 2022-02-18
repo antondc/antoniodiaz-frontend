@@ -1,0 +1,51 @@
+@import '../../css/imports.less';
+
+@c: .Footer;
+
+@{c} {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+
+  &-hr {
+    margin: 0;
+    border: 1px solid @c-blue--pastel;
+
+    @media @br-tablet, @br-tablet {
+      margin: 0 10px;
+    }
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 0 65px;
+    font-weight: @fw-semibold;
+    color: @c-blue--pastel;
+
+    @media @br-tablet, @br-tablet {
+      display: block;
+      margin: 0 10px;
+      padding: 35px 0 35px;
+    }
+  }
+
+  &-item {
+    @media @br-tablet, @br-tablet {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-email {
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    color: @c-blue--pastel;
+    transition: text-decoration-color @td-fast @ease;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: @c-blue--pastel;
+    }
+  }
+}

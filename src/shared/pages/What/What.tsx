@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import A from 'Components/A';
+import Footer from 'Components/Footer';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
 import { Img } from '@antoniodcorrea/components';
@@ -47,5 +48,6 @@ export const What: React.FC<Props> = ({ glossary, projects }) => (
         </div>
       </div>
     </div>
+    <Footer />
   </>
 );

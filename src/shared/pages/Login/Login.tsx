@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 
 import { BaseModalTitle } from 'Components/BaseModal';
 import BasePanel from 'Components/BasePanel';
+import Footer from 'Components/Footer';
 import LoginForm from 'Components/LoginForm';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 
@@ -23,5 +24,6 @@ export const Login: React.FC<Props> = ({ glossary }) => (
       <BaseModalTitle>Login</BaseModalTitle>
       <LoginForm />
     </BasePanel>
+    <Footer />
   </>
 );

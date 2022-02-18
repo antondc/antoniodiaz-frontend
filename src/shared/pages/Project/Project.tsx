@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import BaseCarousel from 'Components/BaseCarousel';
+import Footer from 'Components/Footer';
 import { StyledContent } from 'Components/StyledContent';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { ProjectState } from 'Modules/Projects/projects.types';
@@ -57,5 +58,6 @@ export const Project: React.FC<Props> = ({ project, carouselSlides, glossary }) 
         </>
       )}
     </div>
+    <Footer />
   </>
 );
