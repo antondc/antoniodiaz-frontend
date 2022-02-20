@@ -10,12 +10,11 @@
   margin: 0 auto;
   padding: 170px 0;
 
-  .isMobile &,
-  .isTablet & {
+  @media @br-mobile, @br-tablet {
     padding: 50px 20px 20px;
   }
 
-  .isDesktop & {
+  @media @br-greaterThanTablet {
     @media @desktop-short {
       min-height: 480px;
     }
@@ -27,8 +26,7 @@
     font-weight: @fw-bold;
     text-align: center;
 
-    .isMobile &,
-    .isTablet & {
+    @media @br-mobile, @br-tablet {
       margin-bottom: 40px;
     }
   }

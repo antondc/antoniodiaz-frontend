@@ -59,7 +59,7 @@
 .u-minHeight {
   min-height: calc(100vh ~'-' @header-height ~'-' 10px);
 
-  .isDesktop & {
+  @media @br-greaterThanTablet {
     @media @desktop-short {
       min-height: 480px;
     }

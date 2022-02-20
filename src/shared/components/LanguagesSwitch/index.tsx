@@ -7,7 +7,6 @@ import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrent
 import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguagesList';
 import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
-import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
 import { mockAsync } from '@antoniodcorrea/utils';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
@@ -16,7 +15,6 @@ import './LanguagesSwitch.less';
 
 const LanguagesSwitch: React.FC = () => {
   const dispatch = useDispatch();
-  const loggedIn = useSelector(selectSessionLoggedIn);
 
   const languagesList = useSelector(selectLanguagesList);
   const currentLanguage = useSelector(selectCurrentLanguage);
@@ -51,7 +49,6 @@ const LanguagesSwitch: React.FC = () => {
 
   return (
     <LanguagesSwitchUi
-      loggedIn={loggedIn}
       currentLanguage={currentLanguage}
       languagesSorted={languagesSorted}
       onLanguageSwitch={onLanguageSwitch}

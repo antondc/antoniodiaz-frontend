@@ -64,7 +64,7 @@ export const Header: React.FC<Props> = ({
         </div>
       )}
       <LanguageSwitchButton />
-      <Fade mounted={uiLanguagesModalMounted}>
+      <Fade mounted={uiLanguagesModalMounted} position="absolute">
         <LanguagesSwitch />
       </Fade>
     </div>
