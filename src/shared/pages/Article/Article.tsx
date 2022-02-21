@@ -19,7 +19,7 @@ interface Props {
 export const Article: React.FC<Props> = ({ article, date, glossary }) => (
   <>
     <Helmet>
-      <title>{`${glossary.siteTitle} · ${article?.title}`}</title>
+      <title>{`${glossary.author} · ${article?.title}`}</title>
       <meta property="og:title" content={`${article?.title}`} />
       <meta property="twitter:title" content={`${article?.title}`} />
     </Helmet>

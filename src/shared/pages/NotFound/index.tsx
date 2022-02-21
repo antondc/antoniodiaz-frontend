@@ -18,14 +18,16 @@ const NotFound: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>title={`${currentGlossary.siteTitle} · Not Found`}</title>
+        <title>{`${currentGlossary.siteTitle} · Not Found`}</title>
         <meta property="og:title" content={`${currentGlossary.siteTitle} · Not Found`} />
         <meta property="twitter:title" content={`${currentGlossary.siteTitle} · Not Found`} />
       </Helmet>
-      <CardItem className="NotFound">
-        <h1 className="NotFound-title">{currentGlossary?.notFound} 😵</h1>
-        <p className="NotFound-text">We couldnt find what you were looking for.</p>
-      </CardItem>
+      <div className="NotFound">
+        <CardItem className="NotFound-cardItem">
+          <h1 className="NotFound-title">{currentGlossary?.notFound} 😵</h1>
+          <p className="NotFound-text">We couldnt find what you were looking for.</p>
+        </CardItem>
+      </div>
       <Footer />
     </>
   );

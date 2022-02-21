@@ -16,14 +16,16 @@ interface Props {
 export const Login: React.FC<Props> = ({ glossary }) => (
   <>
     <Helmet>
-      <title>title={`${glossary.siteTitle} · Login`}</title>
+      <title>{`${glossary.siteTitle} · Login`}</title>
       <meta property="og:title" content={`${glossary.siteTitle} · Login`} />
       <meta property="twitter:title" content={`${glossary.siteTitle} · Login`} />
     </Helmet>
-    <BasePanel>
-      <BaseModalTitle>Login</BaseModalTitle>
-      <LoginForm />
-    </BasePanel>
+    <div className="Login">
+      <BasePanel>
+        <BaseModalTitle>Login</BaseModalTitle>
+        <LoginForm />
+      </BasePanel>
+    </div>
     <Footer />
   </>
 );
