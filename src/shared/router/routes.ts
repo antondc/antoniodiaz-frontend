@@ -1,8 +1,8 @@
 import omit from 'lodash/omit';
 
+import { initialArticlesLoader } from 'Modules/Articles/articles.loader';
 import { initialProjectsLoader } from 'Modules/Projects/projects.loader';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
-import { initialArticlesLoader } from 'Modules/Articles/articles.loader';
 
 export enum RouteLayout {
   fullPage,

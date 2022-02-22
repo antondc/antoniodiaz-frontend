@@ -5,6 +5,7 @@ import { ArticlesApiResponse, ArticlesState, ArticleState } from './articles.typ
 
 export const initialArticlesLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
   const lang = params?.lang ? `/${params?.lang}` : '';
+
   const { data, meta }: ArticlesApiResponse = await HttpClient.get(`${lang}/articles`);
 
   const articlesArray = data?.map((item) => item.attributes);
