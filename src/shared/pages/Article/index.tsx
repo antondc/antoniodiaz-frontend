@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useCachedData } from 'Hooks/useCachedData';
 import { useHljs } from 'Hooks/useHljs';
-// import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { useMathFormat } from 'Hooks/useMathFormat';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
