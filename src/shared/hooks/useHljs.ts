@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import hljs from 'highlight.js';
 
 interface Props {
@@ -17,16 +17,15 @@ export const useHljs = ({ data }: Props): void => {
   // Disable errors, as we are already escaping html
   hljs.configure({ ignoreUnescapedHTML: true });
 
-  const useHljsWithCallback = useCallback(() => {
+  useEffect(() => {
     const codeElements = document.getElementsByTagName('pre');
     const codeElementsArray = Array.from(codeElements);
 
     codeElementsArray.forEach((codeElement) => {
+      const elementClassHasHljs = codeElement.classList.contains('hljs');
+      if (elementClassHasHljs) return;
+
       hljs.highlightElement(codeElement);
     });
-  }, []);
-
-  useEffect(() => {
-    useHljsWithCallback();
   }, [data]);
 };
