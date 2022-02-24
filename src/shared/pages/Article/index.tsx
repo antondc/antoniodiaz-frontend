@@ -32,18 +32,6 @@ const Article: React.FC = () => {
 
   useHljs({ data: article });
 
-  // Load embedded html images
-  useEffect(() => {
-    const imageElements = document.getElementsByTagName('img');
-    const imageElementsArray = Array.from(imageElements);
-
-    imageElementsArray.forEach((imageElement) => {
-      imageElement.decode().then(() => {
-        imageElement.classList.add('Article-image--loaded');
-      });
-    });
-  }, []);
-
   return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} />;
 };
 export default Article;
