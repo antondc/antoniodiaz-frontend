@@ -15,9 +15,9 @@ export const useLoadInitialData: UseLoadInitialData = ({
     if (!!loadingData) return;
 
     setLoadingData(true);
-    dispatch(uiSwitchMounted(false));
+    // dispatch(uiSwitchMounted(false));
     await loadInitialData();
-    dispatch(uiSwitchMounted(true));
+    // dispatch(uiSwitchMounted(true));
     setLoadingData(false);
   };
 

@@ -28,7 +28,7 @@ const Article: React.FC = () => {
   };
   useLoadInitialData({ loadInitialData });
   useMathFormat({ id: 'Article', data: cachedArticle });
-  useHljs({ data: article });
+  useHljs({ data: cachedArticle });
 
   return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} />;
 };
