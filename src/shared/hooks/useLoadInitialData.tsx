@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrentLanguage';
@@ -23,7 +23,9 @@ export const useLoadInitialData: UseLoadInitialData = ({
     setLoadingData(false);
   };
 
+  const useAsyncLoadDataWithCallback = useCallback(() => asyncLoadData(), [currentSlug]);
+
   useEffect(() => {
-    asyncLoadData();
+    useAsyncLoadDataWithCallback();
   }, [currentSlug]);
 };
