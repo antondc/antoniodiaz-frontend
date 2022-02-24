@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useCachedData } from 'Hooks/useCachedData';
+import { useHljs } from 'Hooks/useHljs';
 // import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { useMathFormat } from 'Hooks/useMathFormat';
@@ -30,7 +31,7 @@ const Article: React.FC = () => {
 
   useMathFormat({ id: 'Article', data: cachedArticle });
 
-  // useHljs({ data: article });
+  useHljs({ data: article });
 
   return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} />;
 };
