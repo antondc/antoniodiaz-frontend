@@ -5,7 +5,6 @@ import Footer from 'Components/Footer';
 import { StyledContent } from 'Components/StyledContent';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { RouteState } from 'Modules/Routes/routes.types';
 import { HtmlSanitizer } from '@antoniodcorrea/components';
 
 import './Article.less';

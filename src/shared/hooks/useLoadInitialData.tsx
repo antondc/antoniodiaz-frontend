@@ -14,7 +14,7 @@ export const useLoadInitialData: UseLoadInitialData = ({
   const [loadingData, setLoadingData] = useState<boolean>(false);
 
   const asyncLoadData = async () => {
-    if (loadingData) return;
+    if (!!loadingData) return;
 
     setLoadingData(true);
     dispatch(uiSwitchMounted(false));
