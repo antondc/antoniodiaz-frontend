@@ -14,8 +14,8 @@ const webpackClientProdConfig = {
     path: WEBPACK_DIST,
     publicPath: '/',
   },
-  devtool: 'none',
-  stats: 'errors-only',
+  devtool: '#source-map',
+  stats: 'normal',
   module: {
     rules: [
       {
