@@ -65,7 +65,6 @@
     width: 100%;
     margin: 20px 0;
     opacity: 0;
-    box-shadow: 0 0 10px 5px @c-traslucid--light;
     object-fit: cover;
     object-position: center;
     transition: opacity @td-normal @ease;
@@ -147,5 +146,31 @@
 
   .uppercase {
     text-transform: uppercase;
+  }
+
+  .math {
+    position: relative;
+    margin: 20px 0;
+    opacity: 0;
+    transition: opacity @td-fast @ease;
+
+    &-block {
+      margin-bottom: 5px;
+      padding: 40px;
+      font-size: 14px;
+      line-height: 12px;
+      border: 1px solid @c-base;
+
+      .textmd {
+        padding-left: 10px;
+        font-size: 14px;
+        color: fade(@c-accentLight, 40%);
+        font-style: italic;
+      }
+    }
+
+    &--loaded {
+      opacity: 1;
+    }
   }
 }

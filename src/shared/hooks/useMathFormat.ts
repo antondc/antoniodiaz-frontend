@@ -46,11 +46,19 @@ export const useMathFormat = ({ id, data }: Props): void => {
           output: 'html',
         });
         // Create new element using original handle tag and its innerHtml
-        const newInlineMathReactElement: React.ReactElement = React.createElement(tag.toLowerCase(), {
+        const newMathReactElement = React.createElement(tag.toLowerCase(), {
           dangerouslySetInnerHTML: { __html: html },
+          className: 'math-block math-formula',
         });
         // Render clone within handle and do actions asynchronously
-        ReactDOM.render(newInlineMathReactElement, item.parentElement);
+        ReactDOM.render(newMathReactElement, item.parentElement, () => {
+          const elements = document.getElementsByClassName('math-formula');
+          const elementsArray = Array.from(elements) as Array<HTMLElement>;
+
+          elementsArray.forEach((item) => {
+            item.classList.add('math--loaded');
+          });
+        });
       });
     } catch (e) {
       console.log('math error: ', e);
