@@ -31,5 +31,11 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    opacity: 0;
+    transition: opacity @td-fast @ease;
+
+    &--shown {
+      opacity: 1;
+    }
   }
 }
