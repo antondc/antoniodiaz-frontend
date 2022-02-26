@@ -21,7 +21,7 @@ interface Props {
 export const Project: React.FC<Props> = ({ project, carouselSlides, glossary }) => (
   <>
     <Helmet>
-      <title>{`${glossary.author} · ${project?.title}`}</title>
+      <title>{`${glossary.author}${project?.title && ` · ${project?.title}`}`}</title>
       <meta property="og:title" content={`${project?.title}`} />
       <meta property="og:image" content={project?.carousel[0]?.image?.original} />
       <meta property="twitter:title" content={`${project?.title}`} />
