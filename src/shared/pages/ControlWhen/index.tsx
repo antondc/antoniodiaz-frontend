@@ -9,7 +9,6 @@ import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticles
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
-import { selectUiMounted } from 'Modules/Ui/selectors/selectUiMounted';
 import history from 'Services/History';
 import { SortableSortProps } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
