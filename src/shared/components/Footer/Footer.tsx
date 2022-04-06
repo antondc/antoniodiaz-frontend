@@ -13,13 +13,7 @@ export const Footer: React.FC<Props> = ({ glossary }) => (
     <hr className="Footer-hr" />
     <div className="Footer-content">
       <div className="Footer-item">Antonio Diaz</div>
-      <div className="Footer-item">
-        Saint Petersburg
-        <Space />
-        <Space />·<Space />
-        <Space />
-        Madrid
-      </div>
+      <div className="Footer-item">Madrid</div>
       <div className="Footer-item">
         <A
           className="Footer-email"
