@@ -1,14 +1,10 @@
 import React from 'react';
 
-import { A, Space } from '@antoniodcorrea/components';
-import { GlossaryState } from '../../redux/modules/Languages/languages.types';
+import { A } from '@antoniodcorrea/components';
 
 import './Footer.less';
 
-interface Props {
-  glossary: GlossaryState;
-}
-export const Footer: React.FC<Props> = ({ glossary }) => (
+export const Footer: React.FC = () => (
   <footer className={'Footer'}>
     <hr className="Footer-hr" />
     <div className="Footer-content">
