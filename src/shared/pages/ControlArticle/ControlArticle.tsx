@@ -3,7 +3,7 @@ import React from 'react';
 import BaseForm, { BaseFormField, BaseFormLabel, BaseFormSubmit } from 'Components/BaseForm';
 import { Input } from 'Components/Input';
 import { ImageUpload } from 'Services/ImageUpload';
-import { Button, Hr, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
+import { Button, Hr, ImageField, Switch, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
 import './ControlArticle.less';
 
@@ -11,6 +11,11 @@ interface Props {
   titleValue: string;
   titleError: string;
   onChangeTitle: (e: React.FormEvent<HTMLInputElement>) => void;
+  ogImageValue: string;
+  ogImageError: string;
+  percentCompleted: number;
+  uploadFilesToServer: (file: File) => void;
+  removeFilesFromServer: (file: any) => void;
   textEditorInitialValue: TextEditorValue;
   onChangeTextEditorValue: (value: TextEditorValue) => void;
   imageUploadService: ImageUpload;
@@ -30,6 +35,10 @@ export const ControlArticle: React.FC<Props> = ({
   onChangeTitle,
   titleValue,
   titleError,
+  ogImageValue,
+  percentCompleted,
+  uploadFilesToServer,
+  removeFilesFromServer,
   textEditorInitialValue,
   onChangeTextEditorValue,
   publishedValue,
@@ -56,6 +65,21 @@ export const ControlArticle: React.FC<Props> = ({
           grow
         />
       </BaseFormField>
+      <BaseFormField>
+        <BaseFormLabel>Og image</BaseFormLabel>
+        <ImageField
+          className="UserForm-image"
+          label="Og image"
+          name="ogImage"
+          image={ogImageValue}
+          grow={false}
+          uploadFiles={uploadFilesToServer}
+          onRemove={removeFilesFromServer}
+          percentCompleted={percentCompleted}
+          accept=".jpg,.jpeg,.png"
+        />
+      </BaseFormField>
+      <Hr spacer />
       <BaseFormField>
         <TextEditor
           initialValue={textEditorInitialValue}

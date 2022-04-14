@@ -25,6 +25,7 @@ export interface ArticleState {
   id: number;
   order: number;
   title: string;
+  ogImage: string;
   contentHtml: string;
   contentJson: TextEditorValue;
   published: boolean;
