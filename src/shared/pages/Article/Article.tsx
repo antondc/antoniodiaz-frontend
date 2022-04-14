@@ -20,7 +20,9 @@ export const Article: React.FC<Props> = ({ article, date, glossary }) => (
     <Helmet>
       <title>{`${glossary.author}${article?.title ? ` · ${article?.title}` : ''}`}</title>
       <meta property="og:title" content={`${article?.title}`} />
+      <meta property="og:image" content={`${article?.ogImage}`} />
       <meta property="twitter:title" content={`${article?.title}`} />
+      <meta property="twitter:image" content={`${article?.ogImage}`} />
     </Helmet>
     <div className="Article" id="Article">
       <h1 className="Article-title">{article?.title}</h1>
