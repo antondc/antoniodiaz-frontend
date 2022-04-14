@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { isDomAvailable } from '@antoniodcorrea/utils';
+
 type UseCachedData = <T>(data: T) => T;
 
 export const useCachedData: UseCachedData = <T>(data) => {
@@ -11,5 +13,10 @@ export const useCachedData: UseCachedData = <T>(data) => {
     setCachedData(data);
   }, [data]);
 
-  return cachedData || data;
+  // Skip on server side, as `cachedData` will be always undefined on first time
+  if (!isDomAvailable) {
+    return data;
+  }
+
+  return cachedData;
 };
