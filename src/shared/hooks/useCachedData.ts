@@ -13,7 +13,7 @@ export const useCachedData: UseCachedData = <T>(data) => {
     setCachedData(data);
   }, [data]);
 
-  // Skip on server side, as `cachedData` will be always undefined
+  // Skip on server side, as `cachedData` will be always undefined on first time
   if (!isDomAvailable) {
     return data;
   }

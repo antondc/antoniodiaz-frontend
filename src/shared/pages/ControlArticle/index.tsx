@@ -21,6 +21,9 @@ const ControlArticle: React.FC = () => {
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
   const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(undefined);
+  const [ogImage, setOgImage] = useState<{ original: string }>(undefined);
+  const [ogImageError, setOgImageError] = useState<string>(null);
+  const [ogImagePercentCompleted, setOgImagePercentCompleted] = useState<number>(0);
   const [publishError, setPublishError] = useState<string>(undefined);
   const [publishing, setPublishing] = useState<boolean>(undefined);
   const [publishSuccess, setPublishingSuccess] = useState<boolean>(undefined);
@@ -43,6 +46,36 @@ const ControlArticle: React.FC = () => {
     setPublishError(undefined);
     setPublishingSuccess(undefined);
     setSubmitSuccess(undefined);
+  };
+
+  const uploadFilesToServer = async (file) => {
+    try {
+      const data = await imageUploadService.uploadFileToServer({
+        file,
+        setPercentCompleted: setOgImagePercentCompleted,
+      });
+      await setOgImage({
+        original: data?.file,
+      });
+    } catch (error) {
+      setOgImageError(error.message);
+    }
+  };
+
+  const onRemoved = (): void => {
+    setOgImageError(undefined);
+    setOgImage(undefined);
+  };
+
+  const removeFilesFromServer = async (url: string) => {
+    try {
+      await imageUploadService.removeFileFromServer({
+        src: url,
+        onRemoved,
+      });
+    } catch (error) {
+      setOgImageError(error.message);
+    }
   };
 
   const onChangeTextEditorValue = (value: TextEditorValue) => {
@@ -84,6 +117,7 @@ const ControlArticle: React.FC = () => {
         ...article,
         title: titleValue,
         contentJson: textEditorValue,
+        ogImage: ogImage.original,
       };
       dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 
@@ -100,6 +134,7 @@ const ControlArticle: React.FC = () => {
 
     setPublishedValue(!!article?.published);
     setTitleValue(article?.title);
+    setOgImage({ original: article?.ogImage });
 
     const textFormData = article?.contentJson;
     setTextEditorValue(textFormData);
@@ -110,6 +145,11 @@ const ControlArticle: React.FC = () => {
       titleValue={titleValue}
       titleError={titleError}
       onChangeTitle={onChangeTitle}
+      ogImageValue={ogImage?.original}
+      ogImageError={ogImageError}
+      percentCompleted={ogImagePercentCompleted}
+      uploadFilesToServer={uploadFilesToServer}
+      removeFilesFromServer={removeFilesFromServer}
       textEditorInitialValue={textEditorValue}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
