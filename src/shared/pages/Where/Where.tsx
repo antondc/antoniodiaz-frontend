@@ -24,7 +24,7 @@ export const Where: React.FC<Props> = ({ language }) => (
     <div className="Where">
       <A
         className="Where-item Where-item--gitLab"
-        href="https://gitlab.com/antoniodiaz/"
+        href="https://www.git.antoniodiaz.me/antoniodcorrea"
         targetBlank
         styled={false}
         title="GitLab"
