@@ -23,11 +23,11 @@ interface RoutesInterface {
   Home: Route;
   Login: Route;
   Control: Route;
-  ControlWhen: Route;
-  ControlWho: Route;
+  ControlBlog: Route;
+  ControlAbout: Route;
   ControlArticle: Route;
   ControlArticleCreate: Route;
-  Who: Route;
+  About: Route;
   Article: Route;
   ServerError: Route;
   NotFound: Route;
@@ -54,10 +54,10 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-  Who: {
-    name: 'Who',
-    path: '/:lang([a-z]{2})?/who',
-    route: '/who',
+  About: {
+    name: 'About',
+    path: '/:lang([a-z]{2})?/about',
+    route: '/about',
     exact: true,
     auth: false,
     initialDataLoadersVisitor: [],
@@ -84,20 +84,20 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-  ControlWho: {
-    name: 'ControlWho',
-    path: '/:lang([a-z]{2})?/control/who',
-    route: '/control/who',
+  ControlAbout: {
+    name: 'ControlAbout',
+    path: '/:lang([a-z]{2})?/control/about',
+    route: '/control/about',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-  ControlWhen: {
-    name: 'ControlWhen',
-    path: '/:lang([a-z]{2})?/control/when',
-    route: '/control/when',
+  ControlBlog: {
+    name: 'ControlBlog',
+    path: '/:lang([a-z]{2})?/control/blog',
+    route: '/control/blog',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],

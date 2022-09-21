@@ -5,7 +5,7 @@ import { Input } from 'Components/Input';
 import { ImageUpload } from 'Services/ImageUpload';
 import { Button, Hr, TextEditor, TextEditorValue } from '@antoniodcorrea/components';
 
-import './ControlWho.less';
+import './ControlAbout.less';
 
 interface Props {
   titleValue: string;
@@ -20,7 +20,7 @@ interface Props {
   submitting: boolean;
 }
 
-export const ControlWho: React.FC<Props> = ({
+export const ControlAbout: React.FC<Props> = ({
   titleValue,
   onChangeTitle,
   titleError,
@@ -32,7 +32,7 @@ export const ControlWho: React.FC<Props> = ({
   submitSuccess,
   submitting,
 }) => (
-  <div className="ControlWho">
+  <div className="ControlAbout">
     <BaseForm>
       <BaseFormField>
         <Input

@@ -12,17 +12,17 @@ import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute'
 import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { selectUiMounted } from 'Modules/Ui/selectors/selectUiMounted';
+import About from 'Pages/About';
 import Article from 'Pages/Article';
 import Control from 'Pages/Control';
+import ControlAbout from 'Pages/ControlAbout';
 import ControlArticle from 'Pages/ControlArticle';
 import ControlArticleCreate from 'Pages/ControlArticleCreate';
-import ControlWhen from 'Pages/ControlWhen';
-import ControlWho from 'Pages/ControlWho';
+import ControlBlog from 'Pages/ControlBlog';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import NotFound from 'Pages/NotFound';
 import ServerError from 'Pages/ServerError';
-import Who from 'Pages/Who';
 import { Routes } from 'Router/routes';
 import { Location } from 'Services/History';
 import { Fade, FadeInOut } from '@antoniodcorrea/components';
@@ -82,11 +82,11 @@ const FullPage: React.FC<Props> = ({ location }) => {
 
             {/* General */}
             <Route exact={Routes.Home.exact} path={Routes.Home.path} component={Home} />
-            <Route exact={Routes.Who.exact} path={Routes.Who.path} component={Who} />
+            <Route exact={Routes.About.exact} path={Routes.About.path} component={About} />
             <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
             <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
-            <Route exact={Routes.ControlWho.exact} path={Routes.ControlWho.path} component={ControlWho} />
-            <Route exact={Routes.ControlWhen.exact} path={Routes.ControlWhen.path} component={ControlWhen} />
+            <Route exact={Routes.ControlAbout.exact} path={Routes.ControlAbout.path} component={ControlAbout} />
+            <Route exact={Routes.ControlBlog.exact} path={Routes.ControlBlog.path} component={ControlBlog} />
             <Route
               exact={Routes.ControlArticleCreate.exact}
               path={Routes.ControlArticleCreate.path}

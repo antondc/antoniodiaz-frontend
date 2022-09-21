@@ -5,9 +5,9 @@ import { useLoadImages } from 'Hooks/loadImages';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
-import { Who as WhoUi } from './Who';
+import { About as AboutUi } from './About';
 
-const Who: React.FC = () => {
+const About: React.FC = () => {
   const dispatch = useDispatch();
   const glossary = useSelector(selectCurrentGlossary);
 
@@ -17,11 +17,11 @@ const Who: React.FC = () => {
   useLoadInitialData({ loadInitialData });
 
   useLoadImages({
-    id: 'Who-content',
-    className: 'Who-image--loaded',
+    id: 'About-content',
+    className: 'About-image--loaded',
     data: glossary,
   });
 
-  return <WhoUi glossary={glossary} />;
+  return <AboutUi glossary={glossary} />;
 };
-export default Who;
+export default About;

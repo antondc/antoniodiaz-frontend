@@ -7,9 +7,9 @@ import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/langua
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { ImageUpload } from 'Services/ImageUpload';
 import { TextEditorValue } from '@antoniodcorrea/components';
-import { ControlWho as ControlWhoUi } from './ControlWho';
+import { ControlAbout as ControlAboutUi } from './ControlAbout';
 
-const ControlWho: React.FC = () => {
+const ControlAbout: React.FC = () => {
   const dispatch = useDispatch();
   const glossary = useSelector(selectCurrentGlossary);
   const imageUploadService = new ImageUpload();
@@ -65,7 +65,7 @@ const ControlWho: React.FC = () => {
   };
 
   return (
-    <ControlWhoUi
+    <ControlAboutUi
       titleValue={titleValue}
       onChangeTitle={onChangeTitle}
       titleError={titleError}
@@ -79,4 +79,4 @@ const ControlWho: React.FC = () => {
     />
   );
 };
-export default ControlWho;
+export default ControlAbout;

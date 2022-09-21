@@ -12,11 +12,11 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import history from 'Services/History';
 import { SortableSortProps } from '@antoniodcorrea/components';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
-import { ControlWhen as ControlWhenUi } from './ControlWhen';
+import { ControlBlog as ControlBlogUi } from './ControlBlog';
 
-import './ControlWhen.less';
+import './ControlBlog.less';
 
-const ControlWhen: React.FC = () => {
+const ControlBlog: React.FC = () => {
   const dispatch = useDispatch();
   const [subtitleValue, setSubtitleValue] = useState<string>('');
   const [subtitleError, setSubtitleError] = useState<string>('');
@@ -91,7 +91,7 @@ const ControlWhen: React.FC = () => {
   };
 
   return (
-    <ControlWhenUi
+    <ControlBlogUi
       glossary={glossary}
       articles={articlesWithDates}
       onSortChange={onSortChange}
@@ -108,4 +108,4 @@ const ControlWhen: React.FC = () => {
   );
 };
 
-export default ControlWhen;
+export default ControlBlog;

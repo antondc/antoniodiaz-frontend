@@ -8,7 +8,7 @@ import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { Button, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
-import './ControlWhen.less';
+import './ControlBlog.less';
 
 interface Props {
   glossary: GlossaryState;
@@ -25,7 +25,7 @@ interface Props {
   onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 
-export const ControlWhen: React.FC<Props> = ({
+export const ControlBlog: React.FC<Props> = ({
   glossary,
   articles,
   onNewArticleClick,
@@ -39,8 +39,8 @@ export const ControlWhen: React.FC<Props> = ({
   submitSuccess,
   submitting,
 }) => (
-  <div className="ControlWhen">
-    <h1 className="ControlWhen-title">{glossary?.when}</h1>
+  <div className="ControlBlog">
+    <h1 className="ControlBlog-title">{glossary?.when}</h1>
     <BaseFormField>
       <Input
         name="subtitle"
@@ -65,22 +65,22 @@ export const ControlWhen: React.FC<Props> = ({
         grow
       />
     </BaseFormSubmit>
-    <Sortable className="ControlWhen-sortable" onSortEnd={onSortChange} onRemove={onDeleteArticleClick}>
+    <Sortable className="ControlBlog-sortable" onSortEnd={onSortChange} onRemove={onDeleteArticleClick}>
       {articles?.map((item) => (
-        <li className="ControlWhen-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
-          <span className="ControlWhen-sortableItemLeft">
-            <span className="ControlWhen-sortableItemHandle" id="Handle">
+        <li className="ControlBlog-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
+          <span className="ControlBlog-sortableItemLeft">
+            <span className="ControlBlog-sortableItemHandle" id="Handle">
               ≡
             </span>
-            <div className="ControlWhen-sortableItemText">
-              <A className="ControlWhen-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
+            <div className="ControlBlog-sortableItemText">
+              <A className="ControlBlog-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
                 {item.title}
               </A>
-              <div className="ControlWhen-sortableItemDate">{item.date}</div>
+              <div className="ControlBlog-sortableItemDate">{item.date}</div>
             </div>
           </span>
-          <span className="ControlWhen-sortableItemRemove">
-            <Cross className="ControlWhen-sortableItemRemoveIcon" id="Remove" />
+          <span className="ControlBlog-sortableItemRemove">
+            <Cross className="ControlBlog-sortableItemRemoveIcon" id="Remove" />
           </span>
         </li>
       ))}
