@@ -8,14 +8,14 @@
   },
   "staging": {
     "PORT_HTTP": 4009,
-    "PORT_HTTPS": 4010,
+    "PORT_HTTPS": 0,
     "API_URL": "https://www.api-staging.antoniodiaz.me/api/v1/",
     "SERVER_URL": "https://www.api-staging.antoniodiaz.me/",
     "DOMAIN": "www.staging.antoniodiaz.me"
   },
   "production": {
     "PORT_HTTP": 4011,
-    "PORT_HTTPS": 4012,
+    "PORT_HTTPS": 0,
     "API_URL": "https://www.api.antoniodiaz.me/api/v1/",
     "SERVER_URL": "https://www.api.antoniodiaz.me/",
     "DOMAIN": "www.antoniodiaz.me"
