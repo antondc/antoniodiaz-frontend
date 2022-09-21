@@ -1,6 +1,6 @@
 {
   "name": "antoniodiaz_frontend",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Antonio Díaz",
   "description": "Starter kit for universal sites using react, redux and typescript",
   "main": "dist/server.js",
