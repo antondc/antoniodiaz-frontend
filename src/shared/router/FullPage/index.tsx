@@ -16,19 +16,12 @@ import Article from 'Pages/Article';
 import Control from 'Pages/Control';
 import ControlArticle from 'Pages/ControlArticle';
 import ControlArticleCreate from 'Pages/ControlArticleCreate';
-import ControlProject from 'Pages/ControlProject';
-import ControlProjectCreate from 'Pages/ControlProjectCreate';
-import ControlWhat from 'Pages/ControlWhat';
 import ControlWhen from 'Pages/ControlWhen';
 import ControlWho from 'Pages/ControlWho';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import NotFound from 'Pages/NotFound';
-import Project from 'Pages/Project';
 import ServerError from 'Pages/ServerError';
-import What from 'Pages/What';
-import When from 'Pages/When';
-import Where from 'Pages/Where';
 import Who from 'Pages/Who';
 import { Routes } from 'Router/routes';
 import { Location } from 'Services/History';
@@ -90,20 +83,9 @@ const FullPage: React.FC<Props> = ({ location }) => {
             {/* General */}
             <Route exact={Routes.Home.exact} path={Routes.Home.path} component={Home} />
             <Route exact={Routes.Who.exact} path={Routes.Who.path} component={Who} />
-            <Route exact={Routes.What.exact} path={Routes.What.path} component={What} />
-            <Route exact={Routes.Project.exact} path={Routes.Project.path} component={Project} />
-            <Route exact={Routes.When.exact} path={Routes.When.path} component={When} />
             <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
-            <Route exact={Routes.Where.exact} path={Routes.Where.path} component={Where} />
             <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
-            <Route exact={Routes.ControlWhat.exact} path={Routes.ControlWhat.path} component={ControlWhat} />
             <Route exact={Routes.ControlWho.exact} path={Routes.ControlWho.path} component={ControlWho} />
-            <Route
-              exact={Routes.ControlProjectCreate.exact}
-              path={Routes.ControlProjectCreate.path}
-              component={ControlProjectCreate}
-            />
-            <Route exact={Routes.ControlProject.exact} path={Routes.ControlProject.path} component={ControlProject} />
             <Route exact={Routes.ControlWhen.exact} path={Routes.ControlWhen.path} component={ControlWhen} />
             <Route
               exact={Routes.ControlArticleCreate.exact}

@@ -12,7 +12,6 @@ import './Header.less';
 interface Props {
   uiLanguagesModalMounted: boolean;
   logoActive: boolean;
-  backRoute: string;
   routeName: string;
   controlHeader: boolean;
   onLogOut: () => void;
@@ -21,17 +20,14 @@ interface Props {
 export const Header: React.FC<Props> = ({
   uiLanguagesModalMounted,
   logoActive,
-  backRoute,
   routeName,
   controlHeader,
   onLogOut,
 }) => (
   <header className={'Header' + (controlHeader ? ' Header--control' : '')}>
-    {!controlHeader && (
-      <A href={backRoute} className="Header-logo">
-        <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />
-      </A>
-    )}
+    <div className="Header-logo">
+      {!controlHeader && <Triangle className={'Header-logoIcon' + (logoActive ? ' isActive' : '')} />}
+    </div>
     {controlHeader && (
       <div className="Header-navigation">
         <A

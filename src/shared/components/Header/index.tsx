@@ -15,10 +15,7 @@ const Header: React.FC = () => {
   const currentRoute = useSelector(selectCurrentRoute);
   const routeName = useSelector(selectCurrentRouteName);
   const logoActive = currentRoute?.name !== Routes.Home.name;
-  const currentRouteArticle = currentRoute?.name === Routes.Article.name;
-  const currentRouteProject = currentRoute?.name === Routes.Project.name;
   const uiLanguagesModalMounted = useSelector(selectUiLanguagesModalMounted);
-  const backRoute = currentRouteArticle ? '/when' : currentRouteProject ? '/what' : '/';
   const controlHeader = currentRoute.auth;
 
   const onLogOut = () => {
@@ -29,7 +26,6 @@ const Header: React.FC = () => {
     <HeaderUi
       uiLanguagesModalMounted={uiLanguagesModalMounted}
       logoActive={logoActive}
-      backRoute={backRoute}
       routeName={routeName}
       onLogOut={onLogOut}
       controlHeader={controlHeader}

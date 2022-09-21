@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectProjectSaving } from 'Modules/Projects/selectors/selectProjectSaving';
 import { pushNewRoute } from 'Modules/Routes/actions/pushNewRoute';
 import { RouteState } from 'Modules/Routes/routes.types';
 import { selectCurrentPathAndQuery } from 'Modules/Routes/selectors/selectCurrentPathAndQuery';
@@ -32,8 +31,7 @@ const Layout: React.FC<Props> = ({ location }) => {
   const currentPathAndQuery = useSelector(selectCurrentPathAndQuery);
   const uiScreenLocked = useSelector(selectUiScreenLocked);
   const uiScreenMobileLocked = useSelector(selectUiScreenMobileLocked);
-  const projectSaving = useSelector(selectProjectSaving);
-  const renderLoader = !!projectSaving; /* || otherVariables */
+  const renderLoader = false; /* || otherVariables */
   const routeName = useSelector(selectCurrentRouteName);
   const currentRoute = useSelector(selectCurrentRoute);
   const control = currentRoute.auth;

@@ -1,152 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { useLoadInitialData } from 'Hooks/useLoadInitialData';
+import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
+import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
-import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
-import { selectRouterHistory } from 'Modules/Routes/selectors/selectRouterHistory';
-import history from 'Services/History';
-import { toAbsolute } from '@antoniodcorrea/utils';
-import { Routes } from '../../router/routes';
+import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
+import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { Home as HomeUi } from './Home';
 
 const Home: React.FC = () => {
-  const [stateFirst, setStateFirst] = useState<string>(undefined);
-  const [stateSecond, setStateSecond] = useState<string>(undefined);
-  const [stateThird, setStateThird] = useState<string>(undefined);
-  const [stateFourth, setStateFourth] = useState<string>(undefined);
+  const dispatch = useDispatch();
   const glossary = useSelector(selectCurrentGlossary);
-  const langParam = useSelector(selectCurrentRouteParamLanguage);
-  const routeHistory = useSelector(selectRouterHistory);
+  const params = useSelector(selectCurrentRouteParams);
+  const articles = useSelector(selectArticlesCurrent);
+  const articlesWithDates = articles.map((item) => {
+    const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: params?.lang });
+    const formattedDate = date.getLocaleFormattedDate();
 
-  useEffect(() => {
-    const lastRouteName = routeHistory[routeHistory.length - 2]?.name;
-    const comingFromWho = lastRouteName === Routes.Who.name;
-    const comingFromWhat = lastRouteName === Routes.What.name;
-    const comingFromWhen = lastRouteName === Routes.When.name;
-    const comingFromWhere = lastRouteName === Routes.Where.name;
+    return {
+      ...item,
+      date: formattedDate,
+    };
+  });
 
-    if (comingFromWho) {
-      setStateFirst('Home-all');
-      setStateSecond('Home-vertical');
-      setStateThird('Home-horizontal');
-      setStateFourth('Home-dot');
-    } else if (comingFromWhat) {
-      setStateFirst('Home-vertical');
-      setStateSecond('Home-all');
-      setStateThird('Home-dot');
-      setStateFourth('Home-horizontal');
-    } else if (comingFromWhen) {
-      setStateFirst('Home-horizontal');
-      setStateSecond('Home-dot');
-      setStateThird('Home-all');
-      setStateFourth('Home-vertical');
-    } else if (comingFromWhere) {
-      setStateFirst('Home-dot');
-      setStateSecond('Home-horizontal');
-      setStateThird('Home-vertical');
-      setStateFourth('Home-all');
-    }
-
-    setTimeout(() => {
-      setStateFirst('');
-      setStateSecond('');
-      setStateThird('');
-      setStateFourth('');
-    }, 20);
-  }, []);
-
-  const onFirstHover = () => {
-    setStateFirst('Home-bigSquare');
-    setStateSecond('Home-highRectangle');
-    setStateThird('Home-wideRectangle');
-    setStateFourth('Home-smallSquare');
+  const loadInitialData = async () => {
+    await dispatch(articlesLoad());
   };
 
-  const onFirstClick = () => {
-    setStateFirst('Home-all');
-    setStateSecond('Home-vertical');
-    setStateThird('Home-horizontal');
-    setStateFourth('Home-dot');
+  useLoadInitialData({ loadInitialData });
 
-    const whoRoute = toAbsolute(langParam + Routes.Who.route);
-    setTimeout(() => history.push(whoRoute), 300);
-  };
-
-  const onSecondHover = () => {
-    setStateFirst('Home-highRectangle');
-    setStateSecond('Home-bigSquare');
-    setStateThird('Home-smallSquare');
-    setStateFourth('Home-wideRectangle');
-  };
-
-  const onSecondClick = () => {
-    setStateFirst('Home-vertical');
-    setStateSecond('Home-all');
-    setStateThird('Home-dot');
-    setStateFourth('Home-horizontal');
-
-    const whatRoute = toAbsolute(langParam + Routes.What.route);
-    setTimeout(() => history.push(whatRoute), 300);
-  };
-
-  const onThirdHover = () => {
-    setStateFirst('Home-wideRectangle');
-    setStateSecond('Home-smallSquare');
-    setStateThird('Home-bigSquare');
-    setStateFourth('Home-highRectangle');
-  };
-
-  const onThirdClick = () => {
-    setStateFirst('Home-horizontal');
-    setStateSecond('Home-dot');
-    setStateThird('Home-all');
-    setStateFourth('Home-vertical');
-
-    const whenRoute = toAbsolute(langParam + Routes.When.route);
-    setTimeout(() => history.push(whenRoute), 300);
-  };
-
-  const onFourthHover = () => {
-    setStateFirst('Home-smallSquare');
-    setStateSecond('Home-wideRectangle');
-    setStateThird('Home-highRectangle');
-    setStateFourth('Home-bigSquare');
-  };
-
-  const onFourthClick = () => {
-    setStateFirst('Home-dot');
-    setStateSecond('Home-horizontal');
-    setStateThird('Home-vertical');
-    setStateFourth('Home-all');
-
-    const whoRoute = toAbsolute(langParam + Routes.Where.route);
-    setTimeout(() => history.push(whoRoute), 300);
-  };
-
-  const onGridLeave = () => {
-    setStateFirst(undefined);
-    setStateSecond(undefined);
-    setStateThird(undefined);
-    setStateFourth(undefined);
-  };
-
-  return (
-    <HomeUi
-      glossary={glossary}
-      stateFirst={stateFirst}
-      stateSecond={stateSecond}
-      stateThird={stateThird}
-      stateFourth={stateFourth}
-      onFirstHover={onFirstHover}
-      onFirstClick={onFirstClick}
-      onSecondHover={onSecondHover}
-      onSecondClick={onSecondClick}
-      onThirdHover={onThirdHover}
-      onThirdClick={onThirdClick}
-      onFourthHover={onFourthHover}
-      onFourthClick={onFourthClick}
-      onGridLeave={onGridLeave}
-    />
-  );
+  return <HomeUi glossary={glossary} articlesWithDates={articlesWithDates} />;
 };
 export default Home;

@@ -1,7 +1,6 @@
 import omit from 'lodash/omit';
 
 import { initialArticlesLoader } from 'Modules/Articles/articles.loader';
-import { initialProjectsLoader } from 'Modules/Projects/projects.loader';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 
 export enum RouteLayout {
@@ -24,19 +23,12 @@ interface RoutesInterface {
   Home: Route;
   Login: Route;
   Control: Route;
-  ControlWhat: Route;
-  ControlProject: Route;
-  ControlProjectCreate: Route;
   ControlWhen: Route;
   ControlWho: Route;
   ControlArticle: Route;
   ControlArticleCreate: Route;
   Who: Route;
-  What: Route;
-  Project: Route;
-  When: Route;
   Article: Route;
-  Where: Route;
   ServerError: Route;
   NotFound: Route;
 }
@@ -72,36 +64,6 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-  What: {
-    name: 'What',
-    path: '/:lang([a-z]{2})?/what',
-    route: '/what',
-    exact: true,
-    auth: false,
-    initialDataLoadersVisitor: [initialProjectsLoader],
-    initialDataLoadersSession: [initialProjectsLoader],
-    layout: RouteLayout.fullPage,
-  },
-  Project: {
-    name: 'Project',
-    path: '/:lang([a-z]{2})?/what/:projectId',
-    route: '/what',
-    exact: false,
-    auth: false,
-    initialDataLoadersVisitor: [initialProjectsLoader],
-    initialDataLoadersSession: [initialProjectsLoader],
-    layout: RouteLayout.fullPage,
-  },
-  When: {
-    name: 'When',
-    path: '/:lang([a-z]{2})?/when',
-    route: '/when',
-    exact: true,
-    auth: false,
-    initialDataLoadersVisitor: [initialArticlesLoader],
-    initialDataLoadersSession: [initialArticlesLoader],
-    layout: RouteLayout.fullPage,
-  },
   Article: {
     name: 'Article',
     path: '/:lang([a-z]{2})?/when/:articleId',
@@ -110,16 +72,6 @@ export const Routes: RoutesInterface = {
     auth: false,
     initialDataLoadersVisitor: [initialArticlesLoader],
     initialDataLoadersSession: [initialArticlesLoader],
-    layout: RouteLayout.fullPage,
-  },
-  Where: {
-    name: 'Where',
-    path: '/:lang([a-z]{2})?/where',
-    route: '/where',
-    exact: true,
-    auth: false,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
   Control: {
@@ -132,40 +84,10 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-  ControlWhat: {
-    name: 'ControlWhat',
-    path: '/:lang([a-z]{2})?/control/what',
-    route: '/control/what',
-    exact: true,
-    auth: true,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
-    layout: RouteLayout.fullPage,
-  },
   ControlWho: {
     name: 'ControlWho',
     path: '/:lang([a-z]{2})?/control/who',
     route: '/control/who',
-    exact: true,
-    auth: true,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
-    layout: RouteLayout.fullPage,
-  },
-  ControlProject: {
-    name: 'ControlProject',
-    path: '/:lang([a-z]{2})?/control/what/:projectId',
-    route: '/control/what',
-    exact: true,
-    auth: true,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
-    layout: RouteLayout.fullPage,
-  },
-  ControlProjectCreate: {
-    name: 'ControlProjectCreate',
-    path: '/:lang([a-z]{2})?/control/what/new',
-    route: '/control/what/new',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],
@@ -213,7 +135,6 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
-
   NotFound: {
     name: 'NotFound',
     path: '/:lang([a-z]{2})?/:path*',
