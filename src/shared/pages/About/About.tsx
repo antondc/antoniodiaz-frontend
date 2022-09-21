@@ -19,7 +19,6 @@ export const About: React.FC<Props> = ({ glossary }) => (
       <meta property="twitter:title" content={`${glossary.author} · ${glossary.who}`} />
     </Helmet>
     <div className="About">
-      <h1 className="About-title">{glossary?.who}</h1>
       <StyledContent id="About-content">
         <HtmlSanitizer html={glossary.whoContentHtml} />
       </StyledContent>

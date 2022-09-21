@@ -6,7 +6,7 @@ import './Footer.less';
 
 export const Footer: React.FC = () => (
   <footer className={'Footer'}>
-    <div className="Footer-item">Antonio Diaz</div>
+    <div className="Footer-item">Antonio Diaz Correa</div>
     <div className="Footer-item">Madrid</div>
     <div className="Footer-item">
       <A

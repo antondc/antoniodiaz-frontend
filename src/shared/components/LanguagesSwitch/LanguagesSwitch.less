@@ -5,10 +5,12 @@
 @{c} {
   display: flex;
   align-items: center;
+  font-weight: @fw-medium;
 
   &-item {
     margin-right: 10px;
-    color: @c-accentLight-hard;
+    color: @c-accentLight;
+    transition: color @td-fast @ease;
     user-select: none;
 
     &:last-child {

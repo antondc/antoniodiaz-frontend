@@ -3,6 +3,7 @@ import React from 'react';
 import Exit from 'Assets/svg/exit.svg';
 import A from 'Components/A';
 import LanguagesSwitch from 'Components/LanguagesSwitch';
+import { Space } from '@antoniodcorrea/components';
 
 import './Header.less';
 

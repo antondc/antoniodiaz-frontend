@@ -20,8 +20,6 @@ export const Home: React.FC<Props> = ({ glossary, articlesWithDates }) => (
       <meta property="twitter:title" content={`${glossary.author} · Blog`} />
     </Helmet>
     <div className="Home">
-      <h1 className="Home-title">{glossary.when}</h1>
-      <div className="Home-subtitle">{glossary?.whenSubtitle}</div>
       <ul className="Home-articles">
         {articlesWithDates.map((item) => (
           <li className="Home-article" key={item.id}>
