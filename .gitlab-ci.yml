@@ -11,6 +11,8 @@ before_script:
 
 stages:
   - install
+  - build_staging
+  - deploy_staging
   - build_production
   - deploy_production
 
