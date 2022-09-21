@@ -3,82 +3,29 @@
 @c: .LanguagesSwitch;
 
 @{c} {
-  position: absolute;
-  top: 40px;
-  left: -15px;
-  padding: 15px 10px;
-  font-size: @fs-medium;
+  display: flex;
+  align-items: center;
 
-  @media @br-mobile {
-    top: 40px;
-    left: -6px;
-  }
-
-  &-language {
+  &-item {
     margin-right: 10px;
+    color: @c-accentLight-hard;
+    user-select: none;
 
     &:last-child {
       margin-right: 0;
     }
-  }
-
-  &-item {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    height: 35px;
-    width: 35px;
-    padding-bottom: 3px;
-    font-size: @fs-medium;
-    color: @gradientColors[black-3];
-    transition: border-color @td-fast @ease;
-    user-select: none;
-    font-variant: small-caps;
 
     &:hover:not(@{c}-item--active) {
-      border-color: @gradientColors[blue-2];
+      color: @c-accentLight;
       cursor: pointer;
-
-      @{c}-itemText {
-        color: @c-blue--pastel;
-      }
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 10px;
-
-      &:after {
-        content: '';
-        position: absolute;
-        height: 1px;
-        width: 35%;
-        bottom: -5px;
-        left: 32.5%;
-        right: 32.5%;
-        background: @c-blue--pastel;
-      }
     }
 
     &--active {
-      border-color: @gradientColors[blue-1];
-
-      @{c}-itemText {
-        color: @c-tomato;
-      }
+      color: @c-base;
     }
   }
 
   &-itemText {
-    font-weight: @fw-bold;
-    color: @gradientColors[blue-2];
-    transition: color @td-fast @ease;
-  }
-
-  &-separator {
-    height: 1px;
-    width: 52%;
-    margin: 5px auto;
-    background: @c-blue--pastel;
+    color: @c-accentLight;
   }
 }

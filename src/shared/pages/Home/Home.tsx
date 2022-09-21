@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import A from 'Components/A';
-import Footer from 'Components/Footer';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 
@@ -34,6 +33,5 @@ export const Home: React.FC<Props> = ({ glossary, articlesWithDates }) => (
         ))}
       </ul>
     </div>
-    <Footer />
   </>
 );

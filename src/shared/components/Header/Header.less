@@ -4,26 +4,19 @@
 
 @{c} {
   display: flex;
-  position: absolute;
-  position: fixed;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
-  height: 100px;
-  min-width: 960px;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0 60px;
+  height: 40px;
+  width: 100%;
+  padding: 0 0;
   overflow: visible;
-  z-index: @z-index-5;
+  border-bottom: 2px solid @c-base;
   user-select: none;
 
   &--control {
     height: 75px;
     padding: 15px 30px 0;
     background: @c-background;
-    border-bottom: 1px solid @c-traslucid--light;
   }
 
   @media @br-mobile, @br-tablet {
@@ -38,93 +31,15 @@
     background: @c-background;
   }
 
-  &-logo {
-    position: relative;
-    height: 40px;
-    width: 40px;
-    overflow: visible;
-    transition: opacity @td-normal ease, transform @td-normal ease;
-    cursor: default;
-
-    @media @br-mobile, @br-tablet {
-      position: relative;
-      top: unset;
-      left: unset;
-      margin: 0;
-    }
-  }
-
-  &-logoIcon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    fill: @c-blue--pastel;
-    transform: rotate(0deg);
-    transition: fill @td-normal ease, opacity @td-fast ease, transform @td-normal @ease;
-    will-change: transform;
-    cursor: default;
-    backface-visibility: hidden;
-
-    &.isActive {
-      transform: rotate(-90deg);
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    .Layout--Home & {
-      &:hover {
-        cursor: default;
-      }
-    }
-
-    .Layout--What & {
-      fill: @c-turquoise;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .Layout--When & {
-      fill: @c-tomato;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .Layout--Who & {
-      fill: @c-gold--pastel;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .Layout--Where & {
-      fill: @c-orange;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
-
   &-navigation {
+    display: flex;
+    align-items: center;
     height: 100%;
   }
 
   &-navigationItem {
-    display: inline-block;
-    height: 100%;
-    padding: 18px 30px;
-    font-size: @fs-medium;
-    font-weight: @fw-bold;
-    text-transform: uppercase;
-    color: @c-blue--pastel;
-    transition: color @td-fast @ease;
+    margin-right: 10px;
+    font-weight: @fw-medium;
 
     &--active,
     &:hover {

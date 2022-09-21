@@ -19,10 +19,6 @@ export const initialState: UiState = {
   screenType: 'desktop',
   screenLocked: false,
   screenMobileLocked: false,
-  languagesModal: {
-    type: 'modal',
-    mounted: false,
-  },
   loginModal: {
     type: 'popup',
     mounted: false,

@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import Footer from 'Components/Footer';
 import { GlossaryState } from 'Modules/Languages/languages.types';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { SITE_TITLE } from 'Root/src/shared/constants';
@@ -20,7 +19,6 @@ const ServerError: React.FC<Props> = ({ currentGlossary }) => (
     <div className="ServerError">
       <h1 className="ServerError-h1">{currentGlossary?.serverError}</h1>
     </div>
-    <Footer />
   </>
 );
 

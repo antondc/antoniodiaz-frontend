@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 
+import Footer from 'Components/Footer';
 import Header from 'Components/Header';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
@@ -101,6 +102,7 @@ const FullPage: React.FC<Props> = ({ location }) => {
           </Switch>
         </Fade>
       </FadeInOut>
+      <Footer />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CardItem from 'Components/CardItem';
-import Footer from 'Components/Footer';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { uiResetModalsState } from 'Modules/Ui/actions/uiResetModalsState';
 
@@ -28,7 +27,6 @@ const NotFound: React.FC = () => {
           <p className="NotFound-text">We couldnt find what you were looking for.</p>
         </CardItem>
       </div>
-      <Footer />
     </>
   );
 };

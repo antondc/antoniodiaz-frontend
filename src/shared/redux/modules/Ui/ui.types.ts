@@ -27,7 +27,6 @@ export type UiState = {
   screenType: ScreenType;
   screenMobileLocked: boolean;
   screenLocked: boolean;
-  languagesModal: UiBaseModal;
   loginModal: UiBaseModal;
   signUpModal: UiBaseModal;
   forgotPasswordModal: UiBaseModal;

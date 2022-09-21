@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import Footer from 'Components/Footer';
 import { StyledContent } from 'Components/StyledContent';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
@@ -31,6 +30,5 @@ export const Article: React.FC<Props> = ({ article, date, glossary }) => (
         <HtmlSanitizer html={article?.contentHtml} />
       </StyledContent>
     </div>
-    <Footer />
   </>
 );

@@ -7,7 +7,6 @@ import './LanguagesSwitch.less';
 interface Props {
   currentLanguage: LanguageState;
   languagesSorted: any;
-  onLanguagesSwitchLeave: () => void;
   onLanguageSwitch: (e: React.MouseEvent<HTMLButtonElement>, slug: string, link: string) => void;
 }
 
@@ -15,9 +14,8 @@ export const LanguagesSwitch: React.FC<Props> = ({
   currentLanguage,
   onLanguageSwitch,
   languagesSorted,
-  onLanguagesSwitchLeave,
 }) => (
-  <div className="LanguagesSwitch" onMouseLeave={onLanguagesSwitchLeave}>
+  <div className="LanguagesSwitch" >
     {!!languagesSorted.length &&
       languagesSorted.map((item) => (
         <button
@@ -28,7 +26,7 @@ export const LanguagesSwitch: React.FC<Props> = ({
           lang={item.slug}
           onClick={(e) => onLanguageSwitch(e, item.slug, item.link)}
         >
-          <span className="LanguagesSwitch-itemText">{item.slug}</span>
+          {item.slug}
         </button>
       ))}
   </div>

@@ -7,7 +7,6 @@ import { selectCurrentLanguage } from 'Modules/Languages/selectors/selectCurrent
 import { selectLanguagesList } from 'Modules/Languages/selectors/selectLanguagesList';
 import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectCurrentRouteParamLanguage } from 'Modules/Routes/selectors/selectCurrentRouteParamLanguage';
-import { switchLanguagesModal } from 'Modules/Ui/actions/switchLanguagesModal';
 import { mockAsync } from '@antoniodcorrea/utils';
 import { LanguagesSwitch as LanguagesSwitchUi } from './LanguagesSwitch';
 
@@ -40,11 +39,6 @@ const LanguagesSwitch: React.FC = () => {
     dispatch(languagesSetLoading(true));
     await mockAsync({ timeout: 150 });
     dispatch(switchCurrentLanguage(slug, link));
-    dispatch(switchLanguagesModal(false));
-  };
-
-  const onLanguagesSwitchLeave = () => {
-    dispatch(switchLanguagesModal(false));
   };
 
   return (
@@ -52,7 +46,6 @@ const LanguagesSwitch: React.FC = () => {
       currentLanguage={currentLanguage}
       languagesSorted={languagesSorted}
       onLanguageSwitch={onLanguageSwitch}
-      onLanguagesSwitchLeave={onLanguagesSwitchLeave}
     />
   );
 };

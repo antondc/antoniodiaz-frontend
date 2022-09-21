@@ -3,35 +3,18 @@
 @c: .Footer;
 
 @{c} {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 15px 0;
+  font-size: @fs-small;
+  font-weight: @fw-semibold;
+  border-top: 1px solid @c-base;
 
   @media @br-tablet, @br-tablet {
     padding: 0;
-  }
-
-  &-hr {
-    margin: 0;
-    border: 1px solid @c-blue--pastel;
-
-    @media @br-tablet, @br-tablet {
-      margin: 0 10px;
-    }
-  }
-
-  &-content {
-    display: flex;
-    justify-content: space-between;
-    padding: 45px 0;
-    font-weight: @fw-semibold;
-    color: @c-blue--pastel;
-
-    @media @br-tablet, @br-tablet {
-      display: block;
-      margin: 0 10px;
-      padding: 35px 0 35px;
-    }
   }
 
   &-item {
@@ -44,12 +27,11 @@
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
-    color: @c-blue--pastel;
     transition: text-decoration-color @td-fast @ease;
     cursor: pointer;
 
     &:hover {
-      text-decoration-color: @c-blue--pastel;
+      text-decoration-color: @c-accent;
     }
   }
 }
