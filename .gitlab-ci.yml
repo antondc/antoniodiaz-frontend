@@ -49,7 +49,7 @@ deploy_staging:
   script:
     - ssh ${SERVER_USER}@${SERVER_ADDRESS} "cd ${SERVER_PATH_STAGING} && rm -rf node_modules dist/* tmp"
     - ssh ${SERVER_USER}@${SERVER_ADDRESS} "cd ${SERVER_PATH_STAGING} && git pull origin staging"
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "source ~/.bash_profile && export NPM_TOKEN=${NPM_TOKEN} && export SECRET_JWT=${SECRET_JWT} && cd ${SERVER_PATH_STAGING} && nvm use --delete-prefix && git checkout staging && npm ci --verbose && npm run prod"
+    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "source ~/.bash_profile && export NPM_TOKEN=${NPM_TOKEN} && export SECRET_JWT=${SECRET_JWT} && cd ${SERVER_PATH_STAGING} && nvm use --delete-prefix && git checkout staging && npm ci --verbose && npm run stage"
     - ssh ${SERVER_USER}@${SERVER_ADDRESS} "cd ${SERVER_PATH_STAGING} && export SECRET_JWT=${SECRET_JWT} && NODE_ENV=staging pm2 restart ./dist/server.js --name staging.antoniodiaz.me --update-env"
 
 deploy_production:
