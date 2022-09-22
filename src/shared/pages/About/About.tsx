@@ -1,9 +1,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import GitLab from 'Assets/svg/iconGitLab.svg';
+import Linkedin from 'Assets/svg/iconLinkedin.svg';
+import Mail from 'Assets/svg/iconMail.svg';
+import Rss from 'Assets/svg/iconRss.svg';
 import { StyledContent } from 'Components/StyledContent';
 import { GlossaryState } from 'Modules/Languages/languages.types';
-import { HtmlSanitizer } from '@antoniodcorrea/components';
+import { A, HtmlSanitizer } from '@antoniodcorrea/components';
 
 import './About.less';
 
@@ -22,6 +26,38 @@ export const About: React.FC<Props> = ({ glossary }) => (
       <StyledContent id="About-content">
         <HtmlSanitizer html={glossary.whoContentHtml} />
       </StyledContent>
+      <div className="About-where">
+        <A
+          className="About-item About-item--gitLab"
+          href="https://www.git.antoniodiaz.me/antoniodcorrea"
+          targetBlank
+          styled={false}
+          title="GitLab"
+        >
+          <GitLab className="About-itemIcon" />
+        </A>
+        <A
+          className="About-item About-item--mail"
+          href="mailto:hello@antoniodiaz.me?subject=Hello!"
+          targetBlank
+          styled={false}
+          title="Email"
+        >
+          <Mail className="About-itemIcon" />
+        </A>
+        <A className="About-item About-item--rss" href="/rss/blog" targetBlank styled={false} title="RSS">
+          <Rss className="About-itemIcon" />
+        </A>
+        <A
+          className="About-item About-item--linkedin"
+          href="https://www.linkedin.com/in/antonio-d%C3%ADaz-correa-b9487828/"
+          targetBlank
+          styled={false}
+          title="LinkedIn"
+        >
+          <Linkedin className="About-itemIcon" />
+        </A>
+      </div>
     </div>
   </>
 );

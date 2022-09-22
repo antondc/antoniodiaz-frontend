@@ -3,7 +3,11 @@
 @c: .About;
 
 @{c} {
-  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding-bottom: 20px;
 
   &-title {
     font-size: @fs-huge;
@@ -14,5 +18,64 @@
     @media @br-mobile, @br-tablet {
       margin-bottom: 20px;
     }
+  }
+
+  &-where {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+    padding: 100px 0 0;
+
+    @media @mobile {
+      width: 100%;
+      margin: unset;
+      padding: 20px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .hoverTransition;
+  }
+
+  &-itemIcon {
+    width: 25px;
+  }
+
+  &-item--linkedin {
+
+    @{c}-itemIcon {
+      fill: @c-tomato;
+    }
+  }
+
+  &-item--gitLab {
+    @{c}-itemIcon {
+      fill: @c-orangeGitLab;
+      stroke: @c-background;
+      stroke-width: 2px;
+    }
+  }
+
+  &-item--rss {
+    @{c}-itemIcon {
+      fill: @c-turquoise;
+      stroke: @c-turquoise;
+    }
+  }
+
+  &-item--mail {
+    @{c}-itemIcon {
+      fill: @c-success;
+    }
+  }
+
+  &-itemTextRSS {
+    font-variant: small-caps;
   }
 }
