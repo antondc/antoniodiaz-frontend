@@ -87,7 +87,7 @@ const ControlBlog: React.FC = () => {
   };
 
   const onNewArticleClick = () => {
-    history.push(`/${language}/control/when/new`);
+    history.push(`/${language}/control/blog/new`);
   };
 
   return (

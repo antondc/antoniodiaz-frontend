@@ -73,7 +73,7 @@ export const ControlBlog: React.FC<Props> = ({
               ≡
             </span>
             <div className="ControlBlog-sortableItemText">
-              <A className="ControlBlog-sortableItemTitle" href={`/control/when/${item.id}`} underlined>
+              <A className="ControlBlog-sortableItemTitle" href={`/control/blog/${item.id}`} underlined>
                 {item.title}
               </A>
               <div className="ControlBlog-sortableItemDate">{item.date}</div>

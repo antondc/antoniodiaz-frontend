@@ -66,8 +66,8 @@ export const Routes: RoutesInterface = {
   },
   Article: {
     name: 'Article',
-    path: '/:lang([a-z]{2})?/when/:articleId',
-    route: '/when',
+    path: '/:lang([a-z]{2})?/blog/:articleId',
+    route: '/blog',
     exact: false,
     auth: false,
     initialDataLoadersVisitor: [initialArticlesLoader],
@@ -106,8 +106,8 @@ export const Routes: RoutesInterface = {
   },
   ControlArticle: {
     name: 'ControlArticle',
-    path: '/:lang([a-z]{2})?/control/when/:articleId',
-    route: '/control/when',
+    path: '/:lang([a-z]{2})?/control/blog/:articleId',
+    route: '/control/blog',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],
@@ -116,8 +116,8 @@ export const Routes: RoutesInterface = {
   },
   ControlArticleCreate: {
     name: 'ControlArticleCreate',
-    path: '/:lang([a-z]{2})?/control/when/new',
-    route: '/control/when/new',
+    path: '/:lang([a-z]{2})?/control/blog/new',
+    route: '/control/blog/new',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],

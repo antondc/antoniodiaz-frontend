@@ -3,7 +3,7 @@ import React from 'react';
 import Exit from 'Assets/svg/exit.svg';
 import A from 'Components/A';
 import LanguagesSwitch from 'Components/LanguagesSwitch';
-import { Space } from '@antoniodcorrea/components';
+import { Routes } from 'Router/routes';
 
 import './Header.less';
 
@@ -18,14 +18,21 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
     {!controlHeader && (
       <div className="Header-navigation">
         <A
-          className={'Header-navigationItem' + (routeName === 'Home' ? ' Header-navigationItem--active' : '')}
+          className={
+            'Header-navigationItem' +
+            (routeName === Routes.Home.name || routeName === Routes.Article.name
+              ? ' Header-navigationItem--active'
+              : '')
+          }
           href="/"
           styled={false}
         >
           Blog
         </A>
         <A
-          className={'Header-navigationItem' + (routeName === 'About' ? ' Header-navigationItem--active' : '')}
+          className={
+            'Header-navigationItem' + (routeName === Routes.About.name ? ' Header-navigationItem--active' : '')
+          }
           href="/about"
           styled={false}
         >
@@ -36,14 +43,18 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
     {controlHeader && (
       <div className="Header-navigation">
         <A
-          className={'Header-navigationItem' + (routeName === 'ControlAbout' ? ' Header-navigationItem--active' : '')}
+          className={
+            'Header-navigationItem' + (routeName === Routes.ControlAbout.name ? ' Header-navigationItem--active' : '')
+          }
           href="/control/about"
           styled={false}
         >
           About
         </A>
         <A
-          className={'Header-navigationItem' + (routeName === 'ControlBlog' ? ' Header-navigationItem--active' : '')}
+          className={
+            'Header-navigationItem' + (routeName === Routes.ControlBlog.name ? ' Header-navigationItem--active' : '')
+          }
           href="/control/blog"
           styled={false}
         >

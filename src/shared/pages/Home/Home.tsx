@@ -23,10 +23,10 @@ export const Home: React.FC<Props> = ({ glossary, articlesWithDates }) => (
       <ul className="Home-articles">
         {articlesWithDates.map((item) => (
           <li className="Home-article" key={item.id}>
-            <A className="Home-articleTitle" href={`/when/${item.id}`} styled={false}>
+            <A className="Home-articleTitle" href={`/blog/${item.id}`} styled={false}>
               {item?.title}
             </A>
-            <span className="Home-articleDate">{item?.date}</span>
+            <div className="Home-articleDate">{item?.date}</div>
           </li>
         ))}
       </ul>

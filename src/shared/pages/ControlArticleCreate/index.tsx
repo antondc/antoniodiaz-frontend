@@ -51,7 +51,7 @@ const ControlArticleCreate: React.FC = () => {
       const article = await dispatch(articleCreateOne({ articleData }));
       setSubmitSuccess(true);
 
-      setTimeout(() => history.push(`/${language}/control/when/${article?.id}`), DELAY_SLOW_MS);
+      setTimeout(() => history.push(`/${language}/control/blog/${article?.id}`), DELAY_SLOW_MS);
     } catch (error) {
       setSubmitError(error.message);
     } finally {
