@@ -63,12 +63,12 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
       </div>
     )}
     <div className="Header-buttons">
+      <LanguagesSwitch />
       {controlHeader && (
         <div className="Header-item Header-logOut" onClick={onLogOut}>
-          <Exit />
+          Log out
         </div>
       )}
-      <LanguagesSwitch />
     </div>
   </header>
 );

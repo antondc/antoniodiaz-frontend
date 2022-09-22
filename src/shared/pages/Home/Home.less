@@ -3,19 +3,12 @@
 @c: .Home;
 
 @{c} {
-  max-width: 720px;
   padding-bottom: 50px;
   font-family: @ff-sans;
 
   @media @br-mobile, @br-tablet {
     width: 100%;
     padding-bottom: 50px;
-  }
-
-  @media @br-greaterThanTablet {
-    @media @desktop-short {
-      min-height: 480px;
-    }
   }
 
   &-title {
@@ -51,8 +44,9 @@
     }
   }
 
-  &-articles {
+  &-articles:not(.noClass):not(.noClass) {
     list-style-type: none;
+    margin: 0;
     text-align: left;
   }
 
@@ -72,6 +66,7 @@
     text-transform: capitalize;
     text-decoration: underline;
     text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
     transition: text-decoration-color @td-normal @ease;
 
     &:hover {
@@ -84,6 +79,6 @@
     font-size: @fs-small;
     font-weight: @fw-regular;
     line-height: @fh-small;
-    color: @c-accent;
+    color: @c-accentLight;
   }
 }

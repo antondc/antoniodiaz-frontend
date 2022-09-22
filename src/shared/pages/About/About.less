@@ -3,22 +3,7 @@
 @c: .About;
 
 @{c} {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  width: 100%;
-  margin: 0 auto;
   padding-bottom: 50px;
-
-  @media @br-mobile, @br-tablet {
-    padding: 100px 20px 20px;
-  }
-
-  @media @br-greaterThanTablet {
-    @media @desktop-short {
-      min-height: 480px;
-    }
-  }
 
   &-title {
     font-size: @fs-huge;
