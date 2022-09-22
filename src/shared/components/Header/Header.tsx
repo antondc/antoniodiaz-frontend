@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Exit from 'Assets/svg/exit.svg';
 import A from 'Components/A';
 import LanguagesSwitch from 'Components/LanguagesSwitch';
 import { Routes } from 'Router/routes';
@@ -10,10 +9,11 @@ import './Header.less';
 interface Props {
   routeName: string;
   controlHeader: boolean;
+  isLoggedIn: boolean;
   onLogOut: () => void;
 }
 
-export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) => (
+export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, onLogOut }) => (
   <header className={'Header' + (controlHeader ? ' Header--control' : '')}>
     {!controlHeader && (
       <div className="Header-navigation">
@@ -67,7 +67,7 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
     )}
     <div className="Header-buttons">
       <LanguagesSwitch />
-      {controlHeader && (
+      {isLoggedIn && (
         <div className="Header-item Header-logOut" onClick={onLogOut}>
           Log out
         </div>
