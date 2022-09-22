@@ -44,7 +44,10 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
       <div className="Header-navigation">
         <A
           className={
-            'Header-navigationItem' + (routeName === Routes.ControlBlog.name ? ' Header-navigationItem--active' : '')
+            'Header-navigationItem' +
+            (routeName === Routes.ControlBlog.name || routeName === Routes.ControlArticle.name
+              ? ' Header-navigationItem--active'
+              : '')
           }
           href="/control/blog"
           styled={false}
