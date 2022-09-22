@@ -27,7 +27,7 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, onLogOut }) 
           href="/"
           styled={false}
         >
-          Blog
+          Home
         </A>
         <A
           className={
