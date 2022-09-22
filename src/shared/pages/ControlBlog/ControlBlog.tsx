@@ -11,60 +11,14 @@ import { Button, Sortable, SortableSortProps } from '@antoniodcorrea/components'
 import './ControlBlog.less';
 
 interface Props {
-  glossary: GlossaryState;
   articles: Array<ArticleState & { date: string }>;
   onNewArticleClick: () => void;
   onSortChange: (data: SortableSortProps) => void;
   onDeleteArticleClick: (projectId: string) => void;
-  subtitleValue: string;
-  subtitleError: string;
-  onChangeSubtitle: (e: React.FormEvent<HTMLInputElement>) => void;
-  submitError: string;
-  submitSuccess: boolean;
-  submitting: boolean;
-  onSubmit: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
 
-export const ControlBlog: React.FC<Props> = ({
-  glossary,
-  articles,
-  onNewArticleClick,
-  subtitleValue,
-  subtitleError,
-  onChangeSubtitle,
-  onSortChange,
-  onDeleteArticleClick,
-  onSubmit,
-  submitError,
-  submitSuccess,
-  submitting,
-}) => (
+export const ControlBlog: React.FC<Props> = ({ articles, onNewArticleClick, onSortChange, onDeleteArticleClick }) => (
   <div className="ControlBlog">
-    <h1 className="ControlBlog-title">{glossary?.when}</h1>
-    <BaseFormField>
-      <Input
-        name="subtitle"
-        type="text"
-        label="Name or Email"
-        onChange={onChangeSubtitle}
-        onBlur={onChangeSubtitle}
-        value={subtitleValue}
-        error={subtitleError}
-        grow
-      />
-    </BaseFormField>
-    <BaseFormSubmit>
-      <Button
-        text="Submit"
-        type="submit"
-        onClick={onSubmit}
-        error={!!submitError}
-        success={submitSuccess}
-        disabled={false}
-        loading={submitting}
-        grow
-      />
-    </BaseFormSubmit>
     <Sortable className="ControlBlog-sortable" onSortEnd={onSortChange} onRemove={onDeleteArticleClick}>
       {articles?.map((item) => (
         <li className="ControlBlog-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
