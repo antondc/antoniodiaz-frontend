@@ -8,6 +8,7 @@
   flex: 1;
   margin: 0 auto;
   padding-bottom: 50px;
+  font-family: @ff-sans;
 
   @media @br-mobile, @br-tablet {
     width: 100%;
@@ -15,10 +16,9 @@
   }
 
   &-title {
-    font-family: @ff-serif;
-    font-size: @fs-huge;
-    font-weight: @fw-bold;
-    line-height: @fh-huge;
+    margin-bottom: 5px;
+    font-size: @fs-big;
+    font-weight: @fw-semibold;
     text-align: left;
 
     @media @br-mobile, @br-tablet {
@@ -28,10 +28,10 @@
 
   &-date {
     margin-bottom: 20px;
-    font-family: @ff-serif;
-    font-size: 14px;
-    font-weight: @fw-semibold;
+    font-size: @fs-small;
+    font-weight: @fw-regular;
     text-align: left;
+    color: @c-accentLight;
 
     @media @br-mobile, @br-tablet {
       margin-bottom: 10px;
