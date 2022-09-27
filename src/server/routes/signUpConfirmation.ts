@@ -40,8 +40,8 @@ router.get(ROUTE_REGEX, async (req: any, res: any) => {
     const domainWithoutSubdomain = urlWrapper.getDomainWithoutSubdomain();
     const domainForCookie = `.${domainWithoutSubdomain}`; // Return domain only for recognized clients
 
-    // Disallow robots —crawlers, spiders, etc.—
-    res.set({ 'X-Robots-Tag': 'noindex' });
+    // Allow robots —crawlers, spiders, etc.—
+    res.set({ 'X-Robots-Tag': 'index' });
 
     res
       .cookie('sessionToken', sessionToken, {
