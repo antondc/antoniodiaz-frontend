@@ -106,7 +106,7 @@ router.get(routesPathsList, async (req: any, res: any, next: any) => {
       const helmet = Helmet.renderStatic();
       const dataForTemplate = serialize(initialState); // Serializing for security reasons: https://redux.js.org/recipes/server-rendering#security-considerations
 
-      res.set({ 'X-Robots-Tag': 'index' }); // Allow robots —crawlers, spiders, etc.—
+      res.set({ 'X-Robots-Tag': 'all' }); // Allow robots —crawlers, spiders, etc.—
 
       // Render template with component; frontend data passed via .ejs template
       res.render('index', {
