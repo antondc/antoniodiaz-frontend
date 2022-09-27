@@ -9,7 +9,7 @@ import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
 import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
-import { ControlArticle as ControlWhenUi } from './ControlArticle';
+import { ControlArticle as ControlArticleUi } from './ControlArticle';
 
 import './ControlArticle.less';
 
@@ -117,7 +117,7 @@ const ControlArticle: React.FC = () => {
         ...article,
         title: titleValue,
         contentJson: textEditorValue,
-        ogImage: ogImage.original,
+        ogImage: ogImage?.original,
       };
       dispatch(articleUpdateOne({ articleId: Number(articleId), articleData }));
 
@@ -140,8 +140,10 @@ const ControlArticle: React.FC = () => {
     setTextEditorValue(textFormData);
   }, [article]);
 
+  useEffect(() => {}, []);
+
   return (
-    <ControlWhenUi
+    <ControlArticleUi
       titleValue={titleValue}
       titleError={titleError}
       onChangeTitle={onChangeTitle}
