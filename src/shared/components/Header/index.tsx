@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute';
 import { selectCurrentRouteName } from 'Modules/Routes/selectors/selectCurrentRouteName';
 import { sessionLogOut } from 'Modules/Session/actions/sessionLogOut';
@@ -16,8 +17,9 @@ const Header: React.FC = () => {
   const isAuthRoute = currentRoute.auth;
   const isLoggedIn = useSelector(selectSessionLoggedIn);
 
-  const onLogOut = () => {
-    dispatch(sessionLogOut());
+  const onLogOut = async () => {
+    await dispatch(sessionLogOut());
+    await dispatch(articlesLoad());
   };
 
   return <HeaderUi routeName={routeName} onLogOut={onLogOut} isLoggedIn={isLoggedIn} isAuthRoute={isAuthRoute} />;
