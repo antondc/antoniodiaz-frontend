@@ -8,14 +8,14 @@ import './Header.less';
 
 interface Props {
   routeName: string;
-  controlHeader: boolean;
+  isAuthRoute: boolean;
   isLoggedIn: boolean;
   onLogOut: () => void;
 }
 
-export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, onLogOut }) => (
-  <header className={'Header' + (controlHeader ? ' Header--control' : '')}>
-    {!controlHeader && (
+export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, onLogOut }) => (
+  <header className={'Header' + (isAuthRoute ? ' Header--control' : '')}>
+    {!isAuthRoute && (
       <div className="Header-navigation">
         <A
           className={
@@ -24,7 +24,7 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, 
               ? ' Header-navigationItem--active'
               : '')
           }
-          href="/"
+          href={Routes.Home.route}
           styled={false}
         >
           Home
@@ -33,23 +33,24 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, 
           className={
             'Header-navigationItem' + (routeName === Routes.About.name ? ' Header-navigationItem--active' : '')
           }
-          href="/about"
+          href={Routes.About.route}
           styled={false}
         >
           About
         </A>
       </div>
     )}
-    {controlHeader && (
+
+    {isAuthRoute && (
       <div className="Header-navigation">
         <A
           className={
             'Header-navigationItem' +
-            (routeName === Routes.ControlBlog.name || routeName === Routes.ControlArticle.name
+            (routeName === Routes.Control.name || routeName === Routes.ControlArticle.name
               ? ' Header-navigationItem--active'
               : '')
           }
-          href="/control/blog"
+          href={Routes.Control.route}
           styled={false}
         >
           Blog
@@ -58,7 +59,7 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, 
           className={
             'Header-navigationItem' + (routeName === Routes.ControlAbout.name ? ' Header-navigationItem--active' : '')
           }
-          href="/control/about"
+          href={Routes.ControlAbout.route}
           styled={false}
         >
           About
@@ -68,9 +69,21 @@ export const Header: React.FC<Props> = ({ routeName, controlHeader, isLoggedIn, 
     <div className="Header-buttons">
       <LanguagesSwitch />
       {isLoggedIn && (
-        <div className="Header-item Header-logOut" onClick={onLogOut}>
-          Log out
-        </div>
+        <>
+          <div className="Header-item Header-logOut" onClick={onLogOut}>
+            Log out
+          </div>
+          {!isAuthRoute && (
+            <A className={'Header-item Header-logOut'} href={Routes.ControlAbout.route} styled={false}>
+              Control
+            </A>
+          )}
+          {!!isAuthRoute && (
+            <A className={'Header-item Header-logOut'} href={Routes.Home.route} styled={false}>
+              Home
+            </A>
+          )}
+        </>
       )}
     </div>
   </header>

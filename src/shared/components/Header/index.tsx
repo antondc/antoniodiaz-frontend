@@ -13,14 +13,14 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const currentRoute = useSelector(selectCurrentRoute);
   const routeName = useSelector(selectCurrentRouteName);
-  const controlHeader = currentRoute.auth;
+  const isAuthRoute = currentRoute.auth;
   const isLoggedIn = useSelector(selectSessionLoggedIn);
 
   const onLogOut = () => {
     dispatch(sessionLogOut());
   };
 
-  return <HeaderUi routeName={routeName} onLogOut={onLogOut} isLoggedIn={isLoggedIn} controlHeader={controlHeader} />;
+  return <HeaderUi routeName={routeName} onLogOut={onLogOut} isLoggedIn={isLoggedIn} isAuthRoute={isAuthRoute} />;
 };
 
 export default Header;

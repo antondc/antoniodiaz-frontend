@@ -19,7 +19,6 @@ import Control from 'Pages/Control';
 import ControlAbout from 'Pages/ControlAbout';
 import ControlArticle from 'Pages/ControlArticle';
 import ControlArticleCreate from 'Pages/ControlArticleCreate';
-import ControlBlog from 'Pages/ControlBlog';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import NotFound from 'Pages/NotFound';
@@ -87,7 +86,6 @@ const FullPage: React.FC<Props> = ({ location }) => {
             <Route exact={Routes.Article.exact} path={Routes.Article.path} component={Article} />
             <Route exact={Routes.Control.exact} path={Routes.Control.path} component={Control} />
             <Route exact={Routes.ControlAbout.exact} path={Routes.ControlAbout.path} component={ControlAbout} />
-            <Route exact={Routes.ControlBlog.exact} path={Routes.ControlBlog.path} component={ControlBlog} />
             <Route
               exact={Routes.ControlArticleCreate.exact}
               path={Routes.ControlArticleCreate.path}

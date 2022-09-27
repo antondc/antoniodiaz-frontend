@@ -8,4 +8,75 @@
     font-size: @fs-huge;
     font-weight: @fw-extraBold;
   }
+
+  &-sortable {
+    padding-bottom: 20px;
+  }
+
+  &-sortableItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 12px 16px;
+    overflow: hidden;
+    border: 1px solid @c-accentLightest;
+    transition: opacity @td-normal @ease;
+    user-select: none;
+    border-radius: 8px;
+  }
+
+  &-sortableItemLeft {
+    display: flex;
+  }
+
+  &-sortableItemText {
+    padding-left: 24px;
+  }
+
+  &-sortableItemTitle {
+    display: block;
+    margin: 5px 0;
+    font-weight: @fw-bold;
+    line-height: @fh-nano;
+  }
+
+  &-sortableItemDate {
+    font-size: @fs-small;
+    font-weight: @fw-medium;
+  }
+
+  &-sortableItemHandle {
+    display: flex;
+    align-items: center;
+    padding: 0 24px 0 8px;
+    font-size: @fs-medium;
+    border-right: 1px solid @c-accentLightest;
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &-sortableItemRemove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px 0 22px;
+    font-size: @fs-medium;
+    border-left: 1px solid @c-accentLightest;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-sortableItemRemoveIcon {
+    height: 15px;
+    width: 15px;
+    fill: @c-accent;
+  }
 }

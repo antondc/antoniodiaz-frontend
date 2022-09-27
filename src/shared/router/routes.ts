@@ -23,7 +23,6 @@ interface RoutesInterface {
   Home: Route;
   Login: Route;
   Control: Route;
-  ControlBlog: Route;
   ControlAbout: Route;
   ControlArticle: Route;
   ControlArticleCreate: Route;
@@ -88,16 +87,6 @@ export const Routes: RoutesInterface = {
     name: 'ControlAbout',
     path: '/:lang([a-z]{2})?/control/about',
     route: '/control/about',
-    exact: true,
-    auth: true,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
-    layout: RouteLayout.fullPage,
-  },
-  ControlBlog: {
-    name: 'ControlBlog',
-    path: '/:lang([a-z]{2})?/control/blog',
-    route: '/control/blog',
     exact: true,
     auth: true,
     initialDataLoadersVisitor: [],
