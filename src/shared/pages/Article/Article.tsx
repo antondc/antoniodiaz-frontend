@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import Upload from 'Assets/svg/upload.svg';
 import { StyledContent } from 'Components/StyledContent';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
@@ -12,9 +13,10 @@ interface Props {
   article: ArticleState;
   date: string;
   glossary: GlossaryState;
+  isLoggedIn: boolean;
 }
 
-export const Article: React.FC<Props> = ({ article, date, glossary }) => (
+export const Article: React.FC<Props> = ({ article, date, glossary, isLoggedIn }) => (
   <>
     <Helmet>
       <title>{`${glossary.author}${article?.title ? ` · ${article?.title}` : ''}`}</title>
@@ -25,7 +27,15 @@ export const Article: React.FC<Props> = ({ article, date, glossary }) => (
     </Helmet>
     <div className="Article" id="Article">
       <h1 className="Article-title">{article?.title}</h1>
-      <h2 className="Article-date">{date}</h2>
+      <h2 className="Article-date">
+        {date}
+        {isLoggedIn && (
+          <Upload
+            className={'Article-publishedIcon' + (!!article?.published ? ' Article-publishedIcon--published' : '')}
+          />
+        )}
+      </h2>
+
       <StyledContent id="Article-content">
         <HtmlSanitizer html={article?.contentHtml} />
       </StyledContent>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import Upload from 'Assets/svg/upload.svg';
 import A from 'Components/A';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
@@ -10,9 +11,10 @@ import './Home.less';
 interface Props {
   glossary: GlossaryState;
   articlesWithDates: Array<ArticleState & { date: string }>;
+  isLoggedIn: boolean;
 }
 
-export const Home: React.FC<Props> = ({ glossary, articlesWithDates }) => (
+export const Home: React.FC<Props> = ({ glossary, articlesWithDates, isLoggedIn }) => (
   <>
     <Helmet>
       <title>{`${glossary.author} · Blog`}</title>
@@ -27,6 +29,9 @@ export const Home: React.FC<Props> = ({ glossary, articlesWithDates }) => (
               {item?.title}
             </A>
             <div className="Home-articleDate">{item?.date}</div>
+            {isLoggedIn && (
+              <Upload className={'Home-publishedIcon' + (!!item.published ? ' Home-publishedIcon--published' : '')} />
+            )}
           </li>
         ))}
       </ul>

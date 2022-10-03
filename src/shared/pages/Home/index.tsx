@@ -7,6 +7,7 @@ import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticles
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
+import { selectSessionLoggedIn } from '../../redux/modules/Session/selectors/selectSessionLoggedIn';
 import { Home as HomeUi } from './Home';
 
 const Home: React.FC = () => {
@@ -23,6 +24,7 @@ const Home: React.FC = () => {
       date: formattedDate,
     };
   });
+  const isLoggedIn = useSelector(selectSessionLoggedIn);
 
   const loadInitialData = async () => {
     await dispatch(articlesLoad());
@@ -30,6 +32,6 @@ const Home: React.FC = () => {
 
   useLoadInitialData({ loadInitialData });
 
-  return <HomeUi glossary={glossary} articlesWithDates={articlesWithDates} />;
+  return <HomeUi glossary={glossary} articlesWithDates={articlesWithDates} isLoggedIn={isLoggedIn} />;
 };
 export default Home;

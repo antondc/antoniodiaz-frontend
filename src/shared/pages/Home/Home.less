@@ -53,7 +53,7 @@
   &-article {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     margin-bottom: 15px;
 
     @media @mobile {
@@ -62,6 +62,7 @@
   }
 
   &-articleTitle {
+    flex: 1;
     font-weight: @fw-semibold;
     text-transform: capitalize;
     text-decoration: underline;
@@ -80,5 +81,16 @@
     font-weight: @fw-regular;
     line-height: @fh-small;
     color: @c-accentLight;
+  }
+
+  &-publishedIcon {
+    height: 12px;
+    width: 12px;
+    margin-left: 10px;
+    fill: @c-traslucid;
+
+    &--published {
+      fill: @c-success;
+    }
   }
 }

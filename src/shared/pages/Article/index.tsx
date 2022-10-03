@@ -13,6 +13,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
+import { selectSessionLoggedIn } from '../../redux/modules/Session/selectors/selectSessionLoggedIn';
 import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
@@ -24,6 +25,7 @@ const Article: React.FC = () => {
   const date = new LocaleFormattedDate({ unixTime: Number(cachedArticle?.createdAt), locale: currentLanguageSlug });
   const createdAtFormatted = date.getLocaleFormattedDate();
   const glossary = useSelector(selectCurrentGlossary);
+  const isLoggedIn = useSelector(selectSessionLoggedIn);
 
   const loadInitialData = async () => {
     await dispatch(articlesLoad());
@@ -32,6 +34,6 @@ const Article: React.FC = () => {
   useMathFormat({ id: 'Article', data: cachedArticle });
   useHljs({ data: cachedArticle });
 
-  return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} />;
+  return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} isLoggedIn={isLoggedIn} />;
 };
 export default Article;
