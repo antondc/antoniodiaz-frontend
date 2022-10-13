@@ -2,26 +2,31 @@ import { stringify } from 'qs';
 
 import { UserLoadApiResponse, UsersState } from 'Modules/Users/users.types';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
+import { LoaderResult } from 'Root/src/shared/types/LoaderResult';
 import HttpClient from 'Services/HttpClient';
 
-export const initialUserLoader = async ({ query, params }: RequestParameters = {}): Promise<{
+export const initialUserLoader = async ({ query, params }: RequestParameters = {}): LoaderResult<{
   Users: UsersState;
 }> => {
-  const { data: userData }: UserLoadApiResponse = await HttpClient.get(
-    '/users/' + params?.userId + '?' + stringify(query)
-  );
+  try {
+    const { data: userData }: UserLoadApiResponse = await HttpClient.get(
+      '/users/' + params?.userId + '?' + stringify(query)
+    );
 
-  const result = {
-    Users: {
-      byKey: {
-        [userData?.attributes?.id]: {
-          ...userData.attributes,
+    const result = {
+      Users: {
+        byKey: {
+          [userData?.attributes?.id]: {
+            ...userData.attributes,
+          },
         },
+        currentIds: [userData?.attributes?.id],
+        loading: true,
       },
-      currentIds: [userData?.attributes?.id],
-      loading: true,
-    },
-  };
+    };
 
-  return result;
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
