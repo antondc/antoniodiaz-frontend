@@ -2,6 +2,7 @@ import omit from 'lodash/omit';
 
 import { initialArticlesLoader } from 'Modules/Articles/articles.loader';
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
+import { initialArticleLoader } from '../redux/modules/Articles/articleLoader';
 
 export enum RouteLayout {
   fullPage,
@@ -43,16 +44,18 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   Home: {
     name: 'Home',
     path: '/:lang([a-z]{2})?',
     route: '/',
     exact: true,
     auth: false,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
+    initialDataLoadersVisitor: [initialArticlesLoader],
+    initialDataLoadersSession: [initialArticlesLoader],
     layout: RouteLayout.fullPage,
   },
+
   About: {
     name: 'About',
     path: '/:lang([a-z]{2})?/about',
@@ -63,26 +66,29 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   Article: {
     name: 'Article',
     path: '/:lang([a-z]{2})?/blog/:articleId',
     route: '/blog',
     exact: false,
     auth: false,
-    initialDataLoadersVisitor: [initialArticlesLoader],
-    initialDataLoadersSession: [initialArticlesLoader],
+    initialDataLoadersVisitor: [initialArticleLoader],
+    initialDataLoadersSession: [initialArticleLoader],
     layout: RouteLayout.fullPage,
   },
+
   Control: {
     name: 'Control',
     path: '/:lang([a-z]{2})?/control',
     route: '/control',
     exact: true,
     auth: true,
-    initialDataLoadersVisitor: [],
-    initialDataLoadersSession: [],
+    initialDataLoadersVisitor: [initialArticlesLoader],
+    initialDataLoadersSession: [initialArticlesLoader],
     layout: RouteLayout.fullPage,
   },
+
   ControlAbout: {
     name: 'ControlAbout',
     path: '/:lang([a-z]{2})?/control/about',
@@ -93,6 +99,7 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   ControlArticle: {
     name: 'ControlArticle',
     path: '/:lang([a-z]{2})?/control/blog/:articleId',
@@ -103,6 +110,7 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   ControlArticleCreate: {
     name: 'ControlArticleCreate',
     path: '/:lang([a-z]{2})?/control/blog/new',
@@ -113,6 +121,7 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   ServerError: {
     name: 'ServerError',
     path: '/:lang([a-z]{2})?/500-server-error',
@@ -124,6 +133,7 @@ export const Routes: RoutesInterface = {
     initialDataLoadersSession: [],
     layout: RouteLayout.fullPage,
   },
+
   NotFound: {
     name: 'NotFound',
     path: '/:lang([a-z]{2})?/:path*',

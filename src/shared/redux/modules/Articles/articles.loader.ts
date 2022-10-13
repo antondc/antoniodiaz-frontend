@@ -28,8 +28,6 @@ export const initialArticlesLoader = async ({
 
     return result;
   } catch (error) {
-    return {
-      redirectToNotFound: true,
-    };
+    console.log(error);
   }
 };

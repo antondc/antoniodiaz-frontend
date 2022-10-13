@@ -68,7 +68,17 @@ router.get(routesPathsList, async (req: any, res: any, next: any) => {
 
   Promise.all([initialLanguagesLoader(req.params.lang), ...initialDataLoadersPromises]) // We have to execute the Languages thunk, as well as the async function within it
     .then((response: Array<any | Redirect>) => {
+      console.log('=======');
+      console.log('response:');
+      console.log(JSON.stringify(response, null, 4));
+      console.log('=======');
+
       const redirect = response.find((item) => !!item.redirectToNotFound);
+
+      console.log('=======');
+      console.log('redirect:');
+      console.log(JSON.stringify(redirect, null, 4));
+      console.log('=======');
 
       if (!!redirect?.redirectToNotFound) {
         res.status(404).redirect(Routes.NotFound.route);
