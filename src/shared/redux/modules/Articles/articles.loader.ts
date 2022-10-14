@@ -1,12 +1,10 @@
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { LoaderResult } from 'Root/src/shared/types/LoaderResult';
+import { NotFoundError } from 'Root/src/shared/types/error/NotFoundError';
 import { serializerFromArrayToByKey } from '@antoniodcorrea/utils';
 import { ArticlesApiResponse, ArticlesState, ArticleState } from './articles.types';
 
-export const initialArticlesLoader = async ({
-  params,
-}: RequestParameters): LoaderResult<{ Articles: ArticlesState }> => {
+export const initialArticlesLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
   try {
     const lang = params?.lang ? `/${params?.lang}` : '';
 
@@ -28,6 +26,6 @@ export const initialArticlesLoader = async ({
 
     return result;
   } catch (error) {
-    console.log(error);
+    throw new NotFoundError('Not Found');
   }
 };

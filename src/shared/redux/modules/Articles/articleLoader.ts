@@ -1,11 +1,9 @@
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { LoaderResult } from 'Root/src/shared/types/LoaderResult';
+import { NotFoundError } from 'Root/src/shared/types/error/NotFoundError';
 import { ArticleApiResponse, ArticlesState } from './articles.types';
 
-export const initialArticleLoader = async ({
-  params,
-}: RequestParameters): LoaderResult<{ Articles: ArticlesState }> => {
+export const initialArticleLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
   try {
     const lang = params?.lang ? `/${params?.lang}` : '';
 
@@ -27,8 +25,6 @@ export const initialArticleLoader = async ({
 
     return result;
   } catch (error) {
-    return {
-      redirectToNotFound: true,
-    };
+    throw new NotFoundError('Not Found');
   }
 };
