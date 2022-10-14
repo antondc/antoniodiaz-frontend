@@ -101,14 +101,14 @@ app.use((err: any, req: any, res: any, next: any) => {
 
   if (err && isUnauthorizedError) {
     return res.redirect(303, '/login');
-  } else if (err && isNotFoundError) {
-    res.render('notFound');
   } else if (err && isDevelopment) {
     return res.status(500).render('error', {
       message: err.message,
       stack: err.stack,
       status: err.status || 500,
     });
+  } else if (err && isNotFoundError) {
+    res.render('notFound');
   } else if (err && !isServerErrorPage) {
     return res.redirect('/500-server-error');
   } else if (err) {
