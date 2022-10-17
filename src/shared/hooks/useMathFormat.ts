@@ -18,6 +18,7 @@ export const useMathFormat = ({ id, data }: Props): void => {
     try {
       elementsArray?.forEach((item) => {
         const tag = item.tagName;
+        const parent = document.createElement('div');
         const html = katex.renderToString(item.innerHTML, {
           output: 'html',
         });
@@ -25,8 +26,10 @@ export const useMathFormat = ({ id, data }: Props): void => {
         const newInlineMathReactElement: React.ReactElement = React.createElement(tag.toLowerCase(), {
           dangerouslySetInnerHTML: { __html: html },
         });
-        // Render clone within handle and do actions asynchronously
-        ReactDOM.render(newInlineMathReactElement, item.parentElement);
+
+        ReactDOM.render(newInlineMathReactElement, parent, () => {
+          item.replaceWith(...Array.from(parent.childNodes));
+        });
       });
     } catch (e) {
       console.log('math-inline error: ', e);
