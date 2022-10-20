@@ -1,7 +1,15 @@
 import axios, { AxiosInstance } from 'axios';
 import https from 'https';
 
-import { QueryStringWrapper } from '@antoniodcorrea/utils';
+import { QueryStringWrapper } from './QueryStringWrapper';
+
+type ResponseError = {
+  response: {
+    data: {
+      error: Error;
+    };
+  };
+};
 
 interface Options {
   timeout?: number;
@@ -9,7 +17,7 @@ interface Options {
   contentType?: string;
 }
 
-class HttpClient {
+export class HttpClient {
   private static staticInstance: AxiosInstance;
   public publicInstance: AxiosInstance;
 
@@ -28,20 +36,20 @@ class HttpClient {
     axiosInstance.defaults.withCredentials = credentials;
 
     axiosInstance.interceptors.response.use(
-      (response) => {
-        if (!!options?.contentType && !response?.headers['content-type']?.includes(options?.contentType)) {
-          throw new Error("Received response doesn't match provided content-type");
+        (response) => {
+          if (!!options?.contentType && !response?.headers['content-type']?.includes(options?.contentType)) {
+            throw new Error("Received response doesn't match provided content-type");
+          }
+
+          return response.data;
+        },
+        (error: ResponseError) => {
+          const errorContent = error?.response?.data?.error;
+
+          // Returns the data body contained by the response error object instead of the custom native error retrieved by the Error code
+          // Requires backend returning ResponseError object
+          return Promise.reject(errorContent);
         }
-
-        return response.data;
-      },
-      (error: any) => {
-        const errorInData = error?.response?.data?.error;
-
-        // Returns the data body contained by the response error object instead of the custom native error retrieved by the Error code
-        // Requires backend returning `{ error: Record<string, any> }` object
-        return Promise.reject(errorInData);
-      }
     );
 
     HttpClient.staticInstance = axiosInstance;
@@ -57,4 +65,5 @@ class HttpClient {
   private paramsSerializer = (params) => QueryStringWrapper.stringifyQueryParams(params);
 }
 
+// Export singleton
 export default HttpClient.getInstance();
