@@ -4,9 +4,9 @@ import https from 'https';
 import { QueryStringWrapper } from '@antoniodcorrea/utils';
 
 type ResponseError = {
-  response: {
-    data: {
-      error: Error;
+  response?: {
+    data?: {
+      error?: Error;
     };
   };
 };
@@ -36,20 +36,19 @@ export class HttpClient {
     axiosInstance.defaults.withCredentials = credentials;
 
     axiosInstance.interceptors.response.use(
-        (response) => {
-          if (!!options?.contentType && !response?.headers['content-type']?.includes(options?.contentType)) {
-            throw new Error("Received response doesn't match provided content-type");
-          }
-
-          return response.data;
-        },
-        (error: ResponseError) => {
-          const errorContent = error?.response?.data?.error;
-
-          // Returns the data body contained by the response error object instead of the custom native error retrieved by the Error code
-          // Requires backend returning ResponseError object
-          return Promise.reject(errorContent);
+      (response) => {
+        if (!!options?.contentType && !response?.headers['content-type']?.includes(options?.contentType)) {
+          throw new Error("Received response doesn't match provided content-type");
         }
+
+        return response.data;
+      },
+      (error: ResponseError) => {
+        // Tries to return the data body contained by the response error object instead of the custom native error retrieved by the Error code
+        const errorContent = error?.response?.data?.error || error?.response?.data || error?.response || error;
+
+        return Promise.reject(errorContent);
+      }
     );
 
     HttpClient.staticInstance = axiosInstance;
