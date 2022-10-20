@@ -1,6 +1,5 @@
 import { RequestParameters } from 'Root/src/server/routes/allRoutes';
 import HttpClient from 'Root/src/shared/services/HttpClient';
-import { NotFoundError } from 'Root/src/shared/types/error/NotFoundError';
 import { ArticleApiResponse, ArticlesState } from './articles.types';
 
 export const initialArticleLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
@@ -25,6 +24,6 @@ export const initialArticleLoader = async ({ params }: RequestParameters): Promi
 
     return result;
   } catch (error) {
-    throw new NotFoundError('Not Found');
+    console.log('Not Found');
   }
 };
