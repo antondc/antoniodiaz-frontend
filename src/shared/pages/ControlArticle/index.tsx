@@ -8,7 +8,7 @@ import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParamArticleId } from 'Modules/Routes/selectors/selectCurrentRouteParamArticleId';
 import { ImageUpload } from 'Services/ImageUpload';
-import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
+import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlArticle as ControlArticleUi } from './ControlArticle';
 
 import './ControlArticle.less';
@@ -20,7 +20,7 @@ const ControlArticle: React.FC = () => {
   const article = useSelector((state: RootState) => selectArticle(state, Number(articleId)));
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
-  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(textEditorDefaultValue);
+  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>([]);
   const [ogImage, setOgImage] = useState<{ original: string }>(undefined);
   const [ogImageError, setOgImageError] = useState<string>(null);
   const [ogImagePercentCompleted, setOgImagePercentCompleted] = useState<number>(0);
@@ -136,7 +136,7 @@ const ControlArticle: React.FC = () => {
     setTitleValue(article?.title);
     setOgImage({ original: article?.ogImage });
 
-    const textFormData = !!article?.contentJson?.length ? article?.contentJson : textEditorDefaultValue;
+    const textFormData = !!article?.contentJson?.length ? article?.contentJson : [];
     setTextEditorValue(textFormData);
   }, [article]);
 

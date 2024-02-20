@@ -6,7 +6,7 @@ import { languagesLoad } from 'Modules/Languages/actions/languagesLoad';
 import { languagesUpdateCurrentLanguage } from 'Modules/Languages/actions/languagesUpdateCurrentLanguage';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { ImageUpload } from 'Services/ImageUpload';
-import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
+import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlAbout as ControlAboutUi } from './ControlAbout';
 
 const ControlAbout: React.FC = () => {
@@ -15,7 +15,7 @@ const ControlAbout: React.FC = () => {
   const imageUploadService = new ImageUpload();
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
-  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(textEditorDefaultValue);
+  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>([]);
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);

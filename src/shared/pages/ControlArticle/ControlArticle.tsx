@@ -76,7 +76,10 @@ export const ControlArticle: React.FC<Props> = ({
           uploadFiles={uploadFilesToServer}
           onRemove={removeFilesFromServer}
           percentCompleted={percentCompleted}
-          accept=".jpg,.jpeg,.png"
+          accept={{
+            ['image/png']: ['.png'],
+            ['image/jpg']: ['.jpg'],
+          }}
         />
       </BaseFormField>
       <Hr spacer />

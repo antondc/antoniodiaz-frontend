@@ -11,15 +11,18 @@
 
   &-sortable {
     padding-bottom: 20px;
+    min-height: 500px;
   }
 
   &-sortableItem {
+    flex: 1;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     overflow: hidden;
     transition: opacity @td-normal @ease;
     user-select: none;
+    background: @c-background;
   }
 
   &-sortableItemLeft {

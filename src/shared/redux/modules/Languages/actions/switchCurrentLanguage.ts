@@ -1,5 +1,4 @@
 import history from 'Services/History';
-import { mockAsync } from '@antoniodcorrea/utils';
 import { AppThunk } from '../../..';
 import {
   LANGUAGES_SWITCH_CURRENT_REQUEST,

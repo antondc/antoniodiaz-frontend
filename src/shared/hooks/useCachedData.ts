@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { isDomAvailable } from '@antoniodcorrea/utils';
+import { isDomAvailable } from '@antoniodcorrea/utils-frontend';
 
 type UseCachedData = <T>(data: T) => T;
 

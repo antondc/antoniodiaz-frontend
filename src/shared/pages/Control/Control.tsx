@@ -2,10 +2,7 @@ import React from 'react';
 
 import Cross from 'Assets/svg/cross.svg';
 import A from 'Components/A';
-import { BaseFormField, BaseFormSubmit } from 'Components/BaseForm';
-import { Input } from 'Components/Input';
 import { ArticleState } from 'Modules/Articles/articles.types';
-import { GlossaryState } from 'Modules/Languages/languages.types';
 import { Button, Sortable, SortableSortProps } from '@antoniodcorrea/components';
 
 import './Control.less';
@@ -21,9 +18,13 @@ export const Control: React.FC<Props> = ({ articles, onNewArticleClick, onSortCh
   <div className="Control">
     <Sortable className="Control-sortable" onSortEnd={onSortChange} onRemove={onDeleteArticleClick}>
       {articles?.map((item) => (
-        <li className="Control-sortableItem" key={item.id} data-id={item.id} data-order={item.order}>
-          <span className="Control-sortableItemLeft">
-            <span className="Control-sortableItemHandle" id="Handle">
+        <li
+          className="Control-sortableItem"
+          key={item.id}
+          data-id={item.id} data-order={item.order}
+         >
+          <div className="Control-sortableItemLeft">
+            <span className="Control-sortableItemHandle Sortable-sortableItemHandle Sortable-handle" id="handle">
               ≡
             </span>
             <div className="Control-sortableItemText">
@@ -32,7 +33,7 @@ export const Control: React.FC<Props> = ({ articles, onNewArticleClick, onSortCh
               </A>
               <div className="Control-sortableItemDate">{item.date}</div>
             </div>
-          </span>
+          </div>
           <span className="Control-sortableItemRemove">
             <Cross className="Control-sortableItemRemoveIcon" id="Remove" />
           </span>

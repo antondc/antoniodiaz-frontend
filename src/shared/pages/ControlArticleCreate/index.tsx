@@ -6,7 +6,7 @@ import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCur
 import { DELAY_SLOW_MS } from 'Root/src/shared/constants';
 import history from 'Services/History';
 import { ImageUpload } from 'Services/ImageUpload';
-import { textEditorDefaultValue, TextEditorValue } from '@antoniodcorrea/components';
+import { TextEditorValue } from '@antoniodcorrea/components';
 import { ControlArticleCreate as ControlWhenUi } from './ControlArticleCreate';
 
 import './ControlArticleCreate.less';
@@ -17,7 +17,7 @@ const ControlArticleCreate: React.FC = () => {
   const language = useSelector(selectCurrentLanguageSlug);
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
-  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>(textEditorDefaultValue);
+  const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>([]);
   const [submitError, setSubmitError] = useState<string>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
@@ -64,7 +64,7 @@ const ControlArticleCreate: React.FC = () => {
       onChangeTitle={onChangeTitle}
       titleValue={titleValue}
       titleError={titleError}
-      textEditorDefaultValue={textEditorDefaultValue}
+      textEditorDefaultValue={[]}
       onChangeTextEditorValue={onChangeTextEditorValue}
       imageUploadService={imageUploadService}
       onSubmit={onSubmit}
