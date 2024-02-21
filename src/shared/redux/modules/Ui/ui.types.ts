@@ -1,3 +1,5 @@
+import { UnknownAction } from 'redux';
+
 export const UI_SCREEN_TYPE_SET = 'UI_SCREEN_TYPE_SET';
 export const UI_SCREEN_DESKTOP_LOCK = 'UI_SCREEN_DESKTOP_LOCK';
 export const UI_SCREEN_DESKTOP_UNLOCK = 'UI_SCREEN_DESKTOP_UNLOCK';
@@ -33,57 +35,57 @@ export type UiState = {
   resetPasswordModal: UiBaseModal;
 };
 
-interface UiScreenTypeSet {
+interface UiScreenTypeSet extends UnknownAction {
   type: typeof UI_SCREEN_TYPE_SET;
   payload: Partial<UiState>;
 }
 
-interface UiScreenLock {
+interface UiScreenLock extends UnknownAction {
   type: typeof UI_SCREEN_DESKTOP_LOCK;
   payload: Partial<UiState>;
 }
 
-interface UiScreenUnLock {
+interface UiScreenUnLock extends UnknownAction {
   type: typeof UI_SCREEN_DESKTOP_UNLOCK;
   payload: Partial<UiState>;
 }
 
-interface UiScreenMobileLock {
+interface UiScreenMobileLock extends UnknownAction {
   type: typeof UI_SCREEN_MOBILE_LOCK;
   payload: Partial<UiState>;
 }
 
-interface UiScreenMobileUnLock {
+interface UiScreenMobileUnLock extends UnknownAction {
   type: typeof UI_SCREEN_MOBILE_UNLOCK;
   payload: Partial<UiState>;
 }
 
-interface SwitchLanguagesModal {
+interface SwitchLanguagesModal extends UnknownAction {
   type: typeof SWITCH_LANGUAGES_MODAL;
   payload: Partial<UiState>;
 }
 
-interface SwitchLoginModal {
+interface SwitchLoginModal extends UnknownAction {
   type: typeof SWITCH_LOGIN_MODAL;
   payload: Partial<UiState>;
 }
 
-interface SwitchForgotPasswordModal {
+interface SwitchForgotPasswordModal extends UnknownAction {
   type: typeof SWITCH_FORGOT_PASSWORD_MODAL;
   payload: Partial<UiState>;
 }
 
-interface SwitchResetPasswordModal {
+interface SwitchResetPasswordModal extends UnknownAction {
   type: typeof SWITCH_RESET_PASSWORD_MODAL;
   payload: Partial<UiState>;
 }
 
-interface UiCloseAllModals {
+interface UiCloseAllModals extends UnknownAction {
   type: typeof UI_CLOSE_ALL_MODALS;
   payload: UiState;
 }
 
-interface UiSwitchMounted {
+interface UiSwitchMounted extends UnknownAction {
   type: typeof UI_SWITCH_MOUNTED;
   payload: Partial<UiState>;
 }

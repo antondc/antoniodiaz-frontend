@@ -1,4 +1,6 @@
 import { TextEditorValue } from '@antoniodcorrea/components';
+import { extend } from 'lodash';
+import { UnknownAction } from 'redux';
 
 export const ARTICLES_LOAD_REQUEST = 'ARTICLES_LOAD_REQUEST';
 export const ARTICLES_LOAD_SUCCEED = 'ARTICLES_LOAD_SUCCEED';
@@ -49,7 +51,7 @@ export interface ArticlesState {
   errors?: Error[];
 }
 
-export interface ArticleItemResponse {
+export interface ArticleItemResponse extends UnknownAction {
   type: 'article';
   id: number;
   attributes: ArticleState;
@@ -71,77 +73,77 @@ export interface ArticleApiResponse {
   };
 }
 
-interface ArticlesLoadRequestAction {
+interface ArticlesLoadRequestAction extends UnknownAction {
   type: typeof ARTICLES_LOAD_REQUEST;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticlesLoadSuccessAction {
+interface ArticlesLoadSuccessAction extends UnknownAction {
   type: typeof ARTICLES_LOAD_SUCCEED;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticlesLoadFailureAction {
+interface ArticlesLoadFailureAction extends UnknownAction {
   type: typeof ARTICLES_LOAD_FAILURE;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleUpdateOneRequestAction {
+interface ArticleUpdateOneRequestAction extends UnknownAction {
   type: typeof ARTICLE_UPDATE_ONE_REQUEST;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleUpdateOneSuccessAction {
+interface ArticleUpdateOneSuccessAction extends UnknownAction {
   type: typeof ARTICLE_UPDATE_ONE_SUCCEED;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleUpdateOneFailureAction {
+interface ArticleUpdateOneFailureAction extends UnknownAction {
   type: typeof ARTICLE_UPDATE_ONE_FAILURE;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleCreateOneRequestAction {
+interface ArticleCreateOneRequestAction extends UnknownAction {
   type: typeof ARTICLE_CREATE_ONE_REQUEST;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleCreateOneSuccessAction {
+interface ArticleCreateOneSuccessAction extends UnknownAction {
   type: typeof ARTICLE_CREATE_ONE_SUCCEED;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleCreateOneFailureAction {
+interface ArticleCreateOneFailureAction extends UnknownAction {
   type: typeof ARTICLE_CREATE_ONE_FAILURE;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleSortOneRequestAction {
+interface ArticleSortOneRequestAction extends UnknownAction {
   type: typeof ARTICLE_SORT_ONE_REQUEST;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleSortOneSuccessAction {
+interface ArticleSortOneSuccessAction extends UnknownAction {
   type: typeof ARTICLE_SORT_ONE_SUCCEED;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleSortOneFailureAction {
+interface ArticleSortOneFailureAction extends UnknownAction {
   type: typeof ARTICLE_SORT_ONE_FAILURE;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleDeleteOneRequestAction {
+interface ArticleDeleteOneRequestAction extends UnknownAction {
   type: typeof ARTICLE_DELETE_ONE_REQUEST;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleDeleteOneSuccessAction {
+interface ArticleDeleteOneSuccessAction extends UnknownAction {
   type: typeof ARTICLE_DELETE_ONE_SUCCEED;
   payload: Partial<ArticlesState>;
 }
 
-interface ArticleDeleteOneFailureAction {
+interface ArticleDeleteOneFailureAction extends UnknownAction {
   type: typeof ARTICLE_DELETE_ONE_FAILURE;
   payload: Partial<ArticlesState>;
 }

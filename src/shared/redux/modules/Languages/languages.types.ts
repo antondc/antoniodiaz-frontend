@@ -1,4 +1,5 @@
 import { TextEditorValue } from '@antoniodcorrea/components';
+import { UnknownAction } from 'redux';
 
 export const LANGUAGES_LOAD_REQUEST = 'LANGUAGES_LOAD_REQUEST';
 export const LANGUAGES_LOAD_SUCCESS = 'LANGUAGES_LOAD_SUCCESS';
@@ -52,7 +53,7 @@ export type LanguagesState = {
   loading?: boolean;
 };
 
-export interface LanguagesApiResponseItem {
+export interface LanguagesApiResponseItem extends UnknownAction {
   type: 'languages';
   attributes: LanguageState;
 }
@@ -71,47 +72,47 @@ export interface LanguageApiResponse {
   data: LanguagesApiResponseItem;
 }
 
-interface LanguagesLoadRequestAction {
+interface LanguagesLoadRequestAction extends UnknownAction {
   type: typeof LANGUAGES_LOAD_REQUEST;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesLoadSuccessAction {
+interface LanguagesLoadSuccessAction extends UnknownAction {
   type: typeof LANGUAGES_LOAD_SUCCESS;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesLoadFailureAction {
+interface LanguagesLoadFailureAction extends UnknownAction {
   type: typeof LANGUAGES_LOAD_FAILURE;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesUpdateRequestAction {
+interface LanguagesUpdateRequestAction extends UnknownAction {
   type: typeof LANGUAGES_UPDATE_REQUEST;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesUpdateSuccessAction {
+interface LanguagesUpdateSuccessAction extends UnknownAction {
   type: typeof LANGUAGES_UPDATE_SUCCESS;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesUpdateFailureAction {
+interface LanguagesUpdateFailureAction extends UnknownAction {
   type: typeof LANGUAGES_UPDATE_FAILURE;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesSwitchCurrentRequestAction {
+interface LanguagesSwitchCurrentRequestAction extends UnknownAction {
   type: typeof LANGUAGES_SWITCH_CURRENT_REQUEST;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesSwitchCurrentSuccessAction {
+interface LanguagesSwitchCurrentSuccessAction extends UnknownAction {
   type: typeof LANGUAGES_SWITCH_CURRENT_SUCCESS;
   payload: Partial<LanguagesState>;
 }
 
-interface LanguagesSetLoadingAction {
+interface LanguagesSetLoadingAction extends UnknownAction {
   type: typeof LANGUAGES_SET_LOADING;
   payload: Partial<LanguagesState>;
 }
