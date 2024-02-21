@@ -8,6 +8,7 @@ Web client for <www.antoniodiaz.me>. Developed with server side rendering in min
 
     - Install Node
     - Install Nvm
+    - Needs `react-router-dom` 5
 
 ### Install runtime environment, dependencies and run
 
