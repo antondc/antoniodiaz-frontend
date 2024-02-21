@@ -1,6 +1,6 @@
-# Web client for www.antoniodiaz.me
+# Web client for <www.antoniodiaz.me>
 
-Web client for www.antoniodiaz.me. Developed with server side rendering in mind using React and global state with Redux with TypeScript typing system.
+Web client for <www.antoniodiaz.me>. Developed with server side rendering in mind using React and global state with Redux with TypeScript typing system.
 
 ## Install and run
 
