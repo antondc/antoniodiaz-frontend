@@ -46,8 +46,12 @@ const Layout: React.FC<Props> = ({ location }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('load', addBodyClasses);
-    document.addEventListener('keydown', testKeyDown);
+    if (document.readyState === 'complete') {
+      addBodyClasses();
+    } else {
+      window.addEventListener('load', addBodyClasses);
+      document.addEventListener('keydown', testKeyDown);
+    }
 
     return () => {
       window.removeEventListener('load', addBodyClasses);
