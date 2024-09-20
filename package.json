@@ -112,7 +112,7 @@
   },
   "dependencies": {
     "@ant-design/react-slick": "^1.0.2",
-    "@antoniodcorrea/components": "^2.0.10",
+    "@antoniodcorrea/components": "^2.0.13",
     "@antoniodcorrea/utils": "^1.0.278",
     "@antoniodcorrea/utils-backend": "^1.0.277",
     "@antoniodcorrea/utils-frontend": "^0.0.6",
