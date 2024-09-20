@@ -17,6 +17,7 @@ import enhanceRouteWithParams from 'Tools/utils/url/enhanceRouteWithParams';
 import findActiveRouteKey from 'Tools/utils/url/findActiveRouteKey';
 import { ESCAPE_KEY_CODE } from './constants';
 import { Layout as LayoutUi } from './Layout';
+import { useShowPageOnLoad } from '@antoniodcorrea/components';
 
 import './Layout.less';
 
@@ -36,22 +37,16 @@ const Layout: React.FC<Props> = ({ location }) => {
   const currentRoute = useSelector(selectCurrentRoute);
   const control = currentRoute.auth;
 
-  const addBodyClasses = () => {
-    document.body.classList.remove('preload'); // Preventing animations on load
-    document.body.classList.add('isLoaded'); // Showing page on load
-  };
+  useShowPageOnLoad();
 
   const testKeyDown = (e: KeyboardEvent): void => {
     if (e.key === ESCAPE_KEY_CODE) dispatch(uiResetModalsState());
   };
 
   useEffect(() => {
-    document.readyState === 'complete' ? addBodyClasses() : window.addEventListener('load', addBodyClasses);
-
     window.addEventListener('keydown', testKeyDown);
 
     return () => {
-      window.removeEventListener('load', addBodyClasses);
       window.removeEventListener('keydown', testKeyDown);
     };
   }, []);
