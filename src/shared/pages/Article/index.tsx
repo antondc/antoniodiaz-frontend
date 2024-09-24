@@ -1,19 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useCachedData } from 'Hooks/useCachedData';
 import { useHljs } from 'Hooks/useHljs';
 import { useLoadInitialData } from 'Hooks/useLoadInitialData';
 import { useMathFormat } from 'Hooks/useMathFormat';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
-import { ArticleState } from 'Modules/Articles/articles.types';
 import { selectArticle } from 'Modules/Articles/selectors/selectArticle';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
-import { selectSessionLoggedIn } from '../../redux/modules/Session/selectors/selectSessionLoggedIn';
+import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { Article as ArticleUi } from './Article';
 
 const Article: React.FC = () => {
@@ -21,8 +19,7 @@ const Article: React.FC = () => {
   const params = useSelector(selectCurrentRouteParams);
   const currentLanguageSlug = useSelector(selectCurrentLanguageSlug);
   const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
-  const cachedArticle = useCachedData<ArticleState>(article);
-  const date = new LocaleFormattedDate({ unixTime: Number(cachedArticle?.createdAt), locale: currentLanguageSlug });
+  const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: currentLanguageSlug });
   const createdAtFormatted = date.getLocaleFormattedDate();
   const glossary = useSelector(selectCurrentGlossary);
   const isLoggedIn = useSelector(selectSessionLoggedIn);
@@ -31,9 +28,9 @@ const Article: React.FC = () => {
     await dispatch(articlesLoad());
   };
   useLoadInitialData({ loadInitialData });
-  useMathFormat({ id: 'Article', data: cachedArticle });
-  useHljs({ data: cachedArticle });
+  useMathFormat({ id: 'Article', data: article });
+  useHljs({ data: article });
 
-  return <ArticleUi article={cachedArticle} date={createdAtFormatted} glossary={glossary} isLoggedIn={isLoggedIn} />;
+  return <ArticleUi article={article} date={createdAtFormatted} glossary={glossary} isLoggedIn={isLoggedIn} />;
 };
 export default Article;
