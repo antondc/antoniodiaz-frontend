@@ -118,14 +118,18 @@
 
   pre {
     margin: 20px 0 10px;
-    padding: 30px;
+    padding: 22px;
     font-family: @ff-code;
     font-size: @fs-small;
     line-height: @fh-normal;
     white-space: pre;
-    color: @c-background;
     border-radius: 4px;
     overflow-x: scroll;
+    outline: 1px dashed;
+    border: 8px solid @c-background;
+    border-offset: -8px;
+
+    .hideScrollbar();
 
     code {
       white-space: pre;
