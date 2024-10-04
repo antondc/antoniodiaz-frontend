@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import hljs from 'highlight.js';
 import { removeNonASCII } from '@antoniodcorrea/utils';
 
+import './useHljs.less';
+
 interface Props {
   data: unknown;
 }
