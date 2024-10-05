@@ -112,8 +112,8 @@
   },
   "dependencies": {
     "@ant-design/react-slick": "^1.0.2",
-    "@antoniodcorrea/components": "^2.0.14",
-    "@antoniodcorrea/utils": "^1.0.280",
+    "@antoniodcorrea/components": "^2.0.16",
+    "@antoniodcorrea/utils": "^1.0.285",
     "@antoniodcorrea/utils-backend": "^1.0.277",
     "@antoniodcorrea/utils-frontend": "^0.0.6",
     "@redux-devtools/extension": "^3.3.0",

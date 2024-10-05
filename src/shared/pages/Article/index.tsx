@@ -10,7 +10,7 @@ import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrent
 import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { RootState } from 'Modules/rootType';
 import { selectCurrentRouteParams } from 'Modules/Routes/selectors/selectCurrentRouteParams';
-import { LocaleFormattedDate } from '@antoniodcorrea/utils';
+import { getIdFromSlug, LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { Article as ArticleUi } from './Article';
 
@@ -18,7 +18,7 @@ const Article: React.FC = () => {
   const dispatch = useDispatch();
   const params = useSelector(selectCurrentRouteParams);
   const currentLanguageSlug = useSelector(selectCurrentLanguageSlug);
-  const article = useSelector((state: RootState) => selectArticle(state, Number(params.articleId)));
+  const article = useSelector((state: RootState) => selectArticle(state, Number(getIdFromSlug(params.articleId))));
   const date = new LocaleFormattedDate({ unixTime: Number(article?.createdAt), locale: currentLanguageSlug });
   const createdAtFormatted = date.getLocaleFormattedDate();
   const glossary = useSelector(selectCurrentGlossary);
