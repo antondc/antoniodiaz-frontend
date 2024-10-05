@@ -1,3 +1,5 @@
+@import '../../css/imports.less';
+
 .selectedText() {
   &::selection {
     background: rgba(255, 252, 160, 0.486);
@@ -34,9 +36,8 @@ Date: 2013-04-02;
   }
 
   .hljs-strong,
-  .hljs-string,
   .hljs-deletion {
-    color: #d14;
+    color: rgb(255, 105, 105);
 
     .selectedText();
   }
@@ -55,68 +56,71 @@ Date: 2013-04-02;
     .selectedText();
   }
 
+  .hljs-keyword,
   .hljs-section,
   .hljs-title {
-    color: #900;
+    color: #d27979;
 
     .selectedText();
   }
 
+  .hljs-meta,
   .hljs-class .hljs-title,
-  .hljs-title.class_,
+  .hljs-title.function_,
+  .hljs-built_in,
   .hljs-type {
-    color: #458;
+    color: #4192db;
 
     .selectedText();
   }
 
+  .hljs-symbol,
   .hljs-variable,
   .hljs-template-variable {
-    color: #336699;
+    color: #1f5dbd;
 
     .selectedText();
   }
 
-  .hljs-bullet {
-    color: #997700;
+  .hljs-bullet,
+  .hljs-title.class_,
+  .hljs-attr {
+    color: #e8a259;
 
     .selectedText();
   }
 
-  .hljs-meta {
-    color: #3344bb;
-
-    .selectedText();
-  }
-
+  .hljs-params,
   .hljs-code,
   .hljs-number,
   .hljs-literal,
-  .hljs-keyword,
-  .hljs-selector-tag {
-    color: #099;
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #5271ae;
 
     .selectedText();
   }
 
   .hljs-regexp {
     background-color: #fff0ff;
-    color: #880088;
+    color: #e64ce6;
 
     .selectedText();
   }
+
 
   .hljs-symbol {
-    color: #990073;
+    color: #c165ff;
 
     .selectedText();
   }
 
+  .hljs-string,
   .hljs-tag,
   .hljs-name,
   .hljs-selector-id,
   .hljs-selector-class {
-    color: #007700;
+    color: #7cbf93;
 
     .selectedText();
   }

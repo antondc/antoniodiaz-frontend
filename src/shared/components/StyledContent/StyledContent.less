@@ -78,10 +78,12 @@
 
     &@{c}-image--loaded {
       opacity: 1;
-    }  }
+    }
+  }
 
   figcaption {
     margin-top: 10px;
+    margin-bottom: 40px;
     font-family: @ff-sans;
     font-size: @fs-small;
     font-weight: @fw-semibold;
@@ -117,7 +119,7 @@
   }
 
   pre {
-    margin: 20px 0 10px;
+    margin: 40px 0 10px;
     padding: 22px;
     font-family: @ff-code;
     font-size: @fs-small;
@@ -128,6 +130,10 @@
     outline: 1px dashed;
     border: 8px solid @c-background;
     border-offset: -8px;
+
+    &:not(:has(+ figcaption)) {
+      margin-bottom: 40px;
+    }
 
     .hideScrollbar();
 
