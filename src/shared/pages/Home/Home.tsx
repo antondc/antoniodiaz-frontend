@@ -5,6 +5,7 @@ import Upload from 'Assets/svg/upload.svg';
 import A from 'Components/A';
 import { ArticleState } from 'Modules/Articles/articles.types';
 import { GlossaryState } from 'Modules/Languages/languages.types';
+import { createSlugString } from '@antoniodcorrea/utils';
 
 import './Home.less';
 
@@ -25,7 +26,7 @@ export const Home: React.FC<Props> = ({ glossary, articlesWithDates, isLoggedIn 
       <ul className="Home-articles">
         {articlesWithDates.map((item) => (
           <li className="Home-article" key={item.id}>
-            <A className="Home-articleTitle" href={`/blog/${item.id}`} styled={false}>
+            <A className="Home-articleTitle" href={`/blog/${createSlugString(item.title)}-${item.id}`} styled={false}>
               {item?.title}
             </A>
             <div className="Home-articleDate">{item?.date}</div>
