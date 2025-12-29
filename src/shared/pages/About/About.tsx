@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import GitLab from 'Assets/svg/iconGitLab.svg';
+import GitHub from 'Assets/svg/iconGitHub.svg';
 import Linkedin from 'Assets/svg/iconLinkedin.svg';
 import Mail from 'Assets/svg/iconMail.svg';
 import Rss from 'Assets/svg/iconRss.svg';
@@ -29,12 +29,12 @@ export const About: React.FC<Props> = ({ glossary }) => (
       <div className="About-where">
         <A
           className="About-item About-item--gitLab"
-          href="https://www.git.antoniodiaz.me/antoniodcorrea"
+          href="https://www.gitlab.com/antondc"
           targetBlank
           styled={false}
-          title="GitLab"
+          title="GitHub"
         >
-          <GitLab className="About-itemIcon" />
+          <GitHub className="About-itemIcon" />
         </A>
         <A
           className="About-item About-item--mail"
