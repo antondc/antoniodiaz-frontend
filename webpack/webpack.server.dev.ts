@@ -1,14 +1,13 @@
-import webpack, { Configuration } from 'webpack';
+import { Configuration } from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import merge from 'webpack-merge';
 
-import { development } from '../config.test.json';
-import { ENVIRONMENT_DEV } from './constants';
+import { NODE_ENV_DEVELOPMENT } from './constants';
 import webpackServerCommonConfig from './webpack.server.common';
 
 const webpackServerDevConfig: Configuration = {
   name: 'server',
-  mode: 'development',
+  mode: NODE_ENV_DEVELOPMENT,
   target: 'node',
   devtool: 'eval-cheap-module-source-map',
   stats: 'normal',
@@ -19,18 +18,6 @@ const webpackServerDevConfig: Configuration = {
     },
   },
   plugins: [
-    // Setting a variable to identify browser from server
-    new webpack.DefinePlugin({
-      'process.env':  {
-        JWT_SECRET: JSON.stringify(process.env.JWT_SECRET),
-        DOMAIN: JSON.stringify(development.DOMAIN),
-        SERVER_PORT_HTTP: development.PORT_HTTP,
-        SERVER_PORT_HTTPS: development.PORT_HTTPS,
-        ENDPOINT_API: JSON.stringify(development.API_URL),
-        SERVER_URL: JSON.stringify(development.SERVER_URL),
-        ENVIRONMENT: JSON.stringify(ENVIRONMENT_DEV),
-      },
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,

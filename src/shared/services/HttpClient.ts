@@ -24,7 +24,7 @@ export class HttpClient {
   constructor(options?: Options) {
     const credentials = options?.credentials === undefined ? true : options?.credentials;
     const axiosInstance = axios.create({
-      baseURL: process.env.ENDPOINT_API,
+      baseURL: process.env.API_URL,
       httpsAgent: new https.Agent({
         rejectUnauthorized: false,
       }),

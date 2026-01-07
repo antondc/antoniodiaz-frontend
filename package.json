@@ -2,7 +2,7 @@
   "name": "antoniodiaz_frontend",
   "version": "2.0.0",
   "author": "Antonio Díaz",
-  "description": "Starter kit for universal sites using react, redux and typescript",
+  "description": "Web client for www.antoniodiaz.me using react, redux and typescript",
   "main": "dist/server.js",
   "keywords": [
     "typescript",
@@ -14,15 +14,12 @@
     "hmr"
   ],
   "scripts": {
-    "dev": "webpack --watch --config ./webpack/webpack.server.dev.ts & node --inspect=9228 ./dist/server.js",
-    "stage": "webpack --config ./webpack/webpack.client.stage.ts & webpack --config ./webpack/webpack.server.stage.ts",
-    "prod": "webpack --config ./webpack/webpack.client.prod.ts & webpack --config ./webpack/webpack.server.prod.ts",
+    "dev": "bash -c \"npx webpack --watch --config ./webpack/webpack.server.dev.ts & while [ ! -f ./dist/server.js ]; do sleep 0.2; done; node --inspect=0.0.0.0:9228 ./dist/server.js\"",
+    "prod": "webpack --config ./webpack/webpack.server.prod.ts && webpack --config ./webpack/webpack.client.prod.ts",
     "build:server:dev": "webpack --config ./webpack/webpack.server.dev.ts",
     "build:client:dev": "webpack --config ./webpack/webpack.client.dev.ts",
     "build:client:prod": "webpack --config ./webpack/webpack.client.prod.ts",
     "build:server:prod": "webpack --config ./webpack/webpack.server.prod.ts",
-    "build:server:stage": "webpack --config ./webpack/webpack.server.stage.ts",
-    "build:client:stage": "webpack --config ./webpack/webpack.client.stage.ts",
     "run:server": "node --inspect=9228 ./dist/server.js",
     "check": "npm run lint && npm run unused-exports",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
@@ -88,10 +85,8 @@
     "less-loader": "^12.2.0",
     "mini-css-extract-plugin": "^2.7.6",
     "node-polyfill-webpack-plugin": "^3.0.0",
-    "path-to-regexp": "^6.1.0",
     "prettier": "^3.0.3",
     "prettier-eslint": "^16.3.0",
-    "reselect": "^5.1.0",
     "style-loader": "^3.3.3",
     "stylelint": "^16.2.1",
     "stylelint-config-recommended-less": "^3.0.1",
@@ -111,6 +106,8 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "path-to-regexp": "^6.1.0",
+    "reselect": "^5.1.0",
     "@ant-design/react-slick": "^1.0.2",
     "@antoniodcorrea/components": "^2.0.16",
     "@antoniodcorrea/utils": "^1.0.287",

@@ -1,9 +1,10 @@
-import { ENVIRONMENT_DEV, ENVIRONMENT_STAGING } from 'Root/webpack/constants';
+import { NODE_ENV_PRODUCTION } from "Root/webpack/constants";
+
 
 type ParamType = number | string | Record<string, any>;
 
 export const logger = (a: ParamType, b?: ParamType, c?: ParamType, d?: ParamType): void => {
-  if (process.env.ENVIRONMENT !== ENVIRONMENT_DEV && process.env.ENVIRONMENT !== ENVIRONMENT_STAGING) return;
+  if (process.env.NODE_ENV=== NODE_ENV_PRODUCTION) return;
 
   if (!d && !c && !b) {
     console.log(a);

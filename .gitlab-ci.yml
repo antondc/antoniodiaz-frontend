@@ -26,10 +26,6 @@ before_script:
 
 stages:
   - github_clone
-  - install
-  - build_staging
-  - deploy_staging
-  - build_production
   - deploy_production
 
 cache:
@@ -47,82 +43,20 @@ github_clone:
     - git push github --all
     - git push github --tags
 
-install:
-  stage: install
-  script:
-    - npm install --verbose -f
-  artifacts:
-    paths:
-      - node_modules/
-
-build_staging:
-  stage: build_staging
-  only:
-    - staging
-  script:
-    - npm run stage
-
-build_prod:
-  stage: build_production
-  only:
-    - master
-  script:
-    - npm run prod
-
-deploy_staging:
-  stage: deploy_staging
-  only:
-    - staging
-  script:
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_STAGING}
-        && rm -rf node_modules dist/* tmp
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_STAGING}
-        && git pull origin staging
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        source ~/.bash_profile
-        && export NPM_TOKEN=${NPM_TOKEN}
-        && export JWT_SECRET=${JWT_SECRET}
-        && cd ${SERVER_PATH_STAGING}
-        && nvm use --delete-prefix
-        && git checkout staging
-        && npm ci --verbose
-        && npm run stage
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_STAGING}
-        && export JWT_SECRET=${JWT_SECRET}
-        && NODE_ENV=staging pm2 restart ./dist/server.js --name staging.antoniodiaz.me --update-env
-      "
-
 deploy_production:
   stage: deploy_production
   only:
     - master
   script:
     - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_PRODUCTION}
-        && rm -rf node_modules dist/* tmp
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_PRODUCTION}
-        && git pull origin master
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        source ~/.bash_profile
-        && export NPM_TOKEN=${NPM_TOKEN}
-        && export JWT_SECRET=${JWT_SECRET}
-        && cd ${SERVER_PATH_PRODUCTION}
-        && nvm use --delete-prefix
-        && git checkout master
-        && npm ci --verbose
-        && npm run prod
-      "
-    - ssh ${SERVER_USER}@${SERVER_ADDRESS} "
-        cd ${SERVER_PATH_PRODUCTION}
-        && export JWT_SECRET=${JWT_SECRET}
-        && NODE_ENV=production pm2 restart ./dist/server.js --name antoniodiaz.me --update-env
+      cd ${SERVER_PROJECT_PATH}/${SERVER_SOURCE_CODE_FOLDER}
+      && git checkout master
+      && git pull origin master
+      && mkdir -p ${SERVER_PROJECT_PATH}/mysql ${SERVER_PROJECT_PATH}/media
+      && export JWT_SECRET=${JWT_SECRET}
+      && export NPM_TOKEN=${NPM_TOKEN}
+      && export API_URL=${API_URL}
+      && export PORT_SERVER_HTTP=${PORT_SERVER_HTTP}
+      && export PORT_SERVER_HTTPS=${PORT_SERVER_HTTPS}
+      && docker compose --env-file /dev/null -p ${PROJECT_NAME} -f docker-compose.base.yml -f docker-compose.prod.yml up -d --build
       "
