@@ -31,7 +31,7 @@ export class HttpClient {
     });
 
     if (!!options?.timeout) axiosInstance.defaults.timeout = options?.timeout;
-    axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
     axiosInstance.defaults.paramsSerializer = this.paramsSerializer;
     axiosInstance.defaults.withCredentials = credentials;
 
