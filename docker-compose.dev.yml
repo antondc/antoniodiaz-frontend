@@ -1,5 +1,7 @@
 services:
   client:
+    extra_hosts:
+      - "${DOMAIN}:host-gateway"
     env_file:
       - .env
     build:
