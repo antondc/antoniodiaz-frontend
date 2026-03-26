@@ -4,8 +4,8 @@
 
 @{c} {
   font-family: @ff-sans;
-  font-size: @fs-normal;
-  line-height: @fs-medium;
+  font-size: 14px;
+  line-height: @fh-medium;
 
   h1 {
     margin-top: 40px;
@@ -19,12 +19,14 @@
   }
 
   a {
-    font-weight: @fw-medium;
+    font-weight: @fw-regular;
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
+    padding: 1px 0px;
+    border-radius: 2px;
     color: @c-brand;
-    transition: text-decoration-color @td-fast @ease;
+    transition: background-color @td-fast @ease;
     cursor: pointer;
 
     &:hover {
@@ -33,7 +35,7 @@
   }
 
   p {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     line-height: @fh-medium;
   }
 
@@ -67,17 +69,26 @@
   }
 
   img {
-    width: 100%;
-    margin: 0;
+    width: calc(100% + 50px);
+    max-width: calc(100% + 50px);
+    margin-left: -25px;
+    margin-right: -25px;
     opacity: 0;
-    box-shadow: 0 0 10px 5px @c-traslucid--light;
     object-fit: cover;
     object-position: center;
     transition: opacity @td-normal @ease;
-    border-radius: 4px;
+    border-radius: 8px;
 
     &@{c}-image--loaded {
       opacity: 1;
+    }
+
+    @media @br-mobile, @br-tablet {
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      border-radius: 0;
     }
   }
 
@@ -110,9 +121,9 @@
 
   mark {
     padding: 2px 6px;
-    font-family: @ff-code;
+    font-family: @ff-sans;
     font-size: 14px;
-    font-weight: @fw-bold;
+    font-weight: @fw-regular;
     color: @c-accent;
     background: @c-traslucid--light;
     border-radius: 4px;
@@ -121,7 +132,7 @@
   pre {
     margin: 40px 0 10px;
     padding: 22px;
-    font-family: @ff-code;
+    font-family: @ff-sans;
     font-size: @fs-small;
     line-height: @fh-normal;
     white-space: pre;
@@ -146,7 +157,7 @@
     margin: 40px 20px;
     padding: 0 20px;
     color: @c-accent;
-    border-left: 2px solid @c-accent;
+    border-left: 2px solid @c-accentLightest;
     font-style: italic;
   }
 

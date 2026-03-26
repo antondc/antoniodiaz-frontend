@@ -6,13 +6,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 40px;
+  height: 50px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   padding: 0 0;
   font-weight: @fw-medium;
   overflow: visible;
-  border-bottom: 2px solid @c-base;
+  border-bottom: 1px solid @c-accentLightest;
   user-select: none;
 
   &-name {
@@ -33,15 +33,28 @@
     font-weight: @fw-semibold;
   }
 
-  &-navigationItem {
-    margin-right: 10px;
-    color: @c-accentLightest;
-    transition: color @td-fast @ease;
 
-    &--active,
-    &:hover {
-      color: @c-base;
+
+  &-navigationItem {
+    margin-right: 20px;
+    font-size: @fs-small;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: @c-accentLightest;
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    transition: color @td-normal @ease, text-decoration-color @td-normal @ease;
+
+
+    &:hover:not(@{c}-navigationItem--active) {
       cursor: pointer;
+      text-decoration-color: @c-brand;
+    }
+
+    &:hover:not(@{c}-navigationItem--active),
+    &--active {
+      color: @c-brand;
     }
   }
 
@@ -54,6 +67,8 @@
     margin-left: 10px;
     font-size: @fs-small;
     font-weight: @fw-bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;

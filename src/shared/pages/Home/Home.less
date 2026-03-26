@@ -29,7 +29,6 @@
     font-size: 16px;
     font-weight: @fw-regular;
     line-height: 24px;
-    text-align: left;
     text-align: center;
 
     @media @br-mobile, @br-tablet {
@@ -51,10 +50,8 @@
   }
 
   &-article {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 15px;
+    line-height: @fh-medium;
 
     @media @mobile {
       display: block;
@@ -68,10 +65,11 @@
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
-    transition: text-decoration-color @td-normal @ease;
+    transition: color @td-normal @ease, text-decoration-color @td-normal @ease;
 
     &:hover {
-      text-decoration-color: @c-base;
+      color: @c-brand;
+      text-decoration-color: @c-brand;
       cursor: pointer;
     }
   }

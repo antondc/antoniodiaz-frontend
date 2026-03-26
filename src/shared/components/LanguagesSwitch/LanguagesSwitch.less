@@ -11,7 +11,10 @@
     margin-right: 10px;
     font-weight: @fw-semibold;
     color: @c-accentLightest;
-    transition: color @td-fast @ease;
+    text-decoration: underline;
+    text-decoration-color: @c-transparent;
+    text-decoration-thickness: 2px;
+    transition: color @td-normal @ease, text-decoration-color @td-normal @ease;
     user-select: none;
 
     &:last-child {
@@ -20,11 +23,12 @@
 
     &:hover:not(@{c}-item--active) {
       cursor: pointer;
+      text-decoration-color: @c-brand;
     }
 
     &:hover:not(@{c}-item--active),
     &--active {
-      color: @c-base;
+      color: @c-brand;
     }
   }
 
