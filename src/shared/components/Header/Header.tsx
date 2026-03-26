@@ -25,7 +25,7 @@ export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, on
           href={Routes.Home.route}
           styled={false}
         >
-          Home
+          Posts
         </A>
         <A
           className={
