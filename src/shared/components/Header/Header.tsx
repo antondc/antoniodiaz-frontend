@@ -20,9 +20,7 @@ export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, on
         <A
           className={
             'Header-navigationItem' +
-            (routeName === Routes.Home.name || routeName === Routes.Article.name
-              ? ' Header-navigationItem--active'
-              : '')
+            (routeName === Routes.Home.name ? ' Header-navigationItem--active' : '')
           }
           href={Routes.Home.route}
           styled={false}
