@@ -22,11 +22,13 @@
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
-    transition: text-decoration-color @td-fast @ease;
+    transition: text-decoration-color @td-fast @ease, text-decoration-color @td-fast @ease;
     cursor: pointer;
+    color: @c-base;
 
     &:hover {
-      text-decoration-color: @c-accent;
+      color: @c-brand;
+      text-decoration-color: @gradientColors[blue-3];
     }
   }
 }
