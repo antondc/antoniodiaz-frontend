@@ -54,9 +54,7 @@ const ControlArticle: React.FC = () => {
         file,
         setPercentCompleted: setOgImagePercentCompleted,
       });
-      await setOgImage({
-        original: data?.file,
-      });
+      setOgImage({ original: data?.file });
     } catch (error) {
       setOgImageError(error.message);
     }
@@ -79,6 +77,8 @@ const ControlArticle: React.FC = () => {
   };
 
   const onChangeTextEditorValue = (value: TextEditorValue) => {
+    console.log('test::onChangeTextEditorValue: ', value);
+
     setSubmitError(undefined);
     setSubmitting(undefined);
     setSubmitSuccess(undefined);

@@ -11,7 +11,6 @@ export interface RoutesState {
 }
 
 export interface ParamsState {
-  lang?: string;
   articleId?: string;
 }
 

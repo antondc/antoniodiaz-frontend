@@ -1,5 +1,6 @@
 // General
 export const SITE_TITLE = 'Antonio Díaz';
+export const DEFAULT_LANGUAGE = 'en';
 export const DEFAULT_PAGE_SIZE = 20;
 export const COOKIE_POLICY_COOKIE = 'cookiePolicyCookie';
 export const FILE_SIZE_LIMIT = 15728640; // 15MB

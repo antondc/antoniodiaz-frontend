@@ -5,7 +5,7 @@ import HttpClient from 'Services/HttpClient';
 import { URLWrapper } from '@antoniodcorrea/utils';
 import { TokenJWT, } from '@antoniodcorrea/utils-backend';
 
-const ROUTE_REGEX = '/:lang([a-z]{2})?/sign-up-confirmation/check';
+const ROUTE_REGEX = '/sign-up-confirmation/check';
 
 type SignUpConfirmationResponse = {
   data: {

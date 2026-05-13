@@ -1,8 +1,6 @@
 import React, { HTMLProps } from 'react';
-import { useSelector } from 'react-redux';
 import { animateScroll as scroll, Events } from 'react-scroll';
 
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import history from 'Services/History';
 import { A as ComponentsA } from '@antoniodcorrea/components';
 
@@ -23,22 +21,14 @@ interface Props extends HTMLProps<HTMLAnchorElement> {
 }
 
 const A: React.FC<Props> = ({ href, targetBlank, scrollBeforeNavigate = false, onClick, ...props }) => {
-  const currentLanguageSlug = useSelector(selectCurrentLanguageSlug);
-  const hrefWithoutLeadingSlash = href?.replace(/^\//, '');
-  const hrefAlreadyHasSlug = hrefWithoutLeadingSlash?.startsWith(currentLanguageSlug);
-  const hrefWithCurrentSlug =
-    !!currentLanguageSlug && !targetBlank && !hrefAlreadyHasSlug
-      ? `/${currentLanguageSlug}/${hrefWithoutLeadingSlash}`
-      : href;
-
   const navigateToHref = () => {
     if (targetBlank) {
-      window.open(hrefWithCurrentSlug);
+      window.open(href);
 
       return;
     }
 
-    history.push(hrefWithCurrentSlug);
+    history.push(href);
   };
 
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -62,7 +52,7 @@ const A: React.FC<Props> = ({ href, targetBlank, scrollBeforeNavigate = false, o
     });
   };
 
-  return <ComponentsA {...props} href={hrefWithCurrentSlug} onClick={onLinkClick} targetBlank={targetBlank} />;
+  return <ComponentsA {...props} href={href} onClick={onLinkClick} targetBlank={targetBlank} />;
 };
 
 export default A;

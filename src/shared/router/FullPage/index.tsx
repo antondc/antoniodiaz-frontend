@@ -7,10 +7,9 @@ import { Route, Switch } from 'react-router-dom';
 import Footer from 'Components/Footer';
 import Header from 'Components/Header';
 import { selectCurrentGlossary } from 'Modules/Languages/selectors/selectCurrentGlossary';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { selectLanguageLoading } from 'Modules/Languages/selectors/selectLanguageLoading';
 import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute';
-import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
+import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { selectSessionLoggedIn } from 'Modules/Session/selectors/selectSessionLoggedIn';
 import { selectUiMounted } from 'Modules/Ui/selectors/selectUiMounted';
 import About from 'Pages/About';
@@ -35,10 +34,9 @@ interface Props {
 
 const FullPage: React.FC<Props> = ({ location }) => {
   const loggedIn = useSelector(selectSessionLoggedIn);
-  const defaultCurrentSlug = useSelector(selectCurrentLanguageSlug);
   const currentGlossary = useSelector(selectCurrentGlossary);
   const languageLoading = useSelector(selectLanguageLoading);
-  const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
+  const pathWithoutLanguageParam = useSelector(selectCurrentPathname);
   const uiMounted = useSelector(selectUiMounted);
   const renderUi = uiMounted && !languageLoading;
   const route = useSelector(selectCurrentRoute);
@@ -50,7 +48,7 @@ const FullPage: React.FC<Props> = ({ location }) => {
         <title>{currentGlossary.siteTitle}</title>
         <meta name="description" content={currentGlossary.siteDescription} />
         <meta name="author" content={currentGlossary.author} />
-        <meta property="og:locale" content={`${defaultCurrentSlug}-${defaultCurrentSlug.toUpperCase()}`} />
+        <meta property="og:locale" content="en-US" />
         <meta property="og:title" content={currentGlossary.siteTitle} />
         <meta property="og:url" content={route.href} />
         <meta property="og:site_name" content={currentGlossary.siteTitle} />
@@ -63,7 +61,7 @@ const FullPage: React.FC<Props> = ({ location }) => {
           rel="alternate"
           type="application/rss+xml"
           title="RSS 2.0"
-          href={`${route.domain}/${defaultCurrentSlug}/rss/blog`}
+          href={`${route.domain}/rss/blog`}
         />
       </Helmet>
       <Header />
@@ -77,8 +75,8 @@ const FullPage: React.FC<Props> = ({ location }) => {
         <Fade className="FullPage-content" mounted={renderUi} unmountOnExit={false} speed="fastest" appear>
           <Switch location={{ ...location, pathname: pathWithoutLanguageParam }}>
             {/* Redirects */}
-            {loggedIn && <Redirect from={Routes.Login.path} to={'/' + defaultCurrentSlug + '/'} />}
-            {!loggedIn && <Redirect from={Routes.Control.path} to={'/' + defaultCurrentSlug + '/login'} />}
+            {loggedIn && <Redirect from={Routes.Login.path} to={Routes.Home.route} />}
+            {!loggedIn && <Redirect from={Routes.Control.path} to={Routes.Login.route} />}
 
             {/* General */}
             <Route exact={Routes.Home.exact} path={Routes.Home.path} component={Home} />

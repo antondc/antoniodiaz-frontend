@@ -36,7 +36,7 @@ interface RoutesInterface {
 export const Routes: RoutesInterface = {
   Login: {
     name: 'Login',
-    path: '/:lang([a-z]{2})?/login',
+    path: '/login',
     route: '/login',
     exact: true,
     auth: false,
@@ -47,7 +47,7 @@ export const Routes: RoutesInterface = {
 
   Home: {
     name: 'Home',
-    path: '/:lang([a-z]{2})?',
+    path: '/',
     route: '/',
     exact: true,
     auth: false,
@@ -58,7 +58,7 @@ export const Routes: RoutesInterface = {
 
   About: {
     name: 'About',
-    path: '/:lang([a-z]{2})?/about',
+    path: '/about',
     route: '/about',
     exact: true,
     auth: false,
@@ -69,7 +69,7 @@ export const Routes: RoutesInterface = {
 
   Article: {
     name: 'Article',
-    path: '/:lang([a-z]{2})?/blog/:articleId',
+    path: '/blog/:articleId',
     route: '/blog',
     exact: false,
     auth: false,
@@ -80,7 +80,7 @@ export const Routes: RoutesInterface = {
 
   Control: {
     name: 'Control',
-    path: '/:lang([a-z]{2})?/control',
+    path: '/control',
     route: '/control',
     exact: true,
     auth: true,
@@ -91,7 +91,7 @@ export const Routes: RoutesInterface = {
 
   ControlAbout: {
     name: 'ControlAbout',
-    path: '/:lang([a-z]{2})?/control/about',
+    path: '/control/about',
     route: '/control/about',
     exact: true,
     auth: true,
@@ -102,7 +102,7 @@ export const Routes: RoutesInterface = {
 
   ControlArticle: {
     name: 'ControlArticle',
-    path: '/:lang([a-z]{2})?/control/blog/:articleId',
+    path: '/control/blog/:articleId',
     route: '/control/blog',
     exact: true,
     auth: true,
@@ -113,7 +113,7 @@ export const Routes: RoutesInterface = {
 
   ControlArticleCreate: {
     name: 'ControlArticleCreate',
-    path: '/:lang([a-z]{2})?/control/blog/new',
+    path: '/control/blog/new',
     route: '/control/blog/new',
     exact: true,
     auth: true,
@@ -124,7 +124,7 @@ export const Routes: RoutesInterface = {
 
   ServerError: {
     name: 'ServerError',
-    path: '/:lang([a-z]{2})?/500-server-error',
+    path: '/500-server-error',
     route: '/500-server-error',
     exact: true,
     auth: false,
@@ -136,7 +136,7 @@ export const Routes: RoutesInterface = {
 
   NotFound: {
     name: 'NotFound',
-    path: '/:lang([a-z]{2})?/:path*',
+    path: '/:path*',
     route: '/not-found',
     exact: false,
     auth: false,

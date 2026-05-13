@@ -13,7 +13,7 @@ import {
 export const articlesLoad =
   (): AppThunk<Promise<ArticleState[]>, ArticlesActions> =>
   async (dispatch, getState): Promise<ArticleState[]> => {
-    const { Articles: articlesBeforeRequest, Languages: languagesBeforeRequest } = getState();
+    const { Articles: articlesBeforeRequest } = getState();
     try {
       dispatch({
         type: ARTICLES_LOAD_REQUEST,
@@ -24,7 +24,7 @@ export const articlesLoad =
       });
 
       const { meta, data } = await HttpClient.get<void, ArticlesApiResponse>(
-        `${languagesBeforeRequest.currentLanguage.slug}/articles${window.location.search}`
+        `articles${window.location.search}`
       );
 
       const articlesArray = data?.map((item) => item.attributes);

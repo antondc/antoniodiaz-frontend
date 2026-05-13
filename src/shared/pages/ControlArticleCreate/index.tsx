@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { articleCreateOne } from 'Modules/Articles/actions/articleCreateOne';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
 import { DELAY_SLOW_MS } from 'Root/src/shared/constants';
+import { Routes } from 'Router/routes';
 import history from 'Services/History';
 import { ImageUpload } from 'Services/ImageUpload';
 import { TextEditorValue } from '@antoniodcorrea/components';
-import { ControlArticleCreate as ControlWhenUi } from './ControlArticleCreate';
+import { ControlArticleCreate as ControlArticleCreateUi } from './ControlArticleCreate';
 
 import './ControlArticleCreate.less';
 
 const ControlArticleCreate: React.FC = () => {
   const dispatch = useDispatch();
   const imageUploadService = new ImageUpload();
-  const language = useSelector(selectCurrentLanguageSlug);
   const [titleValue, setTitleValue] = useState<string>(undefined);
   const [titleError, setTitleError] = useState<string>(undefined);
   const [textEditorValue, setTextEditorValue] = useState<TextEditorValue>([]);
@@ -23,7 +22,9 @@ const ControlArticleCreate: React.FC = () => {
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(undefined);
 
   const onChangeTitle = (e: React.FormEvent<HTMLInputElement>) => {
+
     const { value } = e.currentTarget;
+    console.log('test::value: ', value);
 
     setTitleValue(value);
     setSubmitError(undefined);
@@ -31,6 +32,7 @@ const ControlArticleCreate: React.FC = () => {
   };
 
   const onChangeTextEditorValue = (value: TextEditorValue) => {
+    console.log('test::value: ', value);
     setSubmitError(undefined);
     setSubmitting(undefined);
     setSubmitSuccess(undefined);
@@ -51,7 +53,7 @@ const ControlArticleCreate: React.FC = () => {
       const article = await dispatch(articleCreateOne({ articleData }));
       setSubmitSuccess(true);
 
-      setTimeout(() => history.push(`/${language}/control/blog/${article?.id}`), DELAY_SLOW_MS);
+      setTimeout(() => history.push(`${Routes.ControlArticle.route}/${article?.id}`), DELAY_SLOW_MS);
     } catch (error) {
       setSubmitError(error.message);
     } finally {
@@ -60,7 +62,7 @@ const ControlArticleCreate: React.FC = () => {
   };
 
   return (
-    <ControlWhenUi
+    <ControlArticleCreateUi
       onChangeTitle={onChangeTitle}
       titleValue={titleValue}
       titleError={titleError}

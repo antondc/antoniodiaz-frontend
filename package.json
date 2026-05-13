@@ -106,10 +106,8 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "path-to-regexp": "^6.1.0",
-    "reselect": "^5.1.0",
     "@ant-design/react-slick": "^1.0.2",
-    "@antoniodcorrea/components": "^2.0.16",
+    "@antoniodcorrea/components": "^2.0.23",
     "@antoniodcorrea/utils": "^1.0.287",
     "@antoniodcorrea/utils-backend": "^1.0.277",
     "@antoniodcorrea/utils-frontend": "^0.0.6",
@@ -127,6 +125,7 @@
     "highlight.js": "^11.9.0",
     "lodash": "^4.17.15",
     "morgan": "^1.10.0",
+    "path-to-regexp": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -136,6 +135,7 @@
     "react-slick": "^0.30.2",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
+    "reselect": "^5.1.0",
     "serialize-javascript": "^6.0.1",
     "stylelint-config-standard-less": "^3.0.1",
     "uuid": "^9.0.0"

@@ -69,7 +69,7 @@ router.get(routesPathsList, async (req: any, res: any, next: any) => {
     search: QueryStringWrapper.stringifyQueryParams(req.query),
   };
 
-  Promise.all([initialLanguagesLoader(req.params.lang), ...initialDataLoadersPromises]) // We have to execute the Languages thunk, as well as the async function within it
+  Promise.all([initialLanguagesLoader(undefined), ...initialDataLoadersPromises]) // We have to execute the Languages thunk, as well as the async function within it
     .then((response: Array<any>) => {
       const mergedResponse = Object.assign({}, ...response); // Merge the results array into an object
 

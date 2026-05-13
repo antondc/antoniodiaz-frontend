@@ -1,9 +1,8 @@
 import React from 'react';
 
 import A from 'Components/A';
-import LanguagesSwitch from 'Components/LanguagesSwitch';
 import { Routes } from 'Router/routes';
-
+import Cube from 'Assets/svg/cube.svg';
 import './Header.less';
 
 interface Props {
@@ -18,10 +17,7 @@ export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, on
     {!isAuthRoute && (
       <div className="Header-navigation">
         <A
-          className={
-            'Header-navigationItem' +
-            (routeName === Routes.Home.name ? ' Header-navigationItem--active' : '')
-          }
+          className={'Header-navigationItem' + (routeName === Routes.Home.name ? ' Header-navigationItem--active' : '')}
           href={Routes.Home.route}
           styled={false}
         >
@@ -65,8 +61,7 @@ export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, on
       </div>
     )}
     <div className="Header-buttons">
-      <LanguagesSwitch />
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <>
           <div className="Header-item Header-logOut" onClick={onLogOut}>
             Log out
@@ -82,6 +77,8 @@ export const Header: React.FC<Props> = ({ routeName, isAuthRoute, isLoggedIn, on
             </A>
           )}
         </>
+      ) : (
+        <Cube className="Header-cube" />
       )}
     </div>
   </header>

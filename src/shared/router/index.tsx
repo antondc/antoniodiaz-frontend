@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import { selectCurrentRoute } from 'Modules/Routes/selectors/selectCurrentRoute';
-import { selectPathWithoutLanguageParam } from 'Modules/Routes/selectors/selectPathWithoutLanguageParam';
+import { selectCurrentPathname } from 'Modules/Routes/selectors/selectCurrentPathname';
 import { pathsByLayout, RouteLayout } from 'Router/routes';
 import { Location } from 'Services/History';
 import { FadeInOut } from '@antoniodcorrea/components';
@@ -17,7 +17,7 @@ const Router: React.FC<Props> = ({ location }) => {
   const pathsByLayoutFullPage = pathsByLayout(RouteLayout.fullPage);
   const currentRoute = useSelector(selectCurrentRoute);
   const currentLayout = currentRoute?.layout;
-  const pathWithoutLanguageParam = useSelector(selectPathWithoutLanguageParam);
+  const pathWithoutLanguageParam = useSelector(selectCurrentPathname);
 
   return (
     <FadeInOut valueToUpdate={currentLayout} speed="fastest" appear>

@@ -9,11 +9,11 @@
   height: 50px;
   width: 100%;
   margin-bottom: 40px;
-  padding: 0 0;
   font-weight: @fw-medium;
   overflow: visible;
   border-bottom: 1px solid @c-accentLightest;
   user-select: none;
+  padding: 0 4px 0 0;
 
   &-name {
     font-weight: @fw-semibold;
@@ -33,8 +33,6 @@
     font-weight: @fw-semibold;
   }
 
-
-
   &-navigationItem {
     margin-right: 20px;
     font-size: @fs-small;
@@ -44,8 +42,9 @@
     text-decoration: underline;
     text-decoration-color: @c-transparent;
     text-decoration-thickness: 2px;
-    transition: color @td-normal @ease, text-decoration-color @td-normal @ease;
-
+    transition:
+      color @td-normal @ease,
+      text-decoration-color @td-normal @ease;
 
     &:hover:not(@{c}-navigationItem--active) {
       cursor: pointer;
@@ -61,6 +60,12 @@
   &-buttons {
     display: flex;
     margin-left: auto;
+  }
+
+  &-cube {
+    height: 16px;
+    fill: @gradientColors[blue-1];
+    padding-top: 2px;
   }
 
   &-logOut {

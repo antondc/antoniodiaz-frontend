@@ -6,9 +6,10 @@ import { articleDeleteOne } from 'Modules/Articles/actions/articleDeleteOne';
 import { articlesLoad } from 'Modules/Articles/actions/articlesLoad';
 import { articleSortOne } from 'Modules/Articles/actions/articleSortOne';
 import { selectArticlesCurrent } from 'Modules/Articles/selectors/selectArticlesCurrent';
-import { selectCurrentLanguageSlug } from 'Modules/Languages/selectors/selectCurrentLanguageSlug';
+import { Routes } from 'Router/routes';
 import history from 'Services/History';
 import { SortableSortProps } from '@antoniodcorrea/components';
+import { DEFAULT_LANGUAGE } from 'Root/src/shared/constants';
 import { LocaleFormattedDate } from '@antoniodcorrea/utils';
 import { Control as ControlUi } from './Control';
 
@@ -16,10 +17,9 @@ import './Control.less';
 
 const Control: React.FC = () => {
   const dispatch = useDispatch();
-  const language = useSelector(selectCurrentLanguageSlug);
   const articles = useSelector(selectArticlesCurrent);
   const articlesWithDates = articles.map((item) => {
-    const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: language });
+    const date = new LocaleFormattedDate({ unixTime: Number(item?.createdAt), locale: DEFAULT_LANGUAGE });
     const formattedDate = date.getLocaleFormattedDate();
 
     return {
@@ -50,7 +50,7 @@ const Control: React.FC = () => {
   };
 
   const onNewArticleClick = () => {
-    history.push(`/${language}/control/blog/new`);
+    history.push(Routes.ControlArticleCreate.route);
   };
 
   return (

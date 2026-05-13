@@ -5,12 +5,10 @@ import { getIdFromSlug } from '@antoniodcorrea/utils';
 
 export const initialArticleLoader = async ({ params }: RequestParameters): Promise<{ Articles: ArticlesState }> => {
   try {
-    const lang = params?.lang ? `/${params?.lang}` : '';
-
     const articleId = getIdFromSlug(String(params.articleId));
     if (!articleId) return;
 
-    const { data: articleData, meta }: ArticleApiResponse = await HttpClient.get(`${lang}/articles/${articleId}`);
+    const { data: articleData, meta }: ArticleApiResponse = await HttpClient.get(`/articles/${articleId}`);
 
     const result = {
       Articles: {
