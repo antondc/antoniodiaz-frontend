@@ -29,7 +29,7 @@ export const About: React.FC<Props> = ({ glossary }) => (
       <div className="About-where">
         <A
           className="About-item About-item--gitLab"
-          href="https://www.github.com/antondc"
+          href="https://www.github.com/antoniodcorrea"
           targetBlank
           styled={false}
           title="GitHub"
